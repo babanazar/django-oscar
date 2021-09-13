@@ -1,0 +1,20 @@
+{
+    "upc": "entity",
+    "id": 4,
+    "title": "Entity service",
+    "description": "<p>An entity</p>",
+    "structure": "standalone",
+    "recommended_services": [],
+    "attributes": [
+        {
+            "name": "entity",
+            "value": "henk",
+            "code": "entity"
+        }
+    ],
+    "categories": [],
+    "service_class": "entityservice",
+    "images": [],
+    "options": [],
+    "children": []
+}

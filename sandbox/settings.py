@@ -304,6 +304,10 @@ INSTALLED_APPS = [
     # 3rd-party apps that the sandbox depends on
     'django_extensions',
     'debug_toolbar',
+
+    # For API
+    'rest_framework',
+    'oscarapi.apps.OscarAPIConfig',
 ]
 
 # Add Oscar's custom auth backend so users can sign in using their email
@@ -372,7 +376,7 @@ from oscar.defaults import *
 
 OSCAR_SHOP_TAGLINE = 'Sandbox'
 
-OSCAR_RECENTLY_VIEWED_PRODUCTS = 20
+OSCAR_RECENTLY_VIEWED_SERVICES = 20
 OSCAR_ALLOW_ANON_CHECKOUT = True
 
 
