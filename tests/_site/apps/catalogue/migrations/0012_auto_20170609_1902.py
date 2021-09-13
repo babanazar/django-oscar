@@ -13,12 +13,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='productattributevalue',
+            model_name='serviceattributevalue',
             name='value_datetime',
             field=models.DateTimeField(blank=True, null=True, verbose_name='DateTime'),
         ),
         migrations.AlterField(
-            model_name='productattribute',
+            model_name='serviceattribute',
             name='type',
             field=models.CharField(choices=[('text', 'Text'), ('integer', 'Integer'), ('boolean', 'True / False'), ('float', 'Float'), ('richtext', 'Rich Text'), ('date', 'Date'), ('datetime', 'Datetime'), ('option', 'Option'), ('multi_option', 'Multi Option'), ('entity', 'Entity'), ('file', 'File'), ('image', 'Image')], default='text', max_length=20, verbose_name='Type'),
         ),

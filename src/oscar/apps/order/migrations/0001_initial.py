@@ -390,8 +390,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='line',
-            name='product',
-            field=models.ForeignKey(null=True, verbose_name='Product', on_delete=django.db.models.deletion.SET_NULL, to='catalogue.Product', blank=True),
+            name='service',
+            field=models.ForeignKey(null=True, verbose_name='Service', on_delete=django.db.models.deletion.SET_NULL, to='catalogue.Service', blank=True),
             preserve_default=True,
         ),
         migrations.AddField(

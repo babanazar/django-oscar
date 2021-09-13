@@ -8,7 +8,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
             <li class="breadcrumb-item"><a href="{% url 'dashboard:catalogue-class-list' %}">{% trans "Product type" %}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "Delete product type?" %}</li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans "Delete service type?" %}</li>
         </ol>
     </nav>
 {% endblock %}
@@ -19,16 +19,16 @@
 
 {% block dashboard_content %}
     {% if disallow %}
-        <p>{% trans "Please make sure all products are assigned to another type before deletion." %}</p>
+        <p>{% trans "Please make sure all services are assigned to another type before deletion." %}</p>
     {% else %}
         <div class="table-header">
-            <h2>{% trans "Delete product type" %}</h2>
+            <h2>{% trans "Delete service type" %}</h2>
         </div>
         <form method="post" class="card card-body bg-light">
             {% csrf_token %}
             {{ form }}
             <p>
-                {% blocktrans with name=object.name %}Delete product type <strong>{{ name }}</strong> - are you sure?{% endblocktrans %}
+                {% blocktrans with name=object.name %}Delete service type <strong>{{ name }}</strong> - are you sure?{% endblocktrans %}
             </p>
             <div class="form-actions">
                 <button type="submit" class="btn btn-danger" data-loading-text="{% trans 'Deleting...' %}">{% trans "Delete" %}</button>

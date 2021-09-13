@@ -84,7 +84,7 @@ class AbstractOrderAndItemCharges(AbstractBase):
 
         charge = self.price_per_order
         for line in basket.lines.all():
-            if line.product.is_shipping_required:
+            if line.service.is_shipping_required:
                 charge += line.quantity * self.price_per_item
 
         # Zero tax is assumed...
@@ -95,16 +95,16 @@ class AbstractOrderAndItemCharges(AbstractBase):
 
 
 class AbstractWeightBased(AbstractBase):
-    # The attribute code to use to look up the weight of a product
+    # The attribute code to use to look up the weight of a service
     weight_attribute = 'weight'
 
-    # The default weight to use (in kg) when a product doesn't have a weight
+    # The default weight to use (in kg) when a service doesn't have a weight
     # attribute.
     default_weight = models.DecimalField(
         _("Default Weight"), decimal_places=3, max_digits=12,
         default=D('0.000'),
         validators=[MinValueValidator(D('0.00'))],
-        help_text=_("Default product weight in kg when no weight attribute "
+        help_text=_("Default service weight in kg when no weight attribute "
                     "is defined"))
 
     class Meta(AbstractBase.Meta):

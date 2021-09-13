@@ -3,7 +3,7 @@ from django.test import TestCase
 
 from oscar.apps.catalogue.reviews import models
 from oscar.core.compat import get_user_model
-from oscar.test.factories import UserFactory, create_product
+from oscar.test.factories import UserFactory, create_service
 
 User = get_user_model()
 
@@ -11,10 +11,10 @@ User = get_user_model()
 class TestAnAnonymousReview(TestCase):
 
     def setUp(self):
-        self.product = create_product()
+        self.service = create_service()
         self.data = {
-            'product': self.product,
-            'title': 'This product is lovely',
+            'service': self.service,
+            'title': 'This service is lovely',
             'body': 'I really like this cheese',
             'score': 0,
             'name': 'JR Hartley',
@@ -27,7 +27,7 @@ class TestAnAnonymousReview(TestCase):
             data.update(kwargs)
         else:
             data = self.data
-        return models.ProductReview(**data)
+        return models.ServiceReview(**data)
 
     def test_can_be_created(self):
         review = self.review()
@@ -78,11 +78,11 @@ class TestAnAnonymousReview(TestCase):
 class TestAUserReview(TestCase):
 
     def setUp(self):
-        self.product = create_product()
+        self.service = create_service()
         self.user = UserFactory(first_name="Tom", last_name="Thumb")
         self.data = {
-            'product': self.product,
-            'title': 'This product is lovely',
+            'service': self.service,
+            'title': 'This service is lovely',
             'body': 'I really like this cheese',
             'score': 0,
             'user': self.user
@@ -94,7 +94,7 @@ class TestAUserReview(TestCase):
             data.update(kwargs)
         else:
             data = self.data
-        return models.ProductReview(**data)
+        return models.ServiceReview(**data)
 
     def test_can_be_created(self):
         review = self.review()
@@ -115,8 +115,8 @@ class TestAUserReview(TestCase):
     def test_num_approved_reviews(self):
         review = self.review()
         review.save()
-        self.assertEqual(self.product.num_approved_reviews, 1)
-        self.assertEqual(self.product.reviews.approved().first(), review)
+        self.assertEqual(self.service.num_approved_reviews, 1)
+        self.assertEqual(self.service.reviews.approved().first(), review)
 
     def test_review_moderate_setting_false(self):
         with self.settings(OSCAR_MODERATE_REVIEWS=False):
@@ -132,10 +132,10 @@ class TestAUserReview(TestCase):
 class TestVotingOnAReview(TestCase):
 
     def setUp(self):
-        self.product = create_product()
+        self.service = create_service()
         self.user = UserFactory()
         self.voter = UserFactory()
-        self.review = self.product.reviews.create(
+        self.review = self.service.reviews.create(
             title='This is nice',
             score=3,
             body="This is the body",

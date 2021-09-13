@@ -143,7 +143,7 @@ class SearchForm(FacetedSearchForm):
 
 class BrowseCategoryForm(SearchForm):
     """
-    Variant of SearchForm that returns all products (instead of none) if no
+    Variant of SearchForm that returns all services (instead of none) if no
     query is specified.
     """
 

@@ -1,16 +1,16 @@
 from oscar.apps.analytics.abstract_models import (
-    AbstractProductRecord, AbstractUserProductView,
+    AbstractServiceRecord, AbstractUserServiceView,
     AbstractUserRecord, AbstractUserSearch)
 from oscar.core.loading import is_model_registered
 
 __all__ = []
 
 
-if not is_model_registered('analytics', 'ProductRecord'):
-    class ProductRecord(AbstractProductRecord):
+if not is_model_registered('analytics', 'ServiceRecord'):
+    class ServiceRecord(AbstractServiceRecord):
         pass
 
-    __all__.append('ProductRecord')
+    __all__.append('ServiceRecord')
 
 
 if not is_model_registered('analytics', 'UserRecord'):
@@ -20,11 +20,11 @@ if not is_model_registered('analytics', 'UserRecord'):
     __all__.append('UserRecord')
 
 
-if not is_model_registered('analytics', 'UserProductView'):
-    class UserProductView(AbstractUserProductView):
+if not is_model_registered('analytics', 'UserServiceView'):
+    class UserServiceView(AbstractUserServiceView):
         pass
 
-    __all__.append('UserProductView')
+    __all__.append('UserServiceView')
 
 
 if not is_model_registered('analytics', 'UserSearch'):

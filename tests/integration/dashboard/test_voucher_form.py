@@ -48,7 +48,7 @@ class TestVoucherForm(test.TestCase):
 class TestVoucherSetForm:
 
     def test_valid_form(self):
-        a_range = RangeFactory(includes_all_products=True)
+        a_range = RangeFactory(includes_all_services=True)
         offer = ConditionalOfferFactory(offer_type=ConditionalOffer.VOUCHER,
                                         benefit=BenefitFactory(range=a_range),
                                         condition=ConditionFactory(range=a_range, value=1))

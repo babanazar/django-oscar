@@ -8,10 +8,10 @@ BrowseCategoryForm = get_class('search.forms', 'BrowseCategoryForm')
 SearchHandler = get_class('search.search_handlers', 'SearchHandler')
 is_solr_supported = get_class('search.features', 'is_solr_supported')
 is_elasticsearch_supported = get_class('search.features', 'is_elasticsearch_supported')
-Product = get_model('catalogue', 'Product')
+Service = get_model('catalogue', 'Service')
 
 
-def get_product_search_handler_class():
+def get_service_search_handler_class():
     """
     Determine the search handler to use.
 
@@ -19,27 +19,27 @@ def get_product_search_handler_class():
     back to rudimentary category browsing if that isn't enabled.
     """
     # Use get_class to ensure overridability
-    if settings.OSCAR_PRODUCT_SEARCH_HANDLER is not None:
-        return import_string(settings.OSCAR_PRODUCT_SEARCH_HANDLER)
+    if settings.OSCAR_SERVICE_SEARCH_HANDLER is not None:
+        return import_string(settings.OSCAR_SERVICE_SEARCH_HANDLER)
     if is_solr_supported():
-        return get_class('catalogue.search_handlers', 'SolrProductSearchHandler')
+        return get_class('catalogue.search_handlers', 'SolrServiceSearchHandler')
     elif is_elasticsearch_supported():
         return get_class(
-            'catalogue.search_handlers', 'ESProductSearchHandler',
+            'catalogue.search_handlers', 'ESServiceSearchHandler',
         )
     else:
         return get_class(
-            'catalogue.search_handlers', 'SimpleProductSearchHandler')
+            'catalogue.search_handlers', 'SimpleServiceSearchHandler')
 
 
-class SolrProductSearchHandler(SearchHandler):
+class SolrServiceSearchHandler(SearchHandler):
     """
-    Search handler specialised for searching products.  Comes with optional
+    Search handler specialised for searching services.  Comes with optional
     category filtering. To be used with a Solr search backend.
     """
     form_class = BrowseCategoryForm
-    model_whitelist = [Product]
-    paginate_by = settings.OSCAR_PRODUCTS_PER_PAGE
+    model_whitelist = [Service]
+    paginate_by = settings.OSCAR_SERVICES_PER_PAGE
 
     def __init__(self, request_data, full_path, categories=None):
         self.categories = categories
@@ -56,14 +56,14 @@ class SolrProductSearchHandler(SearchHandler):
         return sqs
 
 
-class ESProductSearchHandler(SearchHandler):
+class ESServiceSearchHandler(SearchHandler):
     """
-    Search handler specialised for searching products.  Comes with optional
+    Search handler specialised for searching services.  Comes with optional
     category filtering. To be used with an ElasticSearch search backend.
     """
     form_class = BrowseCategoryForm
-    model_whitelist = [Product]
-    paginate_by = settings.OSCAR_PRODUCTS_PER_PAGE
+    model_whitelist = [Service]
+    paginate_by = settings.OSCAR_SERVICES_PER_PAGE
 
     def __init__(self, request_data, full_path, categories=None):
         self.categories = categories
@@ -77,7 +77,7 @@ class ESProductSearchHandler(SearchHandler):
         return sqs
 
 
-class SimpleProductSearchHandler(MultipleObjectMixin):
+class SimpleServiceSearchHandler(MultipleObjectMixin):
     """
     A basic implementation of the full-featured SearchHandler that has no
     faceting support, but doesn't require a Haystack backend. It only
@@ -86,7 +86,7 @@ class SimpleProductSearchHandler(MultipleObjectMixin):
     Note that is meant as a replacement search handler and not as a view
     mixin; the mixin just does most of what we need it to do.
     """
-    paginate_by = settings.OSCAR_PRODUCTS_PER_PAGE
+    paginate_by = settings.OSCAR_SERVICES_PER_PAGE
 
     def __init__(self, request_data, full_path, categories=None):
         self.categories = categories
@@ -94,7 +94,7 @@ class SimpleProductSearchHandler(MultipleObjectMixin):
         self.object_list = self.get_queryset()
 
     def get_queryset(self):
-        qs = Product.objects.browsable().base_queryset()
+        qs = Service.objects.browsable().base_queryset()
         if self.categories:
             qs = qs.filter(categories__in=self.categories).distinct()
         return qs

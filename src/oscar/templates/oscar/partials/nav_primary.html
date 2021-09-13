@@ -38,7 +38,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% category_tree depth=1 as tree_categories %}
-                                <a class="dropdown-item" href="{% url 'catalogue:index' %}">{% trans "All products" %}</a>
+                                <a class="dropdown-item" href="{% url 'catalogue:index' %}">{% trans "All services" %}</a>
                                 {% if tree_categories %}
                                     <div class="dropdown-divider"></div>
                                     {% for tree_category in tree_categories %}

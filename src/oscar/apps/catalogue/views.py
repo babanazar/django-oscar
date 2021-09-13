@@ -7,51 +7,51 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, TemplateView
 
-from oscar.apps.catalogue.signals import product_viewed
+from oscar.apps.catalogue.signals import service_viewed
 from oscar.core.loading import get_class, get_model
 
-Product = get_model('catalogue', 'product')
+Service = get_model('catalogue', 'service')
 Category = get_model('catalogue', 'category')
-ProductAlert = get_model('customer', 'ProductAlert')
-ProductAlertForm = get_class('customer.forms', 'ProductAlertForm')
-get_product_search_handler_class = get_class(
-    'catalogue.search_handlers', 'get_product_search_handler_class')
+ServiceAlert = get_model('customer', 'ServiceAlert')
+ServiceAlertForm = get_class('customer.forms', 'ServiceAlertForm')
+get_service_search_handler_class = get_class(
+    'catalogue.search_handlers', 'get_service_search_handler_class')
 
 
-class ProductDetailView(DetailView):
-    context_object_name = 'product'
-    model = Product
-    view_signal = product_viewed
+class ServiceDetailView(DetailView):
+    context_object_name = 'service'
+    model = Service
+    view_signal = service_viewed
     template_folder = "catalogue"
 
     # Whether to redirect to the URL with the right path
     enforce_paths = True
 
-    # Whether to redirect child products to their parent's URL. If it's disabled,
-    # we display variant product details on the separate page. Otherwise, details
-    # displayed on parent product page.
+    # Whether to redirect child services to their parent's URL. If it's disabled,
+    # we display variant service details on the separate page. Otherwise, details
+    # displayed on parent service page.
     enforce_parent = False
 
     def get(self, request, **kwargs):
         """
         Ensures that the correct URL is used before rendering a response
         """
-        self.object = product = self.get_object()
+        self.object = service = self.get_object()
 
-        redirect = self.redirect_if_necessary(request.path, product)
+        redirect = self.redirect_if_necessary(request.path, service)
         if redirect is not None:
             return redirect
 
         # Do allow staff members so they can test layout etc.
-        if not self.is_viewable(product, request):
+        if not self.is_viewable(service, request):
             raise Http404()
 
         response = super().get(request, **kwargs)
-        self.send_signal(request, response, product)
+        self.send_signal(request, response, service)
         return response
 
-    def is_viewable(self, product, request):
-        return product.is_public or request.user.is_staff
+    def is_viewable(self, service, request):
+        return service.is_public or request.user.is_staff
 
     def get_object(self, queryset=None):
         # Check if self.object is already set to prevent unnecessary DB calls
@@ -60,13 +60,13 @@ class ProductDetailView(DetailView):
         else:
             return super().get_object(queryset)
 
-    def redirect_if_necessary(self, current_path, product):
-        if self.enforce_parent and product.is_child:
+    def redirect_if_necessary(self, current_path, service):
+        if self.enforce_parent and service.is_child:
             return HttpResponsePermanentRedirect(
-                product.parent.get_absolute_url())
+                service.parent.get_absolute_url())
 
         if self.enforce_paths:
-            expected_path = product.get_absolute_url()
+            expected_path = service.get_absolute_url()
             if expected_path != quote(current_path):
                 return HttpResponsePermanentRedirect(expected_path)
 
@@ -77,22 +77,22 @@ class ProductDetailView(DetailView):
         return ctx
 
     def get_alert_status(self):
-        # Check if this user already have an alert for this product
+        # Check if this user already have an alert for this service
         has_alert = False
         if self.request.user.is_authenticated:
-            alerts = ProductAlert.objects.filter(
-                product=self.object, user=self.request.user,
-                status=ProductAlert.ACTIVE)
+            alerts = ServiceAlert.objects.filter(
+                service=self.object, user=self.request.user,
+                status=ServiceAlert.ACTIVE)
             has_alert = alerts.exists()
         return has_alert
 
     def get_alert_form(self):
-        return ProductAlertForm(
-            user=self.request.user, product=self.object)
+        return ServiceAlertForm(
+            user=self.request.user, service=self.object)
 
-    def send_signal(self, request, response, product):
+    def send_signal(self, request, response, service):
         self.view_signal.send(
-            sender=self, product=product, user=request.user, request=request,
+            sender=self, service=service, user=request.user, request=request,
             response=response)
 
     def get_template_names(self):
@@ -105,7 +105,7 @@ class ProductDetailView(DetailView):
             1. :file:`detail-for-upc-{upc}.html`
             2. :file:`detail-for-class-{classname}.html`
 
-        This allows alternative templates to be provided for a per-product
+        This allows alternative templates to be provided for a per-service
         and a per-item-class basis.
         """
         if self.template_name:
@@ -115,15 +115,15 @@ class ProductDetailView(DetailView):
             'oscar/%s/detail-for-upc-%s.html' % (
                 self.template_folder, self.object.upc),
             'oscar/%s/detail-for-class-%s.html' % (
-                self.template_folder, self.object.get_product_class().slug),
+                self.template_folder, self.object.get_service_class().slug),
             'oscar/%s/detail.html' % self.template_folder]
 
 
 class CatalogueView(TemplateView):
     """
-    Browse all products in the catalogue
+    Browse all services in the catalogue
     """
-    context_object_name = "products"
+    context_object_name = "services"
     template_name = 'oscar/catalogue/browse.html'
 
     def get(self, request, *args, **kwargs):
@@ -137,22 +137,22 @@ class CatalogueView(TemplateView):
         return super().get(request, *args, **kwargs)
 
     def get_search_handler(self, *args, **kwargs):
-        return get_product_search_handler_class()(*args, **kwargs)
+        return get_service_search_handler_class()(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = {}
-        ctx['summary'] = _("All products")
+        ctx['summary'] = _("All services")
         search_context = self.search_handler.get_search_context_data(
             self.context_object_name)
         ctx.update(search_context)
         return ctx
 
 
-class ProductCategoryView(TemplateView):
+class ServiceCategoryView(TemplateView):
     """
-    Browse products in a given category
+    Browse services in a given category
     """
-    context_object_name = "products"
+    context_object_name = "services"
     template_name = 'oscar/catalogue/category.html'
     enforce_paths = True
 
@@ -193,7 +193,7 @@ class ProductCategoryView(TemplateView):
                 return HttpResponsePermanentRedirect(expected_path)
 
     def get_search_handler(self, *args, **kwargs):
-        return get_product_search_handler_class()(*args, **kwargs)
+        return get_service_search_handler_class()(*args, **kwargs)
 
     def get_categories(self):
         """

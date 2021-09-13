@@ -31,9 +31,9 @@
             <p>{% trans "What should your new wish list be called?" %}</p>
         {% endif %}
         {% include "oscar/partials/form_fields.html" %}
-        {% if product %}
+        {% if service %}
             <p>
-                {% blocktrans with title=product.get_title %}
+                {% blocktrans with title=service.get_title %}
                     After your wishlist is created, <strong>{{ title }}</strong> will be added.
                 {% endblocktrans %}
             </p>

@@ -7,27 +7,27 @@
     {% if upload.num_new_skus %}
         <li>
             {% blocktrans count n=upload.num_new_skus %}
-                <strong>{{ n }}</strong> product added
+                <strong>{{ n }}</strong> service added
             {% plural %}
-                <strong>{{ n }}</strong> products added
+                <strong>{{ n }}</strong> services added
             {% endblocktrans %}
         </li>
     {% endif %}
     {% if upload.num_duplicate_skus %}
         <li>
             {% blocktrans count n=upload.num_duplicate_skus %}
-                There was <strong>{{ n }}</strong> duplicate product in the file
+                There was <strong>{{ n }}</strong> duplicate service in the file
             {% plural %}
-                There were <strong>{{ n }}</strong> duplicate products in the file
+                There were <strong>{{ n }}</strong> duplicate services in the file
             {% endblocktrans %}
         </li>
     {% endif %}
     {% if upload.num_unknown_skus %}
         <li>
             {% blocktrans count n=upload.num_unknown_skus %}
-                There was <strong>{{ n }}</strong> product in the file that couldn't be found in the catalogue
+                There was <strong>{{ n }}</strong> service in the file that couldn't be found in the catalogue
             {% plural %}
-                There were <strong>{{ n }}</strong> products in the file that couldn't be found in the catalogue
+                There were <strong>{{ n }}</strong> services in the file that couldn't be found in the catalogue
             {% endblocktrans %}
         </li>
     {% endif %}

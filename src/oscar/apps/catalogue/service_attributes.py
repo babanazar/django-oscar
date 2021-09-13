@@ -2,24 +2,24 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
-class ProductAttributesContainer:
+class ServiceAttributesContainer:
     """
-    Stolen liberally from django-eav, but simplified to be product-specific
+    Stolen liberally from django-eav, but simplified to be service-specific
 
-    To set attributes on a product, use the `attr` attribute:
+    To set attributes on a service, use the `attr` attribute:
 
-        product.attr.weight = 125
+        service.attr.weight = 125
 
     To refetch the attribute values from the database:
 
-        product.attr.refresh()
+        service.attr.refresh()
     """
 
     def __setstate__(self, state):
         self.__dict__ = state
 
-    def __init__(self, product):
-        self.product = product
+    def __init__(self, service):
+        self.service = service
         self.refresh()
 
     def refresh(self):
@@ -29,7 +29,7 @@ class ProductAttributesContainer:
 
     def __getattr__(self, name):
         raise AttributeError(
-            _("%(obj)s has no attribute named '%(attr)s'") % {'obj': self.product.get_product_class(), 'attr': name})
+            _("%(obj)s has no attribute named '%(attr)s'") % {'obj': self.service.get_service_class(), 'attr': name})
 
     def validate_attributes(self):
         for attribute in self.get_all_attributes():
@@ -48,13 +48,13 @@ class ProductAttributesContainer:
                         {'attr': attribute.code, 'err': e})
 
     def get_values(self):
-        return self.product.get_attribute_values()
+        return self.service.get_attribute_values()
 
     def get_value_by_attribute(self, attribute):
         return self.get_values().get(attribute=attribute)
 
     def get_all_attributes(self):
-        return self.product.get_product_class().attributes.all()
+        return self.service.get_service_class().attributes.all()
 
     def get_attribute_by_code(self, code):
         return self.get_all_attributes().get(code=code)
@@ -66,4 +66,4 @@ class ProductAttributesContainer:
         for attribute in self.get_all_attributes():
             if hasattr(self, attribute.code):
                 value = getattr(self, attribute.code)
-                attribute.save_value(self.product, value)
+                attribute.save_value(self.service, value)

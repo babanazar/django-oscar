@@ -4,37 +4,37 @@ import factory
 from oscar.core.loading import get_model
 
 __all__ = [
-    'ProductClassFactory', 'ProductFactory',
-    'CategoryFactory', 'ProductCategoryFactory',
-    'ProductAttributeFactory', 'AttributeOptionGroupFactory',
+    'ServiceClassFactory', 'ServiceFactory',
+    'CategoryFactory', 'ServiceCategoryFactory',
+    'ServiceAttributeFactory', 'AttributeOptionGroupFactory',
     'OptionFactory', 'AttributeOptionFactory',
-    'ProductAttributeValueFactory', 'ProductReviewFactory',
-    'ProductImageFactory'
+    'ServiceAttributeValueFactory', 'ServiceReviewFactory',
+    'ServiceImageFactory'
 ]
 
 
-class ProductClassFactory(factory.django.DjangoModelFactory):
+class ServiceClassFactory(factory.django.DjangoModelFactory):
     name = "Books"
     requires_shipping = True
     track_stock = True
 
     class Meta:
-        model = get_model('catalogue', 'ProductClass')
+        model = get_model('catalogue', 'ServiceClass')
 
 
-class ProductFactory(factory.django.DjangoModelFactory):
+class ServiceFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = get_model('catalogue', 'Product')
+        model = get_model('catalogue', 'Service')
 
     structure = Meta.model.STANDALONE
     upc = factory.Sequence(lambda n: '978080213020%d' % n)
     title = "A confederacy of dunces"
-    product_class = factory.SubFactory(ProductClassFactory)
+    service_class = factory.SubFactory(ServiceClassFactory)
 
     stockrecords = factory.RelatedFactory(
-        'oscar.test.factories.StockRecordFactory', 'product')
+        'oscar.test.factories.StockRecordFactory', 'service')
     categories = factory.RelatedFactory(
-        'oscar.test.factories.ProductCategoryFactory', 'product')
+        'oscar.test.factories.ServiceCategoryFactory', 'service')
 
 
 class CategoryFactory(factory.django.DjangoModelFactory):
@@ -48,20 +48,20 @@ class CategoryFactory(factory.django.DjangoModelFactory):
         model = get_model('catalogue', 'Category')
 
 
-class ProductCategoryFactory(factory.django.DjangoModelFactory):
+class ServiceCategoryFactory(factory.django.DjangoModelFactory):
     category = factory.SubFactory(CategoryFactory)
 
     class Meta:
-        model = get_model('catalogue', 'ProductCategory')
+        model = get_model('catalogue', 'ServiceCategory')
 
 
-class ProductAttributeFactory(factory.django.DjangoModelFactory):
+class ServiceAttributeFactory(factory.django.DjangoModelFactory):
     code = name = 'weight'
-    product_class = factory.SubFactory(ProductClassFactory)
+    service_class = factory.SubFactory(ServiceClassFactory)
     type = "float"
 
     class Meta:
-        model = get_model('catalogue', 'ProductAttribute')
+        model = get_model('catalogue', 'ServiceAttribute')
 
 
 class OptionFactory(factory.django.DjangoModelFactory):
@@ -92,25 +92,25 @@ class AttributeOptionGroupFactory(factory.django.DjangoModelFactory):
         model = get_model('catalogue', 'AttributeOptionGroup')
 
 
-class ProductAttributeValueFactory(factory.django.DjangoModelFactory):
-    attribute = factory.SubFactory(ProductAttributeFactory)
-    product = factory.SubFactory(ProductFactory)
+class ServiceAttributeValueFactory(factory.django.DjangoModelFactory):
+    attribute = factory.SubFactory(ServiceAttributeFactory)
+    service = factory.SubFactory(ServiceFactory)
 
     class Meta:
-        model = get_model('catalogue', 'ProductAttributeValue')
+        model = get_model('catalogue', 'ServiceAttributeValue')
 
 
-class ProductReviewFactory(factory.django.DjangoModelFactory):
+class ServiceReviewFactory(factory.django.DjangoModelFactory):
     score = 5
-    product = factory.SubFactory(ProductFactory, stockrecords=[])
+    service = factory.SubFactory(ServiceFactory, stockrecords=[])
 
     class Meta:
-        model = get_model('reviews', 'ProductReview')
+        model = get_model('reviews', 'ServiceReview')
 
 
-class ProductImageFactory(factory.django.DjangoModelFactory):
-    product = factory.SubFactory(ProductFactory, stockrecords=[])
+class ServiceImageFactory(factory.django.DjangoModelFactory):
+    service = factory.SubFactory(ServiceFactory, stockrecords=[])
     original = factory.django.ImageField(width=100, height=200, filename='test_image.jpg')
 
     class Meta:
-        model = get_model('catalogue', 'ProductImage')
+        model = get_model('catalogue', 'ServiceImage')

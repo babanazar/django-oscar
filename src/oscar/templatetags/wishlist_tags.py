@@ -4,5 +4,5 @@ register = template.Library()
 
 
 @register.simple_tag
-def wishlists_containing_product(wishlists, product):
-    return wishlists.filter(lines__product=product)
+def wishlists_containing_service(wishlists, service):
+    return wishlists.filter(lines__service=service)

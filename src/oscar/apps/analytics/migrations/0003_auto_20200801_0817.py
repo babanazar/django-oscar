@@ -11,8 +11,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterModelOptions(
-            name='userproductview',
-            options={'ordering': ['-pk'], 'verbose_name': 'User product view', 'verbose_name_plural': 'User product views'},
+            name='userserviceview',
+            options={'ordering': ['-pk'], 'verbose_name': 'User service view', 'verbose_name_plural': 'User service views'},
         ),
         migrations.AlterModelOptions(
             name='usersearch',

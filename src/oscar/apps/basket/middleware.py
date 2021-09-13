@@ -82,7 +82,7 @@ class BasketMiddleware:
             cookie_key in request.COOKIES
             and cookie_key not in cookies_to_delete)
 
-        # If a basket has had products added to it, but the user is anonymous
+        # If a basket has had services added to it, but the user is anonymous
         # then we need to assign it to a cookie
         if (request.basket.id and not request.user.is_authenticated
                 and not has_basket_cookie):

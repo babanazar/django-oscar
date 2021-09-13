@@ -13,7 +13,7 @@ from oscar.apps.order.models import (
     ShippingEventQuantity, ShippingEventType)
 from oscar.apps.order.signals import (
     order_line_status_changed, order_status_changed)
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 from oscar.test.contextmanagers import mock_signal_receiver
 from oscar.test.factories import (
     OrderFactory, OrderLineFactory, ShippingAddressFactory,
@@ -130,7 +130,7 @@ class LineTests(TestCase):
 
     def setUp(self):
         basket = create_basket(empty=True)
-        add_product(basket, D('10.00'), 4)
+        add_service(basket, D('10.00'), 4)
         self.order = create_order(number='100002', basket=basket)
         self.line = self.order.lines.all()[0]
         self.order_placed, __ = ShippingEventType.objects.get_or_create(
@@ -211,14 +211,14 @@ class LineTests(TestCase):
             # Total quantity is too high
             self.event(type, 2)
 
-    def test_handles_product_deletion_gracefully(self):
-        product = self.line.product
-        product.delete()
+    def test_handles_service_deletion_gracefully(self):
+        service = self.line.service
+        service.delete()
         line = Line.objects.get(pk=self.line.pk)
-        self.assertIsNone(line.product)
+        self.assertIsNone(line.service)
         self.assertIsNone(line.stockrecord)
-        self.assertEqual(product.title, line.title)
-        self.assertEqual(product.upc, line.upc)
+        self.assertEqual(service.title, line.title)
+        self.assertEqual(service.upc, line.upc)
 
 
 class LineStatusTests(TestCase):
@@ -264,7 +264,7 @@ class ShippingEventQuantityTests(TestCase):
 
     def setUp(self):
         basket = create_basket(empty=True)
-        add_product(basket, D('10.00'), 4)
+        add_service(basket, D('10.00'), 4)
         self.order = create_order(number='100002', basket=basket)
         self.line = self.order.lines.all()[0]
 

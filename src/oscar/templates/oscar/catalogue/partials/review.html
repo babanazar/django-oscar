@@ -28,18 +28,18 @@
                     Reviewed by <strong>{{ name }}</strong> on {{ review_date }}
                 {% endblocktrans %}
             {% endif %}
-            | <a href="{% url 'catalogue:reviews-detail' product_slug=product.slug product_pk=product.pk pk=review.pk %}">{% trans 'Permalink' %}</a>
+            | <a href="{% url 'catalogue:reviews-detail' service_slug=service.slug service_pk=service.pk pk=review.pk %}">{% trans 'Permalink' %}</a>
         </small>
     </p>
 
     {% if review|may_vote:user %}
         <small>{% trans "Is this review helpful?" %}</small>
-        <form action="{% url 'catalogue:reviews-vote' product_slug=product.slug product_pk=product.pk pk=review.pk %}" method="post" class="vote_agree" >
+        <form action="{% url 'catalogue:reviews-vote' service_slug=service.slug service_pk=service.pk pk=review.pk %}" method="post" class="vote_agree" >
             {% csrf_token %}
             <input type="hidden" name="delta" value="1"/>
             <button type="submit" class="btn btn-success btn-sm" data-loading-text="{% trans 'Submitting...' %}">{% trans "Yes" %}</button>
         </form>
-        <form  action="{% url 'catalogue:reviews-vote' product_slug=product.slug product_pk=product.pk pk=review.pk %}" method="post">
+        <form  action="{% url 'catalogue:reviews-vote' service_slug=service.slug service_pk=service.pk pk=review.pk %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="delta" value="-1"/>
             <button type="submit" class="btn btn-danger btn-sm" data-loading-text="{% trans 'Submitting...' %}">{% trans "No" %}</button>

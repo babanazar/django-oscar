@@ -3,7 +3,7 @@ from haystack import views
 from oscar.apps.search.signals import user_search
 from oscar.core.loading import get_class, get_model
 
-Product = get_model('catalogue', 'Product')
+Service = get_model('catalogue', 'Service')
 FacetMunger = get_class('search.facets', 'FacetMunger')
 
 
@@ -63,6 +63,6 @@ class FacetedSearchView(views.FacetedSearchView):
         return extra
 
     def get_results(self):
-        # We're only interested in products (there might be other content types
+        # We're only interested in services (there might be other content types
         # in the Solr index).
-        return super().get_results().models(Product)
+        return super().get_results().models(Service)

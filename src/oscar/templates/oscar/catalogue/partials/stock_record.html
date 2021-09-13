@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load purchase_info_tags %}
 
-{% purchase_info_for_product request product as session %}
+{% purchase_info_for_service request service as session %}
 
 {% if session.price.exists %}
     {% if session.price.excl_tax == 0 %}

@@ -3,66 +3,66 @@ from django.test import TestCase
 from oscar.core.loading import get_model
 from oscar.test import factories
 
-Product = get_model('catalogue', 'Product')
+Service = get_model('catalogue', 'Service')
 
 
-class ProductOptionTests(TestCase):
+class ServiceOptionTests(TestCase):
     def setUp(self):
-        self.product_class = factories.ProductClassFactory()
-        self.product = factories.create_product(product_class=self.product_class)
+        self.service_class = factories.ServiceClassFactory()
+        self.service = factories.create_service(service_class=self.service_class)
         self.option = factories.OptionFactory()
 
-    def test_product_has_options_per_product_class(self):
-        self.product_class.options.add(self.option)
-        self.assertTrue(self.product.has_options)
+    def test_service_has_options_per_service_class(self):
+        self.service_class.options.add(self.option)
+        self.assertTrue(self.service.has_options)
 
-    def test_product_has_options_per_product(self):
-        self.product.product_options.add(self.option)
-        self.assertTrue(self.product.has_options)
+    def test_service_has_options_per_service(self):
+        self.service.service_options.add(self.option)
+        self.assertTrue(self.service.has_options)
 
-    def test_queryset_per_product_class(self):
-        self.product_class.options.add(self.option)
-        qs = Product.objects.browsable().base_queryset().filter(id=self.product.id)
-        product = qs.first()
-        self.assertTrue(product.has_options)
-        self.assertTrue(product.has_product_class_options)
+    def test_queryset_per_service_class(self):
+        self.service_class.options.add(self.option)
+        qs = Service.objects.browsable().base_queryset().filter(id=self.service.id)
+        service = qs.first()
+        self.assertTrue(service.has_options)
+        self.assertTrue(service.has_service_class_options)
 
-    def test_queryset_per_product(self):
-        self.product.product_options.add(self.option)
-        qs = Product.objects.browsable().base_queryset().filter(id=self.product.id)
-        product = qs.first()
-        self.assertTrue(product.has_options)
-        self.assertTrue(product.has_product_options, 1)
+    def test_queryset_per_service(self):
+        self.service.service_options.add(self.option)
+        qs = Service.objects.browsable().base_queryset().filter(id=self.service.id)
+        service = qs.first()
+        self.assertTrue(service.has_options)
+        self.assertTrue(service.has_service_options, 1)
 
     def test_queryset_both(self):
-        "The options attribute on a product should return a queryset containing "
-        "both the product class options and any extra options defined on the"
-        "product"
-        # set up the options on product and product_class
-        self.test_product_has_options_per_product_class()
-        self.test_product_has_options_per_product()
-        self.assertTrue(self.product.has_options, "Options should be present")
+        "The options attribute on a service should return a queryset containing "
+        "both the service class options and any extra options defined on the"
+        "service"
+        # set up the options on service and service_class
+        self.test_service_has_options_per_service_class()
+        self.test_service_has_options_per_service()
+        self.assertTrue(self.service.has_options, "Options should be present")
         self.assertEqual(
-            self.product.options.count(), 1,
+            self.service.options.count(), 1,
             "options attribute should not contain duplicates"
         )
-        qs = Product.objects.browsable().base_queryset().filter(id=self.product.id)
-        product = qs.first()
+        qs = Service.objects.browsable().base_queryset().filter(id=self.service.id)
+        service = qs.first()
         self.assertTrue(
-            product.has_product_class_options,
-            "has_product_class_options should indicate the product_class option"
+            service.has_service_class_options,
+            "has_service_class_options should indicate the service_class option"
         )
         self.assertTrue(
-            product.has_product_options,
-            "has_product_options should indicate the number of product options"
+            service.has_service_options,
+            "has_service_options should indicate the number of service options"
         )
-        self.product_class.options.add(factories.OptionFactory(code="henk"))
+        self.service_class.options.add(factories.OptionFactory(code="henk"))
         self.assertEqual(
-            self.product.options.count(), 2,
-            "New product_class options should be immediately visible"
+            self.service.options.count(), 2,
+            "New service_class options should be immediately visible"
         )
-        self.product.product_options.add(factories.OptionFactory(code="klaas"))
+        self.service.service_options.add(factories.OptionFactory(code="klaas"))
         self.assertEqual(
-            self.product.options.count(), 3,
-            "New product options should be immediately visible"
+            self.service.options.count(), 3,
+            "New service options should be immediately visible"
         )

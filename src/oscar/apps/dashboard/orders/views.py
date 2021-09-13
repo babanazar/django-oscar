@@ -185,9 +185,9 @@ class OrderListView(BulkEditMixin, ListView):
 
             queryset = queryset.filter(filter).distinct()
 
-        if data['product_title']:
+        if data['service_title']:
             queryset = queryset.filter(
-                lines__title__istartswith=data['product_title']).distinct()
+                lines__title__istartswith=data['service_title']).distinct()
 
         if data['upc']:
             queryset = queryset.filter(lines__upc=data['upc'])
@@ -254,17 +254,17 @@ class OrderListView(BulkEditMixin, ListView):
                 )
             )
 
-        if data.get('product_title'):
+        if data.get('service_title'):
             descriptions.append(
-                _('Product name matches "{product_name}"').format(
-                    product_name=data['product_title']
+                _('Service name matches "{service_name}"').format(
+                    service_name=data['service_title']
                 )
             )
 
         if data.get('upc'):
             descriptions.append(
-                # Translators: "UPC" means "universal product code" and it is
-                # used to uniquely identify a product in an online store.
+                # Translators: "UPC" means "universal service code" and it is
+                # used to uniquely identify a service in an online store.
                 # "Item" in this context means an item in an order placed
                 # in an online store.
                 _('Includes an item with UPC "{upc}"').format(
@@ -275,7 +275,7 @@ class OrderListView(BulkEditMixin, ListView):
         if data.get('partner_sku'):
             descriptions.append(
                 # Translators: "SKU" means "stock keeping unit" and is used to
-                # identify products that can be shipped from an online store.
+                # identify services that can be shipped from an online store.
                 # A "partner" is a company that ships items to users who
                 # buy things in an online store.
                 _('Includes an item with partner SKU "{partner_sku}"').format(

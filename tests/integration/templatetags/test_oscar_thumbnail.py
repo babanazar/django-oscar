@@ -5,7 +5,7 @@ from django import template
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from oscar.test.factories.catalogue import ProductImageFactory
+from oscar.test.factories.catalogue import ServiceImageFactory
 from oscar.test.utils import EASY_THUMBNAIL_BASEDIR, get_thumbnail_full_path
 
 
@@ -14,8 +14,8 @@ class OscarThumbnailMixin:
     crop_value = size_string_mapping = None
 
     def setUp(self):
-        self.product_image = ProductImageFactory()
-        self.context = template.Context({'image': self.product_image})
+        self.service_image = ServiceImageFactory()
+        self.context = template.Context({'image': self.service_image})
         self.template = template.Template(
             '{% load image_tags %}'
             '{% oscar_thumbnail image.original "x155" upscale=False %}'
@@ -35,7 +35,7 @@ class OscarThumbnailMixin:
         assert os.path.isfile(thumbnail_full_path)  # `isfile` returns `True` if path is an existing regular file.
 
     def _test_oscar_thumbnail_tag_sizes(self):
-        # Initial image size in `ProductImageFactory` - 100x200
+        # Initial image size in `ServiceImageFactory` - 100x200
         size_string_mapping = {
             "50x75": ["50", "75"],
             "x150": ["75", "150"],

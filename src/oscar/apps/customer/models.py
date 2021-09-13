@@ -4,8 +4,8 @@ from oscar.core.loading import is_model_registered
 __all__ = []
 
 
-if not is_model_registered('customer', 'ProductAlert'):
-    class ProductAlert(abstract_models.AbstractProductAlert):
+if not is_model_registered('customer', 'ServiceAlert'):
+    class ServiceAlert(abstract_models.AbstractServiceAlert):
         pass
 
-    __all__.append('ProductAlert')
+    __all__.append('ServiceAlert')

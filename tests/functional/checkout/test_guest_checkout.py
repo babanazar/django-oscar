@@ -49,17 +49,17 @@ class TestIndexView(CheckoutMixin, WebTestCase):
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_with_invalid_basket(self):
-        # Add product to basket but then remove its stock so it is not
+        # Add service to basket but then remove its stock so it is not
         # purchasable.
-        product = factories.ProductFactory()
-        self.add_product_to_basket(product)
-        product.stockrecords.all().update(num_in_stock=0)
+        service = factories.ServiceFactory()
+        self.add_service_to_basket(service)
+        service.stockrecords.all().update(num_in_stock=0)
 
         response = self.get(reverse('checkout:index'))
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_new_customers_to_registration_page(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         page = self.get(reverse('checkout:index'))
 
         form = page.form
@@ -77,7 +77,7 @@ class TestIndexView(CheckoutMixin, WebTestCase):
     def test_redirects_existing_customers_to_shipping_address_page(self):
         existing_user = User.objects.create_user(
             username=self.username, email=self.email, password=self.password)
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         page = self.get(reverse('checkout:index'))
         form = page.form
         form.select('options', GatewayForm.EXISTING)
@@ -87,12 +87,12 @@ class TestIndexView(CheckoutMixin, WebTestCase):
         self.assertRedirectsTo(response, 'checkout:shipping-address')
 
     def test_redirects_guest_customers_to_shipping_address_page(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         response = self.enter_guest_details()
         self.assertRedirectsTo(response, 'checkout:shipping-address')
 
     def test_prefill_form_with_email_for_returning_guest(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         email = 'forgetfulguest@test.com'
         self.enter_guest_details(email)
         page = self.get(reverse('checkout:index'))
@@ -112,32 +112,32 @@ class TestShippingAddressView(CheckoutMixin, WebTestCase):
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_who_have_skipped_guest_form(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         response = self.get(reverse('checkout:shipping-address'))
         self.assertRedirectsTo(response, 'checkout:index')
 
     def test_redirects_customers_whose_basket_doesnt_require_shipping(self):
-        product = self.create_digital_product()
-        self.add_product_to_basket(product)
+        service = self.create_digital_service()
+        self.add_service_to_basket(service)
         self.enter_guest_details()
 
         response = self.get(reverse('checkout:shipping-address'))
         self.assertRedirectsTo(response, 'checkout:shipping-method')
 
     def test_redirects_customers_with_invalid_basket(self):
-        # Add product to basket but then remove its stock so it is not
+        # Add service to basket but then remove its stock so it is not
         # purchasable.
-        product = factories.create_product(num_in_stock=1)
-        self.add_product_to_basket(product)
+        service = factories.create_service(num_in_stock=1)
+        self.add_service_to_basket(service)
         self.enter_guest_details()
 
-        product.stockrecords.all().update(num_in_stock=0)
+        service.stockrecords.all().update(num_in_stock=0)
 
         response = self.get(reverse('checkout:shipping-address'))
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_shows_initial_data_if_the_form_has_already_been_submitted(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details('hello@egg.com')
         self.enter_shipping_address()
         page = self.get(reverse('checkout:shipping-address'), user=self.user)
@@ -161,31 +161,31 @@ class TestShippingMethodView(CheckoutMixin, WebTestCase):
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_with_invalid_basket(self):
-        product = factories.create_product(num_in_stock=1)
-        self.add_product_to_basket(product)
+        service = factories.create_service(num_in_stock=1)
+        self.add_service_to_basket(service)
         self.enter_guest_details()
         self.enter_shipping_address()
-        product.stockrecords.all().update(num_in_stock=0)
+        service.stockrecords.all().update(num_in_stock=0)
 
         response = self.get(reverse('checkout:shipping-method'))
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_who_have_skipped_guest_form(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
 
         response = self.get(reverse('checkout:shipping-method'))
         self.assertRedirectsTo(response, 'checkout:index')
 
     def test_redirects_customers_whose_basket_doesnt_require_shipping(self):
-        product = self.create_digital_product()
-        self.add_product_to_basket(product)
+        service = self.create_digital_service()
+        self.add_service_to_basket(service)
         self.enter_guest_details()
 
         response = self.get(reverse('checkout:shipping-method'))
         self.assertRedirectsTo(response, 'checkout:payment-method')
 
     def test_redirects_customers_who_have_skipped_shipping_address_form(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
 
         response = self.get(reverse('checkout:shipping-method'))
@@ -194,7 +194,7 @@ class TestShippingMethodView(CheckoutMixin, WebTestCase):
     @mock.patch('oscar.apps.checkout.views.Repository')
     def test_redirects_customers_when_no_shipping_methods_available(
             self, mock_repo):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
         self.enter_shipping_address()
 
@@ -208,7 +208,7 @@ class TestShippingMethodView(CheckoutMixin, WebTestCase):
     @mock.patch('oscar.apps.checkout.views.Repository')
     def test_redirects_customers_when_only_one_shipping_method_is_available(
             self, mock_repo):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
         self.enter_shipping_address()
 
@@ -222,7 +222,7 @@ class TestShippingMethodView(CheckoutMixin, WebTestCase):
     @mock.patch('oscar.apps.checkout.views.Repository')
     def test_shows_form_when_multiple_shipping_methods_available(
             self, mock_repo):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
         self.enter_shipping_address()
 
@@ -239,7 +239,7 @@ class TestShippingMethodView(CheckoutMixin, WebTestCase):
 
     @mock.patch('oscar.apps.checkout.views.Repository')
     def test_check_user_can_submit_only_valid_shipping_method(self, mock_repo):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
         self.enter_shipping_address()
         method = mock.MagicMock()
@@ -267,31 +267,31 @@ class TestPaymentMethodView(CheckoutMixin, WebTestCase):
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_with_invalid_basket(self):
-        product = factories.create_product(num_in_stock=1)
-        self.add_product_to_basket(product)
+        service = factories.create_service(num_in_stock=1)
+        self.add_service_to_basket(service)
         self.enter_guest_details()
         self.enter_shipping_address()
 
-        product.stockrecords.all().update(num_in_stock=0)
+        service.stockrecords.all().update(num_in_stock=0)
 
         response = self.get(reverse('checkout:payment-method'))
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_who_have_skipped_guest_form(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
 
         response = self.get(reverse('checkout:payment-method'))
         self.assertRedirectsTo(response, 'checkout:index')
 
     def test_redirects_customers_who_have_skipped_shipping_address_form(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
 
         response = self.get(reverse('checkout:payment-method'))
         self.assertRedirectsTo(response, 'checkout:shipping-address')
 
     def test_redirects_customers_who_have_skipped_shipping_method_step(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
         self.enter_shipping_address()
 
@@ -312,31 +312,31 @@ class TestPaymentDetailsView(CheckoutMixin, WebTestCase):
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_with_invalid_basket(self):
-        product = factories.create_product(num_in_stock=1)
-        self.add_product_to_basket(product)
+        service = factories.create_service(num_in_stock=1)
+        self.add_service_to_basket(service)
         self.enter_guest_details()
         self.enter_shipping_address()
 
-        product.stockrecords.all().update(num_in_stock=0)
+        service.stockrecords.all().update(num_in_stock=0)
 
         response = self.get(reverse('checkout:payment-details'))
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_who_have_skipped_guest_form(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
 
         response = self.get(reverse('checkout:payment-details'))
         self.assertRedirectsTo(response, 'checkout:index')
 
     def test_redirects_customers_who_have_skipped_shipping_address_form(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
 
         response = self.get(reverse('checkout:payment-details'))
         self.assertRedirectsTo(response, 'checkout:shipping-address')
 
     def test_redirects_customers_who_have_skipped_shipping_method_step(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_guest_details()
         self.enter_shipping_address()
 

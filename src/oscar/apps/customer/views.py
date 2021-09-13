@@ -542,7 +542,7 @@ class OrderDetailView(PageTitleMixin, PostActionMixin, generic.DetailView):
                     options.append({
                         'option': attribute.option,
                         'value': attribute.value})
-            basket.add_product(line.product, line.quantity, options)
+            basket.add_service(line.service, line.quantity, options)
 
         if len(lines_to_add) > 0:
             self.response = redirect('basket:summary')
@@ -588,14 +588,14 @@ class OrderLineView(PostActionMixin, generic.DetailView):
             if attribute.option:
                 options.append({'option': attribute.option,
                                 'value': attribute.value})
-        basket.add_product(line.product, line.quantity, options)
+        basket.add_service(line.service, line.quantity, options)
 
         if line.quantity > 1:
-            msg = _("%(qty)d copies of '%(product)s' have been added to your"
+            msg = _("%(qty)d copies of '%(service)s' have been added to your"
                     " basket") % {
-                'qty': line.quantity, 'product': line.product}
+                'qty': line.quantity, 'service': line.service}
         else:
-            msg = _("'%s' has been added to your basket") % line.product
+            msg = _("'%s' has been added to your basket") % line.service
 
         messages.info(self.request, msg)
 

@@ -54,7 +54,7 @@ sandbox_load_user: ## Load user data into sandbox
 
 sandbox_load_data: ## Import fixtures and collect static
 	# Import some fixtures. Order is important as JSON fixtures include primary keys
-	sandbox/manage.py loaddata sandbox/fixtures/child_products.json
+	sandbox/manage.py loaddata sandbox/fixtures/child_services.json
 	sandbox/manage.py oscar_import_catalogue sandbox/fixtures/*.csv
 	sandbox/manage.py oscar_import_catalogue_images sandbox/fixtures/images.tar.gz
 	sandbox/manage.py oscar_populate_countries --initial-only

@@ -12,17 +12,17 @@ from oscar.core.utils import format_datetime
 from oscar.views import sort_queryset
 from oscar.views.generic import BulkEditMixin
 
-ProductReviewSearchForm, DashboardProductReviewForm = \
-    get_classes('dashboard.reviews.forms', ('ProductReviewSearchForm', 'DashboardProductReviewForm'))
-ProductReview = get_model('reviews', 'productreview')
+ServiceReviewSearchForm, DashboardServiceReviewForm = \
+    get_classes('dashboard.reviews.forms', ('ServiceReviewSearchForm', 'DashboardServiceReviewForm'))
+ServiceReview = get_model('reviews', 'servicereview')
 
 
 class ReviewListView(BulkEditMixin, generic.ListView):
-    model = ProductReview
+    model = ServiceReview
     template_name = 'oscar/dashboard/reviews/review_list.html'
     context_object_name = 'review_list'
-    form_class = ProductReviewSearchForm
-    review_form_class = DashboardProductReviewForm
+    form_class = ServiceReviewSearchForm
+    review_form_class = DashboardServiceReviewForm
     paginate_by = settings.OSCAR_DASHBOARD_ITEMS_PER_PAGE
     actions = ('update_selected_review_status',)
     checkbox_object_name = 'review'
@@ -36,11 +36,11 @@ class ReviewListView(BulkEditMixin, generic.ListView):
 
     def get_date_from_to_queryset(self, date_from, date_to, queryset=None):
         """
-        Get a ``QuerySet`` of ``ProductReview`` items that match the time
+        Get a ``QuerySet`` of ``ServiceReview`` items that match the time
         frame specified by *date_from* and *date_to*. Both parameters are
         expected to be in ``datetime`` format with *date_from* < *date_to*.
         If *queryset* is specified, it will be filtered according to the
-        given dates. Otherwise, a new queryset for all ``ProductReview``
+        given dates. Otherwise, a new queryset for all ``ServiceReview``
         items is created.
         """
         if queryset is None:
@@ -66,7 +66,7 @@ class ReviewListView(BulkEditMixin, generic.ListView):
         return queryset
 
     def get_queryset(self):
-        queryset = self.model.objects.select_related('product', 'user').all()
+        queryset = self.model.objects.select_related('service', 'user').all()
         queryset = sort_queryset(
             queryset, self.request, ['date_created', 'score', 'total_votes'], default='-date_created')
         self.desc_ctx = {
@@ -154,9 +154,9 @@ class ReviewListView(BulkEditMixin, generic.ListView):
 
 
 class ReviewUpdateView(generic.UpdateView):
-    model = ProductReview
+    model = ServiceReview
     template_name = 'oscar/dashboard/reviews/review_update.html'
-    form_class = DashboardProductReviewForm
+    form_class = DashboardServiceReviewForm
     context_object_name = 'review'
 
     def get_success_url(self):
@@ -164,7 +164,7 @@ class ReviewUpdateView(generic.UpdateView):
 
 
 class ReviewDeleteView(generic.DeleteView):
-    model = ProductReview
+    model = ServiceReview
     template_name = 'oscar/dashboard/reviews/review_delete.html'
     context_object_name = 'review'
 

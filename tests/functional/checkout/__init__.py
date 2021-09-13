@@ -12,20 +12,20 @@ GatewayForm = get_class('checkout.forms', 'GatewayForm')
 
 class CheckoutMixin(object):
 
-    def create_digital_product(self):
-        product_class = factories.ProductClassFactory(
+    def create_digital_service(self):
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=False)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
         factories.StockRecordFactory(
-            num_in_stock=None, price=D('12.00'), product=product)
-        return product
+            num_in_stock=None, price=D('12.00'), service=service)
+        return service
 
-    def add_product_to_basket(self, product=None):
-        if product is None:
-            product = factories.ProductFactory()
+    def add_service_to_basket(self, service=None):
+        if service is None:
+            service = factories.ServiceFactory()
             factories.StockRecordFactory(
-                num_in_stock=10, price=D('12.00'), product=product)
-        detail_page = self.get(product.get_absolute_url())
+                num_in_stock=10, price=D('12.00'), service=service)
+        detail_page = self.get(service.get_absolute_url())
         form = detail_page.forms['add_to_basket_form']
         form.submit()
 
@@ -68,7 +68,7 @@ class CheckoutMixin(object):
         return preview.forms['place_order_form'].submit().follow()
 
     def reach_payment_details_page(self, is_guest=False):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         if is_guest:
             self.enter_guest_details('hello@egg.com')
         self.enter_shipping_address()

@@ -1,17 +1,17 @@
 """
-Vanilla product models
+Vanilla service models
 """
 from oscar.apps.catalogue.abstract_models import *  # noqa
 from oscar.core.loading import is_model_registered
 
-__all__ = ['ProductAttributesContainer']
+__all__ = ['ServiceAttributesContainer']
 
 
-if not is_model_registered('catalogue', 'ProductClass'):
-    class ProductClass(AbstractProductClass):
+if not is_model_registered('catalogue', 'ServiceClass'):
+    class ServiceClass(AbstractServiceClass):
         pass
 
-    __all__.append('ProductClass')
+    __all__.append('ServiceClass')
 
 
 if not is_model_registered('catalogue', 'Category'):
@@ -21,39 +21,39 @@ if not is_model_registered('catalogue', 'Category'):
     __all__.append('Category')
 
 
-if not is_model_registered('catalogue', 'ProductCategory'):
-    class ProductCategory(AbstractProductCategory):
+if not is_model_registered('catalogue', 'ServiceCategory'):
+    class ServiceCategory(AbstractServiceCategory):
         pass
 
-    __all__.append('ProductCategory')
+    __all__.append('ServiceCategory')
 
 
-if not is_model_registered('catalogue', 'Product'):
-    class Product(AbstractProduct):
+if not is_model_registered('catalogue', 'Service'):
+    class Service(AbstractService):
         pass
 
-    __all__.append('Product')
+    __all__.append('Service')
 
 
-if not is_model_registered('catalogue', 'ProductRecommendation'):
-    class ProductRecommendation(AbstractProductRecommendation):
+if not is_model_registered('catalogue', 'ServiceRecommendation'):
+    class ServiceRecommendation(AbstractServiceRecommendation):
         pass
 
-    __all__.append('ProductRecommendation')
+    __all__.append('ServiceRecommendation')
 
 
-if not is_model_registered('catalogue', 'ProductAttribute'):
-    class ProductAttribute(AbstractProductAttribute):
+if not is_model_registered('catalogue', 'ServiceAttribute'):
+    class ServiceAttribute(AbstractServiceAttribute):
         pass
 
-    __all__.append('ProductAttribute')
+    __all__.append('ServiceAttribute')
 
 
-if not is_model_registered('catalogue', 'ProductAttributeValue'):
-    class ProductAttributeValue(AbstractProductAttributeValue):
+if not is_model_registered('catalogue', 'ServiceAttributeValue'):
+    class ServiceAttributeValue(AbstractServiceAttributeValue):
         pass
 
-    __all__.append('ProductAttributeValue')
+    __all__.append('ServiceAttributeValue')
 
 
 if not is_model_registered('catalogue', 'AttributeOptionGroup'):
@@ -77,8 +77,8 @@ if not is_model_registered('catalogue', 'Option'):
     __all__.append('Option')
 
 
-if not is_model_registered('catalogue', 'ProductImage'):
-    class ProductImage(AbstractProductImage):
+if not is_model_registered('catalogue', 'ServiceImage'):
+    class ServiceImage(AbstractServiceImage):
         pass
 
-    __all__.append('ProductImage')
+    __all__.append('ServiceImage')

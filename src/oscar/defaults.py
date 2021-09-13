@@ -14,17 +14,17 @@ OSCAR_BASKET_COOKIE_OPEN = 'oscar_open_basket'
 OSCAR_BASKET_COOKIE_SECURE = False
 OSCAR_MAX_BASKET_QUANTITY_THRESHOLD = 10000
 
-# Recently-viewed products
+# Recently-viewed services
 OSCAR_RECENTLY_VIEWED_COOKIE_LIFETIME = 7 * 24 * 60 * 60
 OSCAR_RECENTLY_VIEWED_COOKIE_NAME = 'oscar_history'
 OSCAR_RECENTLY_VIEWED_COOKIE_SECURE = False
-OSCAR_RECENTLY_VIEWED_PRODUCTS = 20
+OSCAR_RECENTLY_VIEWED_SERVICES = 20
 
 # Currency
 OSCAR_DEFAULT_CURRENCY = 'GBP'
 
 # Paths
-OSCAR_IMAGE_FOLDER = 'images/products/%Y/%m/'
+OSCAR_IMAGE_FOLDER = 'images/services/%Y/%m/'
 OSCAR_DELETE_IMAGE_FILES = True
 
 # Copy this image from oscar/static/img to your MEDIA_ROOT folder.
@@ -38,7 +38,7 @@ OSCAR_REQUIRED_ADDRESS_FIELDS = ('first_name', 'last_name', 'line1',
 # Pagination settings
 
 OSCAR_OFFERS_PER_PAGE = 20
-OSCAR_PRODUCTS_PER_PAGE = 20
+OSCAR_SERVICES_PER_PAGE = 20
 OSCAR_REVIEWS_PER_PAGE = 20
 OSCAR_NOTIFICATIONS_PER_PAGE = 20
 OSCAR_EMAILS_PER_PAGE = 20
@@ -57,7 +57,7 @@ OSCAR_MODERATE_REVIEWS = False
 # Accounts
 OSCAR_ACCOUNTS_REDIRECT_URL = 'customer:profile-view'
 
-# This enables sending alert notifications/emails instantly when products get
+# This enables sending alert notifications/emails instantly when services get
 # back in stock by listening to stock record update signals.
 # This might impact performance for large numbers of stock record updates.
 # Alternatively, the management command ``oscar_send_alerts`` can be used to
@@ -76,7 +76,7 @@ OSCAR_SLUG_BLACKLIST = []
 OSCAR_SLUG_ALLOW_UNICODE = False
 
 # Cookies
-OSCAR_COOKIES_DELETE_ON_LOGOUT = ['oscar_recently_viewed_products', ]
+OSCAR_COOKIES_DELETE_ON_LOGOUT = ['oscar_recently_viewed_services', ]
 
 # Offers
 OSCAR_OFFERS_INCL_TAX = False
@@ -102,11 +102,11 @@ OSCAR_DASHBOARD_NAVIGATION = [
         'icon': 'fas fa-sitemap',
         'children': [
             {
-                'label': _('Products'),
-                'url_name': 'dashboard:catalogue-product-list',
+                'label': _('Services'),
+                'url_name': 'dashboard:catalogue-service-list',
             },
             {
-                'label': _('Product Types'),
+                'label': _('Service Types'),
                 'url_name': 'dashboard:catalogue-class-list',
             },
             {
@@ -217,7 +217,7 @@ OSCAR_SEARCH_FACETS = {
     'fields': {
         # The key for these dicts will be used when passing facet data
         # to the template. Same for the 'queries' dict below.
-        'product_class': {'name': _('Type'), 'field': 'product_class'},
+        'service_class': {'name': _('Type'), 'field': 'service_class'},
         'rating': {'name': _('Rating'), 'field': 'rating'},
         # You can specify an 'options' element that will be passed to the
         # SearchQuerySet.facet() call.
@@ -245,7 +245,7 @@ OSCAR_SEARCH_FACETS = {
     },
 }
 
-OSCAR_PRODUCT_SEARCH_HANDLER = None
+OSCAR_SERVICE_SEARCH_HANDLER = None
 
 OSCAR_THUMBNAILER = 'oscar.core.thumbnails.SorlThumbnail'
 

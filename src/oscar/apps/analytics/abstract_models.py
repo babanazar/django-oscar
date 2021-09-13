@@ -6,16 +6,16 @@ from django.utils.translation import gettext_lazy as _
 from oscar.core.compat import AUTH_USER_MODEL
 
 
-class AbstractProductRecord(models.Model):
+class AbstractServiceRecord(models.Model):
     """
-    A record of a how popular a product is.
+    A record of a how popular a service is.
 
     This used be auto-merchandising to display the most popular
-    products.
+    services.
     """
 
-    product = models.OneToOneField(
-        'catalogue.Product', verbose_name=_("Product"),
+    service = models.OneToOneField(
+        'catalogue.Service', verbose_name=_("Service"),
         related_name='stats', on_delete=models.CASCADE)
 
     # Data used for generating a score
@@ -25,18 +25,18 @@ class AbstractProductRecord(models.Model):
     num_purchases = models.PositiveIntegerField(
         _('Purchases'), default=0, db_index=True)
 
-    # Product score - used within search
+    # Service score - used within search
     score = models.FloatField(_('Score'), default=0.00)
 
     class Meta:
         abstract = True
         app_label = 'analytics'
         ordering = ['-num_purchases']
-        verbose_name = _('Product record')
-        verbose_name_plural = _('Product records')
+        verbose_name = _('Service record')
+        verbose_name_plural = _('Service records')
 
     def __str__(self):
-        return _("Record for '%s'") % self.product
+        return _("Record for '%s'") % self.service
 
 
 class AbstractUserRecord(models.Model):
@@ -48,8 +48,8 @@ class AbstractUserRecord(models.Model):
                                 on_delete=models.CASCADE)
 
     # Browsing stats
-    num_product_views = models.PositiveIntegerField(
-        _('Product Views'), default=0)
+    num_service_views = models.PositiveIntegerField(
+        _('Service Views'), default=0)
     num_basket_additions = models.PositiveIntegerField(
         _('Basket Additions'), default=0)
 
@@ -72,27 +72,27 @@ class AbstractUserRecord(models.Model):
         verbose_name_plural = _('User records')
 
 
-class AbstractUserProductView(models.Model):
+class AbstractUserServiceView(models.Model):
 
     user = models.ForeignKey(
         AUTH_USER_MODEL, verbose_name=_("User"),
         on_delete=models.CASCADE)
-    product = models.ForeignKey(
-        'catalogue.Product',
+    service = models.ForeignKey(
+        'catalogue.Service',
         on_delete=models.CASCADE,
-        verbose_name=_("Product"))
+        verbose_name=_("Service"))
     date_created = models.DateTimeField(_("Date Created"), auto_now_add=True)
 
     class Meta:
         abstract = True
         app_label = 'analytics'
         ordering = ['-pk']
-        verbose_name = _('User product view')
-        verbose_name_plural = _('User product views')
+        verbose_name = _('User service view')
+        verbose_name_plural = _('User service views')
 
     def __str__(self):
-        return _("%(user)s viewed '%(product)s'") % {
-            'user': self.user, 'product': self.product}
+        return _("%(user)s viewed '%(service)s'") % {
+            'user': self.user, 'service': self.service}
 
 
 class AbstractUserSearch(models.Model):

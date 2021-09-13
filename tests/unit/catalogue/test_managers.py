@@ -1,11 +1,11 @@
 import pytest
 
-from oscar.apps.catalogue.models import Product
-from oscar.test.factories import ProductFactory
+from oscar.apps.catalogue.models import Service
+from oscar.test.factories import ServiceFactory
 
 
 @pytest.mark.django_db
 def test_public_queryset_method_filters():
-    ProductFactory(is_public=True)
-    ProductFactory(is_public=False)
-    assert Product.objects.public().count() == 1
+    ServiceFactory(is_public=True)
+    ServiceFactory(is_public=False)
+    assert Service.objects.public().count() == 1

@@ -4,7 +4,7 @@ from django.utils.translation import gettext
 from oscar.core.loading import get_class, get_model
 from oscar.test.factories import (
     AttributeOptionFactory, AttributeOptionGroupFactory,
-    ProductAttributeFactory)
+    ServiceAttributeFactory)
 from oscar.test.testcases import WebTestCase
 
 from .testcases import (
@@ -143,7 +143,7 @@ class TestAttributeOptionGroupDeleteView(PopUpObjectDeleteMixin, WebTestCase):
         return form.submit()
 
     def _create_dissalowed_object_factory(self):
-        ProductAttributeFactory(
+        ServiceAttributeFactory(
             type='multi_option',
             name='Sizes',
             code='sizes',
@@ -164,5 +164,5 @@ class TestAttributeOptionGroupDeleteView(PopUpObjectDeleteMixin, WebTestCase):
         self.assertEqual(messages[0].level, ERROR)
         self.assertEqual(
             messages[0].message,
-            gettext("1 product attributes are still assigned to this attribute option group")
+            gettext("1 service attributes are still assigned to this attribute option group")
         )

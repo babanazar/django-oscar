@@ -257,7 +257,7 @@ msgstr "請求先住所一覧"
 
 #: apps/address/abstract_models.py:606 apps/order/abstract_models.py:487
 #: apps/partner/abstract_models.py:99 apps/partner/apps.py:9
-#: templates/oscar/dashboard/catalogue/product_update.html:225
+#: templates/oscar/dashboard/catalogue/service_update.html:225
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:48
 #: templates/oscar/dashboard/orders/line_detail.html:75
 msgid "Partner"
@@ -283,7 +283,7 @@ msgstr "取引業者住所一覧"
 #: templates/oscar/customer/wishlists/wishlists_detail.html:33
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:47
 #: templates/oscar/dashboard/orders/order_detail.html:127
-#: templates/oscar/dashboard/reports/partials/product_report.html:8
+#: templates/oscar/dashboard/reports/partials/service_report.html:8
 #: templates/oscar/dashboard/reviews/review_delete.html:37
 #: templates/oscar/dashboard/reviews/review_list.html:57
 #: templates/oscar/dashboard/users/alerts/list.html:44
@@ -292,7 +292,7 @@ msgid "Product"
 msgstr "商品"
 
 #: apps/analytics/abstract_models.py:22 apps/analytics/reports.py:20
-#: templates/oscar/dashboard/reports/partials/product_report.html:9
+#: templates/oscar/dashboard/reports/partials/service_report.html:9
 msgid "Views"
 msgstr "閲覧数"
 
@@ -301,7 +301,7 @@ msgid "Basket Additions"
 msgstr "カート追加数"
 
 #: apps/analytics/abstract_models.py:26 apps/analytics/reports.py:22
-#: templates/oscar/dashboard/reports/partials/product_report.html:11
+#: templates/oscar/dashboard/reports/partials/service_report.html:11
 msgid "Purchases"
 msgstr "決済数"
 
@@ -371,17 +371,17 @@ msgid "User records"
 msgstr "ユーザー記録"
 
 #: apps/analytics/abstract_models.py:90
-msgid "User product view"
+msgid "User service view"
 msgstr "ユーザー商品閲覧回数"
 
 #: apps/analytics/abstract_models.py:91
-msgid "User product views"
+msgid "User service views"
 msgstr "ユーザー商品閲覧回数"
 
 #: apps/analytics/abstract_models.py:94
 #, python-format
-msgid "%(user)s viewed '%(product)s'"
-msgstr "%(user)s は「%(product)s」を閲覧しています。"
+msgid "%(user)s viewed '%(service)s'"
+msgstr "%(user)s は「%(service)s」を閲覧しています。"
 
 #: apps/analytics/abstract_models.py:104
 msgid "Search term"
@@ -405,7 +405,7 @@ msgid "Analytics"
 msgstr "統計情報"
 
 #: apps/analytics/reports.py:21 apps/analytics/reports.py:61
-#: templates/oscar/dashboard/reports/partials/product_report.html:10
+#: templates/oscar/dashboard/reports/partials/service_report.html:10
 #: templates/oscar/dashboard/reports/partials/user_report.html:12
 msgid "Basket additions"
 msgstr "カート追加数"
@@ -431,8 +431,8 @@ msgstr "商品統計情報"
 #: apps/wishlists/abstract_models.py:23
 #: templates/oscar/customer/profile/profile.html:9
 #: templates/oscar/customer/wishlists/wishlists_list.html:9
-#: templates/oscar/dashboard/catalogue/product_class_form.html:101
-#: templates/oscar/dashboard/catalogue/product_class_list.html:27
+#: templates/oscar/dashboard/catalogue/service_class_form.html:101
+#: templates/oscar/dashboard/catalogue/service_class_list.html:27
 #: templates/oscar/dashboard/comms/list.html:32
 #: templates/oscar/dashboard/offers/offer_detail.html:60
 #: templates/oscar/dashboard/offers/summary.html:12
@@ -636,7 +636,7 @@ msgstr "数量"
 
 #: apps/basket/abstract_models.py:639 apps/order/abstract_models.py:59
 #: apps/partner/abstract_models.py:110 apps/payment/abstract_models.py:80
-#: templates/oscar/dashboard/catalogue/product_update.html:232
+#: templates/oscar/dashboard/catalogue/service_update.html:232
 msgid "Currency"
 msgstr "通貨"
 
@@ -663,8 +663,8 @@ msgstr "カート品目"
 
 #: apps/basket/abstract_models.py:668
 #, python-format
-msgid "Basket #%(basket_id)d, Product #%(product_id)d, quantity %(quantity)d"
-msgstr "カート #%(basket_id)d, 商品 #%(product_id)d, 数量 %(quantity)d"
+msgid "Basket #%(basket_id)d, Product #%(service_id)d, quantity %(quantity)d"
+msgstr "カート #%(basket_id)d, 商品 #%(service_id)d, 数量 %(quantity)d"
 
 #: apps/basket/abstract_models.py:676
 #, python-format
@@ -674,16 +674,16 @@ msgstr "カート%s は変更できません"
 #: apps/basket/abstract_models.py:913
 #, python-format
 msgid ""
-"The price of '%(product)s' has increased from %(old_price)s to %(new_price)s"
+"The price of '%(service)s' has increased from %(old_price)s to %(new_price)s"
 " since you added it to your basket"
-msgstr "「%(product)s」の価格がカート追加時の %(old_price)s から %(new_price)s に上がりました。"
+msgstr "「%(service)s」の価格がカート追加時の %(old_price)s から %(new_price)s に上がりました。"
 
 #: apps/basket/abstract_models.py:918
 #, python-format
 msgid ""
-"The price of '%(product)s' has decreased from %(old_price)s to %(new_price)s"
+"The price of '%(service)s' has decreased from %(old_price)s to %(new_price)s"
 " since you added it to your basket"
-msgstr "「%(product)s」の価格がカート追加時の %(old_price)s から %(new_price)s に下がりました。"
+msgstr "「%(service)s」の価格がカート追加時の %(old_price)s から %(new_price)s に下がりました。"
 
 #: apps/basket/abstract_models.py:932 apps/order/abstract_models.py:798
 #: apps/order/abstract_models.py:832 apps/order/abstract_models.py:945
@@ -729,7 +729,7 @@ msgstr "カートに追加する"
 #: apps/order/abstract_models.py:1047 apps/order/abstract_models.py:1100
 #: apps/partner/abstract_models.py:24 apps/payment/abstract_models.py:211
 #: apps/voucher/abstract_models.py:126
-#: templates/oscar/dashboard/catalogue/product_class_form.html:102
+#: templates/oscar/dashboard/catalogue/service_class_form.html:102
 #: templates/oscar/dashboard/comms/list.html:31
 #: templates/oscar/dashboard/vouchers/voucher_delete.html:34
 #: templates/oscar/dashboard/vouchers/voucher_detail.html:31
@@ -743,7 +743,7 @@ msgid "Variant"
 msgstr "バリエーション"
 
 #: apps/basket/forms.py:227
-msgid "Please select a valid product"
+msgid "Please select a valid service"
 msgstr "商品を選択してください。"
 
 #: apps/basket/forms.py:244
@@ -755,14 +755,14 @@ msgstr "システムの制限により1回の注文で%(threshold)d個を超え�
 
 #: apps/basket/forms.py:266
 msgid ""
-"This product cannot be added to the basket because a price could not be "
+"This service cannot be added to the basket because a price could not be "
 "determined for it."
 msgstr "この商品は価格が決定できないためカートに追加できません。"
 
 #: apps/basket/forms.py:273
 msgid ""
-"This product cannot be added to the basket as its currency isn't the same as"
-" other products in your basket"
+"This service cannot be added to the basket as its currency isn't the same as"
+" other services in your basket"
 msgstr "この商品の通貨がカート内の他の商品と異なるため、カートには追加できません。"
 
 #: apps/basket/middleware.py:174
@@ -957,7 +957,7 @@ msgstr ""
 
 #: apps/catalogue/abstract_models.py:291 apps/catalogue/abstract_models.py:312
 #: apps/communication/abstract_models.py:78
-#: templates/oscar/dashboard/catalogue/product_update.html:155
+#: templates/oscar/dashboard/catalogue/service_update.html:155
 #: templates/oscar/dashboard/comms/list.html:33
 msgid "Category"
 msgstr "カテゴリ"
@@ -970,7 +970,7 @@ msgstr "カテゴリ"
 #: templates/oscar/dashboard/catalogue/category_list.html:9
 #: templates/oscar/dashboard/catalogue/category_list.html:19
 #: templates/oscar/dashboard/catalogue/category_list.html:28
-#: templates/oscar/dashboard/catalogue/product_update.html:78
+#: templates/oscar/dashboard/catalogue/service_update.html:78
 msgid "Categories"
 msgstr "カテゴリ"
 
@@ -983,15 +983,15 @@ msgid "Product categories"
 msgstr "商品カテゴリ一覧"
 
 #: apps/catalogue/abstract_models.py:343
-msgid "Stand-alone product"
+msgid "Stand-alone service"
 msgstr "単体商品"
 
 #: apps/catalogue/abstract_models.py:344 apps/catalogue/abstract_models.py:369
-msgid "Parent product"
+msgid "Parent service"
 msgstr "親商品"
 
 #: apps/catalogue/abstract_models.py:345
-msgid "Child product"
+msgid "Child service"
 msgstr "子商品"
 
 #: apps/catalogue/abstract_models.py:348
@@ -999,7 +999,7 @@ msgid "Product structure"
 msgstr "商品構成"
 
 #: apps/catalogue/abstract_models.py:355
-msgid "Show this product in search results and catalogue listings."
+msgid "Show this service in search results and catalogue listings."
 msgstr "この商品を検索結果と商品一覧に表示します。"
 
 #: apps/catalogue/abstract_models.py:358 apps/dashboard/catalogue/forms.py:77
@@ -1007,51 +1007,51 @@ msgstr "この商品を検索結果と商品一覧に表示します。"
 #: templates/oscar/catalogue/detail.html:117
 #: templates/oscar/dashboard/orders/line_detail.html:48
 #: templates/oscar/dashboard/orders/order_detail.html:128
-#: templates/oscar/dashboard/ranges/range_product_list.html:96
+#: templates/oscar/dashboard/ranges/range_service_list.html:96
 msgid "UPC"
 msgstr "UPC"
 
 #: apps/catalogue/abstract_models.py:359
 msgid ""
-"Universal Product Code (UPC) is an identifier for a product which is not "
+"Universal Product Code (UPC) is an identifier for a service which is not "
 "specific to a particular  supplier. Eg an ISBN for a book."
 msgstr "Universal Product Code（UPC）は特定の業者に固有でない製品の識別子です。 例えば書籍のISBNがこれにあたります。"
 
 #: apps/catalogue/abstract_models.py:370
 msgid ""
-"Only choose a parent product if you're creating a child product.  For "
+"Only choose a parent service if you're creating a child service.  For "
 "example if this is a size 4 of a particular t-shirt.  Leave blank if this is"
-" a stand-alone product (i.e. there is only one version of this product)."
+" a stand-alone service (i.e. there is only one version of this service)."
 msgstr "子となる商品を作成する場合にだけ親となる商品を選択してください。例えば、特定のTシャツのサイズMの場合などです。これが単体商品である場合（つまり、この製品のバージョンが1つしかない場合）は空白のままにします。"
 
 #: apps/catalogue/abstract_models.py:377 apps/catalogue/abstract_models.py:625
 #: apps/order/abstract_models.py:516 apps/wishlists/abstract_models.py:121
 #: templates/oscar/dashboard/orders/line_detail.html:35
-#: templates/oscar/dashboard/ranges/range_product_list.html:97
+#: templates/oscar/dashboard/ranges/range_service_list.html:97
 msgctxt "Product title"
 msgid "Title"
 msgstr "商品名"
 
 #: apps/catalogue/abstract_models.py:391 apps/catalogue/abstract_models.py:814
 #: apps/dashboard/catalogue/tables.py:26
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:10
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:10
 msgid "Product type"
 msgstr "商品タイプ"
 
 #: apps/catalogue/abstract_models.py:392
-msgid "Choose what type of product this is"
+msgid "Choose what type of service this is"
 msgstr "商品タイプを選択してください。"
 
 #: apps/catalogue/abstract_models.py:396
-#: templates/oscar/dashboard/catalogue/product_update.html:85
-#: templates/oscar/dashboard/catalogue/product_update.html:175
-#: templates/oscar/dashboard/catalogue/product_update.html:284
+#: templates/oscar/dashboard/catalogue/service_update.html:85
+#: templates/oscar/dashboard/catalogue/service_update.html:175
+#: templates/oscar/dashboard/catalogue/service_update.html:284
 msgid "Attributes"
 msgstr "商品属性"
 
 #: apps/catalogue/abstract_models.py:397
 msgid ""
-"A product attribute is something that this product may have, such as a size,"
+"A service attribute is something that this service may have, such as a size,"
 " as specified by its class"
 msgstr "商品属性はクラスによって指定されたサイズなど、この商品が持つ可能性のあるものです。"
 
@@ -1067,12 +1067,12 @@ msgid ""
 msgstr "商品オプションは顧客のカートに追加されるときに商品に関連付けることができる情報です。例えばTシャツに印刷されるパーソナライズされたメッセージなどになります。"
 
 #: apps/catalogue/abstract_models.py:409
-#: templates/oscar/dashboard/catalogue/product_update.html:331
-msgid "Recommended products"
+#: templates/oscar/dashboard/catalogue/service_update.html:331
+msgid "Recommended services"
 msgstr "おすすめ商品"
 
 #: apps/catalogue/abstract_models.py:410
-msgid "These are products that are recommended to accompany the main product."
+msgid "These are services that are recommended to accompany the main service."
 msgstr "これらはメインの商品と一緒に購入することをおすすめする商品です。"
 
 #: apps/catalogue/abstract_models.py:415 defaults.py:217
@@ -1088,62 +1088,62 @@ msgid "Is discountable?"
 msgstr "値引き可能"
 
 #: apps/catalogue/abstract_models.py:435
-msgid "This flag indicates if this product can be used in an offer or not"
+msgid "This flag indicates if this service can be used in an offer or not"
 msgstr "この値はこの商品をセール対象にできるかどうかを示します。"
 
 #: apps/catalogue/abstract_models.py:445 apps/dashboard/catalogue/views.py:106
-#: defaults.py:101 templates/oscar/dashboard/catalogue/product_delete.html:15
-#: templates/oscar/dashboard/catalogue/product_list.html:9
-#: templates/oscar/dashboard/catalogue/product_list.html:19
-#: templates/oscar/dashboard/catalogue/product_list.html:27
-#: templates/oscar/dashboard/catalogue/product_update.html:8
-#: templates/oscar/dashboard/catalogue/product_update.html:18
-#: templates/oscar/dashboard/ranges/range_product_list.html:21
+#: defaults.py:101 templates/oscar/dashboard/catalogue/service_delete.html:15
+#: templates/oscar/dashboard/catalogue/service_list.html:9
+#: templates/oscar/dashboard/catalogue/service_list.html:19
+#: templates/oscar/dashboard/catalogue/service_list.html:27
+#: templates/oscar/dashboard/catalogue/service_update.html:8
+#: templates/oscar/dashboard/catalogue/service_update.html:18
+#: templates/oscar/dashboard/ranges/range_service_list.html:21
 msgid "Products"
 msgstr "商品"
 
 #: apps/catalogue/abstract_models.py:502
-msgid "Your product must have a title."
+msgid "Your service must have a title."
 msgstr "商品名を入力してください。"
 
 #: apps/catalogue/abstract_models.py:504
-msgid "Your product must have a product class."
+msgid "Your service must have a service class."
 msgstr "商品クラスを指定してください。"
 
 #: apps/catalogue/abstract_models.py:506
-msgid "Only child products can have a parent."
+msgid "Only child services can have a parent."
 msgstr "親商品を指定できるのは子商品だけです。"
 
 #: apps/catalogue/abstract_models.py:513
-msgid "A child product needs a parent."
+msgid "A child service needs a parent."
 msgstr "子商品には親商品の指定が必要です。"
 
 #: apps/catalogue/abstract_models.py:516
-msgid "You can only assign child products to parent products."
+msgid "You can only assign child services to parent services."
 msgstr "子商品のみ親商品を指定することができます。"
 
 #: apps/catalogue/abstract_models.py:519
-msgid "A child product can't have a product class."
+msgid "A child service can't have a service class."
 msgstr "子商品には商品クラスを指定することはできません。"
 
 #: apps/catalogue/abstract_models.py:522
-msgid "A child product can't have a category assigned."
+msgid "A child service can't have a category assigned."
 msgstr "子商品にはカテゴリを指定することはできません。"
 
 #: apps/catalogue/abstract_models.py:526
-msgid "A child product can't have options."
+msgid "A child service can't have options."
 msgstr "子商品には商品オプションを指定することはできません。"
 
 #: apps/catalogue/abstract_models.py:535
-msgid "A parent product can't have stockrecords."
+msgid "A parent service can't have stockrecords."
 msgstr "親商品には在庫記録を設定することはできません。"
 
 #: apps/catalogue/abstract_models.py:563
-msgid "The specified parent product is a child product."
+msgid "The specified parent service is a child service."
 msgstr "指定された親商品は子商品です。"
 
 #: apps/catalogue/abstract_models.py:566
-msgid "One can't add a child product to a product with stock records."
+msgid "One can't add a child service to a service with stock records."
 msgstr "在庫記録を持つ商品には子商品を登録することはできません。"
 
 #: apps/catalogue/abstract_models.py:632
@@ -1157,11 +1157,11 @@ msgid "Meta description"
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:784
-msgid "Primary product"
+msgid "Primary service"
 msgstr "メインの商品"
 
 #: apps/catalogue/abstract_models.py:788
-msgid "Recommended product"
+msgid "Recommended service"
 msgstr "おすすめ商品"
 
 #: apps/catalogue/abstract_models.py:790
@@ -1170,7 +1170,7 @@ msgstr "順位"
 
 #: apps/catalogue/abstract_models.py:791
 msgid ""
-"Determines order of the products. A product with a higher value will appear "
+"Determines order of the services. A service with a higher value will appear "
 "before one with a lower ranking."
 msgstr "商品の順序を決定します。 高い順位の商品は低い順位の商品の前に表示されます。"
 
@@ -1249,7 +1249,7 @@ msgstr "ファイル"
 #: apps/offer/abstract_models.py:488 apps/offer/abstract_models.py:706
 #: apps/order/abstract_models.py:802 apps/payment/abstract_models.py:37
 #: defaults.py:216
-#: templates/oscar/dashboard/catalogue/product_class_form.html:103
+#: templates/oscar/dashboard/catalogue/service_class_form.html:103
 #: templates/oscar/dashboard/orders/order_detail.html:636
 #: templates/oscar/dashboard/orders/order_detail.html:686
 msgid "Type"
@@ -1264,7 +1264,7 @@ msgid "Select an option group if using type \"Option\" or \"Multi Option\""
 msgstr "タイプに「オプション」または「複数オプション」を使用している場合、オプショングループを選択します。"
 
 #: apps/catalogue/abstract_models.py:866
-#: templates/oscar/dashboard/catalogue/product_class_form.html:104
+#: templates/oscar/dashboard/catalogue/service_class_form.html:104
 msgid "Required"
 msgstr "必須"
 
@@ -1273,8 +1273,8 @@ msgid "Product attribute"
 msgstr "商品属性"
 
 #: apps/catalogue/abstract_models.py:873
-#: templates/oscar/dashboard/catalogue/product_class_form.html:43
-#: templates/oscar/dashboard/catalogue/product_class_form.html:90
+#: templates/oscar/dashboard/catalogue/service_class_form.html:43
+#: templates/oscar/dashboard/catalogue/service_class_form.html:90
 msgid "Product attributes"
 msgstr "商品属性一覧"
 
@@ -1398,7 +1398,7 @@ msgstr "説明"
 #: apps/catalogue/abstract_models.py:1320
 msgid ""
 "An image with a display order of zero will be the primary image for a "
-"product"
+"service"
 msgstr "表示順序が0の画像が商品のメイン画像になります。"
 
 #: apps/catalogue/abstract_models.py:1330
@@ -1414,17 +1414,17 @@ msgstr "商品画像一覧"
 msgid "Catalogue"
 msgstr "商品管理"
 
-#: apps/catalogue/product_attributes.py:25
+#: apps/catalogue/service_attributes.py:25
 #, python-format
 msgid "%(obj)s has no attribute named '%(attr)s'"
 msgstr "%(obj)s には「%(attr)s」という名前の属性がありません。"
 
-#: apps/catalogue/product_attributes.py:33
+#: apps/catalogue/service_attributes.py:33
 #, python-format
 msgid "%(attr)s attribute cannot be blank"
 msgstr "属性 %(attr)s は空に設定できません。"
 
-#: apps/catalogue/product_attributes.py:40
+#: apps/catalogue/service_attributes.py:40
 #, python-format
 msgid "%(attr)s attribute %(err)s"
 msgstr "属性 %(attr)s %(err)s"
@@ -1543,15 +1543,15 @@ msgid "Sort by"
 msgstr "並び替え"
 
 #: apps/catalogue/reviews/views.py:33
-msgid "You have already reviewed this product!"
+msgid "You have already reviewed this service!"
 msgstr "あなたは以前にこの商品をレビュー済みです。"
 
 #: apps/catalogue/reviews/views.py:35
-msgid "You can't leave a review for this product."
+msgid "You can't leave a review for this service."
 msgstr "この商品にはレビューを投稿できません。"
 
 #: apps/catalogue/reviews/views.py:60
-msgid "Thank you for reviewing this product"
+msgid "Thank you for reviewing this service"
 msgstr "商品レビューありがとうございます。"
 
 #: apps/catalogue/reviews/views.py:98
@@ -1573,7 +1573,7 @@ msgid "The given page number was invalid."
 msgstr "指定されたページ番号は無効です。"
 
 #: apps/catalogue/views.py:144 templates/oscar/partials/nav_primary.html:41
-msgid "All products"
+msgid "All services"
 msgstr "全ての商品"
 
 #: apps/checkout/apps.py:13
@@ -2041,13 +2041,13 @@ msgstr "%s の有効な入荷のお知らせは既に設定されています。
 #: apps/customer/forms.py:389
 #, python-format
 msgid ""
-"%s has been sent a confirmation email for another product alert on this "
+"%s has been sent a confirmation email for another service alert on this "
 "site. Please confirm or cancel that request before signing up for more "
 "alerts."
 msgstr "%s には、すでに別の商品のお知らせの確認メールが送信されています。新しいお知らせを設定する前に、そちらを確認するかキャンセルしてください。"
 
 #: apps/customer/forms.py:401
-msgid "You already have an active alert for this product"
+msgid "You already have an active alert for this service"
 msgstr "この商品の入荷のお知らせはすでに設定されています。"
 
 #: apps/customer/views.py:174
@@ -2122,8 +2122,8 @@ msgstr "注文 %(number)s は現在どの商品も購入できないため再注
 
 #: apps/customer/views.py:594
 #, python-format
-msgid "%(qty)d copies of '%(product)s' have been added to your basket"
-msgstr "「%(product)s」のコピーが %(qty)d個カートに追加されました。"
+msgid "%(qty)d copies of '%(service)s' have been added to your basket"
+msgstr "「%(service)s」のコピーが %(qty)d個カートに追加されました。"
 
 #: apps/customer/views.py:598
 #, python-format
@@ -2175,7 +2175,7 @@ msgstr "この国には出荷していません。"
 #: apps/customer/wishlists/views.py:25
 #: templates/oscar/customer/partials/standard_tabs.html:24
 #: templates/oscar/customer/wishlists/wishlists_delete.html:14
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:14
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:14
 #: templates/oscar/customer/wishlists/wishlists_detail.html:16
 #: templates/oscar/customer/wishlists/wishlists_form.html:14
 msgid "Wish Lists"
@@ -2191,7 +2191,7 @@ msgid "Create a new wish list"
 msgstr "新規ほしい物リスト作成"
 
 #: apps/customer/wishlists/views.py:104
-msgid "The requested product no longer exists"
+msgid "The requested service no longer exists"
 msgstr "ご要望の商品はもう存在していません。"
 
 #: apps/customer/wishlists/views.py:123
@@ -2258,12 +2258,12 @@ msgstr "ほしい物リスト「%(name)s」に「%(title)s」を移動しまし�
 #: templates/oscar/dashboard/catalogue/option_delete.html:26
 #: templates/oscar/dashboard/catalogue/option_form.html:26
 #: templates/oscar/dashboard/catalogue/option_list.html:12
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:9
-#: templates/oscar/dashboard/catalogue/product_class_form.html:13
-#: templates/oscar/dashboard/catalogue/product_class_list.html:7
-#: templates/oscar/dashboard/catalogue/product_delete.html:14
-#: templates/oscar/dashboard/catalogue/product_list.html:16
-#: templates/oscar/dashboard/catalogue/product_update.html:15
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:9
+#: templates/oscar/dashboard/catalogue/service_class_form.html:13
+#: templates/oscar/dashboard/catalogue/service_class_list.html:7
+#: templates/oscar/dashboard/catalogue/service_delete.html:14
+#: templates/oscar/dashboard/catalogue/service_list.html:16
+#: templates/oscar/dashboard/catalogue/service_update.html:15
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:14
 #: templates/oscar/dashboard/comms/detail.html:14
 #: templates/oscar/dashboard/comms/list.html:13
@@ -2291,7 +2291,7 @@ msgstr "ほしい物リスト「%(name)s」に「%(title)s」を移動しまし�
 #: templates/oscar/dashboard/ranges/range_delete.html:13
 #: templates/oscar/dashboard/ranges/range_form.html:13
 #: templates/oscar/dashboard/ranges/range_list.html:11
-#: templates/oscar/dashboard/ranges/range_product_list.html:13
+#: templates/oscar/dashboard/ranges/range_service_list.html:13
 #: templates/oscar/dashboard/reports/index.html:12
 #: templates/oscar/dashboard/reviews/review_delete.html:14
 #: templates/oscar/dashboard/reviews/review_list.html:14
@@ -2323,7 +2323,7 @@ msgid "Leave blank to generate from category name"
 msgstr ""
 
 #: apps/dashboard/catalogue/forms.py:62
-msgid "Create a new product of type"
+msgid "Create a new service of type"
 msgstr "商品タイプ追加"
 
 #: apps/dashboard/catalogue/forms.py:63
@@ -2335,7 +2335,7 @@ msgid "Product title"
 msgstr "商品名"
 
 #: apps/dashboard/catalogue/forms.py:240
-msgid "Leave blank to generate from product title"
+msgid "Leave blank to generate from service title"
 msgstr ""
 
 #: apps/dashboard/catalogue/forms.py:385
@@ -2349,27 +2349,27 @@ msgid ""
 msgstr "少なくとも1つの在庫記録を関連付けられている取引業者に設定する必要があります。"
 
 #: apps/dashboard/catalogue/formsets.py:114
-msgid "Stand-alone and parent products must have at least one category"
+msgid "Stand-alone and parent services must have at least one category"
 msgstr "単体商品と親商品には少なくとも1つのカテゴリが設定されている必要があります。"
 
 #: apps/dashboard/catalogue/formsets.py:118
-msgid "A child product should not have categories"
+msgid "A child service should not have categories"
 msgstr "子商品にはカテゴリを指定できません。"
 
 #: apps/dashboard/catalogue/tables.py:18
-#: templates/oscar/dashboard/catalogue/product_update.html:283
+#: templates/oscar/dashboard/catalogue/service_update.html:283
 #: templates/oscar/dashboard/vouchers/voucher_set_detail.html:44
 msgid "Title"
 msgstr "名称"
 
 #: apps/dashboard/catalogue/tables.py:30
-#: templates/oscar/dashboard/catalogue/product_update.html:104
-#: templates/oscar/dashboard/catalogue/product_update.html:276
+#: templates/oscar/dashboard/catalogue/service_update.html:104
+#: templates/oscar/dashboard/catalogue/service_update.html:276
 msgid "Variants"
 msgstr "バリエーション一覧"
 
 #: apps/dashboard/catalogue/tables.py:35 apps/partner/abstract_models.py:153
-#: templates/oscar/dashboard/catalogue/product_update.html:285
+#: templates/oscar/dashboard/catalogue/service_update.html:285
 msgid "Stock records"
 msgstr "在庫記録"
 
@@ -2379,8 +2379,8 @@ msgstr "在庫記録"
 #: templates/oscar/dashboard/catalogue/attribute_option_group_row_actions.html:6
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:6
 #: templates/oscar/dashboard/catalogue/option_row_actions.html:6
-#: templates/oscar/dashboard/catalogue/product_class_list.html:43
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:6
+#: templates/oscar/dashboard/catalogue/service_class_list.html:43
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:6
 #: templates/oscar/dashboard/offers/offer_list.html:89
 #: templates/oscar/dashboard/orders/order_detail.html:134
 #: templates/oscar/dashboard/pages/index.html:68
@@ -2426,23 +2426,23 @@ msgid "Product search results"
 msgstr "商品検索結果"
 
 #: apps/dashboard/catalogue/views.py:181
-msgid "Please choose a product type"
+msgid "Please choose a service type"
 msgstr "商品タイプを選択してください。"
 
 #: apps/dashboard/catalogue/views.py:302
 #, python-format
-msgid "Create new %(product_class)s product"
-msgstr "新規 %(product_class)s 商品作成"
+msgid "Create new %(service_class)s service"
+msgstr "新規 %(service_class)s 商品作成"
 
 #: apps/dashboard/catalogue/views.py:305
 #, python-format
-msgid "Create new variant of %(parent_product)s"
-msgstr "新規 %(parent_product)s バリエーション作成"
+msgid "Create new variant of %(parent_service)s"
+msgstr "新規 %(parent_service)s バリエーション作成"
 
 #: apps/dashboard/catalogue/views.py:311
 #, python-format
-msgid "Editing variant of %(parent_product)s"
-msgstr "%(parent_product)s バリエーション編集"
+msgid "Editing variant of %(parent_service)s"
+msgstr "%(parent_service)s バリエーション編集"
 
 #: apps/dashboard/catalogue/views.py:406 apps/dashboard/catalogue/views.py:694
 #: apps/dashboard/catalogue/views.py:824 apps/dashboard/catalogue/views.py:967
@@ -2450,21 +2450,21 @@ msgid "Your submitted data was not valid - please correct the errors below"
 msgstr "送信されたデータは無効です-以下のエラーを修正してください。"
 
 #: apps/dashboard/catalogue/views.py:470
-msgid "Delete product variant?"
+msgid "Delete service variant?"
 msgstr "商品バリエーション削除の確認"
 
 #: apps/dashboard/catalogue/views.py:472
-msgid "Delete product?"
+msgid "Delete service?"
 msgstr "商品削除の確認"
 
 #: apps/dashboard/catalogue/views.py:516
 #, python-format
-msgid "Deleted product variant '%s'"
+msgid "Deleted service variant '%s'"
 msgstr "商品バリエーション「%s」を削除しました。"
 
 #: apps/dashboard/catalogue/views.py:522
 #, python-format
-msgid "Deleted product '%s'"
+msgid "Deleted service '%s'"
 msgstr "商品「%s」を削除しました。"
 
 #: apps/dashboard/catalogue/views.py:544
@@ -2498,7 +2498,7 @@ msgid "Category deleted successfully"
 msgstr "カテゴリを削除しました。"
 
 #: apps/dashboard/catalogue/views.py:730
-msgid "Add a new product type"
+msgid "Add a new service type"
 msgstr "新規商品タイプ追加"
 
 #: apps/dashboard/catalogue/views.py:733
@@ -2507,7 +2507,7 @@ msgstr "商品タイプを追加しました。"
 
 #: apps/dashboard/catalogue/views.py:742
 #, python-format
-msgid "Update product type '%s'"
+msgid "Update service type '%s'"
 msgstr "「%s」の商品タイプ編集"
 
 #: apps/dashboard/catalogue/views.py:745
@@ -2516,13 +2516,13 @@ msgstr "商品タイプを更新しました。"
 
 #: apps/dashboard/catalogue/views.py:760 apps/offer/abstract_models.py:811
 #: defaults.py:105
-#: templates/oscar/dashboard/catalogue/product_class_list.html:24
+#: templates/oscar/dashboard/catalogue/service_class_list.html:24
 msgid "Product Types"
 msgstr "商品タイプ"
 
 #: apps/dashboard/catalogue/views.py:771
 #, python-format
-msgid "Delete product type '%s'"
+msgid "Delete service type '%s'"
 msgstr "商品タイプ「%s」の削除確認"
 
 #: apps/dashboard/catalogue/views.py:776 apps/dashboard/catalogue/views.py:912
@@ -2533,7 +2533,7 @@ msgstr "'%s'を削除できません"
 
 #: apps/dashboard/catalogue/views.py:778
 #, python-format
-msgid "%i products are still assigned to this type"
+msgid "%i services are still assigned to this type"
 msgstr "このタイプにはまだ %i個の商品が割り当てられています。"
 
 #: apps/dashboard/catalogue/views.py:783
@@ -2565,7 +2565,7 @@ msgstr " 属性オプショングループ「%s」の削除"
 #: apps/dashboard/catalogue/views.py:914
 #, python-format
 msgid ""
-"%i product attributes are still assigned to this attribute option group"
+"%i service attributes are still assigned to this attribute option group"
 msgstr "この属性オプショングループにはまだ %i件の商品属性が割り当てられています。"
 
 #: apps/dashboard/catalogue/views.py:933
@@ -2596,12 +2596,12 @@ msgstr "商品オプション「%s」の削除"
 
 #: apps/dashboard/catalogue/views.py:1021
 #, python-format
-msgid "%i products are still assigned to this option"
+msgid "%i services are still assigned to this option"
 msgstr "この商品オプションにはすでに%i個の商品が割り当てられています。"
 
 #: apps/dashboard/catalogue/views.py:1026
 #, python-format
-msgid "%i product classes are still assigned to this option"
+msgid "%i service classes are still assigned to this option"
 msgstr "この商品クラスにはすでに%i個の商品が割り当てられています。"
 
 #: apps/dashboard/catalogue/views.py:1032
@@ -2867,11 +2867,11 @@ msgstr "顧客名「{customer_name}」と一致する注文。"
 
 #: apps/dashboard/orders/views.py:250
 #, python-brace-format
-msgid "Product name matches \"{product_name}\""
-msgstr "商品名「{product_name}」と一致する注文。"
+msgid "Product name matches \"{service_name}\""
+msgstr "商品名「{service_name}」と一致する注文。"
 
-#. Translators: "UPC" means "universal product code" and it is
-#. used to uniquely identify a product in an online store.
+#. Translators: "UPC" means "universal service code" and it is
+#. used to uniquely identify a service in an online store.
 #. "Item" in this context means an item in an order placed
 #. in an online store.
 #: apps/dashboard/orders/views.py:261
@@ -2880,7 +2880,7 @@ msgid "Includes an item with UPC \"{upc}\""
 msgstr "UPCが「{upc}」の商品を含む注文。"
 
 #. Translators: "SKU" means "stock keeping unit" and is used to
-#. identify products that can be shipped from an online store.
+#. identify services that can be shipped from an online store.
 #. A "partner" is a company that ships items to users who
 #. buy things in an online store.
 #: apps/dashboard/orders/views.py:272
@@ -3252,12 +3252,12 @@ msgstr "SKU・UPCのリストかファイルを登録する必要があります
 
 #: apps/dashboard/ranges/forms.py:61 apps/dashboard/ranges/views.py:166
 #, python-format
-msgid "The products with SKUs or UPCs matching %s are already in this range"
+msgid "The services with SKUs or UPCs matching %s are already in this range"
 msgstr "SKU、UPCが%sと一致する商品はすでにこの商品グループに登録されています。"
 
 #: apps/dashboard/ranges/forms.py:69
 #, python-format
-msgid "No products exist with a SKU or UPC matching %s"
+msgid "No services exist with a SKU or UPC matching %s"
 msgstr "SKU、UPCが%sに一致する商品はありません。"
 
 #: apps/dashboard/ranges/views.py:52
@@ -3270,24 +3270,24 @@ msgstr "商品グループを削除しました。"
 
 #: apps/dashboard/ranges/views.py:133
 #, python-format
-msgid "Removed %d product from range"
-msgid_plural "Removed %d products from range"
+msgid "Removed %d service from range"
+msgid_plural "Removed %d services from range"
 msgstr[0] "商品グループから%d件商品を削除しました。"
 
 #: apps/dashboard/ranges/views.py:160
 #, python-format
-msgid "%d product added to range"
-msgid_plural "%d products added to range"
+msgid "%d service added to range"
+msgid_plural "%d services added to range"
 msgstr[0] "商品グループに%d件商品を追加しました。"
 
 #: apps/dashboard/ranges/views.py:173
 #, python-format
-msgid "No product(s) were found with SKU or UPC matching %s"
+msgid "No service(s) were found with SKU or UPC matching %s"
 msgstr "SKUまたはUPCが %s に一致する商品は見つかりませんでした。"
 
 #: apps/dashboard/ranges/views.py:210
 #, python-format
-msgid "There are more than one product with SKU %s"
+msgid "There are more than one service with SKU %s"
 msgstr "SKUが %s の製品が複数存在しています。"
 
 #: apps/dashboard/reports/apps.py:11
@@ -3471,7 +3471,7 @@ msgid "Usage"
 msgstr "クーポン使用制限"
 
 #: apps/dashboard/vouchers/forms.py:31 apps/dashboard/vouchers/forms.py:113
-msgid "Which products get a discount?"
+msgid "Which services get a discount?"
 msgstr "値引き対象の製品"
 
 #: apps/dashboard/vouchers/forms.py:36 apps/dashboard/vouchers/forms.py:118
@@ -3746,19 +3746,19 @@ msgid "Range"
 msgstr "対象商品グループ"
 
 #: apps/offer/abstract_models.py:476
-msgid "Discount is a percentage off of the product's value"
+msgid "Discount is a percentage off of the service's value"
 msgstr "割引対象は商品価格に対するパーセンテージの値引きです。"
 
 #: apps/offer/abstract_models.py:477
-msgid "Discount is a fixed amount off of the product's value"
+msgid "Discount is a fixed amount off of the service's value"
 msgstr "割引対象は商品価格に対する固定金額の値引きです。"
 
 #: apps/offer/abstract_models.py:478
-msgid "Discount is to give the cheapest product for free"
+msgid "Discount is to give the cheapest service for free"
 msgstr "割引対象は最も安い商品の無料提供です。"
 
 #: apps/offer/abstract_models.py:480
-msgid "Get the products that meet the condition for a fixed price"
+msgid "Get the services that meet the condition for a fixed price"
 msgstr "条件に一致する商品を固定価格で提供します。"
 
 #: apps/offer/abstract_models.py:482
@@ -3793,7 +3793,7 @@ msgid "Benefits"
 msgstr "特典"
 
 #: apps/offer/abstract_models.py:550
-msgid "Multibuy benefits require a product range"
+msgid "Multibuy benefits require a service range"
 msgstr "複数購入の特典には商品グループの指定が必要です。"
 
 #: apps/offer/abstract_models.py:552
@@ -3805,7 +3805,7 @@ msgid "Multibuy benefits don't require a 'max affected items' attribute"
 msgstr "複数購入の特典には「対象商品の上限数」属性は必要ありません。"
 
 #: apps/offer/abstract_models.py:564
-msgid "Percentage benefits require a product range"
+msgid "Percentage benefits require a service range"
 msgstr "値引率の特典には商品グループの指定が必要です。"
 
 #: apps/offer/abstract_models.py:567 apps/offer/abstract_models.py:592
@@ -3822,7 +3822,7 @@ msgstr "値引き金額・値引率を入力してください。"
 
 #: apps/offer/abstract_models.py:579 apps/offer/abstract_models.py:597
 #: apps/offer/abstract_models.py:608
-msgid "No range should be selected as this benefit does not apply to products"
+msgid "No range should be selected as this benefit does not apply to services"
 msgstr "この特典は商品には適用されないため、商品グループは選択しないでください。"
 
 #: apps/offer/abstract_models.py:582 apps/offer/abstract_models.py:600
@@ -3836,7 +3836,7 @@ msgid ""
 msgstr "条件となる商品グループが適用されるので商品グループは指定しないでください。"
 
 #: apps/offer/abstract_models.py:626
-msgid "Fixed discount benefits require a product range"
+msgid "Fixed discount benefits require a service range"
 msgstr "固定金額の値引きには商品グループの指定が必要です。"
 
 #: apps/offer/abstract_models.py:628
@@ -3861,7 +3861,7 @@ msgid "Conditions"
 msgstr "適用条件"
 
 #: apps/offer/abstract_models.py:797
-#: templates/oscar/dashboard/catalogue/product_update.html:286
+#: templates/oscar/dashboard/catalogue/service_update.html:286
 #: templates/oscar/dashboard/ranges/range_list.html:33
 msgid "Is public?"
 msgstr "公開する"
@@ -3871,7 +3871,7 @@ msgid "Public ranges have a customer-facing page"
 msgstr "この情報が顧客に公開されます。"
 
 #: apps/offer/abstract_models.py:801
-msgid "Includes all products?"
+msgid "Includes all services?"
 msgstr "すべての商品を含める"
 
 #: apps/offer/abstract_models.py:805
@@ -3895,7 +3895,7 @@ msgstr "セール対象カテゴリ"
 #: templates/oscar/dashboard/ranges/range_list.html:12
 #: templates/oscar/dashboard/ranges/range_list.html:20
 #: templates/oscar/dashboard/ranges/range_list.html:27
-#: templates/oscar/dashboard/ranges/range_product_list.html:15
+#: templates/oscar/dashboard/ranges/range_service_list.html:15
 msgid "Ranges"
 msgstr "商品グループ"
 
@@ -3977,7 +3977,7 @@ msgstr "固定金額の値引き特典"
 
 #: apps/offer/benefits.py:190
 #, python-format
-msgid "The products that meet the condition are sold for %(amount)s"
+msgid "The services that meet the condition are sold for %(amount)s"
 msgstr "条件を満たす商品は %(amount)s個まで販売されます。"
 
 #: apps/offer/benefits.py:201
@@ -3990,7 +3990,7 @@ msgstr "固定金額販売特典"
 
 #: apps/offer/benefits.py:253
 #, python-format
-msgid "Cheapest product from %(range)s is free"
+msgid "Cheapest service from %(range)s is free"
 msgstr "%(range)s の最も安い商品は無料です。"
 
 #: apps/offer/benefits.py:268
@@ -4055,8 +4055,8 @@ msgstr "商品数条件"
 
 #: apps/offer/conditions.py:74 apps/offer/conditions.py:158
 #, python-format
-msgid "Buy %(delta)d more product from %(range)s"
-msgid_plural "Buy %(delta)d more products from %(range)s"
+msgid "Buy %(delta)d more service from %(range)s"
+msgid_plural "Buy %(delta)d more services from %(range)s"
 msgstr[0] "%(range)sから %(delta)d点購入で"
 
 #: apps/offer/conditions.py:109
@@ -4267,7 +4267,7 @@ msgid "Order Line"
 msgstr "注文品目"
 
 #: apps/order/abstract_models.py:572
-msgid "<missing product>"
+msgid "<missing service>"
 msgstr "<商品名不明>"
 
 #: apps/order/abstract_models.py:573
@@ -4408,8 +4408,8 @@ msgstr "配送イベント件数一覧"
 
 #: apps/order/abstract_models.py:1033
 #, python-format
-msgid "%(product)s - quantity %(qty)d"
-msgstr "%(product)s - 数量 %(qty)d"
+msgid "%(service)s - quantity %(qty)d"
+msgstr "%(service)s - 数量 %(qty)d"
 
 #: apps/order/abstract_models.py:1053
 msgid "Shipping Event Type"
@@ -4514,7 +4514,7 @@ msgstr "取引業者"
 #: templates/oscar/basket/partials/basket_content.html:31
 #: templates/oscar/basket/partials/basket_content.html:92
 #: templates/oscar/basket/partials/basket_content.html:183
-#: templates/oscar/dashboard/catalogue/product_update.html:233
+#: templates/oscar/dashboard/catalogue/service_update.html:233
 msgid "Price"
 msgstr "価格"
 
@@ -4770,7 +4770,7 @@ msgid "American Express cards use a 4 digit security code"
 msgstr "American Expressカードは4桁のセキュリティコードを使用しています。"
 
 #: apps/search/apps.py:11 apps/search/forms.py:40 apps/search/forms.py:42
-#: templates/oscar/dashboard/catalogue/product_list.html:64
+#: templates/oscar/dashboard/catalogue/service_list.html:64
 #: templates/oscar/dashboard/offers/offer_list.html:31
 #: templates/oscar/dashboard/orders/order_list.html:30
 #: templates/oscar/dashboard/orders/order_list.html:51
@@ -4858,7 +4858,7 @@ msgid "Default Weight"
 msgstr "既定の重量"
 
 #: apps/shipping/abstract_models.py:107
-msgid "Default product weight in kg when no weight attribute is defined"
+msgid "Default service weight in kg when no weight attribute is defined"
 msgstr "重量属性が定義されていない場合の既定の製品重量（kg）"
 
 #: apps/shipping/abstract_models.py:113
@@ -5210,7 +5210,7 @@ msgid "This is not a valid local or international phone format."
 msgstr "有効な国際電話番号または国内電話番号の形式ではありません。"
 
 #: management/commands/oscar_send_alerts.py:16
-msgid "Check for products that are back in stock and send out alerts"
+msgid "Check for services that are back in stock and send out alerts"
 msgstr "在庫のある製品を確認して入荷のお知らせを送信します。"
 
 #: templates/flatpages/default.html:11
@@ -5228,7 +5228,7 @@ msgstr "現在のページを編集"
 #: templates/oscar/customer/order/order_list.html:22
 #: templates/oscar/customer/registration.html:13
 #: templates/oscar/customer/wishlists/wishlists_delete.html:8
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:8
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:8
 #: templates/oscar/customer/wishlists/wishlists_detail.html:10
 #: templates/oscar/customer/wishlists/wishlists_form.html:8
 #: templates/oscar/dashboard/catalogue/category_list.html:35
@@ -5377,9 +5377,9 @@ msgstr "更新"
 #: templates/oscar/basket/partials/basket_content.html:205
 #: templates/oscar/basket/partials/basket_totals.html:51
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:45
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_detail.html:85
-#: templates/oscar/dashboard/ranges/range_product_list.html:112
+#: templates/oscar/dashboard/ranges/range_service_list.html:112
 msgid "Remove"
 msgstr "削除"
 
@@ -5399,7 +5399,7 @@ msgstr "私はクーポンコードを持っています..."
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:13
 #: templates/oscar/catalogue/partials/add_to_basket_form_compact.html:12
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:35
-#: templates/oscar/dashboard/catalogue/product_update.html:277
+#: templates/oscar/dashboard/catalogue/service_update.html:277
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:91
 msgid "Adding..."
 msgstr "追加処理中..."
@@ -5417,16 +5417,16 @@ msgstr "クーポンを使用する"
 #: templates/oscar/customer/profile/profile_delete.html:18
 #: templates/oscar/customer/registration.html:32
 #: templates/oscar/customer/wishlists/wishlists_delete.html:34
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_form.html:43
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:141
 #: templates/oscar/dashboard/catalogue/category_delete.html:36
 #: templates/oscar/dashboard/catalogue/category_form.html:106
 #: templates/oscar/dashboard/catalogue/option_form.html:89
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:35
-#: templates/oscar/dashboard/catalogue/product_class_form.html:142
-#: templates/oscar/dashboard/catalogue/product_delete.html:56
-#: templates/oscar/dashboard/catalogue/product_update.html:374
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:35
+#: templates/oscar/dashboard/catalogue/service_class_form.html:142
+#: templates/oscar/dashboard/catalogue/service_delete.html:56
+#: templates/oscar/dashboard/catalogue/service_update.html:374
 #: templates/oscar/dashboard/comms/detail.html:102
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/orders/shippingaddress_form.html:32
@@ -5438,7 +5438,7 @@ msgstr "クーポンを使用する"
 #: templates/oscar/dashboard/ranges/range_delete.html:30
 #: templates/oscar/dashboard/ranges/range_form.html:36
 #: templates/oscar/dashboard/ranges/range_form.html:39
-#: templates/oscar/dashboard/ranges/range_product_list.html:137
+#: templates/oscar/dashboard/ranges/range_service_list.html:137
 #: templates/oscar/dashboard/reviews/review_delete.html:47
 #: templates/oscar/dashboard/reviews/review_update.html:77
 #: templates/oscar/dashboard/shipping/weight_band_delete.html:45
@@ -5464,11 +5464,11 @@ msgstr "または"
 #: templates/oscar/customer/profile/profile_delete.html:18
 #: templates/oscar/customer/registration.html:32
 #: templates/oscar/customer/wishlists/wishlists_delete.html:34
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_form.html:43
 #: templates/oscar/dashboard/catalogue/category_delete.html:36
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:35
-#: templates/oscar/dashboard/catalogue/product_delete.html:57
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:35
+#: templates/oscar/dashboard/catalogue/service_delete.html:57
 #: templates/oscar/dashboard/comms/detail.html:102
 #: templates/oscar/dashboard/offers/offer_delete.html:31
 #: templates/oscar/dashboard/offers/step_form.html:75
@@ -5638,10 +5638,10 @@ msgid "<strong>0</strong> results."
 msgstr "<strong>0</strong> 件の結果。"
 
 #: templates/oscar/catalogue/browse.html:106
-#: templates/oscar/dashboard/catalogue/product_list.html:90
-#: templates/oscar/dashboard/ranges/range_product_list.html:129
+#: templates/oscar/dashboard/catalogue/service_list.html:90
+#: templates/oscar/dashboard/ranges/range_service_list.html:129
 #: templates/oscar/offer/detail.html:62 templates/oscar/offer/range.html:40
-msgid "No products found."
+msgid "No services found."
 msgstr "商品はありません。"
 
 #: templates/oscar/catalogue/category.html:17
@@ -5649,7 +5649,7 @@ msgid "Edit this category"
 msgstr "現在のカテゴリを編集"
 
 #: templates/oscar/catalogue/detail.html:66
-msgid "Edit this product"
+msgid "Edit this service"
 msgstr "商品情報の編集"
 
 #: templates/oscar/catalogue/detail.html:87
@@ -5665,8 +5665,8 @@ msgid "Product Information"
 msgstr "商品情報"
 
 #: templates/oscar/catalogue/detail.html:121
-#: templates/oscar/dashboard/catalogue/product_class_form.html:14
-#: templates/oscar/dashboard/catalogue/product_class_list.html:8
+#: templates/oscar/dashboard/catalogue/service_class_form.html:14
+#: templates/oscar/dashboard/catalogue/service_class_list.html:8
 #: templates/oscar/dashboard/orders/line_detail.html:45
 msgid "Product Type"
 msgstr "商品タイプ"
@@ -5694,13 +5694,13 @@ msgstr "お客様レビュー"
 #: templates/oscar/catalogue/detail.html:171
 #, python-format
 msgid ""
-"This product does not have any reviews yet -\n"
+"This service does not have any reviews yet -\n"
 "                            <a href=\"%(add_review_url)s#addreview\">be the first to write one</a>.\n"
 "                        "
 msgstr "この商品にはまだレビューがありません。\n<a href=\\\"%(add_review_url)s#addreview\\\">最初のレビューを書く</a>"
 
 #: templates/oscar/catalogue/detail.html:175
-msgid "This product does not have any reviews yet"
+msgid "This service does not have any reviews yet"
 msgstr "この商品にはまだレビューがありません。"
 
 #: templates/oscar/catalogue/detail.html:194
@@ -5714,11 +5714,11 @@ msgid "Add to basket"
 msgstr "カートに入れる"
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:20
-msgid "You have an active stock alert for this product."
+msgid "You have an active stock alert for this service."
 msgstr "この商品の入荷のお知らせが設定されています。"
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:24
-msgid "You can get an email alert when this product is back in stock."
+msgid "You can get an email alert when this service is back in stock."
 msgstr "この商品が再入荷した際にメールでお知らせを受け取ることができます。"
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:26
@@ -5727,7 +5727,7 @@ msgstr "この商品が再入荷した際にメールでお知らせを受け取
 #: templates/oscar/checkout/preview.html:35
 #: templates/oscar/checkout/shipping_methods.html:58
 #: templates/oscar/checkout/user_address_delete.html:29
-#: templates/oscar/dashboard/catalogue/product_list.html:39
+#: templates/oscar/dashboard/catalogue/service_list.html:39
 #: templates/oscar/dashboard/comms/detail.html:76
 #: templates/oscar/dashboard/offers/step_form.html:69
 #: templates/oscar/dashboard/orders/order_list.html:108
@@ -5766,13 +5766,13 @@ msgid ""
 msgstr ""
 
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:45
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
-#: templates/oscar/dashboard/ranges/range_product_list.html:90
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
+#: templates/oscar/dashboard/ranges/range_service_list.html:90
 msgid "Removing..."
 msgstr "削除中..."
 
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:50
-msgid "Please login to add products to a wish list."
+msgid "Please login to add services to a wish list."
 msgstr "商品をほしい物リストへ追加するためにログインをしてください。"
 
 #: templates/oscar/catalogue/partials/gallery.html:22
@@ -5810,14 +5810,14 @@ msgstr "このレビューは役に立ちましたか？"
 #: templates/oscar/catalogue/partials/review.html:40
 #: templates/oscar/dashboard/offers/offer_list.html:67
 #: templates/oscar/dashboard/ranges/range_list.html:55
-#: templates/oscar/dashboard/ranges/range_product_list.html:110
+#: templates/oscar/dashboard/ranges/range_service_list.html:110
 msgid "Yes"
 msgstr "はい"
 
 #: templates/oscar/catalogue/partials/review.html:45
 #: templates/oscar/dashboard/offers/offer_list.html:69
 #: templates/oscar/dashboard/ranges/range_list.html:57
-#: templates/oscar/dashboard/ranges/range_product_list.html:110
+#: templates/oscar/dashboard/ranges/range_service_list.html:110
 msgid "No"
 msgstr "いいえ"
 
@@ -5865,7 +5865,7 @@ msgid "Customer reviews"
 msgstr "お客様レビュー"
 
 #: templates/oscar/catalogue/reviews/review_form.html:8
-msgid "Leave a product review"
+msgid "Leave a service review"
 msgstr "商品のレビューを投稿する"
 
 #: templates/oscar/catalogue/reviews/review_form.html:47
@@ -5875,9 +5875,9 @@ msgstr "商品のレビューを投稿する"
 #: templates/oscar/customer/wishlists/wishlists_form.html:42
 #: templates/oscar/dashboard/catalogue/category_form.html:107
 #: templates/oscar/dashboard/catalogue/category_form.html:110
-#: templates/oscar/dashboard/catalogue/product_update.html:376
-#: templates/oscar/dashboard/catalogue/product_update.html:380
-#: templates/oscar/dashboard/catalogue/product_update.html:383
+#: templates/oscar/dashboard/catalogue/service_update.html:376
+#: templates/oscar/dashboard/catalogue/service_update.html:380
+#: templates/oscar/dashboard/catalogue/service_update.html:383
 #: templates/oscar/dashboard/comms/detail.html:101
 #: templates/oscar/dashboard/offers/restrictions_form.html:13
 #: templates/oscar/dashboard/offers/step_form.html:71
@@ -5904,7 +5904,7 @@ msgid "Go"
 msgstr "実行"
 
 #: templates/oscar/catalogue/reviews/review_list.html:54
-msgid "This product does not have any reviews yet."
+msgid "This service does not have any reviews yet."
 msgstr "この商品にはまだレビューがありません。"
 
 #: templates/oscar/checkout/checkout.html:35
@@ -6044,11 +6044,11 @@ msgstr "この住所に配送する"
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:23
 #: templates/oscar/dashboard/catalogue/option_delete.html:61
 #: templates/oscar/dashboard/catalogue/option_row_actions.html:13
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:34
-#: templates/oscar/dashboard/catalogue/product_class_list.html:50
-#: templates/oscar/dashboard/catalogue/product_delete.html:55
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:16
-#: templates/oscar/dashboard/catalogue/product_update.html:300
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:34
+#: templates/oscar/dashboard/catalogue/service_class_list.html:50
+#: templates/oscar/dashboard/catalogue/service_delete.html:55
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:16
+#: templates/oscar/dashboard/catalogue/service_update.html:300
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/offers/offer_list.html:102
 #: templates/oscar/dashboard/orders/order_detail.html:703
@@ -6176,8 +6176,8 @@ msgstr "はい"
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:143
 #: templates/oscar/dashboard/catalogue/category_form.html:111
 #: templates/oscar/dashboard/catalogue/option_form.html:91
-#: templates/oscar/dashboard/catalogue/product_class_form.html:144
-#: templates/oscar/dashboard/catalogue/product_update.html:384
+#: templates/oscar/dashboard/catalogue/service_class_form.html:144
+#: templates/oscar/dashboard/catalogue/service_update.html:384
 #: templates/oscar/dashboard/comms/detail.html:101
 #: templates/oscar/dashboard/pages/update.html:33
 #: templates/oscar/dashboard/partials/form.html:10
@@ -6251,8 +6251,8 @@ msgid "Your email address has changed at %(site_name)s."
 msgstr "メールアドレスが %(site_name)s に変更されました"
 
 #: templates/oscar/communication/emails/commtype_order_placed_body.html:7
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:10
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:10
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:1
 msgid "Hello,"
 msgstr "こんにちは。"
 
@@ -6377,62 +6377,62 @@ msgstr "次のページに移動して、新しいパスワードを設定して
 msgid "Resetting your password at %(site_name)s."
 msgstr "%(site_name)s でのパスワードリセット"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:8
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:8
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:1
 #, python-format
 msgid "Dear %(name)s,"
 msgstr "%(name)s 様"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:16
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:16
 #, python-format
 msgid ""
 "\n"
-"            We are happy to inform you that our product '%(title)s' is back in stock:\n"
+"            We are happy to inform you that our service '%(title)s' is back in stock:\n"
 "            %(url)s\n"
 "        "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:24
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:24
 msgid ""
 "\n"
 "                Beware that the amount of items in stock is limited. Be quick or someone might get there first.\n"
 "            "
 msgstr "\n在庫品の数には限りがありますのでご注意ください。 すぐに購入されることをおすすめします。"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:31
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:31
 msgid ""
 "\n"
 "            With this email we have disabled your alert automatically and you will not\n"
-"            receive any further email regarding this product.\n"
+"            receive any further email regarding this service.\n"
 "        "
 msgstr "\nこのメールの送信により商品入荷のお知らせは自動的に無効となりました。この商品に関してこれ今後お知らせメールは送信されません。"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:3
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:3
 #, python-format
 msgid ""
 "\n"
-"We are happy to inform you that our product '%(title)s' is back in stock:\n"
+"We are happy to inform you that our service '%(title)s' is back in stock:\n"
 "%(url)s\n"
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:6
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:6
 msgid ""
 "\n"
 "Beware that the amount of items in stock is limited. Be quick or someone might get there first.\n"
 msgstr "\n在庫品の数には限りがありますのでご注意ください。 すぐに購入されることをおすすめします。\n"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:8
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:8
 #, python-format
 msgid ""
 "\n"
 "With this email we have disabled your alert automatically and you will not\n"
-"receive any further email regarding this product.\n"
+"receive any further email regarding this service.\n"
 "\n"
 "Thanks for your interest,\n"
 "The %(site_name)s Team\n"
 msgstr "\nこのメールの送信により商品入荷のお知らせは自動的に無効となりました。この商品に関してこれ今後お知らせメールは送信されません。\n\nご利用ありがとうございます。\n%(site_name)s 担当スタッフ\n"
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_body.html:8
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_body.html:8
 #, python-format
 msgid ""
 "\n"
@@ -6452,7 +6452,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_body.txt:5
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_body.txt:5
 #, python-format
 msgid ""
 "\n"
@@ -6469,11 +6469,11 @@ msgid ""
 "The %(site)s Team\n"
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_subject.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_subject.txt:1
 msgid "Confirmation required for stock alert"
 msgstr "商品入荷のお知らせの登録確認"
 
-#: templates/oscar/communication/emails/commtype_product_alert_subject.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_subject.txt:1
 #, python-format
 msgid "%(title)s is back in stock"
 msgstr "「%(title)s」が入荷しました。"
@@ -6534,8 +6534,8 @@ msgstr "アーカイブ処理中..."
 #: templates/oscar/dashboard/catalogue/attribute_option_group_delete.html:62
 #: templates/oscar/dashboard/catalogue/category_delete.html:35
 #: templates/oscar/dashboard/catalogue/option_delete.html:60
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:34
-#: templates/oscar/dashboard/catalogue/product_delete.html:55
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:34
+#: templates/oscar/dashboard/catalogue/service_delete.html:55
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/pages/delete.html:36
 #: templates/oscar/dashboard/partners/partner_delete.html:30
@@ -6566,8 +6566,8 @@ msgid "Default billing address"
 msgstr "既定の請求先住所"
 
 #: templates/oscar/customer/address/address_list.html:30
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:10
-#: templates/oscar/dashboard/catalogue/product_update.html:297
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:10
+#: templates/oscar/dashboard/catalogue/service_update.html:297
 #: templates/oscar/dashboard/comms/detail.html:33
 #: templates/oscar/dashboard/comms/list.html:44
 #: templates/oscar/dashboard/offers/offer_detail.html:62
@@ -6608,7 +6608,7 @@ msgid "There are no addresses in your address book."
 msgstr "アドレス帳に住所がありません。"
 
 #: templates/oscar/customer/alerts/alert_list.html:6
-msgid "You do not have any active alerts for out-of-stock products."
+msgid "You do not have any active alerts for out-of-stock services."
 msgstr "商品入荷のお知らせは設定されていません。"
 
 #: templates/oscar/customer/alerts/alert_list.html:33
@@ -6617,8 +6617,8 @@ msgstr "商品入荷のお知らせは設定されていません。"
 #: templates/oscar/dashboard/catalogue/category_form.html:104
 #: templates/oscar/dashboard/catalogue/option_delete.html:58
 #: templates/oscar/dashboard/catalogue/option_form.html:87
-#: templates/oscar/dashboard/catalogue/product_class_form.html:140
-#: templates/oscar/dashboard/catalogue/product_update.html:372
+#: templates/oscar/dashboard/catalogue/service_class_form.html:140
+#: templates/oscar/dashboard/catalogue/service_update.html:372
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -6670,7 +6670,7 @@ msgstr "カート合計 (税込)"
 #: templates/oscar/customer/baseaccountpage.html:18
 #: templates/oscar/customer/order/order_list.html:25
 #: templates/oscar/customer/wishlists/wishlists_delete.html:11
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:11
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:11
 #: templates/oscar/customer/wishlists/wishlists_detail.html:13
 #: templates/oscar/customer/wishlists/wishlists_form.html:11
 #: templates/oscar/dashboard/layout.html:43
@@ -6679,7 +6679,7 @@ msgstr "カート合計 (税込)"
 msgid "Account"
 msgstr "アカウント"
 
-#: templates/oscar/customer/history/recently_viewed_products.html:7
+#: templates/oscar/customer/history/recently_viewed_services.html:7
 msgid "Products you recently viewed"
 msgstr "最近チェックした商品"
 
@@ -6841,8 +6841,8 @@ msgstr "\nこの操作により本サイトからあなたに関するすべて�
 
 #: templates/oscar/customer/wishlists/wishlists_delete.html:19
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:111
-#: templates/oscar/dashboard/catalogue/product_class_form.html:105
-#: templates/oscar/dashboard/catalogue/product_update.html:234
+#: templates/oscar/dashboard/catalogue/service_class_form.html:105
+#: templates/oscar/dashboard/catalogue/service_update.html:234
 #: templates/oscar/dashboard/offers/offer_delete.html:16
 #: templates/oscar/dashboard/partners/partner_delete.html:16
 #: templates/oscar/dashboard/ranges/range_delete.html:16
@@ -6859,17 +6859,17 @@ msgid ""
 "            "
 msgstr "\n                「%(name)s」を削除してもよろしいですか？\n            "
 
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:19
-msgid "Remove product"
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:19
+msgid "Remove service"
 msgstr "商品削除"
 
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:28
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:28
 #, python-format
 msgid ""
 "\n"
-"                Are you sure you want to delete %(product_name)s from wish list %(wishlist_name)s?\n"
+"                Are you sure you want to delete %(service_name)s from wish list %(wishlist_name)s?\n"
 "            "
-msgstr "\nほしい物リスト「%(wishlist_name)s」から %(product_name)s を本当に削除してもよろしいですか？"
+msgstr "\nほしい物リスト「%(wishlist_name)s」から %(service_name)s を本当に削除してもよろしいですか？"
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:35
 #: templates/oscar/customer/wishlists/wishlists_list.html:11
@@ -6877,7 +6877,7 @@ msgid "Action"
 msgstr "操作"
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:75
-msgid "View product"
+msgid "View service"
 msgstr "商品を確認"
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:91
@@ -6913,7 +6913,7 @@ msgid ""
 msgstr "\n                    このリストが作成されると自動的に「<strong>%(title)s</strong>」が追加されます。\n                "
 
 #: templates/oscar/customer/wishlists/wishlists_list.html:10
-msgid "Number of products"
+msgid "Number of services"
 msgstr "商品数"
 
 #: templates/oscar/customer/wishlists/wishlists_list.html:23
@@ -6958,8 +6958,8 @@ msgstr "属性オプショングループ「 <strong>%(name)s</strong> 」を削
 
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:50
 #: templates/oscar/dashboard/catalogue/category_form.html:37
-#: templates/oscar/dashboard/catalogue/product_class_form.html:32
-#: templates/oscar/dashboard/catalogue/product_update.html:58
+#: templates/oscar/dashboard/catalogue/service_class_form.html:32
+#: templates/oscar/dashboard/catalogue/service_update.html:58
 msgid "Sections"
 msgstr "分類"
 
@@ -7013,20 +7013,20 @@ msgstr ""
 
 #: templates/oscar/dashboard/catalogue/category_form.html:48
 #: templates/oscar/dashboard/catalogue/category_form.html:82
-#: templates/oscar/dashboard/catalogue/product_update.html:117
-#: templates/oscar/dashboard/catalogue/product_update.html:349
+#: templates/oscar/dashboard/catalogue/service_update.html:117
+#: templates/oscar/dashboard/catalogue/service_update.html:349
 msgid "Search engine optimisation"
 msgstr ""
 
 #: templates/oscar/dashboard/catalogue/category_form.html:108
-#: templates/oscar/dashboard/catalogue/product_update.html:381
+#: templates/oscar/dashboard/catalogue/service_update.html:381
 msgid "Save and continue editing"
 msgstr "保存して編集を続ける"
 
 #: templates/oscar/dashboard/catalogue/category_form.html:115
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:20
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:13
-#: templates/oscar/dashboard/catalogue/product_update.html:388
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:13
+#: templates/oscar/dashboard/catalogue/service_update.html:388
 #: templates/oscar/dashboard/pages/index.html:63
 #: templates/oscar/dashboard/pages/messages/saved.html:9
 #: templates/oscar/dashboard/ranges/range_list.html:79
@@ -7058,15 +7058,15 @@ msgstr "子カテゴリ追加"
 msgid "Edit children"
 msgstr "子カテゴリ編集"
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:10
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:10
 #, python-format
 msgid ""
 "\n"
-"                    Created product variant '%(name)s'.\n"
+"                    Created service variant '%(name)s'.\n"
 "                "
 msgstr "\n                   バリエーション「%(name)s」を作成しました。\n                "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:14
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:14
 #, python-format
 msgid ""
 "\n"
@@ -7074,15 +7074,15 @@ msgid ""
 "                "
 msgstr "\n「%(parent_name)s」のバリエーションを作成しました。"
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:20
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:20
 #, python-format
 msgid ""
 "\n"
-"                    Updated product variant '%(name)s'.\n"
+"                    Updated service variant '%(name)s'.\n"
 "                "
 msgstr "\n                    「%(name)s」の商品情報を更新しました。\n                "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:24
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:24
 #, python-format
 msgid ""
 "\n"
@@ -7090,29 +7090,29 @@ msgid ""
 "                "
 msgstr "\n「%(parent_name)s」のバリエーションを更新しました。"
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:33
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:33
 #, python-format
 msgid ""
 "\n"
-"                Created product '%(name)s'.\n"
+"                Created service '%(name)s'.\n"
 "            "
 msgstr "\n                商品「%(name)s」を作成しました。\n            "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:37
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:37
 #, python-format
 msgid ""
 "\n"
-"                Updated product '%(name)s'.\n"
+"                Updated service '%(name)s'.\n"
 "            "
 msgstr "\n                「%(name)s」の商品情報を更新しました。\n            "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:48
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:48
 #: templates/oscar/dashboard/pages/messages/saved.html:10
 #: templates/oscar/dashboard/ranges/messages/range_saved.html:6
 msgid "Edit again"
 msgstr "再編集"
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:49
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:49
 msgid "View it on the site"
 msgstr "サイトで確認"
 
@@ -7155,90 +7155,90 @@ msgstr "商品オプションは見つかりませんでした。"
 msgid "Edit Option"
 msgstr "商品オプション編集"
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:11
-msgid "Delete product type?"
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:11
+msgid "Delete service type?"
 msgstr "商品タイプ削除確認"
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:22
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:22
 msgid ""
-"Please make sure all products are assigned to another type before deletion."
+"Please make sure all services are assigned to another type before deletion."
 msgstr "削除を行う前に全ての商品が別のタイプに割り当てられていることを確認してください。"
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:25
-msgid "Delete product type"
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:25
+msgid "Delete service type"
 msgstr "商品タイプの削除確認"
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:31
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:31
 #, python-format
-msgid "Delete product type <strong>%(name)s</strong> - are you sure?"
+msgid "Delete service type <strong>%(name)s</strong> - are you sure?"
 msgstr "商品タイプ「<strong>%(name)s</strong>」を削除します - 本当によろしいですか？"
 
-#: templates/oscar/dashboard/catalogue/product_class_form.html:5
-msgid "Create product type"
+#: templates/oscar/dashboard/catalogue/service_class_form.html:5
+msgid "Create service type"
 msgstr "新規商品タイプ作成"
 
-#: templates/oscar/dashboard/catalogue/product_class_form.html:38
-#: templates/oscar/dashboard/catalogue/product_class_form.html:58
+#: templates/oscar/dashboard/catalogue/service_class_form.html:38
+#: templates/oscar/dashboard/catalogue/service_class_form.html:58
 msgid "Product Class details"
 msgstr "商品クラス詳細"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:16
-msgid "Create new product type"
+#: templates/oscar/dashboard/catalogue/service_class_list.html:16
+msgid "Create new service type"
 msgstr "新規商品タイプ作成"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:17
+#: templates/oscar/dashboard/catalogue/service_class_list.html:17
 msgid "Product types"
 msgstr "商品タイプ一覧"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:28
+#: templates/oscar/dashboard/catalogue/service_class_list.html:28
 msgid "Requires shipping"
 msgstr "要配送"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:29
+#: templates/oscar/dashboard/catalogue/service_class_list.html:29
 msgid "Track stock?"
 msgstr "要在庫追跡"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:47
-msgid "Edit product type"
+#: templates/oscar/dashboard/catalogue/service_class_list.html:47
+msgid "Edit service type"
 msgstr "商品タイプ編集"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:61
-msgid "There are no product types."
+#: templates/oscar/dashboard/catalogue/service_class_list.html:61
+msgid "There are no service types."
 msgstr "商品タイプはありません。"
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:33
+#: templates/oscar/dashboard/catalogue/service_delete.html:33
 #, python-format
 msgid ""
 "\n"
-"                    Delete product variant <strong>%(title)s</strong> - are you sure?\n"
+"                    Delete service variant <strong>%(title)s</strong> - are you sure?\n"
 "                "
 msgstr "\n                    バリエーション「 <strong>%(title)s</strong> 」を削除します - 本当によろしいですか？\n                "
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:37
+#: templates/oscar/dashboard/catalogue/service_delete.html:37
 #, python-format
 msgid ""
 "\n"
-"                    Delete product <strong>%(title)s</strong> - are you sure?\n"
+"                    Delete service <strong>%(title)s</strong> - are you sure?\n"
 "                "
 msgstr "\n                    商品「<strong>%(title)s</strong>」を削除します - 本当によろしいですか？\n                "
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:45
-msgid "This will also delete the following child products:"
+#: templates/oscar/dashboard/catalogue/service_delete.html:45
+msgid "This will also delete the following child services:"
 msgstr "この削除により次の子商品も削除されます:"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:34
-msgid "Create new product"
+#: templates/oscar/dashboard/catalogue/service_list.html:34
+msgid "Create new service"
 msgstr "新商品追加"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:40
+#: templates/oscar/dashboard/catalogue/service_list.html:40
 msgid "New Product"
 msgstr "選択"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:48
+#: templates/oscar/dashboard/catalogue/service_list.html:48
 msgid "Search Products"
 msgstr "商品検索"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:64
+#: templates/oscar/dashboard/catalogue/service_list.html:64
 #: templates/oscar/dashboard/offers/offer_list.html:31
 #: templates/oscar/dashboard/orders/order_list.html:73
 #: templates/oscar/dashboard/pages/index.html:36
@@ -7251,86 +7251,86 @@ msgstr "商品検索"
 msgid "Searching..."
 msgstr "検索処理中..."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:43
+#: templates/oscar/dashboard/catalogue/service_update.html:43
 #, python-format
 msgid ""
 "\n"
-"                            You are currently editing a product variant of\n"
+"                            You are currently editing a service variant of\n"
 "                            <a href=\"%(parent_url)s\">%(title)s</a>.\n"
 "                        "
 msgstr "\n「<a href=\"%(parent_url)s\">%(title)s</a>」のバリエーションを編集中です。                        "
 
-#: templates/oscar/dashboard/catalogue/product_update.html:72
-#: templates/oscar/dashboard/catalogue/product_update.html:132
+#: templates/oscar/dashboard/catalogue/service_update.html:72
+#: templates/oscar/dashboard/catalogue/service_update.html:132
 #: templates/oscar/dashboard/orders/line_detail.html:31
 msgid "Product details"
 msgstr "商品詳細"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:91
+#: templates/oscar/dashboard/catalogue/service_update.html:91
 msgid "Images"
 msgstr "商品画像"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:97
-#: templates/oscar/dashboard/catalogue/product_update.html:220
+#: templates/oscar/dashboard/catalogue/service_update.html:97
+#: templates/oscar/dashboard/catalogue/service_update.html:220
 msgid "Stock and pricing"
 msgstr "在庫と価格"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:111
+#: templates/oscar/dashboard/catalogue/service_update.html:111
 msgid "Upselling"
 msgstr "アップセリング"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:177
+#: templates/oscar/dashboard/catalogue/service_update.html:177
 msgid "Product Type:"
 msgstr "商品タイプ:"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:198
+#: templates/oscar/dashboard/catalogue/service_update.html:198
 msgid "Upload, change or remove images"
 msgstr "商品画像のアップロード、変更、削除"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:209
+#: templates/oscar/dashboard/catalogue/service_update.html:209
 msgid ""
 "Drag images to re-order them. Space for additional images will appear when "
 "images are added."
 msgstr "画像をドラッグして並べ替えます。 画像を追加すると追加画像用の空欄が表示されます。"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:226
+#: templates/oscar/dashboard/catalogue/service_update.html:226
 msgid "SKU"
 msgstr "SKU"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:228
+#: templates/oscar/dashboard/catalogue/service_update.html:228
 msgid "Num in stock"
 msgstr "在庫数"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:229
+#: templates/oscar/dashboard/catalogue/service_update.html:229
 msgid "Num allocated"
 msgstr "割当数"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:230
+#: templates/oscar/dashboard/catalogue/service_update.html:230
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:49
 msgid "Low stock threshold"
 msgstr "品切れしきい値"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:278
+#: templates/oscar/dashboard/catalogue/service_update.html:278
 msgid "Add variant"
 msgstr "バリエーションの追加"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:309
-msgid "This product does not have any variants."
+#: templates/oscar/dashboard/catalogue/service_update.html:309
+msgid "This service does not have any variants."
 msgstr "この商品にバリエーションはありません。"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:311
-msgid "One can't add variants to this product at this point."
+#: templates/oscar/dashboard/catalogue/service_update.html:311
+msgid "One can't add variants to this service at this point."
 msgstr "現時点ではこの商品にバリエーションを追加することができません。"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:313
-msgid "Please save the product before trying to add variants."
+#: templates/oscar/dashboard/catalogue/service_update.html:313
+msgid "Please save the service before trying to add variants."
 msgstr "バリエーションを追加する前に商品情報を保存してください。"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:315
-msgid "This is likely because this product still has stock records."
+#: templates/oscar/dashboard/catalogue/service_update.html:315
+msgid "This is likely because this service still has stock records."
 msgstr "この商品にはまだ在庫記録があります。"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:377
+#: templates/oscar/dashboard/catalogue/service_update.html:377
 msgid "Save and add another variant"
 msgstr "保存と別のバリエーションの追加"
 
@@ -7495,7 +7495,7 @@ msgid "Catalogue and stock"
 msgstr "商品と在庫"
 
 #: templates/oscar/dashboard/index.html:147
-msgid "Total products"
+msgid "Total services"
 msgstr "合計商品数"
 
 #: templates/oscar/dashboard/index.html:151
@@ -7875,7 +7875,7 @@ msgid "with amount"
 msgstr "必要な金額"
 
 #: templates/oscar/dashboard/orders/order_detail.html:350
-#: templates/oscar/dashboard/ranges/range_product_list.html:48
+#: templates/oscar/dashboard/ranges/range_service_list.html:48
 #: templates/oscar/dashboard/users/table.html:21
 msgid "Go!"
 msgstr "実行"
@@ -8117,8 +8117,8 @@ msgstr ""
 msgid "next"
 msgstr "次へ"
 
-#: templates/oscar/dashboard/partials/product_images.html:13
-#: templates/oscar/dashboard/ranges/range_product_list.html:114
+#: templates/oscar/dashboard/partials/service_images.html:13
+#: templates/oscar/dashboard/ranges/range_service_list.html:114
 msgctxt "Change the sequence order"
 msgid "Re-order"
 msgstr "並べ替え"
@@ -8231,54 +8231,54 @@ msgstr "ユーザーの関連付け"
 msgid "No users found."
 msgstr "条件に一致するユーザーはありません。"
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:2
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:2
 #, python-format
 msgid ""
 "\n"
 "    <p>File <strong>%(filename)s</strong> processed.</p>\n"
 msgstr "\n    <p>ファイル <strong>%(filename)s</strong> のアップロードが処理されました。</p>\n"
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:9
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:9
 #, python-format
 msgid ""
 "\n"
-"                <strong>%(n)s</strong> product added\n"
+"                <strong>%(n)s</strong> service added\n"
 "            "
 msgid_plural ""
 "\n"
-"                <strong>%(n)s</strong> products added\n"
+"                <strong>%(n)s</strong> services added\n"
 "            "
 msgstr[0] "\n                <strong>%(n)s</strong> 個の商品を追加\n            "
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:18
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:18
 #, python-format
 msgid ""
 "\n"
-"                There was <strong>%(n)s</strong> duplicate product in the file\n"
+"                There was <strong>%(n)s</strong> duplicate service in the file\n"
 "            "
 msgid_plural ""
 "\n"
-"                There were <strong>%(n)s</strong> duplicate products in the file\n"
+"                There were <strong>%(n)s</strong> duplicate services in the file\n"
 "            "
 msgstr[0] "\n                ファイルに <strong>%(n)s</strong> 個の重複する商品がありました\n            "
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:27
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:27
 #, python-format
 msgid ""
 "\n"
-"                There was <strong>%(n)s</strong> product in the file that couldn't be found in the catalogue\n"
+"                There was <strong>%(n)s</strong> service in the file that couldn't be found in the catalogue\n"
 "            "
 msgid_plural ""
 "\n"
-"                There were <strong>%(n)s</strong> products in the file that couldn't be found in the catalogue\n"
+"                There were <strong>%(n)s</strong> services in the file that couldn't be found in the catalogue\n"
 "            "
 msgstr[0] "\n                ファイルに登録されていない <strong>%(n)s</strong> 個の商品がありました\n            "
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:36
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:36
 msgid "Edit range metadata"
 msgstr "商品グループメタ情報編集"
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:37
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:37
 msgid "Return to ranges homepage"
 msgstr "商品グループページに戻る"
 
@@ -8290,7 +8290,7 @@ msgid ""
 msgstr "\n<p>商品グループ <strong>%(name)s</strong> を保存しました。</p>\n"
 
 #: templates/oscar/dashboard/ranges/messages/range_saved.html:7
-msgid "Edit included products"
+msgid "Edit included services"
 msgstr "登録商品の編集"
 
 #: templates/oscar/dashboard/ranges/range_delete.html:7
@@ -8308,89 +8308,89 @@ msgid "Create new range"
 msgstr "新規商品グループ作成"
 
 #: templates/oscar/dashboard/ranges/range_form.html:38
-msgid "Save and edit products"
+msgid "Save and edit services"
 msgstr "保存して登録商品を編集"
 
 #: templates/oscar/dashboard/ranges/range_list.html:32
-msgid "Num products"
+msgid "Num services"
 msgstr "商品数"
 
 #: templates/oscar/dashboard/ranges/range_list.html:73
-msgid "Edit products"
+msgid "Edit services"
 msgstr "登録商品を編集"
 
 #: templates/oscar/dashboard/ranges/range_list.html:93
 msgid "No ranges found."
 msgstr "商品グループは見つかりません。"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:7
+#: templates/oscar/dashboard/ranges/range_service_list.html:7
 #, python-format
 msgid "Products in range '%(name)s'"
 msgstr "「%(name)s」の商品一覧"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:28
-msgid "products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:28
+msgid "services"
 msgstr "商品一覧"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:34
+#: templates/oscar/dashboard/ranges/range_service_list.html:34
 msgid ""
-"This range contains all products. To add products manually, please unselect "
+"This range contains all services. To add services manually, please unselect "
 "the 'Includes All Products' option on the edit range page."
 msgstr "この商品グループにはすべての製品が含まれています。 手動で商品を追加するには商品グループページの「すべての商品を含める」オプションをオフにしてください。"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:38
-msgid "Add products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:38
+msgid "Add services"
 msgstr "商品の追加"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:48
+#: templates/oscar/dashboard/ranges/range_service_list.html:48
 msgid "Running..."
 msgstr "処理中..."
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:55
+#: templates/oscar/dashboard/ranges/range_service_list.html:55
 msgid "Upload history"
 msgstr "アップロード履歴"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:60
+#: templates/oscar/dashboard/ranges/range_service_list.html:60
 msgid "Filename"
 msgstr "ファイル名"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:61
-msgid "New products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:61
+msgid "New services"
 msgstr "新商品数"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:62
-msgid "Duplicate products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:62
+msgid "Duplicate services"
 msgstr " 重複商品数"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:63
-msgid "Unknown products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:63
+msgid "Unknown services"
 msgstr "未登録商品数"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:64
+#: templates/oscar/dashboard/ranges/range_service_list.html:64
 msgid "Date uploaded"
 msgstr "アップロード日"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:87
+#: templates/oscar/dashboard/ranges/range_service_list.html:87
 msgid "Products in range"
 msgstr "この商品グループの商品"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:90
-msgid "Remove selected products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:90
+msgid "Remove selected services"
 msgstr "選択した商品を削除"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:98
-msgid "Is product discountable?"
+#: templates/oscar/dashboard/ranges/range_service_list.html:98
+msgid "Is service discountable?"
 msgstr "値引き可能な商品"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:127
+#: templates/oscar/dashboard/ranges/range_service_list.html:127
 msgid "Products in Range"
 msgstr "この商品グループの商品"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:137
+#: templates/oscar/dashboard/ranges/range_service_list.html:137
 msgid "Edit range"
 msgstr "商品グループ編集"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:138
+#: templates/oscar/dashboard/ranges/range_service_list.html:138
 msgid "return to range list"
 msgstr "商品グループ一覧に戻る"
 
@@ -8557,7 +8557,7 @@ msgid "Applies to countries"
 msgstr "国に適用"
 
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:45
-msgid "Default product weight (kg)"
+msgid "Default service weight (kg)"
 msgstr "既定の商品重量 (kg)"
 
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:53
@@ -8630,7 +8630,7 @@ msgid "Are you sure that you want to delete this alert?"
 msgstr "このお知らせを削除しても良いですか？"
 
 #: templates/oscar/dashboard/users/alerts/list.html:26
-msgid "Search product alerts"
+msgid "Search service alerts"
 msgstr "商品入荷のお知らせの検索"
 
 #: templates/oscar/dashboard/users/alerts/list.html:33
@@ -8907,7 +8907,7 @@ msgid "There are no site offers at the moment."
 msgstr "現在実施中のセールはありません。"
 
 #: templates/oscar/offer/list.html:42
-msgid "Browse products in offer"
+msgid "Browse services in offer"
 msgstr "セール中の商品を確認"
 
 #: templates/oscar/order/partials/basket_totals.html:60

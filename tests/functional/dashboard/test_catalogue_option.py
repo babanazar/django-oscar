@@ -4,7 +4,7 @@ from django.utils.translation import gettext
 
 from oscar.core.loading import get_class, get_model
 from oscar.test.factories import (
-    OptionFactory, ProductClassFactory, create_product)
+    OptionFactory, ServiceClassFactory, create_service)
 from oscar.test.testcases import WebTestCase
 
 from .testcases import (
@@ -94,10 +94,10 @@ class TestOptionDeleteView(PopUpObjectDeleteMixin, WebTestCase):
         return form.submit()
 
     def _create_dissalowed_object_factory(self):
-        product_class = ProductClassFactory()
-        product = create_product(product_class=product_class)
-        product_class.options.add(self.obj)
-        product.product_options.add(self.obj)
+        service_class = ServiceClassFactory()
+        service = create_service(service_class=service_class)
+        service_class.options.add(self.obj)
+        service.service_options.add(self.obj)
 
     def _test_display_delete_disallowed_response(self):
         super()._test_display_delete_disallowed_response()
@@ -108,9 +108,9 @@ class TestOptionDeleteView(PopUpObjectDeleteMixin, WebTestCase):
         self.assertEqual(messages[1].level, ERROR)
         self.assertEqual(
             messages[0].message,
-            "1 products are still assigned to this option"
+            "1 services are still assigned to this option"
         )
         self.assertEqual(
             messages[1].message,
-            "1 product classes are still assigned to this option"
+            "1 service classes are still assigned to this option"
         )

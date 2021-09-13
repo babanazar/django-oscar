@@ -4,7 +4,7 @@ from django.test import TestCase
 
 from oscar.apps.offer import custom, models, utils
 from oscar.test import factories
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 
 
 class CustomAction(models.Benefit):
@@ -28,7 +28,7 @@ class CustomAction(models.Benefit):
 
 def create_offer():
     range = models.Range.objects.create(
-        name="All products", includes_all_products=True)
+        name="All services", includes_all_services=True)
     condition = models.CountCondition.objects.create(
         range=range,
         type=models.Condition.COUNT,
@@ -44,7 +44,7 @@ class TestAnOfferWithAPostOrderAction(TestCase):
 
     def setUp(self):
         self.basket = factories.create_basket(empty=True)
-        add_product(self.basket, D('12.00'), 1)
+        add_service(self.basket, D('12.00'), 1)
         create_offer()
         utils.Applicator().apply(self.basket)
 

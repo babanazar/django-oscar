@@ -47,7 +47,7 @@ class Base(object):
     """
     The base strategy class
 
-    Given a product, strategies are responsible for returning a
+    Given a service, strategies are responsible for returning a
     ``PurchaseInfo`` instance which contains:
 
     - The appropriate stockrecord for this customer
@@ -61,9 +61,9 @@ class Base(object):
         if request and request.user.is_authenticated:
             self.user = request.user
 
-    def fetch_for_product(self, product, stockrecord=None):
+    def fetch_for_service(self, service, stockrecord=None):
         """
-        Given a product, return a ``PurchaseInfo`` instance.
+        Given a service, return a ``PurchaseInfo`` instance.
 
         The ``PurchaseInfo`` class is a named tuple with attributes:
 
@@ -72,17 +72,17 @@ class Base(object):
         - ``stockrecord``: the stockrecord that is being used
 
         If a stockrecord is passed, return the appropriate ``PurchaseInfo``
-        instance for that product and stockrecord is returned.
+        instance for that service and stockrecord is returned.
         """
         raise NotImplementedError(
-            "A strategy class must define a fetch_for_product method "
+            "A strategy class must define a fetch_for_service method "
             "for returning the availability and pricing "
             "information."
         )
 
-    def fetch_for_parent(self, product):
+    def fetch_for_parent(self, service):
         """
-        Given a parent product, fetch a ``StockInfo`` instance
+        Given a parent service, fetch a ``StockInfo`` instance
         """
         raise NotImplementedError(
             "A strategy class must define a fetch_for_parent method "
@@ -95,14 +95,14 @@ class Base(object):
         Given a basket line instance, fetch a ``PurchaseInfo`` instance.
 
         This method is provided to allow purchase info to be determined using a
-        basket line's attributes.  For instance, "bundle" products often use
-        basket line attributes to store SKUs of contained products.  For such
-        products, we need to look at the availability of each contained product
+        basket line's attributes.  For instance, "bundle" services often use
+        basket line attributes to store SKUs of contained services.  For such
+        services, we need to look at the availability of each contained service
         to determine overall availability.
         """
         # Default to ignoring any basket line options as we don't know what to
         # do with them within Oscar - that's up to your project to implement.
-        return self.fetch_for_product(line.product)
+        return self.fetch_for_service(line.service)
 
 
 class Structured(Base):
@@ -115,29 +115,29 @@ class Structured(Base):
     #) An availability policy
     """
 
-    def fetch_for_product(self, product, stockrecord=None):
+    def fetch_for_service(self, service, stockrecord=None):
         """
         Return the appropriate ``PurchaseInfo`` instance.
 
         This method is not intended to be overridden.
         """
         if stockrecord is None:
-            stockrecord = self.select_stockrecord(product)
+            stockrecord = self.select_stockrecord(service)
         return PurchaseInfo(
-            price=self.pricing_policy(product, stockrecord),
-            availability=self.availability_policy(product, stockrecord),
+            price=self.pricing_policy(service, stockrecord),
+            availability=self.availability_policy(service, stockrecord),
             stockrecord=stockrecord)
 
-    def fetch_for_parent(self, product):
+    def fetch_for_parent(self, service):
         # Select children and associated stockrecords
-        children_stock = self.select_children_stockrecords(product)
+        children_stock = self.select_children_stockrecords(service)
         return PurchaseInfo(
-            price=self.parent_pricing_policy(product, children_stock),
+            price=self.parent_pricing_policy(service, children_stock),
             availability=self.parent_availability_policy(
-                product, children_stock),
+                service, children_stock),
             stockrecord=None)
 
-    def select_stockrecord(self, product):
+    def select_stockrecord(self, service):
         """
         Select the appropriate stockrecord
         """
@@ -145,17 +145,17 @@ class Structured(Base):
             "A structured strategy class must define a "
             "'select_stockrecord' method")
 
-    def select_children_stockrecords(self, product):
+    def select_children_stockrecords(self, service):
         """
-        Select appropriate stock record for all children of a product
+        Select appropriate stock record for all children of a service
         """
         records = []
-        for child in product.children.public():
-            # Use tuples of (child product, stockrecord)
+        for child in service.children.public():
+            # Use tuples of (child service, stockrecord)
             records.append((child, self.select_stockrecord(child)))
         return records
 
-    def pricing_policy(self, product, stockrecord):
+    def pricing_policy(self, service, stockrecord):
         """
         Return the appropriate pricing policy
         """
@@ -163,12 +163,12 @@ class Structured(Base):
             "A structured strategy class must define a "
             "'pricing_policy' method")
 
-    def parent_pricing_policy(self, product, children_stock):
+    def parent_pricing_policy(self, service, children_stock):
         raise NotImplementedError(
             "A structured strategy class must define a "
             "'parent_pricing_policy' method")
 
-    def availability_policy(self, product, stockrecord):
+    def availability_policy(self, service, stockrecord):
         """
         Return the appropriate availability policy
         """
@@ -176,7 +176,7 @@ class Structured(Base):
             "A structured strategy class must define a "
             "'availability_policy' method")
 
-    def parent_availability_policy(self, product, children_stock):
+    def parent_availability_policy(self, service, children_stock):
         raise NotImplementedError(
             "A structured strategy class must define a "
             "'parent_availability_policy' method")
@@ -188,34 +188,34 @@ class Structured(Base):
 class UseFirstStockRecord(object):
     """
     Stockrecord selection mixin for use with the ``Structured`` base strategy.
-    This mixin picks the first (normally only) stockrecord to fulfil a product.
+    This mixin picks the first (normally only) stockrecord to fulfil a service.
 
     This is backwards compatible with Oscar<0.6 where only one stockrecord per
-    product was permitted.
+    service was permitted.
     """
 
-    def select_stockrecord(self, product):
-        return product.stockrecords.first()
+    def select_stockrecord(self, service):
+        return service.stockrecords.first()
 
 
 class StockRequired(object):
     """
     Availability policy mixin for use with the ``Structured`` base strategy.
-    This mixin ensures that a product can only be bought if it has stock
+    This mixin ensures that a service can only be bought if it has stock
     available (if stock is being tracked).
     """
 
-    def availability_policy(self, product, stockrecord):
+    def availability_policy(self, service, stockrecord):
         if not stockrecord:
             return Unavailable()
-        if not product.get_product_class().track_stock:
+        if not service.get_service_class().track_stock:
             return Available()
         else:
             return StockRequiredAvailability(
                 stockrecord.net_stock_level)
 
-    def parent_availability_policy(self, product, children_stock):
-        # A parent product is available if one of its children is
+    def parent_availability_policy(self, service, children_stock):
+        # A parent service is available if one of its children is
         for child, stockrecord in children_stock:
             policy = self.availability_policy(child, stockrecord)
             if policy.is_available_to_buy:
@@ -230,7 +230,7 @@ class NoTax(object):
     stockrecord.
     """
 
-    def pricing_policy(self, product, stockrecord):
+    def pricing_policy(self, service, stockrecord):
         # Check stockrecord has the appropriate data
         if not stockrecord or stockrecord.price is None:
             return UnavailablePrice()
@@ -239,7 +239,7 @@ class NoTax(object):
             excl_tax=stockrecord.price,
             tax=D('0.00'))
 
-    def parent_pricing_policy(self, product, children_stock):
+    def parent_pricing_policy(self, service, children_stock):
         stockrecords = [x[1] for x in children_stock if x[1] is not None]
         if not stockrecords:
             return UnavailablePrice()
@@ -254,17 +254,17 @@ class NoTax(object):
 class FixedRateTax(object):
     """
     Pricing policy mixin for use with the ``Structured`` base strategy.  This
-    mixin applies a fixed rate tax to the base price from the product's
+    mixin applies a fixed rate tax to the base price from the service's
     stockrecord.  The price_incl_tax is quantized to two decimal places.
     Rounding behaviour is Decimal's default
     """
     rate = D('0')  # Subclass and specify the correct rate
     exponent = D('0.01')  # Default to two decimal places
 
-    def pricing_policy(self, product, stockrecord):
+    def pricing_policy(self, service, stockrecord):
         if not stockrecord or stockrecord.price is None:
             return UnavailablePrice()
-        rate = self.get_rate(product, stockrecord)
+        rate = self.get_rate(service, stockrecord)
         exponent = self.get_exponent(stockrecord)
         tax = (stockrecord.price * rate).quantize(exponent)
         return TaxInclusiveFixedPrice(
@@ -272,14 +272,14 @@ class FixedRateTax(object):
             excl_tax=stockrecord.price,
             tax=tax)
 
-    def parent_pricing_policy(self, product, children_stock):
+    def parent_pricing_policy(self, service, children_stock):
         stockrecords = [x[1] for x in children_stock if x[1] is not None]
         if not stockrecords:
             return UnavailablePrice()
 
         # We take price from first record
         stockrecord = stockrecords[0]
-        rate = self.get_rate(product, stockrecord)
+        rate = self.get_rate(service, stockrecord)
         exponent = self.get_exponent(stockrecord)
         tax = (stockrecord.price * rate).quantize(exponent)
 
@@ -288,10 +288,10 @@ class FixedRateTax(object):
             excl_tax=stockrecord.price,
             tax=tax)
 
-    def get_rate(self, product, stockrecord):
+    def get_rate(self, service, stockrecord):
         """
         This method serves as hook to be able to plug in support for varying tax rates
-        based on the product.
+        based on the service.
 
         TODO: Needs tests.
         """
@@ -310,18 +310,18 @@ class FixedRateTax(object):
 class DeferredTax(object):
     """
     Pricing policy mixin for use with the ``Structured`` base strategy.
-    This mixin does not specify the product tax and is suitable to territories
+    This mixin does not specify the service tax and is suitable to territories
     where tax isn't known until late in the checkout process.
     """
 
-    def pricing_policy(self, product, stockrecord):
+    def pricing_policy(self, service, stockrecord):
         if not stockrecord or stockrecord.price is None:
             return UnavailablePrice()
         return FixedPrice(
             currency=stockrecord.price_currency,
             excl_tax=stockrecord.price)
 
-    def parent_pricing_policy(self, product, children_stock):
+    def parent_pricing_policy(self, service, children_stock):
         stockrecords = [x[1] for x in children_stock if x[1] is not None]
         if not stockrecords:
             return UnavailablePrice()
@@ -342,7 +342,7 @@ class DeferredTax(object):
 class Default(UseFirstStockRecord, StockRequired, NoTax, Structured):
     """
     Default stock/price strategy that uses the first found stockrecord for a
-    product, ensures that stock is available (unless the product class
+    service, ensures that stock is available (unless the service class
     indicates that we don't need to track stock) and charges zero tax.
     """
 
@@ -351,13 +351,13 @@ class UK(UseFirstStockRecord, StockRequired, FixedRateTax, Structured):
     """
     Sample strategy for the UK that:
 
-    - uses the first stockrecord for each product (effectively assuming
+    - uses the first stockrecord for each service (effectively assuming
         there is only one).
-    - requires that a product has stock available to be bought
-    - applies a fixed rate of tax on all products
+    - requires that a service has stock available to be bought
+    - applies a fixed rate of tax on all services
 
     This is just a sample strategy used for internal development.  It is not
-    recommended to be used in production, especially as the tax rate is
+    recommended to be used in serviceion, especially as the tax rate is
     hard-coded.
     """
     # Use UK VAT rate (as of December 2013)
@@ -368,12 +368,12 @@ class US(UseFirstStockRecord, StockRequired, DeferredTax, Structured):
     """
     Sample strategy for the US.
 
-    - uses the first stockrecord for each product (effectively assuming
+    - uses the first stockrecord for each service (effectively assuming
       there is only one).
-    - requires that a product has stock available to be bought
-    - doesn't apply a tax to product prices (normally this will be done
+    - requires that a service has stock available to be bought
+    - doesn't apply a tax to service prices (normally this will be done
       after the shipping address is entered).
 
     This is just a sample one used for internal development.  It is not
-    recommended to be used in production.
+    recommended to be used in serviceion.
     """

@@ -73,14 +73,14 @@ def default_class_loader(module_label, classnames, module_prefix):
 
         Load a single class:
 
-        >>> get_class('dashboard.catalogue.forms', 'ProductForm')
-        oscar.apps.dashboard.catalogue.forms.ProductForm
+        >>> get_class('dashboard.catalogue.forms', 'ServiceForm')
+        oscar.apps.dashboard.catalogue.forms.ServiceForm
 
         Load a list of classes:
 
         >>> get_classes('dashboard.catalogue.forms',
-        ...             ['ProductForm', 'StockRecordForm'])
-        [oscar.apps.dashboard.catalogue.forms.ProductForm,
+        ...             ['ServiceForm', 'StockRecordForm'])
+        [oscar.apps.dashboard.catalogue.forms.ServiceForm,
          oscar.apps.dashboard.catalogue.forms.StockRecordForm]
 
     Raises:

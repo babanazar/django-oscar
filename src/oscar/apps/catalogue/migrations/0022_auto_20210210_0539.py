@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='productattributevalue',
+            model_name='serviceattributevalue',
             name='value_boolean',
             field=models.BooleanField(blank=True, db_index=True, null=True, verbose_name='Boolean'),
         ),

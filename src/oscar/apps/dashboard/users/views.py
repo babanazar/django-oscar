@@ -14,12 +14,12 @@ from oscar.core.compat import get_user_model
 from oscar.core.loading import get_class, get_classes, get_model
 from oscar.views.generic import BulkEditMixin
 
-UserSearchForm, ProductAlertSearchForm, ProductAlertUpdateForm = get_classes(
-    'dashboard.users.forms', ('UserSearchForm', 'ProductAlertSearchForm',
-                              'ProductAlertUpdateForm'))
+UserSearchForm, ServiceAlertSearchForm, ServiceAlertUpdateForm = get_classes(
+    'dashboard.users.forms', ('UserSearchForm', 'ServiceAlertSearchForm',
+                              'ServiceAlertUpdateForm'))
 PasswordResetForm = get_class('customer.forms', 'PasswordResetForm')
 UserTable = get_class('dashboard.users.tables', 'UserTable')
-ProductAlert = get_model('customer', 'ProductAlert')
+ServiceAlert = get_model('customer', 'ServiceAlert')
 User = get_user_model()
 
 
@@ -152,9 +152,9 @@ class PasswordResetView(SingleObjectMixin, FormView):
         )
 
 
-class ProductAlertListView(ListView):
-    model = ProductAlert
-    form_class = ProductAlertSearchForm
+class ServiceAlertListView(ListView):
+    model = ServiceAlert
+    form_class = ServiceAlertSearchForm
     context_object_name = 'alerts'
     template_name = 'oscar/dashboard/users/alerts/list.html'
     paginate_by = settings.OSCAR_DASHBOARD_ITEMS_PER_PAGE
@@ -210,22 +210,22 @@ class ProductAlertListView(ListView):
         return context
 
 
-class ProductAlertUpdateView(UpdateView):
+class ServiceAlertUpdateView(UpdateView):
     template_name = 'oscar/dashboard/users/alerts/update.html'
-    model = ProductAlert
-    form_class = ProductAlertUpdateForm
+    model = ServiceAlert
+    form_class = ServiceAlertUpdateForm
     context_object_name = 'alert'
 
     def get_success_url(self):
-        messages.success(self.request, _("Product alert saved"))
+        messages.success(self.request, _("Service alert saved"))
         return reverse('dashboard:user-alert-list')
 
 
-class ProductAlertDeleteView(DeleteView):
-    model = ProductAlert
+class ServiceAlertDeleteView(DeleteView):
+    model = ServiceAlert
     template_name = 'oscar/dashboard/users/alerts/delete.html'
     context_object_name = 'alert'
 
     def get_success_url(self):
-        messages.warning(self.request, _("Product alert deleted"))
+        messages.warning(self.request, _("Service alert deleted"))
         return reverse('dashboard:user-alert-list')

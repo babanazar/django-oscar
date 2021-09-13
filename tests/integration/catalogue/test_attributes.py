@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
-from oscar.apps.catalogue.models import Product, ProductAttribute
+from oscar.apps.catalogue.models import Service, ServiceAttribute
 from oscar.test import factories
 
 
@@ -12,43 +12,43 @@ class TestContainer(TestCase):
 
     def test_attributes_initialised_before_write(self):
         # Regression test for https://github.com/django-oscar/django-oscar/issues/3258
-        product_class = factories.ProductClassFactory()
-        product_class.attributes.create(name='a1', code='a1', required=True)
-        product_class.attributes.create(name='a2', code='a2', required=False)
-        product_class.attributes.create(name='a3', code='a3', required=True)
-        product = factories.ProductFactory(product_class=product_class)
-        product.attr.a1 = "v1"
-        product.attr.a3 = "v3"
-        product.attr.save()
+        service_class = factories.ServiceClassFactory()
+        service_class.attributes.create(name='a1', code='a1', required=True)
+        service_class.attributes.create(name='a2', code='a2', required=False)
+        service_class.attributes.create(name='a3', code='a3', required=True)
+        service = factories.ServiceFactory(service_class=service_class)
+        service.attr.a1 = "v1"
+        service.attr.a3 = "v3"
+        service.attr.save()
 
-        product = Product.objects.get(pk=product.pk)
-        product.attr.a1 = "v2"
-        product.attr.a3 = "v6"
-        product.attr.save()
+        service = Service.objects.get(pk=service.pk)
+        service.attr.a1 = "v2"
+        service.attr.a3 = "v6"
+        service.attr.save()
 
-        product = Product.objects.get(pk=product.pk)
-        assert product.attr.a1 == "v2"
-        assert product.attr.a3 == "v6"
+        service = Service.objects.get(pk=service.pk)
+        assert service.attr.a1 == "v2"
+        assert service.attr.a3 == "v6"
 
     def test_attributes_refresh(self):
-        product_class = factories.ProductClassFactory()
-        product_class.attributes.create(name='a1', code='a1', required=True)
-        product = factories.ProductFactory(product_class=product_class)
-        product.attr.a1 = "v1"
-        product.attr.save()
+        service_class = factories.ServiceClassFactory()
+        service_class.attributes.create(name='a1', code='a1', required=True)
+        service = factories.ServiceFactory(service_class=service_class)
+        service.attr.a1 = "v1"
+        service.attr.save()
 
-        product_attr = ProductAttribute.objects.get(code="a1", product=product)
-        product_attr.save_value(product, "v2")
-        assert product.attr.a1 == "v1"
+        service_attr = ServiceAttribute.objects.get(code="a1", service=service)
+        service_attr.save_value(service, "v2")
+        assert service.attr.a1 == "v1"
 
-        product.attr.refresh()
-        assert product.attr.a1 == "v2"
+        service.attr.refresh()
+        assert service.attr.a1 == "v2"
 
 
 class TestBooleanAttributes(TestCase):
 
     def setUp(self):
-        self.attr = factories.ProductAttributeFactory(type="boolean")
+        self.attr = factories.ServiceAttributeFactory(type="boolean")
 
     def test_validate_boolean_values(self):
         self.assertIsNone(self.attr.validate_value(True))
@@ -62,7 +62,7 @@ class TestMultiOptionAttributes(TestCase):
 
     def setUp(self):
         self.option_group = factories.AttributeOptionGroupFactory()
-        self.attr = factories.ProductAttributeFactory(
+        self.attr = factories.ServiceAttributeFactory(
             type='multi_option',
             name='Sizes',
             code='sizes',
@@ -87,24 +87,24 @@ class TestMultiOptionAttributes(TestCase):
             self.attr.validate_value([self.options[0], 'notanOption'])
 
     def test_save_multi_option_value(self):
-        product = factories.ProductFactory()
+        service = factories.ServiceFactory()
         # We'll save two out of the three available options
-        self.attr.save_value(product, [self.options[0], self.options[2]])
-        product = Product.objects.get(pk=product.pk)
-        self.assertEqual(list(product.attr.sizes), [self.options[0], self.options[2]])
+        self.attr.save_value(service, [self.options[0], self.options[2]])
+        service = Service.objects.get(pk=service.pk)
+        self.assertEqual(list(service.attr.sizes), [self.options[0], self.options[2]])
 
     def test_delete_multi_option_value(self):
-        product = factories.ProductFactory()
-        self.attr.save_value(product, [self.options[0], self.options[1]])
+        service = factories.ServiceFactory()
+        self.attr.save_value(service, [self.options[0], self.options[1]])
         # Now delete these values
-        self.attr.save_value(product, None)
-        product = Product.objects.get(pk=product.pk)
-        self.assertFalse(hasattr(product.attr, 'sizes'))
+        self.attr.save_value(service, None)
+        service = Service.objects.get(pk=service.pk)
+        self.assertFalse(hasattr(service.attr, 'sizes'))
 
     def test_multi_option_value_as_text(self):
-        product = factories.ProductFactory()
-        self.attr.save_value(product, self.options)
-        attr_val = product.attribute_values.get(attribute=self.attr)
+        service = factories.ServiceFactory()
+        self.attr.save_value(service, self.options)
+        attr_val = service.attribute_values.get(attribute=self.attr)
         self.assertEqual(attr_val.value_as_text, ", ".join(o.option for o in self.options))
 
 
@@ -112,7 +112,7 @@ class TestOptionAttributes(TestCase):
 
     def setUp(self):
         self.option_group = factories.AttributeOptionGroupFactory()
-        self.attr = factories.ProductAttributeFactory(
+        self.attr = factories.ServiceAttributeFactory(
             type='option',
             name='Size',
             code='size',
@@ -124,17 +124,17 @@ class TestOptionAttributes(TestCase):
             3, group=self.option_group)
 
     def test_option_value_as_text(self):
-        product = factories.ProductFactory()
+        service = factories.ServiceFactory()
         option_2 = self.options[1]
-        self.attr.save_value(product, option_2)
-        attr_val = product.attribute_values.get(attribute=self.attr)
+        self.attr.save_value(service, option_2)
+        attr_val = service.attribute_values.get(attribute=self.attr)
         assert attr_val.value_as_text == str(option_2)
 
 
 class TestDatetimeAttributes(TestCase):
 
     def setUp(self):
-        self.attr = factories.ProductAttributeFactory(type="datetime")
+        self.attr = factories.ServiceAttributeFactory(type="datetime")
 
     def test_validate_datetime_values(self):
         self.assertIsNone(self.attr.validate_value(datetime.now()))
@@ -147,7 +147,7 @@ class TestDatetimeAttributes(TestCase):
 class TestDateAttributes(TestCase):
 
     def setUp(self):
-        self.attr = factories.ProductAttributeFactory(type="date")
+        self.attr = factories.ServiceAttributeFactory(type="date")
 
     def test_validate_datetime_values(self):
         self.assertIsNone(self.attr.validate_value(datetime.now()))
@@ -163,7 +163,7 @@ class TestDateAttributes(TestCase):
 class TestIntegerAttributes(TestCase):
 
     def setUp(self):
-        self.attr = factories.ProductAttributeFactory(type="integer")
+        self.attr = factories.ServiceAttributeFactory(type="integer")
 
     def test_validate_integer_values(self):
         self.assertIsNone(self.attr.validate_value(1))
@@ -179,7 +179,7 @@ class TestIntegerAttributes(TestCase):
 class TestFloatAttributes(TestCase):
 
     def setUp(self):
-        self.attr = factories.ProductAttributeFactory(type="float")
+        self.attr = factories.ServiceAttributeFactory(type="float")
 
     def test_validate_integer_values(self):
         self.assertIsNone(self.attr.validate_value(1))
@@ -198,7 +198,7 @@ class TestFloatAttributes(TestCase):
 class TestTextAttributes(TestCase):
 
     def setUp(self):
-        self.attr = factories.ProductAttributeFactory(type="text")
+        self.attr = factories.ServiceAttributeFactory(type="text")
 
     def test_validate_string_and_unicode_values(self):
         self.assertIsNone(self.attr.validate_value('String'))
@@ -210,7 +210,7 @@ class TestTextAttributes(TestCase):
 
 class TestFileAttributes(TestCase):
     def setUp(self):
-        self.attr = factories.ProductAttributeFactory(type="file")
+        self.attr = factories.ServiceAttributeFactory(type="file")
 
     def test_validate_file_values(self):
         file_field = SimpleUploadedFile('test_file.txt', b'Test')

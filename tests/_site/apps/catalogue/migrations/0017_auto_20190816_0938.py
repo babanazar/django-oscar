@@ -12,17 +12,17 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='productattributevalue',
+            model_name='serviceattributevalue',
             name='value_file',
             field=models.FileField(blank=True, max_length=255, null=True, upload_to=oscar.utils.models.get_image_upload_path),
         ),
         migrations.AlterField(
-            model_name='productattributevalue',
+            model_name='serviceattributevalue',
             name='value_image',
             field=models.ImageField(blank=True, max_length=255, null=True, upload_to=oscar.utils.models.get_image_upload_path),
         ),
         migrations.AlterField(
-            model_name='productimage',
+            model_name='serviceimage',
             name='original',
             field=models.ImageField(max_length=255, upload_to=oscar.utils.models.get_image_upload_path, verbose_name='Original'),
         ),

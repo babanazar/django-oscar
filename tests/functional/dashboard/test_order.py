@@ -134,8 +134,8 @@ class TestOrderListSearch(WebTestCase):
             ['Customer name matches "Bob Smith"']
         ),
         (
-            {'product_title': 'The Art of War'},
-            ['Product name matches "The Art of War"']
+            {'service_title': 'The Art of War'},
+            ['Service name matches "The Art of War"']
         ),
         (
             {'upc': 'abcd1234'},
@@ -174,7 +174,7 @@ class TestOrderListSearch(WebTestCase):
         (
             {
                 'name': 'Bob Smith',
-                'product_title': 'The Art of War',
+                'service_title': 'The Art of War',
                 'upc': 'upc_abcd1234',
                 'partner_sku': 'partner_avcd1234',
                 'date_from': '2014-01-02',
@@ -185,7 +185,7 @@ class TestOrderListSearch(WebTestCase):
             },
             [
                 'Customer name matches "Bob Smith"',
-                'Product name matches "The Art of War"',
+                'Service name matches "The Art of War"',
                 'Includes an item with UPC "upc_abcd1234"',
                 'Includes an item with partner SKU "partner_avcd1234"',
                 'Placed between 2014-01-02 and 2015-03-04',

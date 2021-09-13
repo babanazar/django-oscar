@@ -10,13 +10,13 @@ class CommunicationApplication(Application):
     name = 'communication'
 
     alert_list_view = get_class(
-        'communication.alerts.views', 'ProductAlertListView')
+        'communication.alerts.views', 'ServiceAlertListView')
     alert_create_view = get_class(
-        'communication.alerts.views', 'ProductAlertCreateView')
+        'communication.alerts.views', 'ServiceAlertCreateView')
     alert_confirm_view = get_class(
-        'communication.alerts.views', 'ProductAlertConfirmView')
+        'communication.alerts.views', 'ServiceAlertConfirmView')
     alert_cancel_view = get_class(
-        'communication.alerts.views', 'ProductAlertCancelView')
+        'communication.alerts.views', 'ServiceAlertCancelView')
 
     notification_inbox_view = get_class(
         'communication.notifications.views', 'InboxView')

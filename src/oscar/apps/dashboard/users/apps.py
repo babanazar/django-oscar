@@ -18,11 +18,11 @@ class UsersDashboardConfig(OscarDashboardConfig):
         self.password_reset_view = get_class('dashboard.users.views',
                                              'PasswordResetView')
         self.alert_list_view = get_class('dashboard.users.views',
-                                         'ProductAlertListView')
+                                         'ServiceAlertListView')
         self.alert_update_view = get_class('dashboard.users.views',
-                                           'ProductAlertUpdateView')
+                                           'ServiceAlertUpdateView')
         self.alert_delete_view = get_class('dashboard.users.views',
-                                           'ProductAlertDeleteView')
+                                           'ServiceAlertDeleteView')
 
     def get_urls(self):
         urls = [

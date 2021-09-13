@@ -6,7 +6,7 @@ from django.test import TestCase
 from oscar.apps.dashboard.offers import forms
 from oscar.apps.offer.custom import create_benefit, create_condition
 from oscar.apps.offer.models import Benefit, Range
-from oscar.test.factories import create_product
+from oscar.test.factories import create_service
 from tests._site.model_tests_app.models import (
     CustomBenefitModel, CustomConditionModel)
 
@@ -15,8 +15,8 @@ class TestBenefitForm(TestCase):
 
     def setUp(self):
         self.range = Range.objects.create(
-            name="All products", includes_all_products=True)
-        self.prod = create_product()
+            name="All services", includes_all_services=True)
+        self.prod = create_service()
 
     def test_init_without_custom_benefit(self):
         """
@@ -166,7 +166,7 @@ class TestConditionForm(TestCase):
 
     def setUp(self):
         self.range = Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
 
     def test_clean_all_data(self):
         """

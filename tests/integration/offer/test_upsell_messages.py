@@ -20,10 +20,10 @@ class TestUpsellMessages(WebTestCase):
 
         self.basket = factories.create_basket(empty=True)
 
-        # Create range and add one product to it.
-        rng = factories.RangeFactory(name='All products', includes_all_products=True)
-        self.product = factories.ProductFactory()
-        rng.add_product(self.product)
+        # Create range and add one service to it.
+        rng = factories.RangeFactory(name='All services', includes_all_services=True)
+        self.service = factories.ServiceFactory()
+        rng.add_service(self.service)
 
         # Create offer #1.
         condition1 = factories.ConditionFactory(
@@ -77,8 +77,8 @@ class TestUpsellMessages(WebTestCase):
         self.view.args = []
         self.view.kwargs = {}
 
-    def add_product(self):
-        self.basket.add_product(self.product)
+    def add_service(self):
+        self.basket.add_service(self.service)
         self.basket.strategy = Selector().strategy()
         Applicator().apply(self.basket)
 
@@ -89,7 +89,7 @@ class TestUpsellMessages(WebTestCase):
         for message_data in messages:
             # E.g. message data:
             # {
-            #     'message': 'Buy 1 more product from All products',
+            #     'message': 'Buy 1 more service from All services',
             #     'offer': <ConditionalOffer: Test offer #1>
             # }.
             self.assertIsNotNone(message_data['message'])
@@ -103,37 +103,37 @@ class TestUpsellMessages(WebTestCase):
 
     def test_upsell_messages(self):
         # The basket is empty. No offers are applied.
-        self.assertEqual(self.offer1.get_upsell_message(self.basket), 'Buy 2 more products from All products')
-        self.assertEqual(self.offer2.get_upsell_message(self.basket), 'Spend £1.99 more from All products')
-        self.assertEqual(self.offer3.get_upsell_message(self.basket), 'Buy 1 more product from All products')
+        self.assertEqual(self.offer1.get_upsell_message(self.basket), 'Buy 2 more services from All services')
+        self.assertEqual(self.offer2.get_upsell_message(self.basket), 'Spend £1.99 more from All services')
+        self.assertEqual(self.offer3.get_upsell_message(self.basket), 'Buy 1 more service from All services')
 
-        self.add_product()
+        self.add_service()
 
-        # 1 product in the basket. Offer #2 is applied.
+        # 1 service in the basket. Offer #2 is applied.
         self.assertOffersApplied([self.offer2])
-        self.assertEqual(self.offer1.get_upsell_message(self.basket), 'Buy 1 more product from All products')
+        self.assertEqual(self.offer1.get_upsell_message(self.basket), 'Buy 1 more service from All services')
         self.assertIsNone(self.offer2.get_upsell_message(self.basket))
-        self.assertEqual(self.offer3.get_upsell_message(self.basket), 'Buy 1 more product from All products')
+        self.assertEqual(self.offer3.get_upsell_message(self.basket), 'Buy 1 more service from All services')
 
-        self.add_product()
+        self.add_service()
 
-        # 2 products in the basket. Offers #1 is applied.
+        # 2 services in the basket. Offers #1 is applied.
         self.assertOffersApplied([self.offer1])
         self.assertIsNone(self.offer1.get_upsell_message(self.basket))
-        self.assertEqual(self.offer2.get_upsell_message(self.basket), 'Spend £1.99 more from All products')
-        self.assertEqual(self.offer3.get_upsell_message(self.basket), 'Buy 1 more product from All products')
+        self.assertEqual(self.offer2.get_upsell_message(self.basket), 'Spend £1.99 more from All services')
+        self.assertEqual(self.offer3.get_upsell_message(self.basket), 'Buy 1 more service from All services')
 
-        self.add_product()
+        self.add_service()
 
-        # 3 products in the basket. Offers #1 and #2 are applied.
+        # 3 services in the basket. Offers #1 and #2 are applied.
         self.assertOffersApplied([self.offer1, self.offer2])
         self.assertIsNone(self.offer1.get_upsell_message(self.basket))
         self.assertIsNone(self.offer2.get_upsell_message(self.basket))
-        self.assertEqual(self.offer3.get_upsell_message(self.basket), 'Buy 1 more product from All products')
+        self.assertEqual(self.offer3.get_upsell_message(self.basket), 'Buy 1 more service from All services')
 
-        self.add_product()
+        self.add_service()
 
-        # 4 products in the basket. All offers are applied.
+        # 4 services in the basket. All offers are applied.
         self.assertOffersApplied([self.offer1, self.offer2, self.offer3])
         self.assertIsNone(self.offer1.get_upsell_message(self.basket))
         self.assertIsNone(self.offer2.get_upsell_message(self.basket))

@@ -1,11 +1,11 @@
 {% extends "oscar/catalogue/detail.html" %}
 {% load i18n %}
 
-{% block product_review %}
+{% block service_review %}
     <div id="addreview" class="review_add card card-body bg-light">
         <form id="add_review_form" method="post" action="#addreview">
             <fieldset>
-                <legend>{% trans "Leave a product review" %}</legend>
+                <legend>{% trans "Leave a service review" %}</legend>
                 {% csrf_token %}
 
                 {% include 'oscar/partials/form_field.html' with field=form.title %}
@@ -45,7 +45,7 @@
 
                 <button type="submit" class="btn btn-primary btn-lg" data-loading-text="{% trans 'Saving...' %}">{% trans "Save review" %}</button>
                 {% trans "or" %}
-                <a href="{{ product.get_absolute_url }}">{% trans "cancel" %}</a>
+                <a href="{{ service.get_absolute_url }}">{% trans "cancel" %}</a>
             </fieldset>
         </form>
     </div>

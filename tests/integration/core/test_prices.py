@@ -1,5 +1,5 @@
 from decimal import Decimal as D
-from itertools import product
+from itertools import service
 
 from django.test import TestCase
 
@@ -43,6 +43,6 @@ class TestPriceObject(TestCase):
             Price(currency='USD', excl_tax=D('10.00'), incl_tax=D('12.00')),
             Price(currency='USD', excl_tax=D('10.00'), tax=D('8.00'))
         )
-        prices_product = product(prices, prices)
-        for price1, price2 in prices_product:
+        prices_service = service(prices, prices)
+        for price1, price2 in prices_service:
             self.assertEqual(price1 == price2, price2 == price1)

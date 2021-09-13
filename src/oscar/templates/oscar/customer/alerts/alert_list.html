@@ -3,7 +3,7 @@
 
 {% block tabcontent %}
     {% if not alerts %}
-        <p>{% trans "You do not have any active alerts for out-of-stock products." %}</p>
+        <p>{% trans "You do not have any active alerts for out-of-stock services." %}</p>
     {% else %}
         <form method="post" id="alerts_form">
             {% csrf_token %}
@@ -18,11 +18,11 @@
                 {% for alert in alerts %}
                     <tr>
                         <td>
-                            {% with product=alert.product %}
-                                {% if product.is_public %}
-                                    <a href="{{ product.get_absolute_url }}">{{ product.get_title }}</a>
+                            {% with service=alert.service %}
+                                {% if service.is_public %}
+                                    <a href="{{ service.get_absolute_url }}">{{ service.get_title }}</a>
                                 {% else %}
-                                    {{ product.get_title }}
+                                    {{ service.get_title }}
                                 {% endif %}
                             {% endwith %}
                         </td>

@@ -11,11 +11,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterModelOptions(
-            name='productalert',
-            options={'ordering': ['-date_created'], 'verbose_name': 'Product alert', 'verbose_name_plural': 'Product alerts'},
+            name='servicealert',
+            options={'ordering': ['-date_created'], 'verbose_name': 'Service alert', 'verbose_name_plural': 'Service alerts'},
         ),
         migrations.AlterField(
-            model_name='productalert',
+            model_name='servicealert',
             name='date_created',
             field=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Date created'),
         ),

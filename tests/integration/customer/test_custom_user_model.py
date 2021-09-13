@@ -2,7 +2,7 @@ from django.test import TestCase
 
 from oscar.apps.customer.forms import ProfileForm
 from oscar.core.compat import existing_user_fields, get_user_model
-from oscar.test.factories import ProductAlertFactory, UserFactory
+from oscar.test.factories import ServiceAlertFactory, UserFactory
 
 
 class TestACustomUserModel(TestCase):
@@ -27,6 +27,6 @@ class TestACustomUserModel(TestCase):
 
     def test_migrate_alerts_to_user(self):
         user = UserFactory(email='a@a.com')
-        ProductAlertFactory(email=user.email)
+        ServiceAlertFactory(email=user.email)
         user._migrate_alerts_to_user()
         assert user.alerts.count() == 1

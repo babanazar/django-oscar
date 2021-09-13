@@ -124,7 +124,7 @@ class TestVoucherViews(CheckoutMixin, WebTestCase):
         """
         Checks that voucher can be added to basket through appropriate view.
         """
-        self.add_product_to_basket()
+        self.add_service_to_basket()
 
         assert self.voucher.basket_set.count() == 0
 
@@ -136,7 +136,7 @@ class TestVoucherViews(CheckoutMixin, WebTestCase):
         """
         Checks that voucher can be removed from basket through appropriate view.
         """
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.add_voucher_to_basket(voucher=self.voucher)
 
         assert self.voucher.basket_set.count() == 1

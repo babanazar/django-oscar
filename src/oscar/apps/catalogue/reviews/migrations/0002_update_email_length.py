@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='productreview',
+            model_name='servicereview',
             name='email',
             field=models.EmailField(blank=True, max_length=254, verbose_name='Email'),
         ),

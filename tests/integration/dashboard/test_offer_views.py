@@ -10,7 +10,7 @@ from oscar.apps.dashboard.offers import views as offer_views
 from oscar.apps.dashboard.ranges import views as range_views
 from oscar.apps.offer.custom import create_benefit, create_condition
 from oscar.core.loading import get_model
-from oscar.test.factories.catalogue import ProductFactory
+from oscar.test.factories.catalogue import ServiceFactory
 from oscar.test.factories.offer import ConditionalOfferFactory, RangeFactory
 from oscar.test.factories.voucher import VoucherFactory
 from tests._site.model_tests_app.models import (
@@ -39,12 +39,12 @@ def many_offers():
 
 
 @pytest.fixture
-def range_with_products():
-    productrange = RangeFactory()
+def range_with_services():
+    servicerange = RangeFactory()
     for i in range(0, 30):
-        product = ProductFactory()
-        productrange.add_product(product)
-    return productrange
+        service = ServiceFactory()
+        servicerange.add_service(service)
+    return servicerange
 
 
 @pytest.mark.django_db
@@ -105,9 +105,9 @@ class TestDashboardOffers:
             'warning', "This offer can only be deleted if it has no vouchers attached to it")
         assert ConditionalOffer.objects.exists()
 
-    def test_range_product_list_view(self, rf, range_with_products):
-        view = range_views.RangeProductListView.as_view()
-        pk = range_with_products.pk
+    def test_range_service_list_view(self, rf, range_with_services):
+        view = range_views.RangeServiceListView.as_view()
+        pk = range_with_services.pk
 
         request = rf.get('/')
         response = view(request, pk=pk)

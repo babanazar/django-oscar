@@ -121,16 +121,16 @@
                 <div class="row">
                     <div class="col-sm-2">
                         <div class="image_container w-100">
-                            {% with image=line.product.primary_image %}
+                            {% with image=line.service.primary_image %}
                                 {% oscar_thumbnail image.original "100x100" upscale=False as thumb %}
-                                <a href="{{ form.instance.product.get_absolute_url }}">
-                                    <img src="{{ thumb.url }}" alt="{{ product.get_title }}" class="img-thumbnail w-auto mx-auto my-0">
+                                <a href="{{ form.instance.service.get_absolute_url }}">
+                                    <img src="{{ thumb.url }}" alt="{{ service.get_title }}" class="img-thumbnail w-auto mx-auto my-0">
                                 </a>
                             {% endwith %}
                         </div>
                     </div>
                     <div class="col-sm-7">
-                        <h3><a href="{{ line.product.get_absolute_url }}">{{ line.description }}</a></h3>
+                        <h3><a href="{{ line.service.get_absolute_url }}">{{ line.description }}</a></h3>
                         <span class="availability {{ session.availability.code }}">{{ session.availability.message }}</span>
                     </div>
                     <div class="col-sm-1 text-center">

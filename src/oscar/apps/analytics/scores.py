@@ -2,7 +2,7 @@ from django.db.models import F
 
 from oscar.core.loading import get_model
 
-ProductRecord = get_model('analytics', 'ProductRecord')
+ServiceRecord = get_model('analytics', 'ServiceRecord')
 
 
 class Calculator(object):
@@ -21,9 +21,9 @@ class Calculator(object):
         self.calculate_scores()
 
     def calculate_scores(self):
-        self.logger.info("Calculating product scores")
+        self.logger.info("Calculating service scores")
         total_weight = float(sum(self.weights.values()))
         weighted_fields = [
             self.weights[name] * F(name) for name in self.weights.keys()]
-        ProductRecord.objects.update(
+        ServiceRecord.objects.update(
             score=sum(weighted_fields) / total_weight)

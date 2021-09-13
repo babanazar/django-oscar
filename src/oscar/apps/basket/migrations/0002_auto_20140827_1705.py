@@ -29,8 +29,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='line',
-            name='product',
-            field=models.ForeignKey(verbose_name='Product', related_name='basket_lines', to='catalogue.Product', on_delete=models.CASCADE),
+            name='service',
+            field=models.ForeignKey(verbose_name='Service', related_name='basket_lines', to='catalogue.Service', on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(

@@ -7,18 +7,18 @@ is_solr_supported = get_class('search.features', 'is_solr_supported')
 Selector = get_class('partner.strategy', 'Selector')
 
 
-class ProductIndex(indexes.SearchIndex, indexes.Indexable):
+class ServiceIndex(indexes.SearchIndex, indexes.Indexable):
     # Search text
     text = indexes.CharField(
         document=True, use_template=True,
-        template_name='oscar/search/indexes/product/item_text.txt')
+        template_name='oscar/search/indexes/service/item_text.txt')
 
     upc = indexes.CharField(model_attr="upc", null=True)
     title = indexes.EdgeNgramField(model_attr='title', null=True)
     title_exact = indexes.CharField(model_attr='title', null=True, indexed=False)
 
     # Fields for faceting
-    product_class = indexes.CharField(null=True, faceted=True)
+    service_class = indexes.CharField(null=True, faceted=True)
     category = indexes.MultiValueField(null=True, faceted=True)
     price = indexes.FloatField(null=True, faceted=True)
     num_in_stock = indexes.IntegerField(null=True, faceted=True)
@@ -33,17 +33,17 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     _strategy = None
 
     def get_model(self):
-        return get_model('catalogue', 'Product')
+        return get_model('catalogue', 'Service')
 
     def index_queryset(self, using=None):
-        # Only index browsable products (not each individual child product)
+        # Only index browsable services (not each individual child service)
         return self.get_model().objects.browsable().order_by('-date_updated')
 
     def read_queryset(self, using=None):
         return self.get_model().objects.browsable().base_queryset()
 
-    def prepare_product_class(self, obj):
-        return obj.get_product_class().name
+    def prepare_service_class(self, obj):
+        return obj.get_service_class().name
 
     def prepare_category(self, obj):
         categories = obj.categories.all()
@@ -69,7 +69,7 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
         if obj.is_parent:
             result = strategy.fetch_for_parent(obj)
         elif obj.has_stockrecords:
-            result = strategy.fetch_for_product(obj)
+            result = strategy.fetch_for_service(obj)
 
         if result:
             if result.price.is_tax_known:
@@ -79,10 +79,10 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     def prepare_num_in_stock(self, obj):
         strategy = self.get_strategy()
         if obj.is_parent:
-            # Don't return a stock level for parent products
+            # Don't return a stock level for parent services
             return None
         elif obj.has_stockrecords:
-            result = strategy.fetch_for_product(obj)
+            result = strategy.fetch_for_service(obj)
             return result.stockrecord.net_stock_level
 
     def prepare(self, obj):

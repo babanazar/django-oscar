@@ -24,7 +24,7 @@ class TestIndexView(CheckoutMixin, WebTestCase):
         self.assertRedirectsTo(response, 'basket:summary')
 
     def test_redirects_customers_to_shipping_address_view(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         response = self.get(reverse('checkout:index'))
         self.assertRedirectsTo(response, 'checkout:shipping-address')
 
@@ -41,7 +41,7 @@ class TestShippingAddressView(CheckoutMixin, WebTestCase):
         self.assertIsRedirect(response)
 
     def test_submitting_valid_form_adds_data_to_session(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         page = self.get(reverse('checkout:shipping-address'))
         form = page.forms['new_shipping_address']
         form['first_name'] = 'Barry'
@@ -66,14 +66,14 @@ class TestShippingAddressView(CheckoutMixin, WebTestCase):
             is_shipping_country=False)
         not_shipping_address = factories.UserAddressFactory(
             user=self.user, country=not_shipping_country, line4='New York')
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         page = self.get(reverse('checkout:shipping-address'))
         page.mustcontain(
             self.user_address.line4, self.user_address.country.name,
             no=[not_shipping_address.country.name, not_shipping_address.line4])
 
     def test_can_select_an_existing_shipping_address(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         page = self.get(reverse('checkout:shipping-address'), user=self.user)
         self.assertIsOk(page)
         form = page.forms["select_shipping_address_%s" % self.user_address.id]
@@ -117,7 +117,7 @@ class TestShippingMethodView(CheckoutMixin, WebTestCase):
         self.assertIsRedirect(response)
 
     def test_redirects_when_only_one_shipping_method(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_shipping_address()
         response = self.get(reverse('checkout:shipping-method'))
         self.assertRedirectsTo(response, 'checkout:payment-method')
@@ -139,7 +139,7 @@ class TestDeleteUserAddressView(CheckoutMixin, WebTestCase):
         self.assertIsRedirect(response)
 
     def test_can_delete_a_user_address_from_shipping_address_page(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         page = self.get(reverse('checkout:shipping-address'), user=self.user)
         delete_confirm = page.click(
             href=reverse('checkout:user-address-delete',
@@ -155,7 +155,7 @@ class TestDeleteUserAddressView(CheckoutMixin, WebTestCase):
 class TestPreviewView(CheckoutMixin, WebTestCase):
 
     def test_allows_order_to_be_placed(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_shipping_address()
 
         payment_details = self.get(
@@ -169,7 +169,7 @@ class TestPreviewView(CheckoutMixin, WebTestCase):
 class TestPlacingAnOrderUsingAVoucher(CheckoutMixin, WebTestCase):
 
     def test_records_use(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.add_voucher_to_basket()
         self.enter_shipping_address()
         thankyou = self.place_order()
@@ -186,7 +186,7 @@ class TestPlacingAnOrderUsingAnOffer(CheckoutMixin, WebTestCase):
 
     def test_records_use(self):
         offer = factories.create_offer()
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_shipping_address()
         self.place_order()
 
@@ -217,13 +217,13 @@ class TestThankYouView(CheckoutMixin, WebTestCase):
         self.assertRedirects(response, reverse('catalogue:index'))
 
     def tests_custumers_can_reach_the_thank_you_page(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_shipping_address()
         thank_you = self.place_order()
         self.assertIsOk(thank_you)
 
     def test_superusers_can_force_an_order(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_shipping_address()
         self.place_order()
         user = self.create_user('admin', 'admin@admin.com')
@@ -256,7 +256,7 @@ class TestThankYouView(CheckoutMixin, WebTestCase):
         self.assertRedirectsTo(response, 'catalogue:index')
 
     def test_users_cannot_force_an_other_customer_order(self):
-        self.add_product_to_basket()
+        self.add_service_to_basket()
         self.enter_shipping_address()
         self.place_order()
         user = self.create_user('John', 'john@test.com')

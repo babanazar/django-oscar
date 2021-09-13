@@ -18,9 +18,9 @@ class CatalogueOnlyConfig(OscarConfig):
 
         super().ready()
 
-        self.detail_view = get_class('catalogue.views', 'ProductDetailView')
+        self.detail_view = get_class('catalogue.views', 'ServiceDetailView')
         self.catalogue_view = get_class('catalogue.views', 'CatalogueView')
-        self.category_view = get_class('catalogue.views', 'ProductCategoryView')
+        self.category_view = get_class('catalogue.views', 'ServiceCategoryView')
         self.range_view = get_class('offer.views', 'RangeDetailView')
 
     def get_urls(self):
@@ -28,7 +28,7 @@ class CatalogueOnlyConfig(OscarConfig):
         urls += [
             path('', self.catalogue_view.as_view(), name='index'),
             re_path(
-                r'^(?P<product_slug>[\w-]*)_(?P<pk>\d+)/$',
+                r'^(?P<service_slug>[\w-]*)_(?P<pk>\d+)/$',
                 self.detail_view.as_view(), name='detail'),
             re_path(
                 r'^category/(?P<category_slug>[\w-]+(/[\w-]+)*)_(?P<pk>\d+)/$',
@@ -53,12 +53,12 @@ class CatalogueReviewsOnlyConfig(OscarConfig):
     def get_urls(self):
         urls = super().get_urls()
         urls += [
-            re_path(r'^(?P<product_slug>[\w-]*)_(?P<product_pk>\d+)/reviews/', include(self.reviews_app.urls[0])),
+            re_path(r'^(?P<service_slug>[\w-]*)_(?P<service_pk>\d+)/reviews/', include(self.reviews_app.urls[0])),
         ]
         return self.post_process_urls(urls)
 
 
 class CatalogueConfig(CatalogueOnlyConfig, CatalogueReviewsOnlyConfig):
     """
-    Composite class combining Products with Reviews
+    Composite class combining Services with Reviews
     """

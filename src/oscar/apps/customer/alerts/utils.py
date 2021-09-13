@@ -5,8 +5,8 @@ from django.template import loader
 
 from oscar.core.loading import get_class, get_model
 
-ProductAlert = get_model('customer', 'ProductAlert')
-Product = get_model('catalogue', 'Product')
+ServiceAlert = get_model('customer', 'ServiceAlert')
+Service = get_model('catalogue', 'Service')
 Dispatcher = get_class('communication.utils', 'Dispatcher')
 Selector = get_class('partner.strategy', 'Selector')
 
@@ -15,13 +15,13 @@ alerts_logger = logging.getLogger('oscar.alerts')
 
 class AlertsDispatcher:
     """
-    Dispatcher to send concrete product alerts related emails
+    Dispatcher to send concrete service alerts related emails
     and notifications.
     """
 
     # Event codes
-    PRODUCT_ALERT_EVENT_CODE = 'PRODUCT_ALERT'
-    PRODUCT_ALERT_CONFIRMATION_EVENT_CODE = 'PRODUCT_ALERT_CONFIRMATION'
+    SERVICE_ALERT_EVENT_CODE = 'SERVICE_ALERT'
+    SERVICE_ALERT_CONFIRMATION_EVENT_CODE = 'SERVICE_ALERT_CONFIRMATION'
 
     def __init__(self, logger=None, mail_connection=None):
         self.dispatcher = Dispatcher(
@@ -30,34 +30,34 @@ class AlertsDispatcher:
         )
 
     def get_queryset(self):
-        return Product.objects.browsable().filter(productalert__status=ProductAlert.ACTIVE).distinct()
+        return Service.objects.browsable().filter(servicealert__status=ServiceAlert.ACTIVE).distinct()
 
     def send_alerts(self):
         """
-        Check all products with active product alerts for
-        availability and send out email alerts when a product is
+        Check all services with active service alerts for
+        availability and send out email alerts when a service is
         available to buy.
         """
-        products = self.get_queryset()
-        self.dispatcher.logger.info("Found %d products with active alerts", products.count())
-        for product in products:
-            self.send_product_alert_email_for_user(product)
+        services = self.get_queryset()
+        self.dispatcher.logger.info("Found %d services with active alerts", services.count())
+        for service in services:
+            self.send_service_alert_email_for_user(service)
 
-    def send_product_alert_email_for_user(self, product):  # noqa: C901 too complex
+    def send_service_alert_email_for_user(self, service):  # noqa: C901 too complex
         """
-        Check for notifications for this product and send email to users
-        if the product is back in stock. Add a little 'hurry' note if the
+        Check for notifications for this service and send email to users
+        if the service is back in stock. Add a little 'hurry' note if the
         amount of in-stock items is less then the number of notifications.
         """
-        stockrecords = product.stockrecords.all()
+        stockrecords = service.stockrecords.all()
         num_stockrecords = len(stockrecords)
         if not num_stockrecords:
             return
 
-        self.dispatcher.logger.info("Sending alerts for '%s'", product)
-        alerts = ProductAlert.objects.filter(
-            product_id__in=(product.id, product.parent_id),
-            status=ProductAlert.ACTIVE,
+        self.dispatcher.logger.info("Sending alerts for '%s'", service)
+        alerts = ServiceAlert.objects.filter(
+            service_id__in=(service.id, service.parent_id),
+            status=ServiceAlert.ACTIVE,
         )
 
         # Determine 'hurry mode'
@@ -75,9 +75,9 @@ class AlertsDispatcher:
         num_notifications = 0
         selector = Selector()
         for alert in alerts:
-            # Check if the product is available to this user
+            # Check if the service is available to this user
             strategy = selector.strategy(user=alert.user)
-            data = strategy.fetch_for_product(product)
+            data = strategy.fetch_for_service(service)
             if not data.availability.is_available_to_buy:
                 continue
 
@@ -88,9 +88,9 @@ class AlertsDispatcher:
             if alert.user:
                 # Send a site notification
                 num_notifications += 1
-                self.notify_user_about_product_alert(alert.user, extra_context)
+                self.notify_user_about_service_alert(alert.user, extra_context)
 
-            messages = self.dispatcher.get_messages(self.PRODUCT_ALERT_EVENT_CODE, extra_context)
+            messages = self.dispatcher.get_messages(self.SERVICE_ALERT_EVENT_CODE, extra_context)
 
             if messages and messages['body']:
                 if alert.user:
@@ -110,16 +110,16 @@ class AlertsDispatcher:
             num_notifications, len(messages_to_send) + len(user_messages_to_send)
         )
 
-    def send_product_alert_confirmation_email_for_user(self, alert, extra_context=None):
+    def send_service_alert_confirmation_email_for_user(self, alert, extra_context=None):
         """
         Send an alert confirmation email.
         """
         if extra_context is None:
             extra_context = {'alert': alert}
-        messages = self.dispatcher.get_messages(self.PRODUCT_ALERT_CONFIRMATION_EVENT_CODE, extra_context)
+        messages = self.dispatcher.get_messages(self.SERVICE_ALERT_CONFIRMATION_EVENT_CODE, extra_context)
         self.dispatcher.dispatch_direct_messages(alert.email, messages)
 
-    def notify_user_about_product_alert(self, user, context):
+    def notify_user_about_service_alert(self, user, context):
         subj_tpl = loader.get_template('oscar/customer/alerts/message_subject.html')
         message_tpl = loader.get_template('oscar/customer/alerts/message.html')
         self.dispatcher.notify_user(

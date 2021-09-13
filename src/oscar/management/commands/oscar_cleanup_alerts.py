@@ -6,7 +6,7 @@ from django.utils.timezone import now
 
 from oscar.core.loading import get_model
 
-ProductAlert = get_model('customer', 'ProductAlert')
+ServiceAlert = get_model('customer', 'ServiceAlert')
 
 logger = logging.getLogger(__name__)
 
@@ -47,8 +47,8 @@ class Command(BaseCommand):
         logger.info('Deleting unconfirmed alerts older than %s',
                     threshold_date.strftime("%Y-%m-%d %H:%M"))
 
-        qs = ProductAlert.objects.filter(
-            status=ProductAlert.UNCONFIRMED,
+        qs = ServiceAlert.objects.filter(
+            status=ServiceAlert.UNCONFIRMED,
             date_created__lt=threshold_date
         )
         logger.info("Found %d stale alerts to delete", qs.count())

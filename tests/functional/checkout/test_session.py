@@ -9,8 +9,8 @@ class TestCheckoutOfDigitalGoods(CheckoutMixin, testcases.WebTestCase):
 
     def setUp(self):
         super().setUp()
-        product = self.create_digital_product()
-        self.add_product_to_basket(product)
+        service = self.create_digital_service()
+        self.add_service_to_basket(service)
 
     def test_buying_a_digital_good_doesnt_error(self):
         payment_details_page = self.get(

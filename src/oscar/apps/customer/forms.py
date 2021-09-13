@@ -20,7 +20,7 @@ from oscar.core.utils import datetime_combine
 from oscar.forms import widgets
 
 CustomerDispatcher = get_class('customer.utils', 'CustomerDispatcher')
-ProductAlert = get_model('customer', 'ProductAlert')
+ServiceAlert = get_model('customer', 'ServiceAlert')
 User = get_user_model()
 
 
@@ -341,15 +341,15 @@ else:
     ProfileForm = UserForm
 
 
-class ProductAlertForm(forms.ModelForm):
+class ServiceAlertForm(forms.ModelForm):
     email = forms.EmailField(required=True, label=_('Send notification to'),
                              widget=forms.TextInput(attrs={
                                  'placeholder': _('Enter your email')
                              }))
 
-    def __init__(self, user, product, *args, **kwargs):
+    def __init__(self, user, service, *args, **kwargs):
         self.user = user
-        self.product = product
+        self.service = service
         super().__init__(*args, **kwargs)
 
         # Only show email field to unauthenticated users
@@ -361,7 +361,7 @@ class ProductAlertForm(forms.ModelForm):
         alert = super().save(commit=False)
         if self.user.is_authenticated:
             alert.user = self.user
-        alert.product = self.product
+        alert.service = self.service
         if commit:
             alert.save()
         return alert
@@ -371,10 +371,10 @@ class ProductAlertForm(forms.ModelForm):
         email = cleaned_data.get('email')
         if email:
             try:
-                ProductAlert.objects.get(
-                    product=self.product, email__iexact=email,
-                    status=ProductAlert.ACTIVE)
-            except ProductAlert.DoesNotExist:
+                ServiceAlert.objects.get(
+                    service=self.service, email__iexact=email,
+                    status=ServiceAlert.ACTIVE)
+            except ServiceAlert.DoesNotExist:
                 pass
             else:
                 raise forms.ValidationError(_(
@@ -383,24 +383,24 @@ class ProductAlertForm(forms.ModelForm):
             # Check that the email address hasn't got other unconfirmed alerts.
             # If they do then we don't want to spam them with more until they
             # have confirmed or cancelled the existing alert.
-            if ProductAlert.objects.filter(email__iexact=email,
-                                           status=ProductAlert.UNCONFIRMED).count():
+            if ServiceAlert.objects.filter(email__iexact=email,
+                                           status=ServiceAlert.UNCONFIRMED).count():
                 raise forms.ValidationError(_(
-                    "%s has been sent a confirmation email for another product "
+                    "%s has been sent a confirmation email for another service "
                     "alert on this site. Please confirm or cancel that request "
                     "before signing up for more alerts.") % email)
         elif self.user.is_authenticated:
             try:
-                ProductAlert.objects.get(product=self.product,
+                ServiceAlert.objects.get(service=self.service,
                                          user=self.user,
-                                         status=ProductAlert.ACTIVE)
-            except ProductAlert.DoesNotExist:
+                                         status=ServiceAlert.ACTIVE)
+            except ServiceAlert.DoesNotExist:
                 pass
             else:
                 raise forms.ValidationError(_(
-                    "You already have an active alert for this product"))
+                    "You already have an active alert for this service"))
         return cleaned_data
 
     class Meta:
-        model = ProductAlert
+        model = ServiceAlert
         fields = ['email']

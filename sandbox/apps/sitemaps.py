@@ -5,14 +5,14 @@ from django.urls import reverse
 from django.utils.translation import get_language, activate
 from oscar.core.loading import get_model
 
-Product = get_model('catalogue', 'Product')
+Service = get_model('catalogue', 'Service')
 Category = get_model('catalogue', 'Category')
 
 
 """
 A basic example what a sitemap could look like for a multi-language Oscar
 instance.
-Creates entries for the homepage, for each product and each category.
+Creates entries for the homepage, for each service and each category.
 Repeats those for each enabled language.
 """
 
@@ -45,10 +45,10 @@ class StaticSitemap(I18nSitemap):
         return reverse(obj)
 
 
-class ProductSitemap(I18nSitemap):
+class ServiceSitemap(I18nSitemap):
 
     def items(self):
-        return Product.objects.browsable()
+        return Service.objects.browsable()
 
 
 class CategorySitemap(I18nSitemap):
@@ -59,7 +59,7 @@ class CategorySitemap(I18nSitemap):
 
 language_neutral_sitemaps = {
     'static': StaticSitemap,
-    'products': ProductSitemap,
+    'services': ServiceSitemap,
     'categories': CategorySitemap,
 }
 

@@ -6,7 +6,7 @@ from django.test import TestCase
 from oscar.apps.offer import models, utils
 from oscar.apps.shipping import methods, repository
 from oscar.test import factories
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 
 
 class ExcludingTax(methods.FixedPrice):
@@ -22,7 +22,7 @@ class TestAShippingPercentageDiscountAppliedWithCountCondition(TestCase):
 
     def setUp(self):
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         self.condition = models.CountCondition.objects.create(
             range=range,
             type=models.Condition.COUNT,
@@ -43,21 +43,21 @@ class TestAShippingPercentageDiscountAppliedWithCountCondition(TestCase):
         self.assertTrue(result.affects_shipping)
 
     def test_applies_correctly_to_basket_which_matches_condition(self):
-        add_product(self.basket, D('12.00'), 2)
+        add_service(self.basket, D('12.00'), 2)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(2, self.basket.num_items_with_discount)
         self.assertEqual(0, self.basket.num_items_without_discount)
         self.assertTrue(result.affects_shipping)
 
     def test_applies_correctly_to_basket_which_exceeds_condition(self):
-        add_product(self.basket, D('12.00'), 3)
+        add_service(self.basket, D('12.00'), 3)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(2, self.basket.num_items_with_discount)
         self.assertEqual(1, self.basket.num_items_without_discount)
         self.assertTrue(result.affects_shipping)
 
     def test_applies_correctly_to_shipping_method_without_tax(self):
-        add_product(self.basket, D('12.00'), 3)
+        add_service(self.basket, D('12.00'), 3)
 
         # Apply offers to basket
         utils.Applicator().apply_offers(self.basket, [self.offer])
@@ -69,7 +69,7 @@ class TestAShippingPercentageDiscountAppliedWithCountCondition(TestCase):
         self.assertEqual(D('5.00'), charge.excl_tax)
 
     def test_applies_correctly_to_shipping_method_with_tax(self):
-        add_product(self.basket, D('12.00'), 3)
+        add_service(self.basket, D('12.00'), 3)
 
         # Apply offers to basket
         utils.Applicator().apply_offers(self.basket, [self.offer])
@@ -100,12 +100,12 @@ class TestAShippingPercentageDiscountAppliedWithCountCondition(TestCase):
             benefit.clean()
 
     def test_shipping_range_must_not_be_set(self):
-        product_range = models.Range.objects.create(
-            name="Foo", includes_all_products=True)
+        service_range = models.Range.objects.create(
+            name="Foo", includes_all_services=True)
         benefit = models.Benefit(
             type=models.Benefit.SHIPPING_PERCENTAGE,
             value=50,
-            range=product_range,    # Range shouldn't be allowed
+            range=service_range,    # Range shouldn't be allowed
         )
 
         with self.assertRaises(ValidationError):

@@ -132,7 +132,7 @@ class CheckoutSessionMixin(object):
                     "'%(title)s' is no longer available to buy (%(reason)s). "
                     "Please adjust your basket to continue"
                 ) % {
-                    'title': line.product.get_title(),
+                    'title': line.service.get_title(),
                     'reason': reason}
                 messages.append(msg)
         if messages:

@@ -4,7 +4,7 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans "All reviews" %} | {{ product.title }} | {{ block.super }}
+    {% trans "All reviews" %} | {{ service.title }} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -13,14 +13,14 @@
             <li class="breadcrumb-item">
                 <a href="{{ homepage_url }}">{% trans "Home" %}</a>
             </li>
-            {% with category=product.categories.all.0 %}
+            {% with category=service.categories.all.0 %}
                 {% for c in category.get_ancestors_and_self %}
                     <li class="breadcrumb-item">
                         <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
                     </li>
                 {% endfor %}
                 <li class="breadcrumb-item">
-                    <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                    <a href="{{ service.get_absolute_url }}">{{ service.title }}</a>
                 </li>
             {% endwith %}
             <li class="breadcrumb-item active" aria-current="page">{% trans "All reviews" %}</li>
@@ -35,7 +35,7 @@
 {% block content %}
 
     <section>
-        {% include 'oscar/catalogue/reviews/review_product.html' %}
+        {% include 'oscar/catalogue/reviews/review_service.html' %}
 
         {% if reviews %}
             <form method="get" class="form-inline">
@@ -51,7 +51,7 @@
             {% include 'oscar/partials/pagination.html' %}
 
         {% else %}
-            <p>{% trans "This product does not have any reviews yet." %}</p>
+            <p>{% trans "This service does not have any reviews yet." %}</p>
         {% endif %}
 
     </section>

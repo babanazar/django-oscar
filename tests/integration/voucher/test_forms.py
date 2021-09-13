@@ -17,7 +17,7 @@ Voucher = get_model('voucher', 'Voucher')
 @pytest.mark.django_db
 def test_voucher_set_form_create():
     a_range = RangeFactory(
-        includes_all_products=True
+        includes_all_services=True
     )
     offer = ConditionalOfferFactory(offer_type=ConditionalOffer.VOUCHER,
                                     benefit=BenefitFactory(range=a_range),

@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from oscar.core.loading import get_model
 
-Product = get_model('catalogue', 'Product')
+Service = get_model('catalogue', 'Service')
 Range = get_model('offer', 'Range')
 
 UPC_SET_REGEX = re.compile(r'[^,\s]+')
@@ -18,13 +18,13 @@ class RangeForm(forms.ModelForm):
         model = Range
         fields = [
             'name', 'description', 'is_public',
-            'includes_all_products', 'included_categories'
+            'includes_all_services', 'included_categories'
         ]
 
 
-class RangeProductForm(forms.Form):
+class RangeServiceForm(forms.Form):
     query = forms.CharField(
-        max_length=1024, label=_("Product SKUs or UPCs"),
+        max_length=1024, label=_("Service SKUs or UPCs"),
         widget=forms.Textarea, required=False,
         help_text=_("You can paste in a selection of SKUs or UPCs"))
     file_upload = forms.FileField(
@@ -47,39 +47,39 @@ class RangeProductForm(forms.Form):
         if not raw:
             return raw
 
-        # Check that the search matches some products
+        # Check that the search matches some services
         ids = set(UPC_SET_REGEX.findall(raw))
-        products = self.range.all_products()
-        existing_skus = set(products.values_list(
+        services = self.range.all_services()
+        existing_skus = set(services.values_list(
             'stockrecords__partner_sku', flat=True))
-        existing_upcs = set(products.values_list('upc', flat=True))
+        existing_upcs = set(services.values_list('upc', flat=True))
         existing_ids = existing_skus.union(existing_upcs)
         new_ids = ids - existing_ids
 
         if len(new_ids) == 0:
             raise forms.ValidationError(
-                _("The products with SKUs or UPCs matching %s are already in"
+                _("The services with SKUs or UPCs matching %s are already in"
                   " this range") % (', '.join(ids)))
 
-        self.products = Product._default_manager.filter(
+        self.services = Service._default_manager.filter(
             Q(stockrecords__partner_sku__in=new_ids)
             | Q(upc__in=new_ids))
-        if len(self.products) == 0:
+        if len(self.services) == 0:
             raise forms.ValidationError(
-                _("No products exist with a SKU or UPC matching %s")
+                _("No services exist with a SKU or UPC matching %s")
                 % ", ".join(ids))
 
-        found_skus = set(self.products.values_list(
+        found_skus = set(self.services.values_list(
             'stockrecords__partner_sku', flat=True))
-        found_upcs = set(self.products.values_list('upc', flat=True))
+        found_upcs = set(self.services.values_list('upc', flat=True))
         found_ids = found_skus.union(found_upcs)
         self.missing_skus = new_ids - found_ids
         self.duplicate_skus = existing_ids.intersection(ids)
 
         return raw
 
-    def get_products(self):
-        return self.products if hasattr(self, 'products') else []
+    def get_services(self):
+        return self.services if hasattr(self, 'services') else []
 
     def get_missing_skus(self):
         return self.missing_skus

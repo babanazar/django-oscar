@@ -179,12 +179,12 @@ class FixedPriceBenefit(Benefit):
     fixed price.  This is useful for "bundle" offers.
 
     Note that we ignore the benefit range here and only give a fixed price
-    for the products in the condition range.  The condition cannot be a value
+    for the services in the condition range.  The condition cannot be a value
     condition.
 
     We also ignore the max_affected_items setting.
     """
-    _description = _("The products that meet the condition are sold "
+    _description = _("The services that meet the condition are sold "
                      "for %(amount)s")
 
     @property
@@ -247,7 +247,7 @@ class FixedPriceBenefit(Benefit):
 
 
 class MultibuyDiscountBenefit(Benefit):
-    _description = _("Cheapest product from %(range)s is free")
+    _description = _("Cheapest service from %(range)s is free")
 
     @property
     def name(self):
@@ -270,7 +270,7 @@ class MultibuyDiscountBenefit(Benefit):
         if not line_tuples:
             return ZERO_DISCOUNT
 
-        # Cheapest line gives free product
+        # Cheapest line gives free service
         discount, line = line_tuples[0]
         if line.quantity_with_offer_discount(offer) == 0:
             apply_discount(line, discount, 1, offer)

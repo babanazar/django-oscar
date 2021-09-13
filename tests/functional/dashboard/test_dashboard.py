@@ -7,7 +7,7 @@ from oscar.apps.order.models import Order
 from oscar.core import prices
 from oscar.core.loading import get_model
 from oscar.test.factories import (
-    UserFactory, create_basket, create_order, create_product)
+    UserFactory, create_basket, create_order, create_service)
 from oscar.test.testcases import WebTestCase
 
 StockAlert = get_model('partner', 'StockAlert')
@@ -21,7 +21,7 @@ GENERIC_STATS_KEYS = (
     'hourly_report_dict',
     'total_customers_last_day',
     'total_open_baskets_last_day',
-    'total_products',
+    'total_services',
     'total_open_stock_alerts',
     'total_closed_stock_alerts',
     'total_customers',
@@ -127,20 +127,20 @@ class TestDashboardIndexStatsForNonStaffUser(WebTestCase):
     def setUp(self):
         super().setUp()
         customer = UserFactory()
-        product1 = create_product(partner_name='Partner 1', price=D(5))
-        product2 = create_product(partner_name='Partner 2', price=D(10))
-        create_product(partner_name='Partner 2', price=D(15))
+        service1 = create_service(partner_name='Partner 1', price=D(5))
+        service2 = create_service(partner_name='Partner 2', price=D(10))
+        create_service(partner_name='Partner 2', price=D(15))
         basket1 = create_basket(empty=True)
-        basket1.add_product(product1)
+        basket1.add_service(service1)
         create_order(basket=basket1, user=customer)
         basket2 = create_basket(empty=True)
-        basket2.add_product(product1)
+        basket2.add_service(service1)
         basket2 = create_basket(empty=True)
-        basket2.add_product(product2)
+        basket2.add_service(service2)
         for i in range(9):
             create_order(basket=basket2, user=customer, number='1000%s' % i)
-        stockrecord1 = product1.stockrecords.first()
-        stockrecord2 = product2.stockrecords.first()
+        stockrecord1 = service1.stockrecords.first()
+        stockrecord2 = service2.stockrecords.first()
         self.partner1 = stockrecord1.partner
         self.partner2 = stockrecord2.partner
         StockAlert.objects.create(stockrecord=stockrecord1, threshold=10)
@@ -157,7 +157,7 @@ class TestDashboardIndexStatsForNonStaffUser(WebTestCase):
         self.assertEqual(context['total_revenue_last_day'], D(27))
         self.assertEqual(context['total_customers_last_day'], 1)
         self.assertEqual(context['total_open_baskets_last_day'], 1)
-        self.assertEqual(context['total_products'], 1)
+        self.assertEqual(context['total_services'], 1)
         self.assertEqual(context['total_open_stock_alerts'], 1)
         self.assertEqual(context['total_closed_stock_alerts'], 0)
         self.assertEqual(context['total_customers'], 1)
@@ -177,7 +177,7 @@ class TestDashboardIndexStatsForNonStaffUser(WebTestCase):
         self.assertEqual(context['total_revenue_last_day'], D(288))
         self.assertEqual(context['total_customers_last_day'], 1)
         self.assertEqual(context['total_open_baskets_last_day'], 0)
-        self.assertEqual(context['total_products'], 2)
+        self.assertEqual(context['total_services'], 2)
         self.assertEqual(context['total_open_stock_alerts'], 1)
         self.assertEqual(context['total_closed_stock_alerts'], 0)
         self.assertEqual(context['total_customers'], 1)

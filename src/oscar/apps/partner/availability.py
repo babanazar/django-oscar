@@ -9,8 +9,8 @@ class Base(object):
     #: Availability code.  This is used for HTML classes
     code = ''
 
-    #: A description of the availability of a product.  This is shown on the
-    #: product detail page, e.g., "In stock", "Out of stock" etc
+    #: A description of the availability of a service.  This is shown on the
+    #: service detail page, e.g., "In stock", "Out of stock" etc
     message = ''
 
     #: When this item should be dispatched
@@ -27,8 +27,8 @@ class Base(object):
     @property
     def is_available_to_buy(self):
         """
-        Test if this product is available to be bought.  This is used for
-        validation when a product is added to a user's basket.
+        Test if this service is available to be bought.  This is used for
+        validation when a service is added to a user's basket.
         """
         # We test a purchase of a single item
         return self.is_purchase_permitted(1)[0]
@@ -47,7 +47,7 @@ class Base(object):
 
 class Unavailable(Base):
     """
-    Policy for when a product is unavailable
+    Policy for when a service is unavailable
     """
     code = 'unavailable'
     message = _("Unavailable")
@@ -55,10 +55,10 @@ class Unavailable(Base):
 
 class Available(Base):
     """
-    For when a product is always available, irrespective of stock level.
+    For when a service is always available, irrespective of stock level.
 
-    This might be appropriate for digital products where stock doesn't need to
-    be tracked and the product is always available to buy.
+    This might be appropriate for digital services where stock doesn't need to
+    be tracked and the service is always available to buy.
     """
     code = 'available'
     message = _("Available")
@@ -69,11 +69,11 @@ class Available(Base):
 
 class StockRequired(Base):
     """
-    Allow a product to be bought while there is stock.  This policy is
+    Allow a service to be bought while there is stock.  This policy is
     instantiated with a stock number (``num_available``).  It ensures that the
-    product is only available to buy while there is stock available.
+    service is only available to buy while there is stock available.
 
-    This is suitable for physical products where back orders (e.g. allowing
+    This is suitable for physical services where back orders (e.g. allowing
     purchases when there isn't stock available) are not permitted.
     """
     CODE_IN_STOCK = 'instock'

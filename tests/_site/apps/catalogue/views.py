@@ -1,7 +1,7 @@
 from oscar.apps.catalogue.views import (
-    ProductDetailView as OscarProductDetailView)
+    ServiceDetailView as OscarServiceDetailView)
 
 
-class ParentProductDetailView(OscarProductDetailView):
+class ParentServiceDetailView(OscarServiceDetailView):
     enforce_parent = True
     enforce_paths = False

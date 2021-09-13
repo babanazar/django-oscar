@@ -29,7 +29,7 @@
             <thead>
                 <tr>
                     <th>{% trans "Name" %}</th>
-                    <th>{% trans "Num products" %}</th>
+                    <th>{% trans "Num services" %}</th>
                     <th>{% trans "Is public?" %}</th>
                     <th>{% trans "Date created" %}</th>
                     <th></th>
@@ -45,10 +45,10 @@
                                 {{ range.name }}
                             {% endif %}
                         </td>
-                        {% if range.includes_all_products %}
+                        {% if range.includes_all_services %}
                             <td>{% trans 'All' %}</td>
                         {% else %}
-                            <td>{{ range.num_products|default:"-" }}</td>
+                            <td>{{ range.num_services|default:"-" }}</td>
                         {% endif %}
 
                         {% if range.is_public %}
@@ -68,9 +68,9 @@
                                             <a class="dropdown-item" href="{% url 'dashboard:range-update' pk=range.id %}">
                                                 {% trans "Edit" %}
                                             </a>
-                                            {% if not range.includes_all_products %}
-                                                <a class="dropdown-item" href="{% url 'dashboard:range-products' pk=range.id %}">
-                                                    {% trans "Edit products" %}
+                                            {% if not range.includes_all_services %}
+                                                <a class="dropdown-item" href="{% url 'dashboard:range-services' pk=range.id %}">
+                                                    {% trans "Edit services" %}
                                                 </a>
                                             {% endif %}
                                         {% endif %}

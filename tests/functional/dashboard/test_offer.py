@@ -12,7 +12,7 @@ class TestAnAdmin(testcases.WebTestCase):
     def setUp(self):
         super().setUp()
         self.range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
 
     def test_can_create_an_offer(self):
         list_page = self.get(reverse('dashboard:offer-list'))

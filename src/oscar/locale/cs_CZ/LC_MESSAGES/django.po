@@ -257,7 +257,7 @@ msgstr "Fakturační adresy"
 
 #: apps/address/abstract_models.py:606 apps/order/abstract_models.py:487
 #: apps/partner/abstract_models.py:99 apps/partner/apps.py:9
-#: templates/oscar/dashboard/catalogue/product_update.html:225
+#: templates/oscar/dashboard/catalogue/service_update.html:225
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:48
 #: templates/oscar/dashboard/orders/line_detail.html:75
 msgid "Partner"
@@ -283,7 +283,7 @@ msgstr "Adresy partnerů"
 #: templates/oscar/customer/wishlists/wishlists_detail.html:33
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:47
 #: templates/oscar/dashboard/orders/order_detail.html:127
-#: templates/oscar/dashboard/reports/partials/product_report.html:8
+#: templates/oscar/dashboard/reports/partials/service_report.html:8
 #: templates/oscar/dashboard/reviews/review_delete.html:37
 #: templates/oscar/dashboard/reviews/review_list.html:57
 #: templates/oscar/dashboard/users/alerts/list.html:44
@@ -292,7 +292,7 @@ msgid "Product"
 msgstr "Produkt"
 
 #: apps/analytics/abstract_models.py:22 apps/analytics/reports.py:20
-#: templates/oscar/dashboard/reports/partials/product_report.html:9
+#: templates/oscar/dashboard/reports/partials/service_report.html:9
 msgid "Views"
 msgstr "Zobrazení"
 
@@ -301,7 +301,7 @@ msgid "Basket Additions"
 msgstr "Přidání do košíku"
 
 #: apps/analytics/abstract_models.py:26 apps/analytics/reports.py:22
-#: templates/oscar/dashboard/reports/partials/product_report.html:11
+#: templates/oscar/dashboard/reports/partials/service_report.html:11
 msgid "Purchases"
 msgstr "Nákupy"
 
@@ -371,17 +371,17 @@ msgid "User records"
 msgstr "Záznamy uživatelů"
 
 #: apps/analytics/abstract_models.py:90
-msgid "User product view"
+msgid "User service view"
 msgstr "Zobrazení produktů uživatelem"
 
 #: apps/analytics/abstract_models.py:91
-msgid "User product views"
+msgid "User service views"
 msgstr "Zobrazení produktů uživateli"
 
 #: apps/analytics/abstract_models.py:94
 #, python-format
-msgid "%(user)s viewed '%(product)s'"
-msgstr "%(user)s zobrazil '%(product)s'"
+msgid "%(user)s viewed '%(service)s'"
+msgstr "%(user)s zobrazil '%(service)s'"
 
 #: apps/analytics/abstract_models.py:104
 msgid "Search term"
@@ -405,7 +405,7 @@ msgid "Analytics"
 msgstr "Analýzy"
 
 #: apps/analytics/reports.py:21 apps/analytics/reports.py:61
-#: templates/oscar/dashboard/reports/partials/product_report.html:10
+#: templates/oscar/dashboard/reports/partials/service_report.html:10
 #: templates/oscar/dashboard/reports/partials/user_report.html:12
 msgid "Basket additions"
 msgstr "Přidání do košíku"
@@ -431,8 +431,8 @@ msgstr "Produktové analýzy"
 #: apps/wishlists/abstract_models.py:23
 #: templates/oscar/customer/profile/profile.html:9
 #: templates/oscar/customer/wishlists/wishlists_list.html:9
-#: templates/oscar/dashboard/catalogue/product_class_form.html:101
-#: templates/oscar/dashboard/catalogue/product_class_list.html:27
+#: templates/oscar/dashboard/catalogue/service_class_form.html:101
+#: templates/oscar/dashboard/catalogue/service_class_list.html:27
 #: templates/oscar/dashboard/comms/list.html:32
 #: templates/oscar/dashboard/offers/offer_detail.html:60
 #: templates/oscar/dashboard/offers/summary.html:12
@@ -636,7 +636,7 @@ msgstr "Množství"
 
 #: apps/basket/abstract_models.py:639 apps/order/abstract_models.py:59
 #: apps/partner/abstract_models.py:110 apps/payment/abstract_models.py:80
-#: templates/oscar/dashboard/catalogue/product_update.html:232
+#: templates/oscar/dashboard/catalogue/service_update.html:232
 msgid "Currency"
 msgstr "Měna"
 
@@ -663,8 +663,8 @@ msgstr "Řádky košíku"
 
 #: apps/basket/abstract_models.py:668
 #, python-format
-msgid "Basket #%(basket_id)d, Product #%(product_id)d, quantity %(quantity)d"
-msgstr "Košík #%(basket_id)d, produkt #%(product_id)d, množství %(quantity)d"
+msgid "Basket #%(basket_id)d, Product #%(service_id)d, quantity %(quantity)d"
+msgstr "Košík #%(basket_id)d, produkt #%(service_id)d, množství %(quantity)d"
 
 #: apps/basket/abstract_models.py:676
 #, python-format
@@ -674,16 +674,16 @@ msgstr "Nemůžete upravovat košík %s"
 #: apps/basket/abstract_models.py:913
 #, python-format
 msgid ""
-"The price of '%(product)s' has increased from %(old_price)s to %(new_price)s"
+"The price of '%(service)s' has increased from %(old_price)s to %(new_price)s"
 " since you added it to your basket"
-msgstr "Cena produktu '%(product)s' se zvýšila z %(old_price)s na %(new_price)s od doby kdy jste ho přidal(a) do vašeho košíku"
+msgstr "Cena produktu '%(service)s' se zvýšila z %(old_price)s na %(new_price)s od doby kdy jste ho přidal(a) do vašeho košíku"
 
 #: apps/basket/abstract_models.py:918
 #, python-format
 msgid ""
-"The price of '%(product)s' has decreased from %(old_price)s to %(new_price)s"
+"The price of '%(service)s' has decreased from %(old_price)s to %(new_price)s"
 " since you added it to your basket"
-msgstr "Cena produktu '%(product)s' se snížila z %(old_price)s na %(new_price)s od doby, kdy jste ho přidal(a) do vašeho košíku"
+msgstr "Cena produktu '%(service)s' se snížila z %(old_price)s na %(new_price)s od doby, kdy jste ho přidal(a) do vašeho košíku"
 
 #: apps/basket/abstract_models.py:932 apps/order/abstract_models.py:798
 #: apps/order/abstract_models.py:832 apps/order/abstract_models.py:945
@@ -729,7 +729,7 @@ msgstr "Přesunout do košíku"
 #: apps/order/abstract_models.py:1047 apps/order/abstract_models.py:1100
 #: apps/partner/abstract_models.py:24 apps/payment/abstract_models.py:211
 #: apps/voucher/abstract_models.py:126
-#: templates/oscar/dashboard/catalogue/product_class_form.html:102
+#: templates/oscar/dashboard/catalogue/service_class_form.html:102
 #: templates/oscar/dashboard/comms/list.html:31
 #: templates/oscar/dashboard/vouchers/voucher_delete.html:34
 #: templates/oscar/dashboard/vouchers/voucher_detail.html:31
@@ -743,7 +743,7 @@ msgid "Variant"
 msgstr "Varianta"
 
 #: apps/basket/forms.py:227
-msgid "Please select a valid product"
+msgid "Please select a valid service"
 msgstr "Prosím zvolte platný produkt"
 
 #: apps/basket/forms.py:244
@@ -755,14 +755,14 @@ msgstr "Vzhledem k technickým omezením nemůžeme odeslat více než %(thresho
 
 #: apps/basket/forms.py:266
 msgid ""
-"This product cannot be added to the basket because a price could not be "
+"This service cannot be added to the basket because a price could not be "
 "determined for it."
 msgstr "Tento produkt nelze přidat do košíku, protože se nepodařilo určit jeho cenu."
 
 #: apps/basket/forms.py:273
 msgid ""
-"This product cannot be added to the basket as its currency isn't the same as"
-" other products in your basket"
+"This service cannot be added to the basket as its currency isn't the same as"
+" other services in your basket"
 msgstr "Tento produkt nelze přidat do košíku, protože jeho měna není stejná jako u ostatních produktů, které již v košíku máte"
 
 #: apps/basket/middleware.py:174
@@ -957,7 +957,7 @@ msgstr ""
 
 #: apps/catalogue/abstract_models.py:291 apps/catalogue/abstract_models.py:312
 #: apps/communication/abstract_models.py:78
-#: templates/oscar/dashboard/catalogue/product_update.html:155
+#: templates/oscar/dashboard/catalogue/service_update.html:155
 #: templates/oscar/dashboard/comms/list.html:33
 msgid "Category"
 msgstr "Kategorie"
@@ -970,7 +970,7 @@ msgstr "Kategorie"
 #: templates/oscar/dashboard/catalogue/category_list.html:9
 #: templates/oscar/dashboard/catalogue/category_list.html:19
 #: templates/oscar/dashboard/catalogue/category_list.html:28
-#: templates/oscar/dashboard/catalogue/product_update.html:78
+#: templates/oscar/dashboard/catalogue/service_update.html:78
 msgid "Categories"
 msgstr "Kategorie"
 
@@ -983,15 +983,15 @@ msgid "Product categories"
 msgstr "Produktové kategorie"
 
 #: apps/catalogue/abstract_models.py:343
-msgid "Stand-alone product"
+msgid "Stand-alone service"
 msgstr "Samostatný produkt"
 
 #: apps/catalogue/abstract_models.py:344 apps/catalogue/abstract_models.py:369
-msgid "Parent product"
+msgid "Parent service"
 msgstr "Rodičovský produkt"
 
 #: apps/catalogue/abstract_models.py:345
-msgid "Child product"
+msgid "Child service"
 msgstr "Zděděný produkt"
 
 #: apps/catalogue/abstract_models.py:348
@@ -999,7 +999,7 @@ msgid "Product structure"
 msgstr "Struktura výrobku"
 
 #: apps/catalogue/abstract_models.py:355
-msgid "Show this product in search results and catalogue listings."
+msgid "Show this service in search results and catalogue listings."
 msgstr "Zobrazovat tento produkt ve výsledcích vyhledávání a ve výpisu katalogu."
 
 #: apps/catalogue/abstract_models.py:358 apps/dashboard/catalogue/forms.py:77
@@ -1007,51 +1007,51 @@ msgstr "Zobrazovat tento produkt ve výsledcích vyhledávání a ve výpisu kat
 #: templates/oscar/catalogue/detail.html:117
 #: templates/oscar/dashboard/orders/line_detail.html:48
 #: templates/oscar/dashboard/orders/order_detail.html:128
-#: templates/oscar/dashboard/ranges/range_product_list.html:96
+#: templates/oscar/dashboard/ranges/range_service_list.html:96
 msgid "UPC"
 msgstr "Kód produktu (UPC)"
 
 #: apps/catalogue/abstract_models.py:359
 msgid ""
-"Universal Product Code (UPC) is an identifier for a product which is not "
+"Universal Product Code (UPC) is an identifier for a service which is not "
 "specific to a particular  supplier. Eg an ISBN for a book."
 msgstr "Univerzální kód produktu (UPC) je identifikátor, který není specifický pro konkrétního dodavatele (např. ISBN kód u knih)."
 
 #: apps/catalogue/abstract_models.py:370
 msgid ""
-"Only choose a parent product if you're creating a child product.  For "
+"Only choose a parent service if you're creating a child service.  For "
 "example if this is a size 4 of a particular t-shirt.  Leave blank if this is"
-" a stand-alone product (i.e. there is only one version of this product)."
+" a stand-alone service (i.e. there is only one version of this service)."
 msgstr "Zvolte rodičovský produk pokud vytváříte zděděný produkt. Například pokud je toto  velikost č.4 konkrétního trička. Pokud se jedná o samostatný produkt,(jedná se o jedinou verzi produktu), ponechte volbu prázdnou."
 
 #: apps/catalogue/abstract_models.py:377 apps/catalogue/abstract_models.py:625
 #: apps/order/abstract_models.py:516 apps/wishlists/abstract_models.py:121
 #: templates/oscar/dashboard/orders/line_detail.html:35
-#: templates/oscar/dashboard/ranges/range_product_list.html:97
+#: templates/oscar/dashboard/ranges/range_service_list.html:97
 msgctxt "Product title"
 msgid "Title"
 msgstr "Titulek"
 
 #: apps/catalogue/abstract_models.py:391 apps/catalogue/abstract_models.py:814
 #: apps/dashboard/catalogue/tables.py:26
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:10
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:10
 msgid "Product type"
 msgstr "Typ produktu"
 
 #: apps/catalogue/abstract_models.py:392
-msgid "Choose what type of product this is"
+msgid "Choose what type of service this is"
 msgstr "Zvolte jakého je produkt typu"
 
 #: apps/catalogue/abstract_models.py:396
-#: templates/oscar/dashboard/catalogue/product_update.html:85
-#: templates/oscar/dashboard/catalogue/product_update.html:175
-#: templates/oscar/dashboard/catalogue/product_update.html:284
+#: templates/oscar/dashboard/catalogue/service_update.html:85
+#: templates/oscar/dashboard/catalogue/service_update.html:175
+#: templates/oscar/dashboard/catalogue/service_update.html:284
 msgid "Attributes"
 msgstr "Atributy"
 
 #: apps/catalogue/abstract_models.py:397
 msgid ""
-"A product attribute is something that this product may have, such as a size,"
+"A service attribute is something that this service may have, such as a size,"
 " as specified by its class"
 msgstr "Atribut produktu je něco, co produkt může mít, jako například velikost, specifikovanou svou třídou."
 
@@ -1067,12 +1067,12 @@ msgid ""
 msgstr "Možnosti jsou hodnoty které mohou být spojeny s položkou když je přidána do košíku. Může se jednat například o personalizovanou zprávu, která má být vytištěna na tričko."
 
 #: apps/catalogue/abstract_models.py:409
-#: templates/oscar/dashboard/catalogue/product_update.html:331
-msgid "Recommended products"
+#: templates/oscar/dashboard/catalogue/service_update.html:331
+msgid "Recommended services"
 msgstr "Doporučené produkty"
 
 #: apps/catalogue/abstract_models.py:410
-msgid "These are products that are recommended to accompany the main product."
+msgid "These are services that are recommended to accompany the main service."
 msgstr "Toto jsou doporučené produkty, které souvisí s hlavním."
 
 #: apps/catalogue/abstract_models.py:415 defaults.py:217
@@ -1088,62 +1088,62 @@ msgid "Is discountable?"
 msgstr "Lze přidat slevu?"
 
 #: apps/catalogue/abstract_models.py:435
-msgid "This flag indicates if this product can be used in an offer or not"
+msgid "This flag indicates if this service can be used in an offer or not"
 msgstr "Tento příznak říká, zda může být produkt použit v nabídce či ne."
 
 #: apps/catalogue/abstract_models.py:445 apps/dashboard/catalogue/views.py:106
-#: defaults.py:101 templates/oscar/dashboard/catalogue/product_delete.html:15
-#: templates/oscar/dashboard/catalogue/product_list.html:9
-#: templates/oscar/dashboard/catalogue/product_list.html:19
-#: templates/oscar/dashboard/catalogue/product_list.html:27
-#: templates/oscar/dashboard/catalogue/product_update.html:8
-#: templates/oscar/dashboard/catalogue/product_update.html:18
-#: templates/oscar/dashboard/ranges/range_product_list.html:21
+#: defaults.py:101 templates/oscar/dashboard/catalogue/service_delete.html:15
+#: templates/oscar/dashboard/catalogue/service_list.html:9
+#: templates/oscar/dashboard/catalogue/service_list.html:19
+#: templates/oscar/dashboard/catalogue/service_list.html:27
+#: templates/oscar/dashboard/catalogue/service_update.html:8
+#: templates/oscar/dashboard/catalogue/service_update.html:18
+#: templates/oscar/dashboard/ranges/range_service_list.html:21
 msgid "Products"
 msgstr "Produkty"
 
 #: apps/catalogue/abstract_models.py:502
-msgid "Your product must have a title."
+msgid "Your service must have a title."
 msgstr "Váš produkt musí mít název"
 
 #: apps/catalogue/abstract_models.py:504
-msgid "Your product must have a product class."
+msgid "Your service must have a service class."
 msgstr "Váš produkt musím mít třídu produktu."
 
 #: apps/catalogue/abstract_models.py:506
-msgid "Only child products can have a parent."
+msgid "Only child services can have a parent."
 msgstr "Pouze zděděný produkt může mít svého rodiče."
 
 #: apps/catalogue/abstract_models.py:513
-msgid "A child product needs a parent."
+msgid "A child service needs a parent."
 msgstr "Zděděný produkt potřebuje rodiče."
 
 #: apps/catalogue/abstract_models.py:516
-msgid "You can only assign child products to parent products."
+msgid "You can only assign child services to parent services."
 msgstr "Zděděný produkt můžete přiřadit pouze k rodičovskému produktu."
 
 #: apps/catalogue/abstract_models.py:519
-msgid "A child product can't have a product class."
+msgid "A child service can't have a service class."
 msgstr "Zděděný produkt nemůže mít třídu produktů."
 
 #: apps/catalogue/abstract_models.py:522
-msgid "A child product can't have a category assigned."
+msgid "A child service can't have a category assigned."
 msgstr "Zděděný produkt nemůže mít přiřazenu kategorii."
 
 #: apps/catalogue/abstract_models.py:526
-msgid "A child product can't have options."
+msgid "A child service can't have options."
 msgstr "Zděděný produkt nemůže mít volby."
 
 #: apps/catalogue/abstract_models.py:535
-msgid "A parent product can't have stockrecords."
+msgid "A parent service can't have stockrecords."
 msgstr "Rodičovský produkt nemůže mít skladovou evidenci."
 
 #: apps/catalogue/abstract_models.py:563
-msgid "The specified parent product is a child product."
+msgid "The specified parent service is a child service."
 msgstr "Vybraný rodičovský produkt je zděděný produkt."
 
 #: apps/catalogue/abstract_models.py:566
-msgid "One can't add a child product to a product with stock records."
+msgid "One can't add a child service to a service with stock records."
 msgstr "Nemůžete přidat zděděný produkt k produktu se skladovými záznamy."
 
 #: apps/catalogue/abstract_models.py:632
@@ -1157,11 +1157,11 @@ msgid "Meta description"
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:784
-msgid "Primary product"
+msgid "Primary service"
 msgstr "Hlavní produkt"
 
 #: apps/catalogue/abstract_models.py:788
-msgid "Recommended product"
+msgid "Recommended service"
 msgstr "Doporučený produkt"
 
 #: apps/catalogue/abstract_models.py:790
@@ -1170,7 +1170,7 @@ msgstr "Ohodnocení"
 
 #: apps/catalogue/abstract_models.py:791
 msgid ""
-"Determines order of the products. A product with a higher value will appear "
+"Determines order of the services. A service with a higher value will appear "
 "before one with a lower ranking."
 msgstr "Určujte pořadi produktů. Produkt s vyšší hodnotou se objeví před těmi, co mají hodnotu nižší."
 
@@ -1249,7 +1249,7 @@ msgstr "Soubor"
 #: apps/offer/abstract_models.py:488 apps/offer/abstract_models.py:706
 #: apps/order/abstract_models.py:802 apps/payment/abstract_models.py:37
 #: defaults.py:216
-#: templates/oscar/dashboard/catalogue/product_class_form.html:103
+#: templates/oscar/dashboard/catalogue/service_class_form.html:103
 #: templates/oscar/dashboard/orders/order_detail.html:636
 #: templates/oscar/dashboard/orders/order_detail.html:686
 msgid "Type"
@@ -1264,7 +1264,7 @@ msgid "Select an option group if using type \"Option\" or \"Multi Option\""
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:866
-#: templates/oscar/dashboard/catalogue/product_class_form.html:104
+#: templates/oscar/dashboard/catalogue/service_class_form.html:104
 msgid "Required"
 msgstr "Povinné"
 
@@ -1273,8 +1273,8 @@ msgid "Product attribute"
 msgstr "Atribut produktu"
 
 #: apps/catalogue/abstract_models.py:873
-#: templates/oscar/dashboard/catalogue/product_class_form.html:43
-#: templates/oscar/dashboard/catalogue/product_class_form.html:90
+#: templates/oscar/dashboard/catalogue/service_class_form.html:43
+#: templates/oscar/dashboard/catalogue/service_class_form.html:90
 msgid "Product attributes"
 msgstr "Atributy produktu"
 
@@ -1398,7 +1398,7 @@ msgstr "Popisek"
 #: apps/catalogue/abstract_models.py:1320
 msgid ""
 "An image with a display order of zero will be the primary image for a "
-"product"
+"service"
 msgstr "Obrázek s pořadím 0 bude hlavní obrázek produktu"
 
 #: apps/catalogue/abstract_models.py:1330
@@ -1414,17 +1414,17 @@ msgstr "Obrázky produktu"
 msgid "Catalogue"
 msgstr "Katalog"
 
-#: apps/catalogue/product_attributes.py:25
+#: apps/catalogue/service_attributes.py:25
 #, python-format
 msgid "%(obj)s has no attribute named '%(attr)s'"
 msgstr "%(obj)s nemá atribut pojemenovaný '%(attr)s'"
 
-#: apps/catalogue/product_attributes.py:33
+#: apps/catalogue/service_attributes.py:33
 #, python-format
 msgid "%(attr)s attribute cannot be blank"
 msgstr "Atribut %(attr)s nemůže být prázdný"
 
-#: apps/catalogue/product_attributes.py:40
+#: apps/catalogue/service_attributes.py:40
 #, python-format
 msgid "%(attr)s attribute %(err)s"
 msgstr "%(attr)s atribut %(err)s"
@@ -1543,15 +1543,15 @@ msgid "Sort by"
 msgstr "Seřadit podle"
 
 #: apps/catalogue/reviews/views.py:33
-msgid "You have already reviewed this product!"
+msgid "You have already reviewed this service!"
 msgstr "Již jste tento produkt hodnotil!"
 
 #: apps/catalogue/reviews/views.py:35
-msgid "You can't leave a review for this product."
+msgid "You can't leave a review for this service."
 msgstr "Pro tento produkt nemůžete napsat recenzi."
 
 #: apps/catalogue/reviews/views.py:60
-msgid "Thank you for reviewing this product"
+msgid "Thank you for reviewing this service"
 msgstr "Děkujeme za ohodnocení tohoto produktu"
 
 #: apps/catalogue/reviews/views.py:98
@@ -1573,7 +1573,7 @@ msgid "The given page number was invalid."
 msgstr "Zadané číslo stránky je neplatné."
 
 #: apps/catalogue/views.py:144 templates/oscar/partials/nav_primary.html:41
-msgid "All products"
+msgid "All services"
 msgstr "Všechny produkty"
 
 #: apps/checkout/apps.py:13
@@ -2047,13 +2047,13 @@ msgstr "Pro %s již existuje upozornění na stav zásob"
 #: apps/customer/forms.py:389
 #, python-format
 msgid ""
-"%s has been sent a confirmation email for another product alert on this "
+"%s has been sent a confirmation email for another service alert on this "
 "site. Please confirm or cancel that request before signing up for more "
 "alerts."
 msgstr ""
 
 #: apps/customer/forms.py:401
-msgid "You already have an active alert for this product"
+msgid "You already have an active alert for this service"
 msgstr "Pro tento produkt již je jedno upozornění aktivní"
 
 #: apps/customer/views.py:174
@@ -2128,8 +2128,8 @@ msgstr "Není možné znovuobjednat objednávky %(number)s, neboť ani jedna z p
 
 #: apps/customer/views.py:594
 #, python-format
-msgid "%(qty)d copies of '%(product)s' have been added to your basket"
-msgstr "%(qty)d kusů produktu '%(product)s' bylo přidáno do vašeho košíku"
+msgid "%(qty)d copies of '%(service)s' have been added to your basket"
+msgstr "%(qty)d kusů produktu '%(service)s' bylo přidáno do vašeho košíku"
 
 #: apps/customer/views.py:598
 #, python-format
@@ -2181,7 +2181,7 @@ msgstr "Do této země bohužel nemůžeme zboží doručit"
 #: apps/customer/wishlists/views.py:25
 #: templates/oscar/customer/partials/standard_tabs.html:24
 #: templates/oscar/customer/wishlists/wishlists_delete.html:14
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:14
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:14
 #: templates/oscar/customer/wishlists/wishlists_detail.html:16
 #: templates/oscar/customer/wishlists/wishlists_form.html:14
 msgid "Wish Lists"
@@ -2197,7 +2197,7 @@ msgid "Create a new wish list"
 msgstr "Vytvořit nový seznam přání"
 
 #: apps/customer/wishlists/views.py:104
-msgid "The requested product no longer exists"
+msgid "The requested service no longer exists"
 msgstr "Požadovaný produkt již neexistuje"
 
 #: apps/customer/wishlists/views.py:123
@@ -2264,12 +2264,12 @@ msgstr "'%(title)s' byl přesunut do vašho seznamu přání '%(name)s'"
 #: templates/oscar/dashboard/catalogue/option_delete.html:26
 #: templates/oscar/dashboard/catalogue/option_form.html:26
 #: templates/oscar/dashboard/catalogue/option_list.html:12
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:9
-#: templates/oscar/dashboard/catalogue/product_class_form.html:13
-#: templates/oscar/dashboard/catalogue/product_class_list.html:7
-#: templates/oscar/dashboard/catalogue/product_delete.html:14
-#: templates/oscar/dashboard/catalogue/product_list.html:16
-#: templates/oscar/dashboard/catalogue/product_update.html:15
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:9
+#: templates/oscar/dashboard/catalogue/service_class_form.html:13
+#: templates/oscar/dashboard/catalogue/service_class_list.html:7
+#: templates/oscar/dashboard/catalogue/service_delete.html:14
+#: templates/oscar/dashboard/catalogue/service_list.html:16
+#: templates/oscar/dashboard/catalogue/service_update.html:15
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:14
 #: templates/oscar/dashboard/comms/detail.html:14
 #: templates/oscar/dashboard/comms/list.html:13
@@ -2297,7 +2297,7 @@ msgstr "'%(title)s' byl přesunut do vašho seznamu přání '%(name)s'"
 #: templates/oscar/dashboard/ranges/range_delete.html:13
 #: templates/oscar/dashboard/ranges/range_form.html:13
 #: templates/oscar/dashboard/ranges/range_list.html:11
-#: templates/oscar/dashboard/ranges/range_product_list.html:13
+#: templates/oscar/dashboard/ranges/range_service_list.html:13
 #: templates/oscar/dashboard/reports/index.html:12
 #: templates/oscar/dashboard/reviews/review_delete.html:14
 #: templates/oscar/dashboard/reviews/review_list.html:14
@@ -2329,7 +2329,7 @@ msgid "Leave blank to generate from category name"
 msgstr ""
 
 #: apps/dashboard/catalogue/forms.py:62
-msgid "Create a new product of type"
+msgid "Create a new service of type"
 msgstr "Vytvořit nový produkt typu"
 
 #: apps/dashboard/catalogue/forms.py:63
@@ -2341,7 +2341,7 @@ msgid "Product title"
 msgstr "Název produktu"
 
 #: apps/dashboard/catalogue/forms.py:240
-msgid "Leave blank to generate from product title"
+msgid "Leave blank to generate from service title"
 msgstr ""
 
 #: apps/dashboard/catalogue/forms.py:385
@@ -2355,27 +2355,27 @@ msgid ""
 msgstr "Alespoň jeden skladový záznam musí být přiřazen partnerovi se kterým jste propojeni."
 
 #: apps/dashboard/catalogue/formsets.py:114
-msgid "Stand-alone and parent products must have at least one category"
+msgid "Stand-alone and parent services must have at least one category"
 msgstr "Samostatné a rodičovské produkty musí mít alespoň jednu kategorii"
 
 #: apps/dashboard/catalogue/formsets.py:118
-msgid "A child product should not have categories"
+msgid "A child service should not have categories"
 msgstr "Zděděný produkt by neměl mít kategorii"
 
 #: apps/dashboard/catalogue/tables.py:18
-#: templates/oscar/dashboard/catalogue/product_update.html:283
+#: templates/oscar/dashboard/catalogue/service_update.html:283
 #: templates/oscar/dashboard/vouchers/voucher_set_detail.html:44
 msgid "Title"
 msgstr "Titul"
 
 #: apps/dashboard/catalogue/tables.py:30
-#: templates/oscar/dashboard/catalogue/product_update.html:104
-#: templates/oscar/dashboard/catalogue/product_update.html:276
+#: templates/oscar/dashboard/catalogue/service_update.html:104
+#: templates/oscar/dashboard/catalogue/service_update.html:276
 msgid "Variants"
 msgstr "Varianty"
 
 #: apps/dashboard/catalogue/tables.py:35 apps/partner/abstract_models.py:153
-#: templates/oscar/dashboard/catalogue/product_update.html:285
+#: templates/oscar/dashboard/catalogue/service_update.html:285
 msgid "Stock records"
 msgstr "Skladové záznamy"
 
@@ -2385,8 +2385,8 @@ msgstr "Skladové záznamy"
 #: templates/oscar/dashboard/catalogue/attribute_option_group_row_actions.html:6
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:6
 #: templates/oscar/dashboard/catalogue/option_row_actions.html:6
-#: templates/oscar/dashboard/catalogue/product_class_list.html:43
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:6
+#: templates/oscar/dashboard/catalogue/service_class_list.html:43
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:6
 #: templates/oscar/dashboard/offers/offer_list.html:89
 #: templates/oscar/dashboard/orders/order_detail.html:134
 #: templates/oscar/dashboard/pages/index.html:68
@@ -2441,23 +2441,23 @@ msgid "Product search results"
 msgstr "Výsledky hledání produktu"
 
 #: apps/dashboard/catalogue/views.py:181
-msgid "Please choose a product type"
+msgid "Please choose a service type"
 msgstr "Prosím zvolte typ produktu"
 
 #: apps/dashboard/catalogue/views.py:302
 #, python-format
-msgid "Create new %(product_class)s product"
-msgstr "Vytvořit nový %(product_class)s produkt"
+msgid "Create new %(service_class)s service"
+msgstr "Vytvořit nový %(service_class)s produkt"
 
 #: apps/dashboard/catalogue/views.py:305
 #, python-format
-msgid "Create new variant of %(parent_product)s"
-msgstr "Vytvořit novou variantu %(parent_product)s"
+msgid "Create new variant of %(parent_service)s"
+msgstr "Vytvořit novou variantu %(parent_service)s"
 
 #: apps/dashboard/catalogue/views.py:311
 #, python-format
-msgid "Editing variant of %(parent_product)s"
-msgstr "Upravit variantu %(parent_product)s"
+msgid "Editing variant of %(parent_service)s"
+msgstr "Upravit variantu %(parent_service)s"
 
 #: apps/dashboard/catalogue/views.py:406 apps/dashboard/catalogue/views.py:694
 #: apps/dashboard/catalogue/views.py:824 apps/dashboard/catalogue/views.py:967
@@ -2465,21 +2465,21 @@ msgid "Your submitted data was not valid - please correct the errors below"
 msgstr "Odeslaný formulář je neplatný, prosím opravte chyby a odešlete jej znovu"
 
 #: apps/dashboard/catalogue/views.py:470
-msgid "Delete product variant?"
+msgid "Delete service variant?"
 msgstr "Smazat variantu produktu?"
 
 #: apps/dashboard/catalogue/views.py:472
-msgid "Delete product?"
+msgid "Delete service?"
 msgstr "Smazat produkt?"
 
 #: apps/dashboard/catalogue/views.py:516
 #, python-format
-msgid "Deleted product variant '%s'"
+msgid "Deleted service variant '%s'"
 msgstr "Smazat variantu produktu '%s'"
 
 #: apps/dashboard/catalogue/views.py:522
 #, python-format
-msgid "Deleted product '%s'"
+msgid "Deleted service '%s'"
 msgstr "Produkt '%s' byl smazán"
 
 #: apps/dashboard/catalogue/views.py:544
@@ -2513,7 +2513,7 @@ msgid "Category deleted successfully"
 msgstr "Kategorie byla úspěšně smazána"
 
 #: apps/dashboard/catalogue/views.py:730
-msgid "Add a new product type"
+msgid "Add a new service type"
 msgstr "Přidat nový typ produktu"
 
 #: apps/dashboard/catalogue/views.py:733
@@ -2522,7 +2522,7 @@ msgstr "Typ produktu byl úspěšně vytvořen"
 
 #: apps/dashboard/catalogue/views.py:742
 #, python-format
-msgid "Update product type '%s'"
+msgid "Update service type '%s'"
 msgstr "Aktualizovat typ produktu '%s'"
 
 #: apps/dashboard/catalogue/views.py:745
@@ -2531,13 +2531,13 @@ msgstr "Typ produkty byl úspěšně upraven"
 
 #: apps/dashboard/catalogue/views.py:760 apps/offer/abstract_models.py:811
 #: defaults.py:105
-#: templates/oscar/dashboard/catalogue/product_class_list.html:24
+#: templates/oscar/dashboard/catalogue/service_class_list.html:24
 msgid "Product Types"
 msgstr "Typy produktů"
 
 #: apps/dashboard/catalogue/views.py:771
 #, python-format
-msgid "Delete product type '%s'"
+msgid "Delete service type '%s'"
 msgstr "Smazat typ produktu '%s'"
 
 #: apps/dashboard/catalogue/views.py:776 apps/dashboard/catalogue/views.py:912
@@ -2548,7 +2548,7 @@ msgstr "Nelze smazat '%s'"
 
 #: apps/dashboard/catalogue/views.py:778
 #, python-format
-msgid "%i products are still assigned to this type"
+msgid "%i services are still assigned to this type"
 msgstr "%i produktů je stále přířazeno k tomuto typu"
 
 #: apps/dashboard/catalogue/views.py:783
@@ -2580,7 +2580,7 @@ msgstr ""
 #: apps/dashboard/catalogue/views.py:914
 #, python-format
 msgid ""
-"%i product attributes are still assigned to this attribute option group"
+"%i service attributes are still assigned to this attribute option group"
 msgstr ""
 
 #: apps/dashboard/catalogue/views.py:933
@@ -2611,12 +2611,12 @@ msgstr ""
 
 #: apps/dashboard/catalogue/views.py:1021
 #, python-format
-msgid "%i products are still assigned to this option"
+msgid "%i services are still assigned to this option"
 msgstr ""
 
 #: apps/dashboard/catalogue/views.py:1026
 #, python-format
-msgid "%i product classes are still assigned to this option"
+msgid "%i service classes are still assigned to this option"
 msgstr "%i produktové třídy jsou stále navázány na tuto možnost"
 
 #: apps/dashboard/catalogue/views.py:1032
@@ -2882,11 +2882,11 @@ msgstr "Jméno zákazníka odpovídá \"{customer_name}\""
 
 #: apps/dashboard/orders/views.py:250
 #, python-brace-format
-msgid "Product name matches \"{product_name}\""
-msgstr "Jméno produktu odpovídá \"{product_name}\""
+msgid "Product name matches \"{service_name}\""
+msgstr "Jméno produktu odpovídá \"{service_name}\""
 
-#. Translators: "UPC" means "universal product code" and it is
-#. used to uniquely identify a product in an online store.
+#. Translators: "UPC" means "universal service code" and it is
+#. used to uniquely identify a service in an online store.
 #. "Item" in this context means an item in an order placed
 #. in an online store.
 #: apps/dashboard/orders/views.py:261
@@ -2895,7 +2895,7 @@ msgid "Includes an item with UPC \"{upc}\""
 msgstr "Zahrnuje položku s UPC \"{upc}\""
 
 #. Translators: "SKU" means "stock keeping unit" and is used to
-#. identify products that can be shipped from an online store.
+#. identify services that can be shipped from an online store.
 #. A "partner" is a company that ships items to users who
 #. buy things in an online store.
 #: apps/dashboard/orders/views.py:272
@@ -3267,12 +3267,12 @@ msgstr "Musíte odeslat buď seznam SKU/UPC nebo soubor"
 
 #: apps/dashboard/ranges/forms.py:61 apps/dashboard/ranges/views.py:166
 #, python-format
-msgid "The products with SKUs or UPCs matching %s are already in this range"
+msgid "The services with SKUs or UPCs matching %s are already in this range"
 msgstr "Produkty s SKU nebo UPC odpovídající %s jsou již v tomto výběru zahrnuty"
 
 #: apps/dashboard/ranges/forms.py:69
 #, python-format
-msgid "No products exist with a SKU or UPC matching %s"
+msgid "No services exist with a SKU or UPC matching %s"
 msgstr "Nebyly nalezeny žádné produkty s SKU nebo UPC odpovídajícímu %s"
 
 #: apps/dashboard/ranges/views.py:52
@@ -3285,8 +3285,8 @@ msgstr "Výběr byl smazán"
 
 #: apps/dashboard/ranges/views.py:133
 #, python-format
-msgid "Removed %d product from range"
-msgid_plural "Removed %d products from range"
+msgid "Removed %d service from range"
+msgid_plural "Removed %d services from range"
 msgstr[0] "Z výběru byl smazán %d produkt"
 msgstr[1] "Z výběru byly smazány %d produkty"
 msgstr[2] "Z výběru bylo smazáno %d produktů"
@@ -3294,8 +3294,8 @@ msgstr[3] "Z výběru bylo smazáno %d produktů"
 
 #: apps/dashboard/ranges/views.py:160
 #, python-format
-msgid "%d product added to range"
-msgid_plural "%d products added to range"
+msgid "%d service added to range"
+msgid_plural "%d services added to range"
 msgstr[0] "%d produkt přidán do výběru"
 msgstr[1] "%d produktů přidáno do výběru"
 msgstr[2] "%d produktů přidáno do výběru"
@@ -3303,12 +3303,12 @@ msgstr[3] "%d produktů přidáno do výběru"
 
 #: apps/dashboard/ranges/views.py:173
 #, python-format
-msgid "No product(s) were found with SKU or UPC matching %s"
+msgid "No service(s) were found with SKU or UPC matching %s"
 msgstr "Žádné produkt(y) s SKU nebo UPC  odpovídajícím %s nebyly nalezeny"
 
 #: apps/dashboard/ranges/views.py:210
 #, python-format
-msgid "There are more than one product with SKU %s"
+msgid "There are more than one service with SKU %s"
 msgstr ""
 
 #: apps/dashboard/reports/apps.py:11
@@ -3495,7 +3495,7 @@ msgid "Usage"
 msgstr "Použití"
 
 #: apps/dashboard/vouchers/forms.py:31 apps/dashboard/vouchers/forms.py:113
-msgid "Which products get a discount?"
+msgid "Which services get a discount?"
 msgstr "Které produkty budou zlevněné?"
 
 #: apps/dashboard/vouchers/forms.py:36 apps/dashboard/vouchers/forms.py:118
@@ -3770,19 +3770,19 @@ msgid "Range"
 msgstr "Výběr"
 
 #: apps/offer/abstract_models.py:476
-msgid "Discount is a percentage off of the product's value"
+msgid "Discount is a percentage off of the service's value"
 msgstr "Sleva je procento z hodnoty produktu"
 
 #: apps/offer/abstract_models.py:477
-msgid "Discount is a fixed amount off of the product's value"
+msgid "Discount is a fixed amount off of the service's value"
 msgstr "Sleva je fixní částka z hodnoty produktu"
 
 #: apps/offer/abstract_models.py:478
-msgid "Discount is to give the cheapest product for free"
+msgid "Discount is to give the cheapest service for free"
 msgstr "Sleva dá nejlevnější produkt zadarmo"
 
 #: apps/offer/abstract_models.py:480
-msgid "Get the products that meet the condition for a fixed price"
+msgid "Get the services that meet the condition for a fixed price"
 msgstr "Získejte produkty které splní podmínku pro fixní cenu"
 
 #: apps/offer/abstract_models.py:482
@@ -3817,7 +3817,7 @@ msgid "Benefits"
 msgstr "Benefity"
 
 #: apps/offer/abstract_models.py:550
-msgid "Multibuy benefits require a product range"
+msgid "Multibuy benefits require a service range"
 msgstr "Vícenásobné nákupní slevy vyžadují produktový výběr"
 
 #: apps/offer/abstract_models.py:552
@@ -3829,7 +3829,7 @@ msgid "Multibuy benefits don't require a 'max affected items' attribute"
 msgstr "Vícenásobné nákupní slevy nevyžadují atribut 'maximum ovlivněných položek'"
 
 #: apps/offer/abstract_models.py:564
-msgid "Percentage benefits require a product range"
+msgid "Percentage benefits require a service range"
 msgstr "Procentuální slevy vyžadují produktový výběr"
 
 #: apps/offer/abstract_models.py:567 apps/offer/abstract_models.py:592
@@ -3846,7 +3846,7 @@ msgstr "Hodnota slevy je povinná"
 
 #: apps/offer/abstract_models.py:579 apps/offer/abstract_models.py:597
 #: apps/offer/abstract_models.py:608
-msgid "No range should be selected as this benefit does not apply to products"
+msgid "No range should be selected as this benefit does not apply to services"
 msgstr "Neměl by být zvolen žádný výběr, protože tato sleva se nevztahuje na produkty"
 
 #: apps/offer/abstract_models.py:582 apps/offer/abstract_models.py:600
@@ -3860,7 +3860,7 @@ msgid ""
 msgstr "Žádný výběr by neměl být zvolen, protože se místo toho použije výběrová podmínka."
 
 #: apps/offer/abstract_models.py:626
-msgid "Fixed discount benefits require a product range"
+msgid "Fixed discount benefits require a service range"
 msgstr "Fixní sleva vyžaduje produktový výběr"
 
 #: apps/offer/abstract_models.py:628
@@ -3885,7 +3885,7 @@ msgid "Conditions"
 msgstr "Podmínky"
 
 #: apps/offer/abstract_models.py:797
-#: templates/oscar/dashboard/catalogue/product_update.html:286
+#: templates/oscar/dashboard/catalogue/service_update.html:286
 #: templates/oscar/dashboard/ranges/range_list.html:33
 msgid "Is public?"
 msgstr "Veřejný?"
@@ -3895,7 +3895,7 @@ msgid "Public ranges have a customer-facing page"
 msgstr "Veřejné výběry mají speciální stránku pro klienty"
 
 #: apps/offer/abstract_models.py:801
-msgid "Includes all products?"
+msgid "Includes all services?"
 msgstr "Zahrnuje všechny produkty?"
 
 #: apps/offer/abstract_models.py:805
@@ -3919,7 +3919,7 @@ msgstr "Zahrnuté kategorie"
 #: templates/oscar/dashboard/ranges/range_list.html:12
 #: templates/oscar/dashboard/ranges/range_list.html:20
 #: templates/oscar/dashboard/ranges/range_list.html:27
-#: templates/oscar/dashboard/ranges/range_product_list.html:15
+#: templates/oscar/dashboard/ranges/range_service_list.html:15
 msgid "Ranges"
 msgstr "Výběry"
 
@@ -4001,7 +4001,7 @@ msgstr "Celkové slevy"
 
 #: apps/offer/benefits.py:190
 #, python-format
-msgid "The products that meet the condition are sold for %(amount)s"
+msgid "The services that meet the condition are sold for %(amount)s"
 msgstr "Produkty, které vyhoví podmínám jsou prodávány za %(amount)s"
 
 #: apps/offer/benefits.py:201
@@ -4014,7 +4014,7 @@ msgstr "Fixní cenové slevy"
 
 #: apps/offer/benefits.py:253
 #, python-format
-msgid "Cheapest product from %(range)s is free"
+msgid "Cheapest service from %(range)s is free"
 msgstr "Nejlevnější produkt z %(range)s je zdarma"
 
 #: apps/offer/benefits.py:268
@@ -4079,8 +4079,8 @@ msgstr "Podmínky počtu"
 
 #: apps/offer/conditions.py:74 apps/offer/conditions.py:158
 #, python-format
-msgid "Buy %(delta)d more product from %(range)s"
-msgid_plural "Buy %(delta)d more products from %(range)s"
+msgid "Buy %(delta)d more service from %(range)s"
+msgid_plural "Buy %(delta)d more services from %(range)s"
 msgstr[0] "Koupit další %(delta)d produkt z %(range)s"
 msgstr[1] "Koupit dalších %(delta)d produktů z %(range)s"
 msgstr[2] "Koupit dalších %(delta)d produktů z %(range)s"
@@ -4294,7 +4294,7 @@ msgid "Order Line"
 msgstr "Řádek objednávky"
 
 #: apps/order/abstract_models.py:572
-msgid "<missing product>"
+msgid "<missing service>"
 msgstr "<produkt chybí>"
 
 #: apps/order/abstract_models.py:573
@@ -4435,8 +4435,8 @@ msgstr "Druhy dodání za zvolené množství"
 
 #: apps/order/abstract_models.py:1033
 #, python-format
-msgid "%(product)s - quantity %(qty)d"
-msgstr "%(product)s - množství %(qty)d"
+msgid "%(service)s - quantity %(qty)d"
+msgstr "%(service)s - množství %(qty)d"
 
 #: apps/order/abstract_models.py:1053
 msgid "Shipping Event Type"
@@ -4541,7 +4541,7 @@ msgstr "Smluvní partneři"
 #: templates/oscar/basket/partials/basket_content.html:31
 #: templates/oscar/basket/partials/basket_content.html:92
 #: templates/oscar/basket/partials/basket_content.html:183
-#: templates/oscar/dashboard/catalogue/product_update.html:233
+#: templates/oscar/dashboard/catalogue/service_update.html:233
 msgid "Price"
 msgstr "Cena"
 
@@ -4797,7 +4797,7 @@ msgid "American Express cards use a 4 digit security code"
 msgstr "Karty American Express používají 4-mistný bezpečnostní kód"
 
 #: apps/search/apps.py:11 apps/search/forms.py:40 apps/search/forms.py:42
-#: templates/oscar/dashboard/catalogue/product_list.html:64
+#: templates/oscar/dashboard/catalogue/service_list.html:64
 #: templates/oscar/dashboard/offers/offer_list.html:31
 #: templates/oscar/dashboard/orders/order_list.html:30
 #: templates/oscar/dashboard/orders/order_list.html:51
@@ -4885,7 +4885,7 @@ msgid "Default Weight"
 msgstr "Výchozí váha"
 
 #: apps/shipping/abstract_models.py:107
-msgid "Default product weight in kg when no weight attribute is defined"
+msgid "Default service weight in kg when no weight attribute is defined"
 msgstr "Výchozí váha produku v kilogramech pokud není definován žádný atribut váhy"
 
 #: apps/shipping/abstract_models.py:113
@@ -5237,7 +5237,7 @@ msgid "This is not a valid local or international phone format."
 msgstr "Toto není platný lokální, nebo mezinárodní formát telefonního čísla."
 
 #: management/commands/oscar_send_alerts.py:16
-msgid "Check for products that are back in stock and send out alerts"
+msgid "Check for services that are back in stock and send out alerts"
 msgstr "Zkontroluje produkty které jsou znovu skladem a pošle upozornění"
 
 #: templates/flatpages/default.html:11
@@ -5255,7 +5255,7 @@ msgstr "Upravit tuto stránku"
 #: templates/oscar/customer/order/order_list.html:22
 #: templates/oscar/customer/registration.html:13
 #: templates/oscar/customer/wishlists/wishlists_delete.html:8
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:8
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:8
 #: templates/oscar/customer/wishlists/wishlists_detail.html:10
 #: templates/oscar/customer/wishlists/wishlists_form.html:8
 #: templates/oscar/dashboard/catalogue/category_list.html:35
@@ -5404,9 +5404,9 @@ msgstr "Aktualizovat"
 #: templates/oscar/basket/partials/basket_content.html:205
 #: templates/oscar/basket/partials/basket_totals.html:51
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:45
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_detail.html:85
-#: templates/oscar/dashboard/ranges/range_product_list.html:112
+#: templates/oscar/dashboard/ranges/range_service_list.html:112
 msgid "Remove"
 msgstr "Odstranit"
 
@@ -5426,7 +5426,7 @@ msgstr "Mám kód slevového kupónu ..."
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:13
 #: templates/oscar/catalogue/partials/add_to_basket_form_compact.html:12
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:35
-#: templates/oscar/dashboard/catalogue/product_update.html:277
+#: templates/oscar/dashboard/catalogue/service_update.html:277
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:91
 msgid "Adding..."
 msgstr "Přidávám..."
@@ -5444,16 +5444,16 @@ msgstr "Přidat slevový kupón"
 #: templates/oscar/customer/profile/profile_delete.html:18
 #: templates/oscar/customer/registration.html:32
 #: templates/oscar/customer/wishlists/wishlists_delete.html:34
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_form.html:43
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:141
 #: templates/oscar/dashboard/catalogue/category_delete.html:36
 #: templates/oscar/dashboard/catalogue/category_form.html:106
 #: templates/oscar/dashboard/catalogue/option_form.html:89
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:35
-#: templates/oscar/dashboard/catalogue/product_class_form.html:142
-#: templates/oscar/dashboard/catalogue/product_delete.html:56
-#: templates/oscar/dashboard/catalogue/product_update.html:374
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:35
+#: templates/oscar/dashboard/catalogue/service_class_form.html:142
+#: templates/oscar/dashboard/catalogue/service_delete.html:56
+#: templates/oscar/dashboard/catalogue/service_update.html:374
 #: templates/oscar/dashboard/comms/detail.html:102
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/orders/shippingaddress_form.html:32
@@ -5465,7 +5465,7 @@ msgstr "Přidat slevový kupón"
 #: templates/oscar/dashboard/ranges/range_delete.html:30
 #: templates/oscar/dashboard/ranges/range_form.html:36
 #: templates/oscar/dashboard/ranges/range_form.html:39
-#: templates/oscar/dashboard/ranges/range_product_list.html:137
+#: templates/oscar/dashboard/ranges/range_service_list.html:137
 #: templates/oscar/dashboard/reviews/review_delete.html:47
 #: templates/oscar/dashboard/reviews/review_update.html:77
 #: templates/oscar/dashboard/shipping/weight_band_delete.html:45
@@ -5491,11 +5491,11 @@ msgstr "nebo"
 #: templates/oscar/customer/profile/profile_delete.html:18
 #: templates/oscar/customer/registration.html:32
 #: templates/oscar/customer/wishlists/wishlists_delete.html:34
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_form.html:43
 #: templates/oscar/dashboard/catalogue/category_delete.html:36
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:35
-#: templates/oscar/dashboard/catalogue/product_delete.html:57
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:35
+#: templates/oscar/dashboard/catalogue/service_delete.html:57
 #: templates/oscar/dashboard/comms/detail.html:102
 #: templates/oscar/dashboard/offers/offer_delete.html:31
 #: templates/oscar/dashboard/offers/step_form.html:75
@@ -5671,10 +5671,10 @@ msgid "<strong>0</strong> results."
 msgstr "<strong>0</strong> výsledků."
 
 #: templates/oscar/catalogue/browse.html:106
-#: templates/oscar/dashboard/catalogue/product_list.html:90
-#: templates/oscar/dashboard/ranges/range_product_list.html:129
+#: templates/oscar/dashboard/catalogue/service_list.html:90
+#: templates/oscar/dashboard/ranges/range_service_list.html:129
 #: templates/oscar/offer/detail.html:62 templates/oscar/offer/range.html:40
-msgid "No products found."
+msgid "No services found."
 msgstr "Žádné produkty nebyly nalezeny."
 
 #: templates/oscar/catalogue/category.html:17
@@ -5682,7 +5682,7 @@ msgid "Edit this category"
 msgstr "Změnit tuto kategorii"
 
 #: templates/oscar/catalogue/detail.html:66
-msgid "Edit this product"
+msgid "Edit this service"
 msgstr "Upravit tento produkt"
 
 #: templates/oscar/catalogue/detail.html:87
@@ -5698,8 +5698,8 @@ msgid "Product Information"
 msgstr "Informace o produktu"
 
 #: templates/oscar/catalogue/detail.html:121
-#: templates/oscar/dashboard/catalogue/product_class_form.html:14
-#: templates/oscar/dashboard/catalogue/product_class_list.html:8
+#: templates/oscar/dashboard/catalogue/service_class_form.html:14
+#: templates/oscar/dashboard/catalogue/service_class_list.html:8
 #: templates/oscar/dashboard/orders/line_detail.html:45
 msgid "Product Type"
 msgstr "Typ produktu"
@@ -5727,13 +5727,13 @@ msgstr "Uživatelské recenze"
 #: templates/oscar/catalogue/detail.html:171
 #, python-format
 msgid ""
-"This product does not have any reviews yet -\n"
+"This service does not have any reviews yet -\n"
 "                            <a href=\"%(add_review_url)s#addreview\">be the first to write one</a>.\n"
 "                        "
 msgstr "Tento produkt zatím nemá žádné recenze - <a href=\"%(add_review_url)s#addreview\">buďte první</a>."
 
 #: templates/oscar/catalogue/detail.html:175
-msgid "This product does not have any reviews yet"
+msgid "This service does not have any reviews yet"
 msgstr "Tento produkt zatím nemá žádné recenze."
 
 #: templates/oscar/catalogue/detail.html:194
@@ -5747,11 +5747,11 @@ msgid "Add to basket"
 msgstr "Vložit do košíku"
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:20
-msgid "You have an active stock alert for this product."
+msgid "You have an active stock alert for this service."
 msgstr "Pro tento produkt existuje aktivní upozornění o nízkých skladových zásobách."
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:24
-msgid "You can get an email alert when this product is back in stock."
+msgid "You can get an email alert when this service is back in stock."
 msgstr "Můžeme vám poslat email v momentě, kdy produkt opět bude skladem."
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:26
@@ -5760,7 +5760,7 @@ msgstr "Můžeme vám poslat email v momentě, kdy produkt opět bude skladem."
 #: templates/oscar/checkout/preview.html:35
 #: templates/oscar/checkout/shipping_methods.html:58
 #: templates/oscar/checkout/user_address_delete.html:29
-#: templates/oscar/dashboard/catalogue/product_list.html:39
+#: templates/oscar/dashboard/catalogue/service_list.html:39
 #: templates/oscar/dashboard/comms/detail.html:76
 #: templates/oscar/dashboard/offers/step_form.html:69
 #: templates/oscar/dashboard/orders/order_list.html:108
@@ -5799,13 +5799,13 @@ msgid ""
 msgstr ""
 
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:45
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
-#: templates/oscar/dashboard/ranges/range_product_list.html:90
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
+#: templates/oscar/dashboard/ranges/range_service_list.html:90
 msgid "Removing..."
 msgstr "Odstraňuji..."
 
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:50
-msgid "Please login to add products to a wish list."
+msgid "Please login to add services to a wish list."
 msgstr "Pro přidání produktů do seznamu přání je nutné se nejdřív přihlásit."
 
 #: templates/oscar/catalogue/partials/gallery.html:22
@@ -5843,14 +5843,14 @@ msgstr "Byla tato recenze přínosná?"
 #: templates/oscar/catalogue/partials/review.html:40
 #: templates/oscar/dashboard/offers/offer_list.html:67
 #: templates/oscar/dashboard/ranges/range_list.html:55
-#: templates/oscar/dashboard/ranges/range_product_list.html:110
+#: templates/oscar/dashboard/ranges/range_service_list.html:110
 msgid "Yes"
 msgstr "Ano"
 
 #: templates/oscar/catalogue/partials/review.html:45
 #: templates/oscar/dashboard/offers/offer_list.html:69
 #: templates/oscar/dashboard/ranges/range_list.html:57
-#: templates/oscar/dashboard/ranges/range_product_list.html:110
+#: templates/oscar/dashboard/ranges/range_service_list.html:110
 msgid "No"
 msgstr "Ne"
 
@@ -5904,7 +5904,7 @@ msgid "Customer reviews"
 msgstr "Zákaznické recenze"
 
 #: templates/oscar/catalogue/reviews/review_form.html:8
-msgid "Leave a product review"
+msgid "Leave a service review"
 msgstr "Napsat recenezi"
 
 #: templates/oscar/catalogue/reviews/review_form.html:47
@@ -5914,9 +5914,9 @@ msgstr "Napsat recenezi"
 #: templates/oscar/customer/wishlists/wishlists_form.html:42
 #: templates/oscar/dashboard/catalogue/category_form.html:107
 #: templates/oscar/dashboard/catalogue/category_form.html:110
-#: templates/oscar/dashboard/catalogue/product_update.html:376
-#: templates/oscar/dashboard/catalogue/product_update.html:380
-#: templates/oscar/dashboard/catalogue/product_update.html:383
+#: templates/oscar/dashboard/catalogue/service_update.html:376
+#: templates/oscar/dashboard/catalogue/service_update.html:380
+#: templates/oscar/dashboard/catalogue/service_update.html:383
 #: templates/oscar/dashboard/comms/detail.html:101
 #: templates/oscar/dashboard/offers/restrictions_form.html:13
 #: templates/oscar/dashboard/offers/step_form.html:71
@@ -5943,7 +5943,7 @@ msgid "Go"
 msgstr "Jít"
 
 #: templates/oscar/catalogue/reviews/review_list.html:54
-msgid "This product does not have any reviews yet."
+msgid "This service does not have any reviews yet."
 msgstr "Tento produkt zatím nemá žádné recenze"
 
 #: templates/oscar/checkout/checkout.html:35
@@ -6083,11 +6083,11 @@ msgstr "Doručit na tuto adresu"
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:23
 #: templates/oscar/dashboard/catalogue/option_delete.html:61
 #: templates/oscar/dashboard/catalogue/option_row_actions.html:13
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:34
-#: templates/oscar/dashboard/catalogue/product_class_list.html:50
-#: templates/oscar/dashboard/catalogue/product_delete.html:55
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:16
-#: templates/oscar/dashboard/catalogue/product_update.html:300
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:34
+#: templates/oscar/dashboard/catalogue/service_class_list.html:50
+#: templates/oscar/dashboard/catalogue/service_delete.html:55
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:16
+#: templates/oscar/dashboard/catalogue/service_update.html:300
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/offers/offer_list.html:102
 #: templates/oscar/dashboard/orders/order_detail.html:703
@@ -6215,8 +6215,8 @@ msgstr "Ano!"
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:143
 #: templates/oscar/dashboard/catalogue/category_form.html:111
 #: templates/oscar/dashboard/catalogue/option_form.html:91
-#: templates/oscar/dashboard/catalogue/product_class_form.html:144
-#: templates/oscar/dashboard/catalogue/product_update.html:384
+#: templates/oscar/dashboard/catalogue/service_class_form.html:144
+#: templates/oscar/dashboard/catalogue/service_update.html:384
 #: templates/oscar/dashboard/comms/detail.html:101
 #: templates/oscar/dashboard/pages/update.html:33
 #: templates/oscar/dashboard/partials/form.html:10
@@ -6290,8 +6290,8 @@ msgid "Your email address has changed at %(site_name)s."
 msgstr "Vaše emailová na stránkách %(site_name)s adresa byla změněna"
 
 #: templates/oscar/communication/emails/commtype_order_placed_body.html:7
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:10
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:10
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:1
 msgid "Hello,"
 msgstr "Dobrý den,"
 
@@ -6416,62 +6416,62 @@ msgstr "Prosím, přejděte na následující stránku a zvolte si nové heslo:"
 msgid "Resetting your password at %(site_name)s."
 msgstr "Reset vašeho hesla na webu %(site_name)s."
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:8
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:8
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:1
 #, python-format
 msgid "Dear %(name)s,"
 msgstr "Vážený %(name)s,"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:16
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:16
 #, python-format
 msgid ""
 "\n"
-"            We are happy to inform you that our product '%(title)s' is back in stock:\n"
+"            We are happy to inform you that our service '%(title)s' is back in stock:\n"
 "            %(url)s\n"
 "        "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:24
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:24
 msgid ""
 "\n"
 "                Beware that the amount of items in stock is limited. Be quick or someone might get there first.\n"
 "            "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:31
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:31
 msgid ""
 "\n"
 "            With this email we have disabled your alert automatically and you will not\n"
-"            receive any further email regarding this product.\n"
+"            receive any further email regarding this service.\n"
 "        "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:3
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:3
 #, python-format
 msgid ""
 "\n"
-"We are happy to inform you that our product '%(title)s' is back in stock:\n"
+"We are happy to inform you that our service '%(title)s' is back in stock:\n"
 "%(url)s\n"
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:6
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:6
 msgid ""
 "\n"
 "Beware that the amount of items in stock is limited. Be quick or someone might get there first.\n"
 msgstr "\nVezměte prosím na vědomí, že objem skladových zásob je omezen.\n"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:8
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:8
 #, python-format
 msgid ""
 "\n"
 "With this email we have disabled your alert automatically and you will not\n"
-"receive any further email regarding this product.\n"
+"receive any further email regarding this service.\n"
 "\n"
 "Thanks for your interest,\n"
 "The %(site_name)s Team\n"
 msgstr "\nSpolečně s tímto emailem bylo automaticky deaktivováno vaše upozornění a nebudete tedy již další upozornění ohledně tohoto produktu dostávat.\n\nDěkujeme za váš zájem,\ntým %(site_name)s\n"
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_body.html:8
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_body.html:8
 #, python-format
 msgid ""
 "\n"
@@ -6491,7 +6491,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_body.txt:5
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_body.txt:5
 #, python-format
 msgid ""
 "\n"
@@ -6508,11 +6508,11 @@ msgid ""
 "The %(site)s Team\n"
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_subject.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_subject.txt:1
 msgid "Confirmation required for stock alert"
 msgstr "Potvrďte upozornění ohledně skladových zásob"
 
-#: templates/oscar/communication/emails/commtype_product_alert_subject.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_subject.txt:1
 #, python-format
 msgid "%(title)s is back in stock"
 msgstr ""
@@ -6573,8 +6573,8 @@ msgstr "Archivuji..."
 #: templates/oscar/dashboard/catalogue/attribute_option_group_delete.html:62
 #: templates/oscar/dashboard/catalogue/category_delete.html:35
 #: templates/oscar/dashboard/catalogue/option_delete.html:60
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:34
-#: templates/oscar/dashboard/catalogue/product_delete.html:55
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:34
+#: templates/oscar/dashboard/catalogue/service_delete.html:55
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/pages/delete.html:36
 #: templates/oscar/dashboard/partners/partner_delete.html:30
@@ -6605,8 +6605,8 @@ msgid "Default billing address"
 msgstr "Výchozí fakturační adresa"
 
 #: templates/oscar/customer/address/address_list.html:30
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:10
-#: templates/oscar/dashboard/catalogue/product_update.html:297
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:10
+#: templates/oscar/dashboard/catalogue/service_update.html:297
 #: templates/oscar/dashboard/comms/detail.html:33
 #: templates/oscar/dashboard/comms/list.html:44
 #: templates/oscar/dashboard/offers/offer_detail.html:62
@@ -6647,7 +6647,7 @@ msgid "There are no addresses in your address book."
 msgstr "Seznam adres je prázdný."
 
 #: templates/oscar/customer/alerts/alert_list.html:6
-msgid "You do not have any active alerts for out-of-stock products."
+msgid "You do not have any active alerts for out-of-stock services."
 msgstr "Nemáte žádná aktivní upozornění na produkty, které nejsou skladem."
 
 #: templates/oscar/customer/alerts/alert_list.html:33
@@ -6656,8 +6656,8 @@ msgstr "Nemáte žádná aktivní upozornění na produkty, které nejsou sklade
 #: templates/oscar/dashboard/catalogue/category_form.html:104
 #: templates/oscar/dashboard/catalogue/option_delete.html:58
 #: templates/oscar/dashboard/catalogue/option_form.html:87
-#: templates/oscar/dashboard/catalogue/product_class_form.html:140
-#: templates/oscar/dashboard/catalogue/product_update.html:372
+#: templates/oscar/dashboard/catalogue/service_class_form.html:140
+#: templates/oscar/dashboard/catalogue/service_update.html:372
 msgid "Cancel"
 msgstr "Storno"
 
@@ -6709,7 +6709,7 @@ msgstr "Košík celkem (vč. DPH)"
 #: templates/oscar/customer/baseaccountpage.html:18
 #: templates/oscar/customer/order/order_list.html:25
 #: templates/oscar/customer/wishlists/wishlists_delete.html:11
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:11
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:11
 #: templates/oscar/customer/wishlists/wishlists_detail.html:13
 #: templates/oscar/customer/wishlists/wishlists_form.html:11
 #: templates/oscar/dashboard/layout.html:43
@@ -6718,7 +6718,7 @@ msgstr "Košík celkem (vč. DPH)"
 msgid "Account"
 msgstr "Účet"
 
-#: templates/oscar/customer/history/recently_viewed_products.html:7
+#: templates/oscar/customer/history/recently_viewed_services.html:7
 msgid "Products you recently viewed"
 msgstr "Nedávno zobrazené produkty"
 
@@ -6880,8 +6880,8 @@ msgstr "\nTato akce smaže veškeré vaše informace z tohoto webu. Akce je nevr
 
 #: templates/oscar/customer/wishlists/wishlists_delete.html:19
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:111
-#: templates/oscar/dashboard/catalogue/product_class_form.html:105
-#: templates/oscar/dashboard/catalogue/product_update.html:234
+#: templates/oscar/dashboard/catalogue/service_class_form.html:105
+#: templates/oscar/dashboard/catalogue/service_update.html:234
 #: templates/oscar/dashboard/offers/offer_delete.html:16
 #: templates/oscar/dashboard/partners/partner_delete.html:16
 #: templates/oscar/dashboard/ranges/range_delete.html:16
@@ -6898,17 +6898,17 @@ msgid ""
 "            "
 msgstr "\nOpravdu chcete smazat %(name)s?"
 
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:19
-msgid "Remove product"
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:19
+msgid "Remove service"
 msgstr "Odstranit produkt"
 
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:28
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:28
 #, python-format
 msgid ""
 "\n"
-"                Are you sure you want to delete %(product_name)s from wish list %(wishlist_name)s?\n"
+"                Are you sure you want to delete %(service_name)s from wish list %(wishlist_name)s?\n"
 "            "
-msgstr "\nOpravdu chcete smazat %(product_name)s ze seznamu přání %(wishlist_name)s?"
+msgstr "\nOpravdu chcete smazat %(service_name)s ze seznamu přání %(wishlist_name)s?"
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:35
 #: templates/oscar/customer/wishlists/wishlists_list.html:11
@@ -6916,7 +6916,7 @@ msgid "Action"
 msgstr "Akce"
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:75
-msgid "View product"
+msgid "View service"
 msgstr "Zobrazit produkt"
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:91
@@ -6952,7 +6952,7 @@ msgid ""
 msgstr "\nPo vytvoření seznamu přání bude produkt <strong>%(title)s</strong> ihned přidán."
 
 #: templates/oscar/customer/wishlists/wishlists_list.html:10
-msgid "Number of products"
+msgid "Number of services"
 msgstr "Počet produktů"
 
 #: templates/oscar/customer/wishlists/wishlists_list.html:23
@@ -6997,8 +6997,8 @@ msgstr ""
 
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:50
 #: templates/oscar/dashboard/catalogue/category_form.html:37
-#: templates/oscar/dashboard/catalogue/product_class_form.html:32
-#: templates/oscar/dashboard/catalogue/product_update.html:58
+#: templates/oscar/dashboard/catalogue/service_class_form.html:32
+#: templates/oscar/dashboard/catalogue/service_update.html:58
 msgid "Sections"
 msgstr "Sekce"
 
@@ -7052,20 +7052,20 @@ msgstr ""
 
 #: templates/oscar/dashboard/catalogue/category_form.html:48
 #: templates/oscar/dashboard/catalogue/category_form.html:82
-#: templates/oscar/dashboard/catalogue/product_update.html:117
-#: templates/oscar/dashboard/catalogue/product_update.html:349
+#: templates/oscar/dashboard/catalogue/service_update.html:117
+#: templates/oscar/dashboard/catalogue/service_update.html:349
 msgid "Search engine optimisation"
 msgstr ""
 
 #: templates/oscar/dashboard/catalogue/category_form.html:108
-#: templates/oscar/dashboard/catalogue/product_update.html:381
+#: templates/oscar/dashboard/catalogue/service_update.html:381
 msgid "Save and continue editing"
 msgstr "Uložit a pokračovat v úpravách"
 
 #: templates/oscar/dashboard/catalogue/category_form.html:115
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:20
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:13
-#: templates/oscar/dashboard/catalogue/product_update.html:388
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:13
+#: templates/oscar/dashboard/catalogue/service_update.html:388
 #: templates/oscar/dashboard/pages/index.html:63
 #: templates/oscar/dashboard/pages/messages/saved.html:9
 #: templates/oscar/dashboard/ranges/range_list.html:79
@@ -7097,15 +7097,15 @@ msgstr "Přidat podřazenou kategorii"
 msgid "Edit children"
 msgstr "Upravit potomky"
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:10
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:10
 #, python-format
 msgid ""
 "\n"
-"                    Created product variant '%(name)s'.\n"
+"                    Created service variant '%(name)s'.\n"
 "                "
 msgstr "\n                    Vytvořena varianta produktu '%(name)s'.\n                "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:14
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:14
 #, python-format
 msgid ""
 "\n"
@@ -7113,15 +7113,15 @@ msgid ""
 "                "
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:20
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:20
 #, python-format
 msgid ""
 "\n"
-"                    Updated product variant '%(name)s'.\n"
+"                    Updated service variant '%(name)s'.\n"
 "                "
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:24
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:24
 #, python-format
 msgid ""
 "\n"
@@ -7129,29 +7129,29 @@ msgid ""
 "                "
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:33
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:33
 #, python-format
 msgid ""
 "\n"
-"                Created product '%(name)s'.\n"
+"                Created service '%(name)s'.\n"
 "            "
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:37
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:37
 #, python-format
 msgid ""
 "\n"
-"                Updated product '%(name)s'.\n"
+"                Updated service '%(name)s'.\n"
 "            "
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:48
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:48
 #: templates/oscar/dashboard/pages/messages/saved.html:10
 #: templates/oscar/dashboard/ranges/messages/range_saved.html:6
 msgid "Edit again"
 msgstr "Znovu upravit"
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:49
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:49
 msgid "View it on the site"
 msgstr "Zobrazit ho na stránkách"
 
@@ -7194,90 +7194,90 @@ msgstr ""
 msgid "Edit Option"
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:11
-msgid "Delete product type?"
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:11
+msgid "Delete service type?"
 msgstr "Smazat tento typ produktu?"
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:22
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:22
 msgid ""
-"Please make sure all products are assigned to another type before deletion."
+"Please make sure all services are assigned to another type before deletion."
 msgstr "Ujistěte se prosím, že k tomuto typu produktů již nejsou přiřazeny žádné produkty předtím, než ho smažete."
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:25
-msgid "Delete product type"
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:25
+msgid "Delete service type"
 msgstr "Smazat typ produktu"
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:31
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:31
 #, python-format
-msgid "Delete product type <strong>%(name)s</strong> - are you sure?"
+msgid "Delete service type <strong>%(name)s</strong> - are you sure?"
 msgstr "Jste si jistý(á), že chcete smazat typ produktů <strong>%(name)s</strong>?"
 
-#: templates/oscar/dashboard/catalogue/product_class_form.html:5
-msgid "Create product type"
+#: templates/oscar/dashboard/catalogue/service_class_form.html:5
+msgid "Create service type"
 msgstr "Vytvořit typ produktů"
 
-#: templates/oscar/dashboard/catalogue/product_class_form.html:38
-#: templates/oscar/dashboard/catalogue/product_class_form.html:58
+#: templates/oscar/dashboard/catalogue/service_class_form.html:38
+#: templates/oscar/dashboard/catalogue/service_class_form.html:58
 msgid "Product Class details"
 msgstr "Detaily produktové třídy"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:16
-msgid "Create new product type"
+#: templates/oscar/dashboard/catalogue/service_class_list.html:16
+msgid "Create new service type"
 msgstr "Vytvořit nový typ produktů"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:17
+#: templates/oscar/dashboard/catalogue/service_class_list.html:17
 msgid "Product types"
 msgstr "Typy produktů"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:28
+#: templates/oscar/dashboard/catalogue/service_class_list.html:28
 msgid "Requires shipping"
 msgstr "Vyžaduje dopravu"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:29
+#: templates/oscar/dashboard/catalogue/service_class_list.html:29
 msgid "Track stock?"
 msgstr "Hlídat skladové zásoby?"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:47
-msgid "Edit product type"
+#: templates/oscar/dashboard/catalogue/service_class_list.html:47
+msgid "Edit service type"
 msgstr "Upravit typ produktů"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:61
-msgid "There are no product types."
+#: templates/oscar/dashboard/catalogue/service_class_list.html:61
+msgid "There are no service types."
 msgstr "Zatím žádné typy produktů."
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:33
+#: templates/oscar/dashboard/catalogue/service_delete.html:33
 #, python-format
 msgid ""
 "\n"
-"                    Delete product variant <strong>%(title)s</strong> - are you sure?\n"
+"                    Delete service variant <strong>%(title)s</strong> - are you sure?\n"
 "                "
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:37
+#: templates/oscar/dashboard/catalogue/service_delete.html:37
 #, python-format
 msgid ""
 "\n"
-"                    Delete product <strong>%(title)s</strong> - are you sure?\n"
+"                    Delete service <strong>%(title)s</strong> - are you sure?\n"
 "                "
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:45
-msgid "This will also delete the following child products:"
+#: templates/oscar/dashboard/catalogue/service_delete.html:45
+msgid "This will also delete the following child services:"
 msgstr "Toto také smaže následující zděděné produkty:"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:34
-msgid "Create new product"
+#: templates/oscar/dashboard/catalogue/service_list.html:34
+msgid "Create new service"
 msgstr "Vytvořit nový produkt"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:40
+#: templates/oscar/dashboard/catalogue/service_list.html:40
 msgid "New Product"
 msgstr "Nový produkt"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:48
+#: templates/oscar/dashboard/catalogue/service_list.html:48
 msgid "Search Products"
 msgstr "Hledat produkty"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:64
+#: templates/oscar/dashboard/catalogue/service_list.html:64
 #: templates/oscar/dashboard/offers/offer_list.html:31
 #: templates/oscar/dashboard/orders/order_list.html:73
 #: templates/oscar/dashboard/pages/index.html:36
@@ -7290,86 +7290,86 @@ msgstr "Hledat produkty"
 msgid "Searching..."
 msgstr "Vyhledávám..."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:43
+#: templates/oscar/dashboard/catalogue/service_update.html:43
 #, python-format
 msgid ""
 "\n"
-"                            You are currently editing a product variant of\n"
+"                            You are currently editing a service variant of\n"
 "                            <a href=\"%(parent_url)s\">%(title)s</a>.\n"
 "                        "
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_update.html:72
-#: templates/oscar/dashboard/catalogue/product_update.html:132
+#: templates/oscar/dashboard/catalogue/service_update.html:72
+#: templates/oscar/dashboard/catalogue/service_update.html:132
 #: templates/oscar/dashboard/orders/line_detail.html:31
 msgid "Product details"
 msgstr "Detaily produktu"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:91
+#: templates/oscar/dashboard/catalogue/service_update.html:91
 msgid "Images"
 msgstr "Obrázky"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:97
-#: templates/oscar/dashboard/catalogue/product_update.html:220
+#: templates/oscar/dashboard/catalogue/service_update.html:97
+#: templates/oscar/dashboard/catalogue/service_update.html:220
 msgid "Stock and pricing"
 msgstr "Zásoby a ceny"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:111
+#: templates/oscar/dashboard/catalogue/service_update.html:111
 msgid "Upselling"
 msgstr "Podpora prodeje"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:177
+#: templates/oscar/dashboard/catalogue/service_update.html:177
 msgid "Product Type:"
 msgstr "Typ produktů:"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:198
+#: templates/oscar/dashboard/catalogue/service_update.html:198
 msgid "Upload, change or remove images"
 msgstr "Nahrát, upravit nebo odstranit obrázky"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:209
+#: templates/oscar/dashboard/catalogue/service_update.html:209
 msgid ""
 "Drag images to re-order them. Space for additional images will appear when "
 "images are added."
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_update.html:226
+#: templates/oscar/dashboard/catalogue/service_update.html:226
 msgid "SKU"
 msgstr "SKU"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:228
+#: templates/oscar/dashboard/catalogue/service_update.html:228
 msgid "Num in stock"
 msgstr "Počet skladem"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:229
+#: templates/oscar/dashboard/catalogue/service_update.html:229
 msgid "Num allocated"
 msgstr "ks vyhrazeno"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:230
+#: templates/oscar/dashboard/catalogue/service_update.html:230
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:49
 msgid "Low stock threshold"
 msgstr "Limit nízkého stavu"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:278
+#: templates/oscar/dashboard/catalogue/service_update.html:278
 msgid "Add variant"
 msgstr "Přidat variantu"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:309
-msgid "This product does not have any variants."
+#: templates/oscar/dashboard/catalogue/service_update.html:309
+msgid "This service does not have any variants."
 msgstr "Tento produkt nemá žádné varianty."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:311
-msgid "One can't add variants to this product at this point."
+#: templates/oscar/dashboard/catalogue/service_update.html:311
+msgid "One can't add variants to this service at this point."
 msgstr "V tuto chvíli nemůžete přidat varianty tohoto produktu."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:313
-msgid "Please save the product before trying to add variants."
+#: templates/oscar/dashboard/catalogue/service_update.html:313
+msgid "Please save the service before trying to add variants."
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_update.html:315
-msgid "This is likely because this product still has stock records."
+#: templates/oscar/dashboard/catalogue/service_update.html:315
+msgid "This is likely because this service still has stock records."
 msgstr "Je to pravděpodobně způsobeno tím, že tento produkt má stále skladové záznamy."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:377
+#: templates/oscar/dashboard/catalogue/service_update.html:377
 msgid "Save and add another variant"
 msgstr "Uložit a přidat další variantu"
 
@@ -7534,7 +7534,7 @@ msgid "Catalogue and stock"
 msgstr "Katalog a zásoby"
 
 #: templates/oscar/dashboard/index.html:147
-msgid "Total products"
+msgid "Total services"
 msgstr "Produkty celkem"
 
 #: templates/oscar/dashboard/index.html:151
@@ -7914,7 +7914,7 @@ msgid "with amount"
 msgstr "s množstvím"
 
 #: templates/oscar/dashboard/orders/order_detail.html:350
-#: templates/oscar/dashboard/ranges/range_product_list.html:48
+#: templates/oscar/dashboard/ranges/range_service_list.html:48
 #: templates/oscar/dashboard/users/table.html:21
 msgid "Go!"
 msgstr "Pokračovat!"
@@ -8156,8 +8156,8 @@ msgstr ""
 msgid "next"
 msgstr "následující"
 
-#: templates/oscar/dashboard/partials/product_images.html:13
-#: templates/oscar/dashboard/ranges/range_product_list.html:114
+#: templates/oscar/dashboard/partials/service_images.html:13
+#: templates/oscar/dashboard/ranges/range_service_list.html:114
 msgctxt "Change the sequence order"
 msgid "Re-order"
 msgstr "Znovu objednat"
@@ -8270,63 +8270,63 @@ msgstr "Propojit uživatele"
 msgid "No users found."
 msgstr "Žádní uživatelé nebyli nalezeni."
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:2
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:2
 #, python-format
 msgid ""
 "\n"
 "    <p>File <strong>%(filename)s</strong> processed.</p>\n"
 msgstr "\n    <p>Soubor <strong>%(filename)s</strong> zpracován.</p>\n"
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:9
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:9
 #, python-format
 msgid ""
 "\n"
-"                <strong>%(n)s</strong> product added\n"
+"                <strong>%(n)s</strong> service added\n"
 "            "
 msgid_plural ""
 "\n"
-"                <strong>%(n)s</strong> products added\n"
+"                <strong>%(n)s</strong> services added\n"
 "            "
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:18
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:18
 #, python-format
 msgid ""
 "\n"
-"                There was <strong>%(n)s</strong> duplicate product in the file\n"
+"                There was <strong>%(n)s</strong> duplicate service in the file\n"
 "            "
 msgid_plural ""
 "\n"
-"                There were <strong>%(n)s</strong> duplicate products in the file\n"
+"                There were <strong>%(n)s</strong> duplicate services in the file\n"
 "            "
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:27
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:27
 #, python-format
 msgid ""
 "\n"
-"                There was <strong>%(n)s</strong> product in the file that couldn't be found in the catalogue\n"
+"                There was <strong>%(n)s</strong> service in the file that couldn't be found in the catalogue\n"
 "            "
 msgid_plural ""
 "\n"
-"                There were <strong>%(n)s</strong> products in the file that couldn't be found in the catalogue\n"
+"                There were <strong>%(n)s</strong> services in the file that couldn't be found in the catalogue\n"
 "            "
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:36
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:36
 msgid "Edit range metadata"
 msgstr "Upravit metadata výběru"
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:37
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:37
 msgid "Return to ranges homepage"
 msgstr "Zpět na hlavní stránku výběrů"
 
@@ -8338,7 +8338,7 @@ msgid ""
 msgstr "\n<p> Výběr <strong>%(name)s</strong> uložen.</p>\n"
 
 #: templates/oscar/dashboard/ranges/messages/range_saved.html:7
-msgid "Edit included products"
+msgid "Edit included services"
 msgstr "Upravit zahrnuté produkty"
 
 #: templates/oscar/dashboard/ranges/range_delete.html:7
@@ -8356,89 +8356,89 @@ msgid "Create new range"
 msgstr "Vytvořit nový výběr"
 
 #: templates/oscar/dashboard/ranges/range_form.html:38
-msgid "Save and edit products"
+msgid "Save and edit services"
 msgstr "Uložit a upravit produkty"
 
 #: templates/oscar/dashboard/ranges/range_list.html:32
-msgid "Num products"
+msgid "Num services"
 msgstr "Počet produktů"
 
 #: templates/oscar/dashboard/ranges/range_list.html:73
-msgid "Edit products"
+msgid "Edit services"
 msgstr "Upravit produkty"
 
 #: templates/oscar/dashboard/ranges/range_list.html:93
 msgid "No ranges found."
 msgstr "Nebyly nalezeny žádné výběry."
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:7
+#: templates/oscar/dashboard/ranges/range_service_list.html:7
 #, python-format
 msgid "Products in range '%(name)s'"
 msgstr "Produkty ve výběru '%(name)s'"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:28
-msgid "products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:28
+msgid "services"
 msgstr "produkty"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:34
+#: templates/oscar/dashboard/ranges/range_service_list.html:34
 msgid ""
-"This range contains all products. To add products manually, please unselect "
+"This range contains all services. To add services manually, please unselect "
 "the 'Includes All Products' option on the edit range page."
 msgstr "Tento výběr zahrnuje všechny produkty. Pro ruční zadání odškrtněte možnost 'Zahrnuje všechny produkty' na stránce editace výběru."
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:38
-msgid "Add products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:38
+msgid "Add services"
 msgstr "Přidat produkty"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:48
+#: templates/oscar/dashboard/ranges/range_service_list.html:48
 msgid "Running..."
 msgstr "Probíhá..."
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:55
+#: templates/oscar/dashboard/ranges/range_service_list.html:55
 msgid "Upload history"
 msgstr "Nahrát historii"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:60
+#: templates/oscar/dashboard/ranges/range_service_list.html:60
 msgid "Filename"
 msgstr "Soubor"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:61
-msgid "New products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:61
+msgid "New services"
 msgstr "Nové produkty"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:62
-msgid "Duplicate products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:62
+msgid "Duplicate services"
 msgstr "Duplicitní produkty"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:63
-msgid "Unknown products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:63
+msgid "Unknown services"
 msgstr "Neznámé produkty"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:64
+#: templates/oscar/dashboard/ranges/range_service_list.html:64
 msgid "Date uploaded"
 msgstr "Datum nahrání"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:87
+#: templates/oscar/dashboard/ranges/range_service_list.html:87
 msgid "Products in range"
 msgstr "Produkty ve výběru"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:90
-msgid "Remove selected products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:90
+msgid "Remove selected services"
 msgstr "Odstranit vybrané produkty"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:98
-msgid "Is product discountable?"
+#: templates/oscar/dashboard/ranges/range_service_list.html:98
+msgid "Is service discountable?"
 msgstr "Je produkt zlevnitelný?"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:127
+#: templates/oscar/dashboard/ranges/range_service_list.html:127
 msgid "Products in Range"
 msgstr "Produkty ve výběru"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:137
+#: templates/oscar/dashboard/ranges/range_service_list.html:137
 msgid "Edit range"
 msgstr "Upravit výběr"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:138
+#: templates/oscar/dashboard/ranges/range_service_list.html:138
 msgid "return to range list"
 msgstr "zpět na seznam výběrů"
 
@@ -8605,7 +8605,7 @@ msgid "Applies to countries"
 msgstr "Platí pro země"
 
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:45
-msgid "Default product weight (kg)"
+msgid "Default service weight (kg)"
 msgstr "Výchozí váha produktu (kg)"
 
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:53
@@ -8678,7 +8678,7 @@ msgid "Are you sure that you want to delete this alert?"
 msgstr "Určitě chcete smazat toto upozornění?"
 
 #: templates/oscar/dashboard/users/alerts/list.html:26
-msgid "Search product alerts"
+msgid "Search service alerts"
 msgstr "Vyhledávat produktová upozornění"
 
 #: templates/oscar/dashboard/users/alerts/list.html:33
@@ -8955,7 +8955,7 @@ msgid "There are no site offers at the moment."
 msgstr "V tuto chvíli nejsou žádné nabídky k dispozici."
 
 #: templates/oscar/offer/list.html:42
-msgid "Browse products in offer"
+msgid "Browse services in offer"
 msgstr "Procházet produkty v nabídce"
 
 #: templates/oscar/order/partials/basket_totals.html:60

@@ -5,13 +5,13 @@ from django.db.models import F
 from django.dispatch import receiver
 
 from oscar.apps.basket.signals import basket_addition
-from oscar.apps.catalogue.signals import product_viewed
+from oscar.apps.catalogue.signals import service_viewed
 from oscar.apps.order.signals import order_placed
 from oscar.apps.search.signals import user_search
 from oscar.core.loading import get_model
 
-ProductRecord = get_model('analytics', 'ProductRecord')
-UserProductView = get_model('analytics', 'UserProductView')
+ServiceRecord = get_model('analytics', 'ServiceRecord')
+UserServiceView = get_model('analytics', 'UserServiceView')
 UserRecord = get_model('analytics', 'UserRecord')
 UserSearch = get_model('analytics', 'UserSearch')
 
@@ -45,12 +45,12 @@ def _update_counter(model, field_name, filter_kwargs, increment=1):
             "IntegrityError when updating analytics counter for %s", model)
 
 
-def _record_products_in_order(order):
+def _record_services_in_order(order):
     # surely there's a way to do this without causing a query for each line?
     for line in order.lines.all():
         _update_counter(
-            ProductRecord, 'num_purchases',
-            {'product': line.product}, line.quantity)
+            ServiceRecord, 'num_purchases',
+            {'service': line.service}, line.quantity)
 
 
 def _record_user_order(user, order):
@@ -75,28 +75,28 @@ def _record_user_order(user, order):
 
 # Receivers
 
-@receiver(product_viewed)
-def receive_product_view(sender, product, user, **kwargs):
+@receiver(service_viewed)
+def receive_service_view(sender, service, user, **kwargs):
     if kwargs.get('raw', False):
         return
-    _update_counter(ProductRecord, 'num_views', {'product': product})
+    _update_counter(ServiceRecord, 'num_views', {'service': service})
     if user and user.is_authenticated:
-        _update_counter(UserRecord, 'num_product_views', {'user': user})
-        UserProductView.objects.create(product=product, user=user)
+        _update_counter(UserRecord, 'num_service_views', {'user': user})
+        UserServiceView.objects.create(service=service, user=user)
 
 
 @receiver(user_search)
-def receive_product_search(sender, query, user, **kwargs):
+def receive_service_search(sender, query, user, **kwargs):
     if user and user.is_authenticated and not kwargs.get('raw', False):
         UserSearch._default_manager.create(user=user, query=query)
 
 
 @receiver(basket_addition)
-def receive_basket_addition(sender, product, user, **kwargs):
+def receive_basket_addition(sender, service, user, **kwargs):
     if kwargs.get('raw', False):
         return
     _update_counter(
-        ProductRecord, 'num_basket_additions', {'product': product})
+        ServiceRecord, 'num_basket_additions', {'service': service})
     if user and user.is_authenticated:
         _update_counter(UserRecord, 'num_basket_additions', {'user': user})
 
@@ -105,6 +105,6 @@ def receive_basket_addition(sender, product, user, **kwargs):
 def receive_order_placed(sender, order, user, **kwargs):
     if kwargs.get('raw', False):
         return
-    _record_products_in_order(order)
+    _record_services_in_order(order)
     if user and user.is_authenticated:
         _record_user_order(user, order)

@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
                 ('date_created', models.DateTimeField(auto_now_add=True, verbose_name='Date created')),
                 ('date_updated', models.DateTimeField(auto_now=True, db_index=True, verbose_name='Date updated')),
                 ('partner', models.ForeignKey(verbose_name='Partner', related_name='stockrecords', to='partner.Partner', on_delete=models.CASCADE)),
-                ('product', models.ForeignKey(verbose_name='Product', related_name='stockrecords', to='catalogue.Product', on_delete=models.CASCADE)),
+                ('service', models.ForeignKey(verbose_name='Service', related_name='stockrecords', to='catalogue.Service', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name_plural': 'Stock records',

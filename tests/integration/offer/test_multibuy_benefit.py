@@ -6,7 +6,7 @@ from django.test import TestCase
 
 from oscar.apps.offer import models
 from oscar.apps.offer.utils import Applicator
-from oscar.test.basket import add_product, add_products
+from oscar.test.basket import add_service, add_services
 from oscar.test.factories import (
     BenefitFactory, ConditionalOfferFactory, ConditionFactory,
     RangeFactory, create_basket)
@@ -16,7 +16,7 @@ class TestAMultibuyDiscountAppliedWithCountCondition(TestCase):
 
     def setUp(self):
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         self.condition = models.CountCondition.objects.create(
             range=range,
             type=models.Condition.COUNT,
@@ -34,14 +34,14 @@ class TestAMultibuyDiscountAppliedWithCountCondition(TestCase):
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_matches_condition(self):
-        add_product(self.basket, D('12.00'), 3)
+        add_service(self.basket, D('12.00'), 3)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(D('12.00'), result.discount)
         self.assertEqual(3, self.basket.num_items_with_discount)
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_exceeds_condition(self):
-        add_products(self.basket, [
+        add_services(self.basket, [
             (D('4.00'), 4), (D('2.00'), 4)])
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(D('2.00'), result.discount)
@@ -49,12 +49,12 @@ class TestAMultibuyDiscountAppliedWithCountCondition(TestCase):
         self.assertEqual(5, self.basket.num_items_without_discount)
 
     def test_apply_offer_with_multibuy_benefit_and_count_condition(self):
-        rng = RangeFactory(includes_all_products=True)
+        rng = RangeFactory(includes_all_services=True)
         condition = ConditionFactory(range=rng, type=ConditionFactory._meta.model.COUNT, value=1)
         benefit = BenefitFactory(range=rng, type=BenefitFactory._meta.model.MULTIBUY, value=1)
         offer = ConditionalOfferFactory(condition=condition, benefit=benefit)
 
-        add_product(self.basket, D('100'), 5)
+        add_service(self.basket, D('100'), 5)
 
         applicator = Applicator()
         applicator.apply_offers(self.basket, [offer])
@@ -69,7 +69,7 @@ class TestAMultibuyDiscountAppliedWithAValueCondition(TestCase):
 
     def setUp(self):
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         self.condition = models.ValueCondition.objects.create(
             range=range,
             type=models.Condition.VALUE,
@@ -88,14 +88,14 @@ class TestAMultibuyDiscountAppliedWithAValueCondition(TestCase):
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_matches_condition(self):
-        add_product(self.basket, D('5.00'), 2)
+        add_service(self.basket, D('5.00'), 2)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(D('5.00'), result.discount)
         self.assertEqual(2, self.basket.num_items_with_discount)
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_exceeds_condition(self):
-        add_products(self.basket, [(D('4.00'), 2), (D('2.00'), 2)])
+        add_services(self.basket, [(D('4.00'), 2), (D('2.00'), 2)])
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(D('2.00'), result.discount)
         self.assertEqual(3, self.basket.num_items_with_discount)
@@ -106,7 +106,7 @@ class TestMultibuyValidation(TestCase):
 
     def setUp(self):
         self.range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         self.condition = models.CountCondition.objects.create(
             range=self.range,
             type=models.Condition.COUNT,

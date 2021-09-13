@@ -12,9 +12,9 @@
     </p>
 
     <p>
-        {% absolute_url site.domain alert.product.get_absolute_url as url %}
-        {% blocktrans with title=alert.product.get_title|safe url=url %}
-            We are happy to inform you that our product '{{ title }}' is back in stock:
+        {% absolute_url site.domain alert.service.get_absolute_url as url %}
+        {% blocktrans with title=alert.service.get_title|safe url=url %}
+            We are happy to inform you that our service '{{ title }}' is back in stock:
             {{ url }}
         {% endblocktrans %}
     </p>
@@ -30,7 +30,7 @@
     <p>
         {% blocktrans %}
             With this email we have disabled your alert automatically and you will not
-            receive any further email regarding this product.
+            receive any further email regarding this service.
         {% endblocktrans %}
     </p>
 {% endblock %}

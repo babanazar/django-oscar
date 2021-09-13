@@ -2,16 +2,16 @@ import unittest.mock as mock
 
 from django.test import TestCase
 
-from oscar.apps.catalogue.models import ProductClass
+from oscar.apps.catalogue.models import ServiceClass
 from oscar.apps.dashboard.catalogue.forms import StockRecordForm
 
 
 class StockRecordFormTextCase(TestCase):
     def test_stockrecord_form_has_all_fields_when_tracking_stock(self):
-        product_with_stock_tracking = ProductClass()
+        service_with_stock_tracking = ServiceClass()
         henk = mock.Mock(is_staff=True)
 
-        form = StockRecordForm(product_with_stock_tracking, henk)
+        form = StockRecordForm(service_with_stock_tracking, henk)
         form_field_names = [f.name for f in form.visible_fields()]
 
         self.assertIn(
@@ -24,10 +24,10 @@ class StockRecordFormTextCase(TestCase):
         )
 
     def test_stockrecord_form_has_less_fields_when_not_tracking_stock(self):
-        product_with_no_stock_tracking = ProductClass(track_stock=False)
+        service_with_no_stock_tracking = ServiceClass(track_stock=False)
         henk = mock.Mock(is_staff=True)
 
-        form = StockRecordForm(product_with_no_stock_tracking, henk)
+        form = StockRecordForm(service_with_no_stock_tracking, henk)
         form_field_names = [f.name for f in form.visible_fields()]
 
         self.assertNotIn(

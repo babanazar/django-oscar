@@ -11,8 +11,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='product',
+            model_name='service',
             name='is_public',
-            field=models.BooleanField(default=True, help_text='Show this product in search results and catalogue listings.', verbose_name='Is public'),
+            field=models.BooleanField(default=True, help_text='Show this service in search results and catalogue listings.', verbose_name='Is public'),
         ),
     ]

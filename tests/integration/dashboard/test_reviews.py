@@ -5,13 +5,13 @@ from django.utils import timezone
 
 from oscar.apps.dashboard.reviews import views
 from oscar.core.loading import get_model
-from oscar.test.factories.catalogue import ProductReviewFactory
+from oscar.test.factories.catalogue import ServiceReviewFactory
 from oscar.test.factories.customer import UserFactory
 
 now = timezone.now()
 
 
-ProductReview = get_model('reviews', 'ProductReview')
+ServiceReview = get_model('reviews', 'ServiceReview')
 
 keywords = [
     'aaaaa',
@@ -29,16 +29,16 @@ def reviews():
         user = UserFactory(
             first_name=keyword
         )
-        review = ProductReviewFactory(
+        review = ServiceReviewFactory(
             score=i % 5,
-            title='review title product %d %s' % (i, keyword),
-            body='review body product %d %s' % (i, keyword),
+            title='review title service %d %s' % (i, keyword),
+            body='review body service %d %s' % (i, keyword),
             status=i % 3,
             user=user,
         )
         review.date_created = date_created
         review.save()
-    return ProductReview.objects.all()
+    return ServiceReview.objects.all()
 
 
 @pytest.fixture
@@ -86,21 +86,21 @@ class TestReviewListView(object):
         assert response.status_code == 200
 
     def test_add_filter_status(self, rf, reviews):
-        request = rf.get('/', data=dict(status=ProductReview.FOR_MODERATION))
+        request = rf.get('/', data=dict(status=ServiceReview.FOR_MODERATION))
         view = views.ReviewListView.as_view()
         response = view(request)
         view = response.context_data['view']
         qs = view.get_queryset()
         assert qs.count() == 4
 
-        request = rf.get('/', data=dict(status=ProductReview.APPROVED))
+        request = rf.get('/', data=dict(status=ServiceReview.APPROVED))
         view = views.ReviewListView.as_view()
         response = view(request)
         view = response.context_data['view']
         qs = view.get_queryset()
         assert qs.count() == 3
 
-        request = rf.get('/', data=dict(status=ProductReview.REJECTED))
+        request = rf.get('/', data=dict(status=ServiceReview.REJECTED))
         view = views.ReviewListView.as_view()
         response = view(request)
         view = response.context_data['view']

@@ -6,7 +6,7 @@ from oscar.core.compat import get_user_model
 from oscar.core.loading import get_model
 
 User = get_user_model()
-ProductAlert = get_model('customer', 'ProductAlert')
+ServiceAlert = get_model('customer', 'ServiceAlert')
 
 
 class UserSearchForm(forms.Form):
@@ -15,7 +15,7 @@ class UserSearchForm(forms.Form):
         required=False, label=pgettext_lazy("User's name", "Name"))
 
 
-class ProductAlertUpdateForm(forms.ModelForm):
+class ServiceAlertUpdateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -28,16 +28,16 @@ class ProductAlertUpdateForm(forms.ModelForm):
             self.fields['status'].choices = choices
 
     class Meta:
-        model = ProductAlert
+        model = ServiceAlert
         fields = [
             'status',
         ]
 
 
-class ProductAlertSearchForm(forms.Form):
+class ServiceAlertSearchForm(forms.Form):
     STATUS_CHOICES = (
         ('', '------------'),
-    ) + ProductAlert.STATUS_CHOICES
+    ) + ServiceAlert.STATUS_CHOICES
 
     status = forms.ChoiceField(required=False, choices=STATUS_CHOICES,
                                label=_('Status'))

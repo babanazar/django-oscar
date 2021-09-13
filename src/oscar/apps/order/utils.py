@@ -151,7 +151,7 @@ class OrderCreator(object):
         You can set extra fields by passing a dictionary as the
         extra_line_fields value
         """
-        product = basket_line.product
+        service = basket_line.service
         stockrecord = basket_line.stockrecord
         if not stockrecord:
             raise exceptions.UnableToPlaceOrder(
@@ -164,10 +164,10 @@ class OrderCreator(object):
             'partner_name': partner.name,
             'partner_sku': stockrecord.partner_sku,
             'stockrecord': stockrecord,
-            # Product details
-            'product': product,
-            'title': product.get_title(),
-            'upc': product.upc,
+            # Service details
+            'service': service,
+            'title': service.get_title(),
+            'upc': service.upc,
             'quantity': basket_line.quantity,
             # Price details
             'line_price_excl_tax':
@@ -201,7 +201,7 @@ class OrderCreator(object):
         """
         Update any relevant stock records for this order line
         """
-        if line.product.get_product_class().track_stock:
+        if line.service.get_service_class().track_stock:
             line.stockrecord.allocate(line.quantity)
 
     def create_additional_line_models(self, order, order_line, basket_line):

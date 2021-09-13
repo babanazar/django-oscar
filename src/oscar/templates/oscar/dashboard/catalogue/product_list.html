@@ -28,13 +28,13 @@
 {% endblock header %}
 
 {% block dashboard_content %}
-    {% block create_product %}
+    {% block create_service %}
         <div class="table-header">
-            <h3><i class="fas fa-sitemap"></i> {% trans "Create new product" %}</h3>
+            <h3><i class="fas fa-sitemap"></i> {% trans "Create new service" %}</h3>
         </div>
         <div class="card card-body">
-            <form action="{% url 'dashboard:catalogue-product-create' %}" method="get" class="form-inline">
-                {% include "oscar/dashboard/partials/form_fields_inline.html" with form=productclass_form %}
+            <form action="{% url 'dashboard:catalogue-service-create' %}" method="get" class="form-inline">
+                {% include "oscar/dashboard/partials/form_fields_inline.html" with form=serviceclass_form %}
                 <button class="btn btn-primary" type="submit" data-loading-text="{% trans 'Submitting...' %}">
                     <i class="fas fa-plus-circle"></i> {% trans "New Product" %}
                 </button>
@@ -42,7 +42,7 @@
         </div>
     {% endblock %}
 
-    {% block search_products %}
+    {% block search_services %}
         <div class="table-header">
             <h3><i class="fas fa-search"></i> {% trans "Search Products" %}</h3>
         </div>
@@ -64,13 +64,13 @@
         </div>
     {% endblock %}
 
-    {% if products %}
-        {% block product_list %}
+    {% if services %}
+        {% block service_list %}
             <form method="post">
                 {% csrf_token %}
-                {% render_table products %}
+                {% render_table services %}
             </form>
-            <div class="modal fade" id="product-image-modal" tabindex="-1" role="dialog">
+            <div class="modal fade" id="service-image-modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -83,14 +83,14 @@
                     </div>
                 </div>
             </div>
-        {% endblock product_list %}
+        {% endblock service_list %}
     {% else %}
-        <p>{% trans "No products found." %}</p>
+        <p>{% trans "No services found." %}</p>
     {% endif %}
 
 {% endblock dashboard_content %}
 
 {% block onbodyload %}
     {{ block.super }}
-    oscar.dashboard.product_lists.init();
+    oscar.dashboard.service_lists.init();
 {% endblock onbodyload %}

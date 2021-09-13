@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             field=models.IntegerField(db_index=True, default=0, help_text='The highest priority offers are applied first', verbose_name='Priority'),
         ),
         migrations.AlterField(
-            model_name='rangeproductfileupload',
+            model_name='rangeservicefileupload',
             name='date_uploaded',
             field=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Date Uploaded'),
         ),

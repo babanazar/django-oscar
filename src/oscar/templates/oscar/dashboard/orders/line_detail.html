@@ -34,15 +34,15 @@
                 <tr>
                     <th>{% trans "Title" context "Product title" %}</th>
                     <td>
-                        {% if line.product %}
-                            <a href="{{ line.product.get_absolute_url }}">{{ line.title }}</a>
+                        {% if line.service %}
+                            <a href="{{ line.service.get_absolute_url }}">{{ line.title }}</a>
                         {% else %}
                             {{ line.title }}
                         {% endif %}
                     </td>
                 </tr>
                 <tr>
-                    <th>{% trans "Product Type" %}</th><td>{{ line.product.get_product_class }}</td>
+                    <th>{% trans "Product Type" %}</th><td>{{ line.service.get_service_class }}</td>
                 </tr>
                 <tr>
                     <th>{% trans "UPC" %}</th><td>{{ line.upc|default:"-" }}</td>

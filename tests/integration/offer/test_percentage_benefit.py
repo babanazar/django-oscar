@@ -5,14 +5,14 @@ from django.test import TestCase
 
 from oscar.apps.offer import models
 from oscar.test import factories
-from oscar.test.basket import add_product, add_products
+from oscar.test.basket import add_service, add_services
 
 
 class TestAPercentageDiscountAppliedWithCountCondition(TestCase):
 
     def setUp(self):
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         self.condition = models.CountCondition(
             range=range,
             type=models.Condition.COUNT,
@@ -34,23 +34,23 @@ class TestAPercentageDiscountAppliedWithCountCondition(TestCase):
         self.assertEqual(0, self.basket.num_items_with_discount)
         self.assertEqual(0, self.basket.num_items_without_discount)
 
-    def test_applies_correctly_to_basket_with_no_discountable_products(self):
-        product = factories.create_product(is_discountable=False)
-        add_product(self.basket, D('12.00'), 2, product=product)
+    def test_applies_correctly_to_basket_with_no_discountable_services(self):
+        service = factories.create_service(is_discountable=False)
+        add_service(self.basket, D('12.00'), 2, service=service)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(D('0.00'), result.discount)
         self.assertEqual(0, self.basket.num_items_with_discount)
         self.assertEqual(2, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_matches_condition(self):
-        add_product(self.basket, D('12.00'), 2)
+        add_service(self.basket, D('12.00'), 2)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(2 * D('12.00') * D('0.2'), result.discount)
         self.assertEqual(2, self.basket.num_items_with_discount)
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_exceeds_condition(self):
-        add_product(self.basket, D('12.00'), 3)
+        add_service(self.basket, D('12.00'), 3)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(3 * D('12.00') * D('0.2'), result.discount)
         self.assertEqual(3, self.basket.num_items_with_discount)
@@ -61,7 +61,7 @@ class TestAPercentageDiscountWithMaxItemsSetAppliedWithCountCondition(TestCase):
 
     def setUp(self):
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         self.condition = models.CountCondition(
             range=range,
             type=models.Condition.COUNT,
@@ -85,17 +85,17 @@ class TestAPercentageDiscountWithMaxItemsSetAppliedWithCountCondition(TestCase):
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_matches_condition(self):
-        add_product(self.basket, D('12.00'), 2)
+        add_service(self.basket, D('12.00'), 2)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(1 * D('12.00') * D('0.2'), result.discount)
         self.assertEqual(1, self.basket.num_items_with_discount)
         self.assertEqual(1, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_exceeds_condition(self):
-        add_products(self.basket, [(D('12.00'), 2), (D('20.00'), 2)])
+        add_services(self.basket, [(D('12.00'), 2), (D('20.00'), 2)])
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(1 * D('12.00') * D('0.2'), result.discount)
-        # Should only consume the condition products
+        # Should only consume the condition services
         self.assertEqual(1, self.basket.num_items_with_discount)
         self.assertEqual(3, self.basket.num_items_without_discount)
 
@@ -104,7 +104,7 @@ class TestAPercentageDiscountAppliedWithValueCondition(TestCase):
 
     def setUp(self):
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         self.condition = models.ValueCondition.objects.create(
             range=range,
             type=models.Condition.VALUE,
@@ -128,21 +128,21 @@ class TestAPercentageDiscountAppliedWithValueCondition(TestCase):
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_matches_condition(self):
-        add_product(self.basket, D('5.00'), 2)
+        add_service(self.basket, D('5.00'), 2)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(2 * D('5.00') * D('0.2'), result.discount)
         self.assertEqual(2, self.basket.num_items_with_discount)
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_exceeds_condition_but_matches_on_boundary(self):
-        add_product(self.basket, D('5.00'), 3)
+        add_service(self.basket, D('5.00'), 3)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(3 * D('5.00') * D('0.2'), result.discount)
         self.assertEqual(3, self.basket.num_items_with_discount)
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_exceeds_condition(self):
-        add_product(self.basket, D('4.00'), 3)
+        add_service(self.basket, D('4.00'), 3)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(3 * D('4.00') * D('0.2'), result.discount)
         self.assertEqual(3, self.basket.num_items_with_discount)
@@ -153,7 +153,7 @@ class TestAPercentageDiscountWithMaxItemsSetAppliedWithValueCondition(TestCase):
 
     def setUp(self):
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         self.condition = models.ValueCondition.objects.create(
             range=range,
             type=models.Condition.VALUE,
@@ -177,21 +177,21 @@ class TestAPercentageDiscountWithMaxItemsSetAppliedWithValueCondition(TestCase):
         self.assertEqual(0, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_matches_condition(self):
-        add_product(self.basket, D('5.00'), 2)
+        add_service(self.basket, D('5.00'), 2)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(1 * D('5.00') * D('0.2'), result.discount)
         self.assertEqual(1, self.basket.num_items_with_discount)
         self.assertEqual(1, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_exceeds_condition_but_matches_on_boundary(self):
-        add_product(self.basket, D('5.00'), 3)
+        add_service(self.basket, D('5.00'), 3)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(1 * D('5.00') * D('0.2'), result.discount)
         self.assertEqual(1, self.basket.num_items_with_discount)
         self.assertEqual(2, self.basket.num_items_without_discount)
 
     def test_applies_correctly_to_basket_which_exceeds_condition(self):
-        add_product(self.basket, D('4.00'), 3)
+        add_service(self.basket, D('4.00'), 3)
         result = self.benefit.apply(self.basket, self.condition, self.offer)
         self.assertEqual(1 * D('4.00') * D('0.2'), result.discount)
         self.assertEqual(1, self.basket.num_items_with_discount)
@@ -202,7 +202,7 @@ class TestAPercentageDiscountBenefit(TestCase):
 
     def test_requires_a_benefit_value(self):
         rng = models.Range.objects.create(
-            name="", includes_all_products=True)
+            name="", includes_all_services=True)
         benefit = models.Benefit(
             type=models.Benefit.PERCENTAGE, range=rng
         )

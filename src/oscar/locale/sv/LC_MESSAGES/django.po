@@ -256,7 +256,7 @@ msgstr "Faktureringsadresser"
 
 #: apps/address/abstract_models.py:606 apps/order/abstract_models.py:487
 #: apps/partner/abstract_models.py:99 apps/partner/apps.py:9
-#: templates/oscar/dashboard/catalogue/product_update.html:225
+#: templates/oscar/dashboard/catalogue/service_update.html:225
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:48
 #: templates/oscar/dashboard/orders/line_detail.html:75
 msgid "Partner"
@@ -282,7 +282,7 @@ msgstr "Partneradresser"
 #: templates/oscar/customer/wishlists/wishlists_detail.html:33
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:47
 #: templates/oscar/dashboard/orders/order_detail.html:127
-#: templates/oscar/dashboard/reports/partials/product_report.html:8
+#: templates/oscar/dashboard/reports/partials/service_report.html:8
 #: templates/oscar/dashboard/reviews/review_delete.html:37
 #: templates/oscar/dashboard/reviews/review_list.html:57
 #: templates/oscar/dashboard/users/alerts/list.html:44
@@ -291,7 +291,7 @@ msgid "Product"
 msgstr "Produkt"
 
 #: apps/analytics/abstract_models.py:22 apps/analytics/reports.py:20
-#: templates/oscar/dashboard/reports/partials/product_report.html:9
+#: templates/oscar/dashboard/reports/partials/service_report.html:9
 msgid "Views"
 msgstr "Vyer"
 
@@ -300,7 +300,7 @@ msgid "Basket Additions"
 msgstr "Varukorgstillägg"
 
 #: apps/analytics/abstract_models.py:26 apps/analytics/reports.py:22
-#: templates/oscar/dashboard/reports/partials/product_report.html:11
+#: templates/oscar/dashboard/reports/partials/service_report.html:11
 msgid "Purchases"
 msgstr "Köp"
 
@@ -370,17 +370,17 @@ msgid "User records"
 msgstr "Användarrader"
 
 #: apps/analytics/abstract_models.py:90
-msgid "User product view"
+msgid "User service view"
 msgstr "Produktvy"
 
 #: apps/analytics/abstract_models.py:91
-msgid "User product views"
+msgid "User service views"
 msgstr "Produktvyer"
 
 #: apps/analytics/abstract_models.py:94
 #, python-format
-msgid "%(user)s viewed '%(product)s'"
-msgstr "%(user)s besökte '%(product)s'"
+msgid "%(user)s viewed '%(service)s'"
+msgstr "%(user)s besökte '%(service)s'"
 
 #: apps/analytics/abstract_models.py:104
 msgid "Search term"
@@ -404,7 +404,7 @@ msgid "Analytics"
 msgstr "Analyser"
 
 #: apps/analytics/reports.py:21 apps/analytics/reports.py:61
-#: templates/oscar/dashboard/reports/partials/product_report.html:10
+#: templates/oscar/dashboard/reports/partials/service_report.html:10
 #: templates/oscar/dashboard/reports/partials/user_report.html:12
 msgid "Basket additions"
 msgstr "Varukorgstillägg"
@@ -430,8 +430,8 @@ msgstr "Produktanalyser"
 #: apps/wishlists/abstract_models.py:23
 #: templates/oscar/customer/profile/profile.html:9
 #: templates/oscar/customer/wishlists/wishlists_list.html:9
-#: templates/oscar/dashboard/catalogue/product_class_form.html:101
-#: templates/oscar/dashboard/catalogue/product_class_list.html:27
+#: templates/oscar/dashboard/catalogue/service_class_form.html:101
+#: templates/oscar/dashboard/catalogue/service_class_list.html:27
 #: templates/oscar/dashboard/comms/list.html:32
 #: templates/oscar/dashboard/offers/offer_detail.html:60
 #: templates/oscar/dashboard/offers/summary.html:12
@@ -635,7 +635,7 @@ msgstr "Antal"
 
 #: apps/basket/abstract_models.py:639 apps/order/abstract_models.py:59
 #: apps/partner/abstract_models.py:110 apps/payment/abstract_models.py:80
-#: templates/oscar/dashboard/catalogue/product_update.html:232
+#: templates/oscar/dashboard/catalogue/service_update.html:232
 msgid "Currency"
 msgstr "Valuta"
 
@@ -662,8 +662,8 @@ msgstr "Varukorgsrader"
 
 #: apps/basket/abstract_models.py:668
 #, python-format
-msgid "Basket #%(basket_id)d, Product #%(product_id)d, quantity %(quantity)d"
-msgstr "Varukorg #%(basket_id)d, Produkt #%(product_id)d, antal %(quantity)d"
+msgid "Basket #%(basket_id)d, Product #%(service_id)d, quantity %(quantity)d"
+msgstr "Varukorg #%(basket_id)d, Produkt #%(service_id)d, antal %(quantity)d"
 
 #: apps/basket/abstract_models.py:676
 #, python-format
@@ -673,16 +673,16 @@ msgstr "Kan inte ändra en %s varukorg"
 #: apps/basket/abstract_models.py:913
 #, python-format
 msgid ""
-"The price of '%(product)s' has increased from %(old_price)s to %(new_price)s"
+"The price of '%(service)s' has increased from %(old_price)s to %(new_price)s"
 " since you added it to your basket"
-msgstr "Priset av '%(product)s' har ökat från %(old_price)s till %(new_price)s efter att den lades i varukorgen"
+msgstr "Priset av '%(service)s' har ökat från %(old_price)s till %(new_price)s efter att den lades i varukorgen"
 
 #: apps/basket/abstract_models.py:918
 #, python-format
 msgid ""
-"The price of '%(product)s' has decreased from %(old_price)s to %(new_price)s"
+"The price of '%(service)s' has decreased from %(old_price)s to %(new_price)s"
 " since you added it to your basket"
-msgstr "Priset av '%(product)s' har minskat från %(old_price)s till %(new_price)s efter att den lades i varukorgen"
+msgstr "Priset av '%(service)s' har minskat från %(old_price)s till %(new_price)s efter att den lades i varukorgen"
 
 #: apps/basket/abstract_models.py:932 apps/order/abstract_models.py:798
 #: apps/order/abstract_models.py:832 apps/order/abstract_models.py:945
@@ -728,7 +728,7 @@ msgstr "Lägg i varukorg"
 #: apps/order/abstract_models.py:1047 apps/order/abstract_models.py:1100
 #: apps/partner/abstract_models.py:24 apps/payment/abstract_models.py:211
 #: apps/voucher/abstract_models.py:126
-#: templates/oscar/dashboard/catalogue/product_class_form.html:102
+#: templates/oscar/dashboard/catalogue/service_class_form.html:102
 #: templates/oscar/dashboard/comms/list.html:31
 #: templates/oscar/dashboard/vouchers/voucher_delete.html:34
 #: templates/oscar/dashboard/vouchers/voucher_detail.html:31
@@ -742,7 +742,7 @@ msgid "Variant"
 msgstr "Variant"
 
 #: apps/basket/forms.py:227
-msgid "Please select a valid product"
+msgid "Please select a valid service"
 msgstr "Var vänlig välj en giltig produkt"
 
 #: apps/basket/forms.py:244
@@ -754,14 +754,14 @@ msgstr "På grund av tekniska begränsningar kan vi för närvarande inte ta emo
 
 #: apps/basket/forms.py:266
 msgid ""
-"This product cannot be added to the basket because a price could not be "
+"This service cannot be added to the basket because a price could not be "
 "determined for it."
 msgstr ""
 
 #: apps/basket/forms.py:273
 msgid ""
-"This product cannot be added to the basket as its currency isn't the same as"
-" other products in your basket"
+"This service cannot be added to the basket as its currency isn't the same as"
+" other services in your basket"
 msgstr "Denna produkt kan inte läggas i varukorgen eftersom att valutan inte stämmer överens med övriga varor i varukorgen"
 
 #: apps/basket/middleware.py:174
@@ -956,7 +956,7 @@ msgstr ""
 
 #: apps/catalogue/abstract_models.py:291 apps/catalogue/abstract_models.py:312
 #: apps/communication/abstract_models.py:78
-#: templates/oscar/dashboard/catalogue/product_update.html:155
+#: templates/oscar/dashboard/catalogue/service_update.html:155
 #: templates/oscar/dashboard/comms/list.html:33
 msgid "Category"
 msgstr "Kategori"
@@ -969,7 +969,7 @@ msgstr "Kategori"
 #: templates/oscar/dashboard/catalogue/category_list.html:9
 #: templates/oscar/dashboard/catalogue/category_list.html:19
 #: templates/oscar/dashboard/catalogue/category_list.html:28
-#: templates/oscar/dashboard/catalogue/product_update.html:78
+#: templates/oscar/dashboard/catalogue/service_update.html:78
 msgid "Categories"
 msgstr "Kategorier"
 
@@ -982,15 +982,15 @@ msgid "Product categories"
 msgstr "Produkkategorier"
 
 #: apps/catalogue/abstract_models.py:343
-msgid "Stand-alone product"
+msgid "Stand-alone service"
 msgstr "Styckesvara"
 
 #: apps/catalogue/abstract_models.py:344 apps/catalogue/abstract_models.py:369
-msgid "Parent product"
+msgid "Parent service"
 msgstr "Huvudprodukt"
 
 #: apps/catalogue/abstract_models.py:345
-msgid "Child product"
+msgid "Child service"
 msgstr "Produktvariant"
 
 #: apps/catalogue/abstract_models.py:348
@@ -998,7 +998,7 @@ msgid "Product structure"
 msgstr "Produktstruktur"
 
 #: apps/catalogue/abstract_models.py:355
-msgid "Show this product in search results and catalogue listings."
+msgid "Show this service in search results and catalogue listings."
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:358 apps/dashboard/catalogue/forms.py:77
@@ -1006,51 +1006,51 @@ msgstr ""
 #: templates/oscar/catalogue/detail.html:117
 #: templates/oscar/dashboard/orders/line_detail.html:48
 #: templates/oscar/dashboard/orders/order_detail.html:128
-#: templates/oscar/dashboard/ranges/range_product_list.html:96
+#: templates/oscar/dashboard/ranges/range_service_list.html:96
 msgid "UPC"
 msgstr "UPC"
 
 #: apps/catalogue/abstract_models.py:359
 msgid ""
-"Universal Product Code (UPC) is an identifier for a product which is not "
+"Universal Product Code (UPC) is an identifier for a service which is not "
 "specific to a particular  supplier. Eg an ISBN for a book."
 msgstr "En gemensam produktkod (UPC) är en identifierare för en produkt som är gemensam för flera leverantörer. Ett exempel på detta är ISBN för böcker"
 
 #: apps/catalogue/abstract_models.py:370
 msgid ""
-"Only choose a parent product if you're creating a child product.  For "
+"Only choose a parent service if you're creating a child service.  For "
 "example if this is a size 4 of a particular t-shirt.  Leave blank if this is"
-" a stand-alone product (i.e. there is only one version of this product)."
+" a stand-alone service (i.e. there is only one version of this service)."
 msgstr "Välj endast en förälderprodukt om du skapar en barnprodukt. Till exempel om det är en storlek 4 av en särskild T-shirt; lämna tomt om det är en fristående produkt (dvs det finns bara en version av denna produkt)."
 
 #: apps/catalogue/abstract_models.py:377 apps/catalogue/abstract_models.py:625
 #: apps/order/abstract_models.py:516 apps/wishlists/abstract_models.py:121
 #: templates/oscar/dashboard/orders/line_detail.html:35
-#: templates/oscar/dashboard/ranges/range_product_list.html:97
+#: templates/oscar/dashboard/ranges/range_service_list.html:97
 msgctxt "Product title"
 msgid "Title"
 msgstr "Titel"
 
 #: apps/catalogue/abstract_models.py:391 apps/catalogue/abstract_models.py:814
 #: apps/dashboard/catalogue/tables.py:26
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:10
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:10
 msgid "Product type"
 msgstr "Produkttyp"
 
 #: apps/catalogue/abstract_models.py:392
-msgid "Choose what type of product this is"
+msgid "Choose what type of service this is"
 msgstr "Välj en produkttyp"
 
 #: apps/catalogue/abstract_models.py:396
-#: templates/oscar/dashboard/catalogue/product_update.html:85
-#: templates/oscar/dashboard/catalogue/product_update.html:175
-#: templates/oscar/dashboard/catalogue/product_update.html:284
+#: templates/oscar/dashboard/catalogue/service_update.html:85
+#: templates/oscar/dashboard/catalogue/service_update.html:175
+#: templates/oscar/dashboard/catalogue/service_update.html:284
 msgid "Attributes"
 msgstr "Attribut"
 
 #: apps/catalogue/abstract_models.py:397
 msgid ""
-"A product attribute is something that this product may have, such as a size,"
+"A service attribute is something that this service may have, such as a size,"
 " as specified by its class"
 msgstr "Ett produktattribut är något som denna produkt kan ha, exempelvis en storlek, specificerat i produktklassen"
 
@@ -1066,12 +1066,12 @@ msgid ""
 msgstr "Alternativ är värden som kan relateras till en artikel när den läggs till i varukorgen. Det skulle kunna vara en valfri text som trycks på en t-shirt."
 
 #: apps/catalogue/abstract_models.py:409
-#: templates/oscar/dashboard/catalogue/product_update.html:331
-msgid "Recommended products"
+#: templates/oscar/dashboard/catalogue/service_update.html:331
+msgid "Recommended services"
 msgstr "Rekommenderade produkter"
 
 #: apps/catalogue/abstract_models.py:410
-msgid "These are products that are recommended to accompany the main product."
+msgid "These are services that are recommended to accompany the main service."
 msgstr "Dessa produkter rekommenderas tillsammans med huvudprodukten."
 
 #: apps/catalogue/abstract_models.py:415 defaults.py:217
@@ -1087,62 +1087,62 @@ msgid "Is discountable?"
 msgstr "Kan ha rabatt?"
 
 #: apps/catalogue/abstract_models.py:435
-msgid "This flag indicates if this product can be used in an offer or not"
+msgid "This flag indicates if this service can be used in an offer or not"
 msgstr "Denna flagga indikerar om denna produkt kan vara del av ett erbjudande eller inte"
 
 #: apps/catalogue/abstract_models.py:445 apps/dashboard/catalogue/views.py:106
-#: defaults.py:101 templates/oscar/dashboard/catalogue/product_delete.html:15
-#: templates/oscar/dashboard/catalogue/product_list.html:9
-#: templates/oscar/dashboard/catalogue/product_list.html:19
-#: templates/oscar/dashboard/catalogue/product_list.html:27
-#: templates/oscar/dashboard/catalogue/product_update.html:8
-#: templates/oscar/dashboard/catalogue/product_update.html:18
-#: templates/oscar/dashboard/ranges/range_product_list.html:21
+#: defaults.py:101 templates/oscar/dashboard/catalogue/service_delete.html:15
+#: templates/oscar/dashboard/catalogue/service_list.html:9
+#: templates/oscar/dashboard/catalogue/service_list.html:19
+#: templates/oscar/dashboard/catalogue/service_list.html:27
+#: templates/oscar/dashboard/catalogue/service_update.html:8
+#: templates/oscar/dashboard/catalogue/service_update.html:18
+#: templates/oscar/dashboard/ranges/range_service_list.html:21
 msgid "Products"
 msgstr "Produkter"
 
 #: apps/catalogue/abstract_models.py:502
-msgid "Your product must have a title."
+msgid "Your service must have a title."
 msgstr "Din produkt måste ha en titel"
 
 #: apps/catalogue/abstract_models.py:504
-msgid "Your product must have a product class."
+msgid "Your service must have a service class."
 msgstr "Din produkt måste ha en produktklassifiering"
 
 #: apps/catalogue/abstract_models.py:506
-msgid "Only child products can have a parent."
+msgid "Only child services can have a parent."
 msgstr "Endast produktvarianter kan ha en huvudprodukt"
 
 #: apps/catalogue/abstract_models.py:513
-msgid "A child product needs a parent."
+msgid "A child service needs a parent."
 msgstr "En produktvariant måste ha en huvudprodukt"
 
 #: apps/catalogue/abstract_models.py:516
-msgid "You can only assign child products to parent products."
+msgid "You can only assign child services to parent services."
 msgstr "Du kan endast tilldela produktvarianter till en huvudprodukt"
 
 #: apps/catalogue/abstract_models.py:519
-msgid "A child product can't have a product class."
+msgid "A child service can't have a service class."
 msgstr "En produktvariant kan inte ha en produktklassifiering"
 
 #: apps/catalogue/abstract_models.py:522
-msgid "A child product can't have a category assigned."
+msgid "A child service can't have a category assigned."
 msgstr "En produktvariant kan inte tillföra en kategori"
 
 #: apps/catalogue/abstract_models.py:526
-msgid "A child product can't have options."
+msgid "A child service can't have options."
 msgstr "En produktvariant kan inte ha alternativ"
 
 #: apps/catalogue/abstract_models.py:535
-msgid "A parent product can't have stockrecords."
+msgid "A parent service can't have stockrecords."
 msgstr "En huvudprodukt kan inte ha lagersaldo"
 
 #: apps/catalogue/abstract_models.py:563
-msgid "The specified parent product is a child product."
+msgid "The specified parent service is a child service."
 msgstr "Den valda huvudprodukten är en produktvariant"
 
 #: apps/catalogue/abstract_models.py:566
-msgid "One can't add a child product to a product with stock records."
+msgid "One can't add a child service to a service with stock records."
 msgstr "Kan inte lägga till en produktvariant för en produkt med lagersaldo"
 
 #: apps/catalogue/abstract_models.py:632
@@ -1156,11 +1156,11 @@ msgid "Meta description"
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:784
-msgid "Primary product"
+msgid "Primary service"
 msgstr "Huvudprodukt"
 
 #: apps/catalogue/abstract_models.py:788
-msgid "Recommended product"
+msgid "Recommended service"
 msgstr "Rekommenderad produkt"
 
 #: apps/catalogue/abstract_models.py:790
@@ -1169,7 +1169,7 @@ msgstr "Ranking"
 
 #: apps/catalogue/abstract_models.py:791
 msgid ""
-"Determines order of the products. A product with a higher value will appear "
+"Determines order of the services. A service with a higher value will appear "
 "before one with a lower ranking."
 msgstr "Anger ordningen av produkter. Ett högre värde visas före produkter med ett lägre värde"
 
@@ -1248,7 +1248,7 @@ msgstr "Fil"
 #: apps/offer/abstract_models.py:488 apps/offer/abstract_models.py:706
 #: apps/order/abstract_models.py:802 apps/payment/abstract_models.py:37
 #: defaults.py:216
-#: templates/oscar/dashboard/catalogue/product_class_form.html:103
+#: templates/oscar/dashboard/catalogue/service_class_form.html:103
 #: templates/oscar/dashboard/orders/order_detail.html:636
 #: templates/oscar/dashboard/orders/order_detail.html:686
 msgid "Type"
@@ -1263,7 +1263,7 @@ msgid "Select an option group if using type \"Option\" or \"Multi Option\""
 msgstr ""
 
 #: apps/catalogue/abstract_models.py:866
-#: templates/oscar/dashboard/catalogue/product_class_form.html:104
+#: templates/oscar/dashboard/catalogue/service_class_form.html:104
 msgid "Required"
 msgstr "Krävs"
 
@@ -1272,8 +1272,8 @@ msgid "Product attribute"
 msgstr "Produktattribut"
 
 #: apps/catalogue/abstract_models.py:873
-#: templates/oscar/dashboard/catalogue/product_class_form.html:43
-#: templates/oscar/dashboard/catalogue/product_class_form.html:90
+#: templates/oscar/dashboard/catalogue/service_class_form.html:43
+#: templates/oscar/dashboard/catalogue/service_class_form.html:90
 msgid "Product attributes"
 msgstr "Produktattribut"
 
@@ -1397,7 +1397,7 @@ msgstr "Bildtext"
 #: apps/catalogue/abstract_models.py:1320
 msgid ""
 "An image with a display order of zero will be the primary image for a "
-"product"
+"service"
 msgstr "En bild med en visningsordning satt till 0 blir den primära bilden för en produkt"
 
 #: apps/catalogue/abstract_models.py:1330
@@ -1413,17 +1413,17 @@ msgstr "Produktbilder"
 msgid "Catalogue"
 msgstr "Katalog"
 
-#: apps/catalogue/product_attributes.py:25
+#: apps/catalogue/service_attributes.py:25
 #, python-format
 msgid "%(obj)s has no attribute named '%(attr)s'"
 msgstr "%(obj)s har inget fält som heter '%(attr)s'"
 
-#: apps/catalogue/product_attributes.py:33
+#: apps/catalogue/service_attributes.py:33
 #, python-format
 msgid "%(attr)s attribute cannot be blank"
 msgstr "%(attr)s fältet kan inte vara tomt"
 
-#: apps/catalogue/product_attributes.py:40
+#: apps/catalogue/service_attributes.py:40
 #, python-format
 msgid "%(attr)s attribute %(err)s"
 msgstr "%(attr)s attribut %(err)s"
@@ -1542,15 +1542,15 @@ msgid "Sort by"
 msgstr "Sortera efter"
 
 #: apps/catalogue/reviews/views.py:33
-msgid "You have already reviewed this product!"
+msgid "You have already reviewed this service!"
 msgstr "Du har redan recenserat denna produkt"
 
 #: apps/catalogue/reviews/views.py:35
-msgid "You can't leave a review for this product."
+msgid "You can't leave a review for this service."
 msgstr "Du kan inte recensera denna produkt"
 
 #: apps/catalogue/reviews/views.py:60
-msgid "Thank you for reviewing this product"
+msgid "Thank you for reviewing this service"
 msgstr "Tack för recensionen av denna produkt"
 
 #: apps/catalogue/reviews/views.py:98
@@ -1572,7 +1572,7 @@ msgid "The given page number was invalid."
 msgstr "Sidonummret finns inte"
 
 #: apps/catalogue/views.py:144 templates/oscar/partials/nav_primary.html:41
-msgid "All products"
+msgid "All services"
 msgstr "Alla produkter"
 
 #: apps/checkout/apps.py:13
@@ -2042,13 +2042,13 @@ msgstr "Det finns redan en lagervarning för %s"
 #: apps/customer/forms.py:389
 #, python-format
 msgid ""
-"%s has been sent a confirmation email for another product alert on this "
+"%s has been sent a confirmation email for another service alert on this "
 "site. Please confirm or cancel that request before signing up for more "
 "alerts."
 msgstr ""
 
 #: apps/customer/forms.py:401
-msgid "You already have an active alert for this product"
+msgid "You already have an active alert for this service"
 msgstr "Du har redan en aktiv varning för denna produkt"
 
 #: apps/customer/views.py:174
@@ -2123,8 +2123,8 @@ msgstr "Det går inte att beställa ordern %(number)s igen. "
 
 #: apps/customer/views.py:594
 #, python-format
-msgid "%(qty)d copies of '%(product)s' have been added to your basket"
-msgstr "%(qty)d stycken '%(product)s' har lagts till i varukorgen"
+msgid "%(qty)d copies of '%(service)s' have been added to your basket"
+msgstr "%(qty)d stycken '%(service)s' har lagts till i varukorgen"
 
 #: apps/customer/views.py:598
 #, python-format
@@ -2176,7 +2176,7 @@ msgstr "Vi levererar inte till detta land"
 #: apps/customer/wishlists/views.py:25
 #: templates/oscar/customer/partials/standard_tabs.html:24
 #: templates/oscar/customer/wishlists/wishlists_delete.html:14
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:14
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:14
 #: templates/oscar/customer/wishlists/wishlists_detail.html:16
 #: templates/oscar/customer/wishlists/wishlists_form.html:14
 msgid "Wish Lists"
@@ -2192,7 +2192,7 @@ msgid "Create a new wish list"
 msgstr "Skapa en ny önskelista"
 
 #: apps/customer/wishlists/views.py:104
-msgid "The requested product no longer exists"
+msgid "The requested service no longer exists"
 msgstr "Den beställda produkten finns inte kvar"
 
 #: apps/customer/wishlists/views.py:123
@@ -2259,12 +2259,12 @@ msgstr "'%(title)s' flyttades till önskelistan '%(name)s'"
 #: templates/oscar/dashboard/catalogue/option_delete.html:26
 #: templates/oscar/dashboard/catalogue/option_form.html:26
 #: templates/oscar/dashboard/catalogue/option_list.html:12
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:9
-#: templates/oscar/dashboard/catalogue/product_class_form.html:13
-#: templates/oscar/dashboard/catalogue/product_class_list.html:7
-#: templates/oscar/dashboard/catalogue/product_delete.html:14
-#: templates/oscar/dashboard/catalogue/product_list.html:16
-#: templates/oscar/dashboard/catalogue/product_update.html:15
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:9
+#: templates/oscar/dashboard/catalogue/service_class_form.html:13
+#: templates/oscar/dashboard/catalogue/service_class_list.html:7
+#: templates/oscar/dashboard/catalogue/service_delete.html:14
+#: templates/oscar/dashboard/catalogue/service_list.html:16
+#: templates/oscar/dashboard/catalogue/service_update.html:15
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:14
 #: templates/oscar/dashboard/comms/detail.html:14
 #: templates/oscar/dashboard/comms/list.html:13
@@ -2292,7 +2292,7 @@ msgstr "'%(title)s' flyttades till önskelistan '%(name)s'"
 #: templates/oscar/dashboard/ranges/range_delete.html:13
 #: templates/oscar/dashboard/ranges/range_form.html:13
 #: templates/oscar/dashboard/ranges/range_list.html:11
-#: templates/oscar/dashboard/ranges/range_product_list.html:13
+#: templates/oscar/dashboard/ranges/range_service_list.html:13
 #: templates/oscar/dashboard/reports/index.html:12
 #: templates/oscar/dashboard/reviews/review_delete.html:14
 #: templates/oscar/dashboard/reviews/review_list.html:14
@@ -2324,7 +2324,7 @@ msgid "Leave blank to generate from category name"
 msgstr ""
 
 #: apps/dashboard/catalogue/forms.py:62
-msgid "Create a new product of type"
+msgid "Create a new service of type"
 msgstr "Skapa en ny produkt av typen"
 
 #: apps/dashboard/catalogue/forms.py:63
@@ -2336,7 +2336,7 @@ msgid "Product title"
 msgstr "Produkttitel"
 
 #: apps/dashboard/catalogue/forms.py:240
-msgid "Leave blank to generate from product title"
+msgid "Leave blank to generate from service title"
 msgstr ""
 
 #: apps/dashboard/catalogue/forms.py:385
@@ -2350,27 +2350,27 @@ msgid ""
 msgstr "Minst en lagerbokföring måste vara inställd på en partner som du förknippas med."
 
 #: apps/dashboard/catalogue/formsets.py:114
-msgid "Stand-alone and parent products must have at least one category"
+msgid "Stand-alone and parent services must have at least one category"
 msgstr "Fristående och föräldraprodukter måste ha åtminstone en kategori"
 
 #: apps/dashboard/catalogue/formsets.py:118
-msgid "A child product should not have categories"
+msgid "A child service should not have categories"
 msgstr "En produktvariant kan inte tillhöra någon kategori"
 
 #: apps/dashboard/catalogue/tables.py:18
-#: templates/oscar/dashboard/catalogue/product_update.html:283
+#: templates/oscar/dashboard/catalogue/service_update.html:283
 #: templates/oscar/dashboard/vouchers/voucher_set_detail.html:44
 msgid "Title"
 msgstr "Titel"
 
 #: apps/dashboard/catalogue/tables.py:30
-#: templates/oscar/dashboard/catalogue/product_update.html:104
-#: templates/oscar/dashboard/catalogue/product_update.html:276
+#: templates/oscar/dashboard/catalogue/service_update.html:104
+#: templates/oscar/dashboard/catalogue/service_update.html:276
 msgid "Variants"
 msgstr "Varianter"
 
 #: apps/dashboard/catalogue/tables.py:35 apps/partner/abstract_models.py:153
-#: templates/oscar/dashboard/catalogue/product_update.html:285
+#: templates/oscar/dashboard/catalogue/service_update.html:285
 msgid "Stock records"
 msgstr "Lagersaldon"
 
@@ -2380,8 +2380,8 @@ msgstr "Lagersaldon"
 #: templates/oscar/dashboard/catalogue/attribute_option_group_row_actions.html:6
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:6
 #: templates/oscar/dashboard/catalogue/option_row_actions.html:6
-#: templates/oscar/dashboard/catalogue/product_class_list.html:43
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:6
+#: templates/oscar/dashboard/catalogue/service_class_list.html:43
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:6
 #: templates/oscar/dashboard/offers/offer_list.html:89
 #: templates/oscar/dashboard/orders/order_detail.html:134
 #: templates/oscar/dashboard/pages/index.html:68
@@ -2430,23 +2430,23 @@ msgid "Product search results"
 msgstr "Sökresultat för produkter"
 
 #: apps/dashboard/catalogue/views.py:181
-msgid "Please choose a product type"
+msgid "Please choose a service type"
 msgstr "Välj en produkttyp"
 
 #: apps/dashboard/catalogue/views.py:302
 #, python-format
-msgid "Create new %(product_class)s product"
-msgstr "Skapa en ny %(product_class)s produkt"
+msgid "Create new %(service_class)s service"
+msgstr "Skapa en ny %(service_class)s produkt"
 
 #: apps/dashboard/catalogue/views.py:305
 #, python-format
-msgid "Create new variant of %(parent_product)s"
-msgstr "Skapa ny variant av %(parent_product)s"
+msgid "Create new variant of %(parent_service)s"
+msgstr "Skapa ny variant av %(parent_service)s"
 
 #: apps/dashboard/catalogue/views.py:311
 #, python-format
-msgid "Editing variant of %(parent_product)s"
-msgstr "Redigerar variant av %(parent_product)s"
+msgid "Editing variant of %(parent_service)s"
+msgstr "Redigerar variant av %(parent_service)s"
 
 #: apps/dashboard/catalogue/views.py:406 apps/dashboard/catalogue/views.py:694
 #: apps/dashboard/catalogue/views.py:824 apps/dashboard/catalogue/views.py:967
@@ -2454,21 +2454,21 @@ msgid "Your submitted data was not valid - please correct the errors below"
 msgstr "Din lämnat uppgifter var inte giltig - rätta felen nedan"
 
 #: apps/dashboard/catalogue/views.py:470
-msgid "Delete product variant?"
+msgid "Delete service variant?"
 msgstr "Radera produktvariant?"
 
 #: apps/dashboard/catalogue/views.py:472
-msgid "Delete product?"
+msgid "Delete service?"
 msgstr "Ta bort produkt?"
 
 #: apps/dashboard/catalogue/views.py:516
 #, python-format
-msgid "Deleted product variant '%s'"
+msgid "Deleted service variant '%s'"
 msgstr "Produktvarianten '%s' har raderats"
 
 #: apps/dashboard/catalogue/views.py:522
 #, python-format
-msgid "Deleted product '%s'"
+msgid "Deleted service '%s'"
 msgstr "Raderade produkten '%s'"
 
 #: apps/dashboard/catalogue/views.py:544
@@ -2502,7 +2502,7 @@ msgid "Category deleted successfully"
 msgstr "Kategorin har raderats"
 
 #: apps/dashboard/catalogue/views.py:730
-msgid "Add a new product type"
+msgid "Add a new service type"
 msgstr "Lägg till ny produkttyp"
 
 #: apps/dashboard/catalogue/views.py:733
@@ -2511,7 +2511,7 @@ msgstr "Produkttypen har skapats"
 
 #: apps/dashboard/catalogue/views.py:742
 #, python-format
-msgid "Update product type '%s'"
+msgid "Update service type '%s'"
 msgstr "Uppdatera produkttypen '%s'"
 
 #: apps/dashboard/catalogue/views.py:745
@@ -2520,13 +2520,13 @@ msgstr "Produkttypen har uppdaterats"
 
 #: apps/dashboard/catalogue/views.py:760 apps/offer/abstract_models.py:811
 #: defaults.py:105
-#: templates/oscar/dashboard/catalogue/product_class_list.html:24
+#: templates/oscar/dashboard/catalogue/service_class_list.html:24
 msgid "Product Types"
 msgstr "Produkttyper"
 
 #: apps/dashboard/catalogue/views.py:771
 #, python-format
-msgid "Delete product type '%s'"
+msgid "Delete service type '%s'"
 msgstr "Ta bort produkttypen '%s'"
 
 #: apps/dashboard/catalogue/views.py:776 apps/dashboard/catalogue/views.py:912
@@ -2537,7 +2537,7 @@ msgstr "Kunde inte radera '%s'"
 
 #: apps/dashboard/catalogue/views.py:778
 #, python-format
-msgid "%i products are still assigned to this type"
+msgid "%i services are still assigned to this type"
 msgstr "Det finns fortfarande %i produkter av denna typen"
 
 #: apps/dashboard/catalogue/views.py:783
@@ -2569,7 +2569,7 @@ msgstr ""
 #: apps/dashboard/catalogue/views.py:914
 #, python-format
 msgid ""
-"%i product attributes are still assigned to this attribute option group"
+"%i service attributes are still assigned to this attribute option group"
 msgstr ""
 
 #: apps/dashboard/catalogue/views.py:933
@@ -2600,12 +2600,12 @@ msgstr ""
 
 #: apps/dashboard/catalogue/views.py:1021
 #, python-format
-msgid "%i products are still assigned to this option"
+msgid "%i services are still assigned to this option"
 msgstr ""
 
 #: apps/dashboard/catalogue/views.py:1026
 #, python-format
-msgid "%i product classes are still assigned to this option"
+msgid "%i service classes are still assigned to this option"
 msgstr ""
 
 #: apps/dashboard/catalogue/views.py:1032
@@ -2871,11 +2871,11 @@ msgstr "Kundens namn matchar \"{customer_name}\""
 
 #: apps/dashboard/orders/views.py:250
 #, python-brace-format
-msgid "Product name matches \"{product_name}\""
-msgstr "Produktnamn som matchar \"{product_name}\""
+msgid "Product name matches \"{service_name}\""
+msgstr "Produktnamn som matchar \"{service_name}\""
 
-#. Translators: "UPC" means "universal product code" and it is
-#. used to uniquely identify a product in an online store.
+#. Translators: "UPC" means "universal service code" and it is
+#. used to uniquely identify a service in an online store.
 #. "Item" in this context means an item in an order placed
 #. in an online store.
 #: apps/dashboard/orders/views.py:261
@@ -2884,7 +2884,7 @@ msgid "Includes an item with UPC \"{upc}\""
 msgstr "Inkluderar ett föremål med \"{upc}\""
 
 #. Translators: "SKU" means "stock keeping unit" and is used to
-#. identify products that can be shipped from an online store.
+#. identify services that can be shipped from an online store.
 #. A "partner" is a company that ships items to users who
 #. buy things in an online store.
 #: apps/dashboard/orders/views.py:272
@@ -3256,12 +3256,12 @@ msgstr "Du måste skicka antingen en lista med SKUs / UPCs eller en fil"
 
 #: apps/dashboard/ranges/forms.py:61 apps/dashboard/ranges/views.py:166
 #, python-format
-msgid "The products with SKUs or UPCs matching %s are already in this range"
+msgid "The services with SKUs or UPCs matching %s are already in this range"
 msgstr "De produkter med SKU eller UPC matching %s är redan i detta intervall"
 
 #: apps/dashboard/ranges/forms.py:69
 #, python-format
-msgid "No products exist with a SKU or UPC matching %s"
+msgid "No services exist with a SKU or UPC matching %s"
 msgstr "Inga produkter finns med en SKU eller UPC matching %s"
 
 #: apps/dashboard/ranges/views.py:52
@@ -3274,26 +3274,26 @@ msgstr "Intervall har raderats"
 
 #: apps/dashboard/ranges/views.py:133
 #, python-format
-msgid "Removed %d product from range"
-msgid_plural "Removed %d products from range"
+msgid "Removed %d service from range"
+msgid_plural "Removed %d services from range"
 msgstr[0] ""
 msgstr[1] ""
 
 #: apps/dashboard/ranges/views.py:160
 #, python-format
-msgid "%d product added to range"
-msgid_plural "%d products added to range"
+msgid "%d service added to range"
+msgid_plural "%d services added to range"
 msgstr[0] ""
 msgstr[1] ""
 
 #: apps/dashboard/ranges/views.py:173
 #, python-format
-msgid "No product(s) were found with SKU or UPC matching %s"
+msgid "No service(s) were found with SKU or UPC matching %s"
 msgstr ""
 
 #: apps/dashboard/ranges/views.py:210
 #, python-format
-msgid "There are more than one product with SKU %s"
+msgid "There are more than one service with SKU %s"
 msgstr ""
 
 #: apps/dashboard/reports/apps.py:11
@@ -3478,7 +3478,7 @@ msgid "Usage"
 msgstr "Användning"
 
 #: apps/dashboard/vouchers/forms.py:31 apps/dashboard/vouchers/forms.py:113
-msgid "Which products get a discount?"
+msgid "Which services get a discount?"
 msgstr "Vilka produkter rabatteras?"
 
 #: apps/dashboard/vouchers/forms.py:36 apps/dashboard/vouchers/forms.py:118
@@ -3753,19 +3753,19 @@ msgid "Range"
 msgstr ""
 
 #: apps/offer/abstract_models.py:476
-msgid "Discount is a percentage off of the product's value"
+msgid "Discount is a percentage off of the service's value"
 msgstr ""
 
 #: apps/offer/abstract_models.py:477
-msgid "Discount is a fixed amount off of the product's value"
+msgid "Discount is a fixed amount off of the service's value"
 msgstr ""
 
 #: apps/offer/abstract_models.py:478
-msgid "Discount is to give the cheapest product for free"
+msgid "Discount is to give the cheapest service for free"
 msgstr ""
 
 #: apps/offer/abstract_models.py:480
-msgid "Get the products that meet the condition for a fixed price"
+msgid "Get the services that meet the condition for a fixed price"
 msgstr ""
 
 #: apps/offer/abstract_models.py:482
@@ -3800,7 +3800,7 @@ msgid "Benefits"
 msgstr "Förmåner"
 
 #: apps/offer/abstract_models.py:550
-msgid "Multibuy benefits require a product range"
+msgid "Multibuy benefits require a service range"
 msgstr ""
 
 #: apps/offer/abstract_models.py:552
@@ -3812,7 +3812,7 @@ msgid "Multibuy benefits don't require a 'max affected items' attribute"
 msgstr ""
 
 #: apps/offer/abstract_models.py:564
-msgid "Percentage benefits require a product range"
+msgid "Percentage benefits require a service range"
 msgstr ""
 
 #: apps/offer/abstract_models.py:567 apps/offer/abstract_models.py:592
@@ -3829,7 +3829,7 @@ msgstr ""
 
 #: apps/offer/abstract_models.py:579 apps/offer/abstract_models.py:597
 #: apps/offer/abstract_models.py:608
-msgid "No range should be selected as this benefit does not apply to products"
+msgid "No range should be selected as this benefit does not apply to services"
 msgstr ""
 
 #: apps/offer/abstract_models.py:582 apps/offer/abstract_models.py:600
@@ -3843,7 +3843,7 @@ msgid ""
 msgstr ""
 
 #: apps/offer/abstract_models.py:626
-msgid "Fixed discount benefits require a product range"
+msgid "Fixed discount benefits require a service range"
 msgstr ""
 
 #: apps/offer/abstract_models.py:628
@@ -3868,7 +3868,7 @@ msgid "Conditions"
 msgstr "Villkor"
 
 #: apps/offer/abstract_models.py:797
-#: templates/oscar/dashboard/catalogue/product_update.html:286
+#: templates/oscar/dashboard/catalogue/service_update.html:286
 #: templates/oscar/dashboard/ranges/range_list.html:33
 msgid "Is public?"
 msgstr "Är offentlig?"
@@ -3878,7 +3878,7 @@ msgid "Public ranges have a customer-facing page"
 msgstr ""
 
 #: apps/offer/abstract_models.py:801
-msgid "Includes all products?"
+msgid "Includes all services?"
 msgstr "Inkluderar alla produkter?"
 
 #: apps/offer/abstract_models.py:805
@@ -3902,7 +3902,7 @@ msgstr "Inkluderade kategorier"
 #: templates/oscar/dashboard/ranges/range_list.html:12
 #: templates/oscar/dashboard/ranges/range_list.html:20
 #: templates/oscar/dashboard/ranges/range_list.html:27
-#: templates/oscar/dashboard/ranges/range_product_list.html:15
+#: templates/oscar/dashboard/ranges/range_service_list.html:15
 msgid "Ranges"
 msgstr "Intervall"
 
@@ -3984,7 +3984,7 @@ msgstr ""
 
 #: apps/offer/benefits.py:190
 #, python-format
-msgid "The products that meet the condition are sold for %(amount)s"
+msgid "The services that meet the condition are sold for %(amount)s"
 msgstr "Produkterna som matchar villkoren säljs för %(amount)s"
 
 #: apps/offer/benefits.py:201
@@ -3997,7 +3997,7 @@ msgstr ""
 
 #: apps/offer/benefits.py:253
 #, python-format
-msgid "Cheapest product from %(range)s is free"
+msgid "Cheapest service from %(range)s is free"
 msgstr "Billigaste produkten från %(range)s är gratis"
 
 #: apps/offer/benefits.py:268
@@ -4062,8 +4062,8 @@ msgstr ""
 
 #: apps/offer/conditions.py:74 apps/offer/conditions.py:158
 #, python-format
-msgid "Buy %(delta)d more product from %(range)s"
-msgid_plural "Buy %(delta)d more products from %(range)s"
+msgid "Buy %(delta)d more service from %(range)s"
+msgid_plural "Buy %(delta)d more services from %(range)s"
 msgstr[0] "Köp %(delta)d produkt till från %(range)s"
 msgstr[1] "Köp %(delta)d till produkter från %(range)s"
 
@@ -4275,7 +4275,7 @@ msgid "Order Line"
 msgstr "Orderrad"
 
 #: apps/order/abstract_models.py:572
-msgid "<missing product>"
+msgid "<missing service>"
 msgstr "<produkt saknas>"
 
 #: apps/order/abstract_models.py:573
@@ -4416,8 +4416,8 @@ msgstr "Antal händelser för leverans"
 
 #: apps/order/abstract_models.py:1033
 #, python-format
-msgid "%(product)s - quantity %(qty)d"
-msgstr "%(product)s - antal %(qty)d"
+msgid "%(service)s - quantity %(qty)d"
+msgstr "%(service)s - antal %(qty)d"
 
 #: apps/order/abstract_models.py:1053
 msgid "Shipping Event Type"
@@ -4522,7 +4522,7 @@ msgstr ""
 #: templates/oscar/basket/partials/basket_content.html:31
 #: templates/oscar/basket/partials/basket_content.html:92
 #: templates/oscar/basket/partials/basket_content.html:183
-#: templates/oscar/dashboard/catalogue/product_update.html:233
+#: templates/oscar/dashboard/catalogue/service_update.html:233
 msgid "Price"
 msgstr "Pris"
 
@@ -4778,7 +4778,7 @@ msgid "American Express cards use a 4 digit security code"
 msgstr "American Express använder en fyrsiffrig säkerhetskod"
 
 #: apps/search/apps.py:11 apps/search/forms.py:40 apps/search/forms.py:42
-#: templates/oscar/dashboard/catalogue/product_list.html:64
+#: templates/oscar/dashboard/catalogue/service_list.html:64
 #: templates/oscar/dashboard/offers/offer_list.html:31
 #: templates/oscar/dashboard/orders/order_list.html:30
 #: templates/oscar/dashboard/orders/order_list.html:51
@@ -4866,7 +4866,7 @@ msgid "Default Weight"
 msgstr "Standardvikt"
 
 #: apps/shipping/abstract_models.py:107
-msgid "Default product weight in kg when no weight attribute is defined"
+msgid "Default service weight in kg when no weight attribute is defined"
 msgstr ""
 
 #: apps/shipping/abstract_models.py:113
@@ -5218,7 +5218,7 @@ msgid "This is not a valid local or international phone format."
 msgstr ""
 
 #: management/commands/oscar_send_alerts.py:16
-msgid "Check for products that are back in stock and send out alerts"
+msgid "Check for services that are back in stock and send out alerts"
 msgstr ""
 
 #: templates/flatpages/default.html:11
@@ -5236,7 +5236,7 @@ msgstr ""
 #: templates/oscar/customer/order/order_list.html:22
 #: templates/oscar/customer/registration.html:13
 #: templates/oscar/customer/wishlists/wishlists_delete.html:8
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:8
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:8
 #: templates/oscar/customer/wishlists/wishlists_detail.html:10
 #: templates/oscar/customer/wishlists/wishlists_form.html:8
 #: templates/oscar/dashboard/catalogue/category_list.html:35
@@ -5385,9 +5385,9 @@ msgstr "Uppdatera"
 #: templates/oscar/basket/partials/basket_content.html:205
 #: templates/oscar/basket/partials/basket_totals.html:51
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:45
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_detail.html:85
-#: templates/oscar/dashboard/ranges/range_product_list.html:112
+#: templates/oscar/dashboard/ranges/range_service_list.html:112
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -5407,7 +5407,7 @@ msgstr "Jag har en kupongkod..."
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:13
 #: templates/oscar/catalogue/partials/add_to_basket_form_compact.html:12
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:35
-#: templates/oscar/dashboard/catalogue/product_update.html:277
+#: templates/oscar/dashboard/catalogue/service_update.html:277
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:91
 msgid "Adding..."
 msgstr "Lägger till..."
@@ -5425,16 +5425,16 @@ msgstr "Lägg till kupong"
 #: templates/oscar/customer/profile/profile_delete.html:18
 #: templates/oscar/customer/registration.html:32
 #: templates/oscar/customer/wishlists/wishlists_delete.html:34
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_form.html:43
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:141
 #: templates/oscar/dashboard/catalogue/category_delete.html:36
 #: templates/oscar/dashboard/catalogue/category_form.html:106
 #: templates/oscar/dashboard/catalogue/option_form.html:89
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:35
-#: templates/oscar/dashboard/catalogue/product_class_form.html:142
-#: templates/oscar/dashboard/catalogue/product_delete.html:56
-#: templates/oscar/dashboard/catalogue/product_update.html:374
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:35
+#: templates/oscar/dashboard/catalogue/service_class_form.html:142
+#: templates/oscar/dashboard/catalogue/service_delete.html:56
+#: templates/oscar/dashboard/catalogue/service_update.html:374
 #: templates/oscar/dashboard/comms/detail.html:102
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/orders/shippingaddress_form.html:32
@@ -5446,7 +5446,7 @@ msgstr "Lägg till kupong"
 #: templates/oscar/dashboard/ranges/range_delete.html:30
 #: templates/oscar/dashboard/ranges/range_form.html:36
 #: templates/oscar/dashboard/ranges/range_form.html:39
-#: templates/oscar/dashboard/ranges/range_product_list.html:137
+#: templates/oscar/dashboard/ranges/range_service_list.html:137
 #: templates/oscar/dashboard/reviews/review_delete.html:47
 #: templates/oscar/dashboard/reviews/review_update.html:77
 #: templates/oscar/dashboard/shipping/weight_band_delete.html:45
@@ -5472,11 +5472,11 @@ msgstr "eller"
 #: templates/oscar/customer/profile/profile_delete.html:18
 #: templates/oscar/customer/registration.html:32
 #: templates/oscar/customer/wishlists/wishlists_delete.html:34
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
 #: templates/oscar/customer/wishlists/wishlists_form.html:43
 #: templates/oscar/dashboard/catalogue/category_delete.html:36
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:35
-#: templates/oscar/dashboard/catalogue/product_delete.html:57
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:35
+#: templates/oscar/dashboard/catalogue/service_delete.html:57
 #: templates/oscar/dashboard/comms/detail.html:102
 #: templates/oscar/dashboard/offers/offer_delete.html:31
 #: templates/oscar/dashboard/offers/step_form.html:75
@@ -5648,10 +5648,10 @@ msgid "<strong>0</strong> results."
 msgstr "<strong>0</strong> produkter."
 
 #: templates/oscar/catalogue/browse.html:106
-#: templates/oscar/dashboard/catalogue/product_list.html:90
-#: templates/oscar/dashboard/ranges/range_product_list.html:129
+#: templates/oscar/dashboard/catalogue/service_list.html:90
+#: templates/oscar/dashboard/ranges/range_service_list.html:129
 #: templates/oscar/offer/detail.html:62 templates/oscar/offer/range.html:40
-msgid "No products found."
+msgid "No services found."
 msgstr "Inga produkter hittades."
 
 #: templates/oscar/catalogue/category.html:17
@@ -5659,7 +5659,7 @@ msgid "Edit this category"
 msgstr ""
 
 #: templates/oscar/catalogue/detail.html:66
-msgid "Edit this product"
+msgid "Edit this service"
 msgstr "Redigera denna produkt."
 
 #: templates/oscar/catalogue/detail.html:87
@@ -5675,8 +5675,8 @@ msgid "Product Information"
 msgstr "Produktinformation"
 
 #: templates/oscar/catalogue/detail.html:121
-#: templates/oscar/dashboard/catalogue/product_class_form.html:14
-#: templates/oscar/dashboard/catalogue/product_class_list.html:8
+#: templates/oscar/dashboard/catalogue/service_class_form.html:14
+#: templates/oscar/dashboard/catalogue/service_class_list.html:8
 #: templates/oscar/dashboard/orders/line_detail.html:45
 msgid "Product Type"
 msgstr "Produkttyp"
@@ -5704,13 +5704,13 @@ msgstr "Kundrecensioner"
 #: templates/oscar/catalogue/detail.html:171
 #, python-format
 msgid ""
-"This product does not have any reviews yet -\n"
+"This service does not have any reviews yet -\n"
 "                            <a href=\"%(add_review_url)s#addreview\">be the first to write one</a>.\n"
 "                        "
 msgstr "Denna produkt har inga recensioner än -\n<a href=\"%(add_review_url)s#addreview\">bli först med att skriva en</a>.\n                        "
 
 #: templates/oscar/catalogue/detail.html:175
-msgid "This product does not have any reviews yet"
+msgid "This service does not have any reviews yet"
 msgstr "Denna produkt har inga recensioner än"
 
 #: templates/oscar/catalogue/detail.html:194
@@ -5724,11 +5724,11 @@ msgid "Add to basket"
 msgstr "Lägg i varukorg"
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:20
-msgid "You have an active stock alert for this product."
+msgid "You have an active stock alert for this service."
 msgstr "Du har en lagernotifikation för denna produkt."
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:24
-msgid "You can get an email alert when this product is back in stock."
+msgid "You can get an email alert when this service is back in stock."
 msgstr "Du kan få en notifikation via email när denna produkt finns i lager."
 
 #: templates/oscar/catalogue/partials/add_to_basket_form.html:26
@@ -5737,7 +5737,7 @@ msgstr "Du kan få en notifikation via email när denna produkt finns i lager."
 #: templates/oscar/checkout/preview.html:35
 #: templates/oscar/checkout/shipping_methods.html:58
 #: templates/oscar/checkout/user_address_delete.html:29
-#: templates/oscar/dashboard/catalogue/product_list.html:39
+#: templates/oscar/dashboard/catalogue/service_list.html:39
 #: templates/oscar/dashboard/comms/detail.html:76
 #: templates/oscar/dashboard/offers/step_form.html:69
 #: templates/oscar/dashboard/orders/order_list.html:108
@@ -5776,13 +5776,13 @@ msgid ""
 msgstr ""
 
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:45
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:34
-#: templates/oscar/dashboard/ranges/range_product_list.html:90
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:34
+#: templates/oscar/dashboard/ranges/range_service_list.html:90
 msgid "Removing..."
 msgstr "Raderar..."
 
 #: templates/oscar/catalogue/partials/add_to_wishlist.html:50
-msgid "Please login to add products to a wish list."
+msgid "Please login to add services to a wish list."
 msgstr "Logga in för att lägga till produkter i en önskelista."
 
 #: templates/oscar/catalogue/partials/gallery.html:22
@@ -5820,14 +5820,14 @@ msgstr "Är denna recension till någon hjälp?"
 #: templates/oscar/catalogue/partials/review.html:40
 #: templates/oscar/dashboard/offers/offer_list.html:67
 #: templates/oscar/dashboard/ranges/range_list.html:55
-#: templates/oscar/dashboard/ranges/range_product_list.html:110
+#: templates/oscar/dashboard/ranges/range_service_list.html:110
 msgid "Yes"
 msgstr "Ja"
 
 #: templates/oscar/catalogue/partials/review.html:45
 #: templates/oscar/dashboard/offers/offer_list.html:69
 #: templates/oscar/dashboard/ranges/range_list.html:57
-#: templates/oscar/dashboard/ranges/range_product_list.html:110
+#: templates/oscar/dashboard/ranges/range_service_list.html:110
 msgid "No"
 msgstr "Nej"
 
@@ -5877,7 +5877,7 @@ msgid "Customer reviews"
 msgstr "Kundrecensioner"
 
 #: templates/oscar/catalogue/reviews/review_form.html:8
-msgid "Leave a product review"
+msgid "Leave a service review"
 msgstr "Lämna en produktrecension"
 
 #: templates/oscar/catalogue/reviews/review_form.html:47
@@ -5887,9 +5887,9 @@ msgstr "Lämna en produktrecension"
 #: templates/oscar/customer/wishlists/wishlists_form.html:42
 #: templates/oscar/dashboard/catalogue/category_form.html:107
 #: templates/oscar/dashboard/catalogue/category_form.html:110
-#: templates/oscar/dashboard/catalogue/product_update.html:376
-#: templates/oscar/dashboard/catalogue/product_update.html:380
-#: templates/oscar/dashboard/catalogue/product_update.html:383
+#: templates/oscar/dashboard/catalogue/service_update.html:376
+#: templates/oscar/dashboard/catalogue/service_update.html:380
+#: templates/oscar/dashboard/catalogue/service_update.html:383
 #: templates/oscar/dashboard/comms/detail.html:101
 #: templates/oscar/dashboard/offers/restrictions_form.html:13
 #: templates/oscar/dashboard/offers/step_form.html:71
@@ -5916,7 +5916,7 @@ msgid "Go"
 msgstr "Skicka"
 
 #: templates/oscar/catalogue/reviews/review_list.html:54
-msgid "This product does not have any reviews yet."
+msgid "This service does not have any reviews yet."
 msgstr "Denna produkt har inga recensioner än"
 
 #: templates/oscar/checkout/checkout.html:35
@@ -6056,11 +6056,11 @@ msgstr "Skicka till denna adress"
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:23
 #: templates/oscar/dashboard/catalogue/option_delete.html:61
 #: templates/oscar/dashboard/catalogue/option_row_actions.html:13
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:34
-#: templates/oscar/dashboard/catalogue/product_class_list.html:50
-#: templates/oscar/dashboard/catalogue/product_delete.html:55
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:16
-#: templates/oscar/dashboard/catalogue/product_update.html:300
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:34
+#: templates/oscar/dashboard/catalogue/service_class_list.html:50
+#: templates/oscar/dashboard/catalogue/service_delete.html:55
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:16
+#: templates/oscar/dashboard/catalogue/service_update.html:300
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/offers/offer_list.html:102
 #: templates/oscar/dashboard/orders/order_detail.html:703
@@ -6188,8 +6188,8 @@ msgstr "Ja!"
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:143
 #: templates/oscar/dashboard/catalogue/category_form.html:111
 #: templates/oscar/dashboard/catalogue/option_form.html:91
-#: templates/oscar/dashboard/catalogue/product_class_form.html:144
-#: templates/oscar/dashboard/catalogue/product_update.html:384
+#: templates/oscar/dashboard/catalogue/service_class_form.html:144
+#: templates/oscar/dashboard/catalogue/service_update.html:384
 #: templates/oscar/dashboard/comms/detail.html:101
 #: templates/oscar/dashboard/pages/update.html:33
 #: templates/oscar/dashboard/partials/form.html:10
@@ -6263,8 +6263,8 @@ msgid "Your email address has changed at %(site_name)s."
 msgstr "Din mailadress har ändrats på %(site_name)s."
 
 #: templates/oscar/communication/emails/commtype_order_placed_body.html:7
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:10
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:10
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:1
 msgid "Hello,"
 msgstr "Hej,"
 
@@ -6389,62 +6389,62 @@ msgstr "Gå till följande sida och välj ett nytt lösenord:"
 msgid "Resetting your password at %(site_name)s."
 msgstr "Återställ ditt lösenord på %(site_name)s"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:8
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:8
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:1
 #, python-format
 msgid "Dear %(name)s,"
 msgstr "Hej %(name)s,"
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:16
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:16
 #, python-format
 msgid ""
 "\n"
-"            We are happy to inform you that our product '%(title)s' is back in stock:\n"
+"            We are happy to inform you that our service '%(title)s' is back in stock:\n"
 "            %(url)s\n"
 "        "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:24
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:24
 msgid ""
 "\n"
 "                Beware that the amount of items in stock is limited. Be quick or someone might get there first.\n"
 "            "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.html:31
+#: templates/oscar/communication/emails/commtype_service_alert_body.html:31
 msgid ""
 "\n"
 "            With this email we have disabled your alert automatically and you will not\n"
-"            receive any further email regarding this product.\n"
+"            receive any further email regarding this service.\n"
 "        "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:3
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:3
 #, python-format
 msgid ""
 "\n"
-"We are happy to inform you that our product '%(title)s' is back in stock:\n"
+"We are happy to inform you that our service '%(title)s' is back in stock:\n"
 "%(url)s\n"
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:6
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:6
 msgid ""
 "\n"
 "Beware that the amount of items in stock is limited. Be quick or someone might get there first.\n"
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_body.txt:8
+#: templates/oscar/communication/emails/commtype_service_alert_body.txt:8
 #, python-format
 msgid ""
 "\n"
 "With this email we have disabled your alert automatically and you will not\n"
-"receive any further email regarding this product.\n"
+"receive any further email regarding this service.\n"
 "\n"
 "Thanks for your interest,\n"
 "The %(site_name)s Team\n"
 msgstr "\nVi har i och med detta meddelandet inaktiverat din lagernotifikation och du kommer inte få några fler meddelanden angående denna produkt.\n\nTack för ditt intresse,\nTeamet på %(site_name)s\n"
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_body.html:8
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_body.html:8
 #, python-format
 msgid ""
 "\n"
@@ -6464,7 +6464,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_body.txt:5
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_body.txt:5
 #, python-format
 msgid ""
 "\n"
@@ -6481,11 +6481,11 @@ msgid ""
 "The %(site)s Team\n"
 msgstr ""
 
-#: templates/oscar/communication/emails/commtype_product_alert_confirmation_subject.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_confirmation_subject.txt:1
 msgid "Confirmation required for stock alert"
 msgstr "Bekräftelse krävs för lagernotifikationer"
 
-#: templates/oscar/communication/emails/commtype_product_alert_subject.txt:1
+#: templates/oscar/communication/emails/commtype_service_alert_subject.txt:1
 #, python-format
 msgid "%(title)s is back in stock"
 msgstr ""
@@ -6546,8 +6546,8 @@ msgstr "Arkiverar..."
 #: templates/oscar/dashboard/catalogue/attribute_option_group_delete.html:62
 #: templates/oscar/dashboard/catalogue/category_delete.html:35
 #: templates/oscar/dashboard/catalogue/option_delete.html:60
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:34
-#: templates/oscar/dashboard/catalogue/product_delete.html:55
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:34
+#: templates/oscar/dashboard/catalogue/service_delete.html:55
 #: templates/oscar/dashboard/offers/offer_delete.html:30
 #: templates/oscar/dashboard/pages/delete.html:36
 #: templates/oscar/dashboard/partners/partner_delete.html:30
@@ -6578,8 +6578,8 @@ msgid "Default billing address"
 msgstr "Fakturaadress"
 
 #: templates/oscar/customer/address/address_list.html:30
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:10
-#: templates/oscar/dashboard/catalogue/product_update.html:297
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:10
+#: templates/oscar/dashboard/catalogue/service_update.html:297
 #: templates/oscar/dashboard/comms/detail.html:33
 #: templates/oscar/dashboard/comms/list.html:44
 #: templates/oscar/dashboard/offers/offer_detail.html:62
@@ -6620,7 +6620,7 @@ msgid "There are no addresses in your address book."
 msgstr "Det finns inga adresser i din adressbok."
 
 #: templates/oscar/customer/alerts/alert_list.html:6
-msgid "You do not have any active alerts for out-of-stock products."
+msgid "You do not have any active alerts for out-of-stock services."
 msgstr "Du har inga aktiva notifikationer för slutsålda produkter."
 
 #: templates/oscar/customer/alerts/alert_list.html:33
@@ -6629,8 +6629,8 @@ msgstr "Du har inga aktiva notifikationer för slutsålda produkter."
 #: templates/oscar/dashboard/catalogue/category_form.html:104
 #: templates/oscar/dashboard/catalogue/option_delete.html:58
 #: templates/oscar/dashboard/catalogue/option_form.html:87
-#: templates/oscar/dashboard/catalogue/product_class_form.html:140
-#: templates/oscar/dashboard/catalogue/product_update.html:372
+#: templates/oscar/dashboard/catalogue/service_class_form.html:140
+#: templates/oscar/dashboard/catalogue/service_update.html:372
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -6682,7 +6682,7 @@ msgstr "Varukorg totalt (inkl. skatt)"
 #: templates/oscar/customer/baseaccountpage.html:18
 #: templates/oscar/customer/order/order_list.html:25
 #: templates/oscar/customer/wishlists/wishlists_delete.html:11
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:11
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:11
 #: templates/oscar/customer/wishlists/wishlists_detail.html:13
 #: templates/oscar/customer/wishlists/wishlists_form.html:11
 #: templates/oscar/dashboard/layout.html:43
@@ -6691,7 +6691,7 @@ msgstr "Varukorg totalt (inkl. skatt)"
 msgid "Account"
 msgstr "Konto"
 
-#: templates/oscar/customer/history/recently_viewed_products.html:7
+#: templates/oscar/customer/history/recently_viewed_services.html:7
 msgid "Products you recently viewed"
 msgstr "Produkter du nyligen besökt"
 
@@ -6853,8 +6853,8 @@ msgstr "\nDetta kommer ta bort all information om dig från sidan. Radering av d
 
 #: templates/oscar/customer/wishlists/wishlists_delete.html:19
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:111
-#: templates/oscar/dashboard/catalogue/product_class_form.html:105
-#: templates/oscar/dashboard/catalogue/product_update.html:234
+#: templates/oscar/dashboard/catalogue/service_class_form.html:105
+#: templates/oscar/dashboard/catalogue/service_update.html:234
 #: templates/oscar/dashboard/offers/offer_delete.html:16
 #: templates/oscar/dashboard/partners/partner_delete.html:16
 #: templates/oscar/dashboard/ranges/range_delete.html:16
@@ -6871,17 +6871,17 @@ msgid ""
 "            "
 msgstr "\nÄr du säker att du vill radera %(name)s?"
 
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:19
-msgid "Remove product"
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:19
+msgid "Remove service"
 msgstr "Ta bort produkt"
 
-#: templates/oscar/customer/wishlists/wishlists_delete_product.html:28
+#: templates/oscar/customer/wishlists/wishlists_delete_service.html:28
 #, python-format
 msgid ""
 "\n"
-"                Are you sure you want to delete %(product_name)s from wish list %(wishlist_name)s?\n"
+"                Are you sure you want to delete %(service_name)s from wish list %(wishlist_name)s?\n"
 "            "
-msgstr "\nÄr du säker att du vill ta bort %(product_name)s från %(wishlist_name)s?\n            "
+msgstr "\nÄr du säker att du vill ta bort %(service_name)s från %(wishlist_name)s?\n            "
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:35
 #: templates/oscar/customer/wishlists/wishlists_list.html:11
@@ -6889,7 +6889,7 @@ msgid "Action"
 msgstr ""
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:75
-msgid "View product"
+msgid "View service"
 msgstr "Visa produkt"
 
 #: templates/oscar/customer/wishlists/wishlists_detail.html:91
@@ -6925,7 +6925,7 @@ msgid ""
 msgstr "\nNär din önskelista skapats kommer <strong>%(title)s</strong> läggas till.\n                "
 
 #: templates/oscar/customer/wishlists/wishlists_list.html:10
-msgid "Number of products"
+msgid "Number of services"
 msgstr "Antal produkter"
 
 #: templates/oscar/customer/wishlists/wishlists_list.html:23
@@ -6970,8 +6970,8 @@ msgstr ""
 
 #: templates/oscar/dashboard/catalogue/attribute_option_group_form.html:50
 #: templates/oscar/dashboard/catalogue/category_form.html:37
-#: templates/oscar/dashboard/catalogue/product_class_form.html:32
-#: templates/oscar/dashboard/catalogue/product_update.html:58
+#: templates/oscar/dashboard/catalogue/service_class_form.html:32
+#: templates/oscar/dashboard/catalogue/service_update.html:58
 msgid "Sections"
 msgstr "Sektioner"
 
@@ -7025,20 +7025,20 @@ msgstr ""
 
 #: templates/oscar/dashboard/catalogue/category_form.html:48
 #: templates/oscar/dashboard/catalogue/category_form.html:82
-#: templates/oscar/dashboard/catalogue/product_update.html:117
-#: templates/oscar/dashboard/catalogue/product_update.html:349
+#: templates/oscar/dashboard/catalogue/service_update.html:117
+#: templates/oscar/dashboard/catalogue/service_update.html:349
 msgid "Search engine optimisation"
 msgstr ""
 
 #: templates/oscar/dashboard/catalogue/category_form.html:108
-#: templates/oscar/dashboard/catalogue/product_update.html:381
+#: templates/oscar/dashboard/catalogue/service_update.html:381
 msgid "Save and continue editing"
 msgstr "Spara och fortsätt redigera"
 
 #: templates/oscar/dashboard/catalogue/category_form.html:115
 #: templates/oscar/dashboard/catalogue/category_row_actions.html:20
-#: templates/oscar/dashboard/catalogue/product_row_actions.html:13
-#: templates/oscar/dashboard/catalogue/product_update.html:388
+#: templates/oscar/dashboard/catalogue/service_row_actions.html:13
+#: templates/oscar/dashboard/catalogue/service_update.html:388
 #: templates/oscar/dashboard/pages/index.html:63
 #: templates/oscar/dashboard/pages/messages/saved.html:9
 #: templates/oscar/dashboard/ranges/range_list.html:79
@@ -7070,15 +7070,15 @@ msgstr "Skapa underkategori"
 msgid "Edit children"
 msgstr "Redigera underkategorier"
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:10
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:10
 #, python-format
 msgid ""
 "\n"
-"                    Created product variant '%(name)s'.\n"
+"                    Created service variant '%(name)s'.\n"
 "                "
 msgstr "\nSkapade produktvarianten '%(name)s'.\n                "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:14
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:14
 #, python-format
 msgid ""
 "\n"
@@ -7086,15 +7086,15 @@ msgid ""
 "                "
 msgstr "\nSkapade variant av '%(parent_name)s'.\n                "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:20
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:20
 #, python-format
 msgid ""
 "\n"
-"                    Updated product variant '%(name)s'.\n"
+"                    Updated service variant '%(name)s'.\n"
 "                "
 msgstr "\nUppdaterade produktvarianten '%(name)s'.\n                "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:24
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:24
 #, python-format
 msgid ""
 "\n"
@@ -7102,29 +7102,29 @@ msgid ""
 "                "
 msgstr "\nUppdaterade variant av '%(parent_name)s'.\n                "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:33
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:33
 #, python-format
 msgid ""
 "\n"
-"                Created product '%(name)s'.\n"
+"                Created service '%(name)s'.\n"
 "            "
 msgstr "\nSkapade produkten '%(name)s'.\n            "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:37
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:37
 #, python-format
 msgid ""
 "\n"
-"                Updated product '%(name)s'.\n"
+"                Updated service '%(name)s'.\n"
 "            "
 msgstr "\nUppdaterade produkten '%(name)s'.\n            "
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:48
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:48
 #: templates/oscar/dashboard/pages/messages/saved.html:10
 #: templates/oscar/dashboard/ranges/messages/range_saved.html:6
 msgid "Edit again"
 msgstr "Redigera igen"
 
-#: templates/oscar/dashboard/catalogue/messages/product_saved.html:49
+#: templates/oscar/dashboard/catalogue/messages/service_saved.html:49
 msgid "View it on the site"
 msgstr "Visa på sidan"
 
@@ -7167,90 +7167,90 @@ msgstr ""
 msgid "Edit Option"
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:11
-msgid "Delete product type?"
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:11
+msgid "Delete service type?"
 msgstr "Radera produkttyp?"
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:22
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:22
 msgid ""
-"Please make sure all products are assigned to another type before deletion."
+"Please make sure all services are assigned to another type before deletion."
 msgstr "Se till så alla produkter är kopplade till en annan produkttyp innan radering."
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:25
-msgid "Delete product type"
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:25
+msgid "Delete service type"
 msgstr "Ta bort produkttyp"
 
-#: templates/oscar/dashboard/catalogue/product_class_delete.html:31
+#: templates/oscar/dashboard/catalogue/service_class_delete.html:31
 #, python-format
-msgid "Delete product type <strong>%(name)s</strong> - are you sure?"
+msgid "Delete service type <strong>%(name)s</strong> - are you sure?"
 msgstr "Ta bort produkttyp <strong>%(name)s</strong> - är du säker?"
 
-#: templates/oscar/dashboard/catalogue/product_class_form.html:5
-msgid "Create product type"
+#: templates/oscar/dashboard/catalogue/service_class_form.html:5
+msgid "Create service type"
 msgstr "Skapa produkttyp"
 
-#: templates/oscar/dashboard/catalogue/product_class_form.html:38
-#: templates/oscar/dashboard/catalogue/product_class_form.html:58
+#: templates/oscar/dashboard/catalogue/service_class_form.html:38
+#: templates/oscar/dashboard/catalogue/service_class_form.html:58
 msgid "Product Class details"
 msgstr "Detaljer för produktklass"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:16
-msgid "Create new product type"
+#: templates/oscar/dashboard/catalogue/service_class_list.html:16
+msgid "Create new service type"
 msgstr "Skapa ny produkttyp"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:17
+#: templates/oscar/dashboard/catalogue/service_class_list.html:17
 msgid "Product types"
 msgstr "Produkttyper"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:28
+#: templates/oscar/dashboard/catalogue/service_class_list.html:28
 msgid "Requires shipping"
 msgstr "Kräver frakt"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:29
+#: templates/oscar/dashboard/catalogue/service_class_list.html:29
 msgid "Track stock?"
 msgstr "Övervaka lagersaldo?"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:47
-msgid "Edit product type"
+#: templates/oscar/dashboard/catalogue/service_class_list.html:47
+msgid "Edit service type"
 msgstr "Redigera produkttyp"
 
-#: templates/oscar/dashboard/catalogue/product_class_list.html:61
-msgid "There are no product types."
+#: templates/oscar/dashboard/catalogue/service_class_list.html:61
+msgid "There are no service types."
 msgstr "Det finns inga produkttyper."
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:33
+#: templates/oscar/dashboard/catalogue/service_delete.html:33
 #, python-format
 msgid ""
 "\n"
-"                    Delete product variant <strong>%(title)s</strong> - are you sure?\n"
+"                    Delete service variant <strong>%(title)s</strong> - are you sure?\n"
 "                "
 msgstr "\nTa bort produktvariant <strong>%(title)s</strong> - är du säker?\n                "
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:37
+#: templates/oscar/dashboard/catalogue/service_delete.html:37
 #, python-format
 msgid ""
 "\n"
-"                    Delete product <strong>%(title)s</strong> - are you sure?\n"
+"                    Delete service <strong>%(title)s</strong> - are you sure?\n"
 "                "
 msgstr "\nTa bort produkt <strong>%(title)s</strong> - är du säker?\n                "
 
-#: templates/oscar/dashboard/catalogue/product_delete.html:45
-msgid "This will also delete the following child products:"
+#: templates/oscar/dashboard/catalogue/service_delete.html:45
+msgid "This will also delete the following child services:"
 msgstr "Detta kommer även ta bort följande produktvarianter:"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:34
-msgid "Create new product"
+#: templates/oscar/dashboard/catalogue/service_list.html:34
+msgid "Create new service"
 msgstr "Skapa ny produkt"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:40
+#: templates/oscar/dashboard/catalogue/service_list.html:40
 msgid "New Product"
 msgstr "Ny produkt"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:48
+#: templates/oscar/dashboard/catalogue/service_list.html:48
 msgid "Search Products"
 msgstr "Sök produkter"
 
-#: templates/oscar/dashboard/catalogue/product_list.html:64
+#: templates/oscar/dashboard/catalogue/service_list.html:64
 #: templates/oscar/dashboard/offers/offer_list.html:31
 #: templates/oscar/dashboard/orders/order_list.html:73
 #: templates/oscar/dashboard/pages/index.html:36
@@ -7263,86 +7263,86 @@ msgstr "Sök produkter"
 msgid "Searching..."
 msgstr "Söker..."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:43
+#: templates/oscar/dashboard/catalogue/service_update.html:43
 #, python-format
 msgid ""
 "\n"
-"                            You are currently editing a product variant of\n"
+"                            You are currently editing a service variant of\n"
 "                            <a href=\"%(parent_url)s\">%(title)s</a>.\n"
 "                        "
 msgstr "\nDu redigerar just nu en produktvariant av\n<a href=\"%(parent_url)s\">%(title)s</a>.\n                        "
 
-#: templates/oscar/dashboard/catalogue/product_update.html:72
-#: templates/oscar/dashboard/catalogue/product_update.html:132
+#: templates/oscar/dashboard/catalogue/service_update.html:72
+#: templates/oscar/dashboard/catalogue/service_update.html:132
 #: templates/oscar/dashboard/orders/line_detail.html:31
 msgid "Product details"
 msgstr "Produktdetaljer"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:91
+#: templates/oscar/dashboard/catalogue/service_update.html:91
 msgid "Images"
 msgstr "Bilder"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:97
-#: templates/oscar/dashboard/catalogue/product_update.html:220
+#: templates/oscar/dashboard/catalogue/service_update.html:97
+#: templates/oscar/dashboard/catalogue/service_update.html:220
 msgid "Stock and pricing"
 msgstr "Lagersaldo och priser"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:111
+#: templates/oscar/dashboard/catalogue/service_update.html:111
 msgid "Upselling"
 msgstr "Merförsäljning"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:177
+#: templates/oscar/dashboard/catalogue/service_update.html:177
 msgid "Product Type:"
 msgstr "Produkttyp:"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:198
+#: templates/oscar/dashboard/catalogue/service_update.html:198
 msgid "Upload, change or remove images"
 msgstr "Ladda upp, ändra eller ta bort  bilder"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:209
+#: templates/oscar/dashboard/catalogue/service_update.html:209
 msgid ""
 "Drag images to re-order them. Space for additional images will appear when "
 "images are added."
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_update.html:226
+#: templates/oscar/dashboard/catalogue/service_update.html:226
 msgid "SKU"
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_update.html:228
+#: templates/oscar/dashboard/catalogue/service_update.html:228
 msgid "Num in stock"
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_update.html:229
+#: templates/oscar/dashboard/catalogue/service_update.html:229
 msgid "Num allocated"
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_update.html:230
+#: templates/oscar/dashboard/catalogue/service_update.html:230
 #: templates/oscar/dashboard/catalogue/stockalert_list.html:49
 msgid "Low stock threshold"
 msgstr "Gräns för lågt lagersaldo"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:278
+#: templates/oscar/dashboard/catalogue/service_update.html:278
 msgid "Add variant"
 msgstr "Lägg till variant"
 
-#: templates/oscar/dashboard/catalogue/product_update.html:309
-msgid "This product does not have any variants."
+#: templates/oscar/dashboard/catalogue/service_update.html:309
+msgid "This service does not have any variants."
 msgstr "Denna produkt har inga varianter."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:311
-msgid "One can't add variants to this product at this point."
+#: templates/oscar/dashboard/catalogue/service_update.html:311
+msgid "One can't add variants to this service at this point."
 msgstr "Du kan inte lägga till varianter på denna produkten just nu."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:313
-msgid "Please save the product before trying to add variants."
+#: templates/oscar/dashboard/catalogue/service_update.html:313
+msgid "Please save the service before trying to add variants."
 msgstr ""
 
-#: templates/oscar/dashboard/catalogue/product_update.html:315
-msgid "This is likely because this product still has stock records."
+#: templates/oscar/dashboard/catalogue/service_update.html:315
+msgid "This is likely because this service still has stock records."
 msgstr "Detta är troligtvis på grund av att produkten fortfarande finns i lager."
 
-#: templates/oscar/dashboard/catalogue/product_update.html:377
+#: templates/oscar/dashboard/catalogue/service_update.html:377
 msgid "Save and add another variant"
 msgstr "Spara och skapa ytterligare variant"
 
@@ -7507,7 +7507,7 @@ msgid "Catalogue and stock"
 msgstr ""
 
 #: templates/oscar/dashboard/index.html:147
-msgid "Total products"
+msgid "Total services"
 msgstr "Totalt antal produkter"
 
 #: templates/oscar/dashboard/index.html:151
@@ -7887,7 +7887,7 @@ msgid "with amount"
 msgstr ""
 
 #: templates/oscar/dashboard/orders/order_detail.html:350
-#: templates/oscar/dashboard/ranges/range_product_list.html:48
+#: templates/oscar/dashboard/ranges/range_service_list.html:48
 #: templates/oscar/dashboard/users/table.html:21
 msgid "Go!"
 msgstr ""
@@ -8129,8 +8129,8 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: templates/oscar/dashboard/partials/product_images.html:13
-#: templates/oscar/dashboard/ranges/range_product_list.html:114
+#: templates/oscar/dashboard/partials/service_images.html:13
+#: templates/oscar/dashboard/ranges/range_service_list.html:114
 msgctxt "Change the sequence order"
 msgid "Re-order"
 msgstr ""
@@ -8243,57 +8243,57 @@ msgstr ""
 msgid "No users found."
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:2
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:2
 #, python-format
 msgid ""
 "\n"
 "    <p>File <strong>%(filename)s</strong> processed.</p>\n"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:9
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:9
 #, python-format
 msgid ""
 "\n"
-"                <strong>%(n)s</strong> product added\n"
+"                <strong>%(n)s</strong> service added\n"
 "            "
 msgid_plural ""
 "\n"
-"                <strong>%(n)s</strong> products added\n"
+"                <strong>%(n)s</strong> services added\n"
 "            "
 msgstr[0] "\n<strong>%(n)s</strong> produkt tillagd\n            "
 msgstr[1] "\n<strong>%(n)s</strong> produkter tillagda\n            "
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:18
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:18
 #, python-format
 msgid ""
 "\n"
-"                There was <strong>%(n)s</strong> duplicate product in the file\n"
+"                There was <strong>%(n)s</strong> duplicate service in the file\n"
 "            "
 msgid_plural ""
 "\n"
-"                There were <strong>%(n)s</strong> duplicate products in the file\n"
+"                There were <strong>%(n)s</strong> duplicate services in the file\n"
 "            "
 msgstr[0] "\nDet fanns <strong>%(n)s</strong> likadan produkt i filen\n            "
 msgstr[1] "\nDet fanns <strong>%(n)s</strong> likadana produkter i filen\n            "
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:27
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:27
 #, python-format
 msgid ""
 "\n"
-"                There was <strong>%(n)s</strong> product in the file that couldn't be found in the catalogue\n"
+"                There was <strong>%(n)s</strong> service in the file that couldn't be found in the catalogue\n"
 "            "
 msgid_plural ""
 "\n"
-"                There were <strong>%(n)s</strong> products in the file that couldn't be found in the catalogue\n"
+"                There were <strong>%(n)s</strong> services in the file that couldn't be found in the catalogue\n"
 "            "
 msgstr[0] "\nDet fanns <strong>%(n)s</strong> produkt i filen som inte kunde hittas i katalogen\n            "
 msgstr[1] "\nDet fanns <strong>%(n)s</strong> produkter i filen som inte kunde hittas i katalogen\n            "
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:36
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:36
 msgid "Edit range metadata"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/messages/range_products_saved.html:37
+#: templates/oscar/dashboard/ranges/messages/range_services_saved.html:37
 msgid "Return to ranges homepage"
 msgstr ""
 
@@ -8305,7 +8305,7 @@ msgid ""
 msgstr ""
 
 #: templates/oscar/dashboard/ranges/messages/range_saved.html:7
-msgid "Edit included products"
+msgid "Edit included services"
 msgstr "Redigera inkluderade produkter"
 
 #: templates/oscar/dashboard/ranges/range_delete.html:7
@@ -8323,89 +8323,89 @@ msgid "Create new range"
 msgstr ""
 
 #: templates/oscar/dashboard/ranges/range_form.html:38
-msgid "Save and edit products"
+msgid "Save and edit services"
 msgstr "Spara och redigera produkter"
 
 #: templates/oscar/dashboard/ranges/range_list.html:32
-msgid "Num products"
+msgid "Num services"
 msgstr ""
 
 #: templates/oscar/dashboard/ranges/range_list.html:73
-msgid "Edit products"
+msgid "Edit services"
 msgstr "Redigera produkter"
 
 #: templates/oscar/dashboard/ranges/range_list.html:93
 msgid "No ranges found."
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:7
+#: templates/oscar/dashboard/ranges/range_service_list.html:7
 #, python-format
 msgid "Products in range '%(name)s'"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:28
-msgid "products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:28
+msgid "services"
 msgstr "produkter"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:34
+#: templates/oscar/dashboard/ranges/range_service_list.html:34
 msgid ""
-"This range contains all products. To add products manually, please unselect "
+"This range contains all services. To add services manually, please unselect "
 "the 'Includes All Products' option on the edit range page."
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:38
-msgid "Add products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:38
+msgid "Add services"
 msgstr "Lägg till produkter"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:48
+#: templates/oscar/dashboard/ranges/range_service_list.html:48
 msgid "Running..."
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:55
+#: templates/oscar/dashboard/ranges/range_service_list.html:55
 msgid "Upload history"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:60
+#: templates/oscar/dashboard/ranges/range_service_list.html:60
 msgid "Filename"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:61
-msgid "New products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:61
+msgid "New services"
 msgstr "Nya produkter"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:62
-msgid "Duplicate products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:62
+msgid "Duplicate services"
 msgstr "Kopior av produkter"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:63
-msgid "Unknown products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:63
+msgid "Unknown services"
 msgstr "Okända produkter"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:64
+#: templates/oscar/dashboard/ranges/range_service_list.html:64
 msgid "Date uploaded"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:87
+#: templates/oscar/dashboard/ranges/range_service_list.html:87
 msgid "Products in range"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:90
-msgid "Remove selected products"
+#: templates/oscar/dashboard/ranges/range_service_list.html:90
+msgid "Remove selected services"
 msgstr "Ta bort valda produkter"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:98
-msgid "Is product discountable?"
+#: templates/oscar/dashboard/ranges/range_service_list.html:98
+msgid "Is service discountable?"
 msgstr "Kan denna produkt rabatteras?"
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:127
+#: templates/oscar/dashboard/ranges/range_service_list.html:127
 msgid "Products in Range"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:137
+#: templates/oscar/dashboard/ranges/range_service_list.html:137
 msgid "Edit range"
 msgstr ""
 
-#: templates/oscar/dashboard/ranges/range_product_list.html:138
+#: templates/oscar/dashboard/ranges/range_service_list.html:138
 msgid "return to range list"
 msgstr ""
 
@@ -8572,7 +8572,7 @@ msgid "Applies to countries"
 msgstr ""
 
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:45
-msgid "Default product weight (kg)"
+msgid "Default service weight (kg)"
 msgstr ""
 
 #: templates/oscar/dashboard/shipping/weight_based_detail.html:53
@@ -8645,7 +8645,7 @@ msgid "Are you sure that you want to delete this alert?"
 msgstr ""
 
 #: templates/oscar/dashboard/users/alerts/list.html:26
-msgid "Search product alerts"
+msgid "Search service alerts"
 msgstr "Sök produktnotifikationer"
 
 #: templates/oscar/dashboard/users/alerts/list.html:33
@@ -8922,7 +8922,7 @@ msgid "There are no site offers at the moment."
 msgstr "Det finns inga erbjudanden för webbplatsen just nu."
 
 #: templates/oscar/offer/list.html:42
-msgid "Browse products in offer"
+msgid "Browse services in offer"
 msgstr "Visa produkter i erbjudande"
 
 #: templates/oscar/order/partials/basket_totals.html:60

@@ -14,7 +14,7 @@ from oscar.models.fields import AutoSlugField
 
 class AbstractPartner(models.Model):
     """
-    A fulfilment partner. An individual or company who can fulfil products.
+    A fulfilment partner. An individual or company who can fulfil services.
     E.g. for physical goods, somebody with a warehouse and means of delivery.
 
     Creating one or more instances of the Partner model is a required step in
@@ -82,25 +82,25 @@ class AbstractStockRecord(models.Model):
     """
     A stock record.
 
-    This records information about a product from a fulfilment partner, such as
+    This records information about a service from a fulfilment partner, such as
     their SKU, the number they have in stock and price information.
 
     Stockrecords are used by 'strategies' to determine availability and pricing
     information for the customer.
     """
-    product = models.ForeignKey(
-        'catalogue.Product',
+    service = models.ForeignKey(
+        'catalogue.Service',
         on_delete=models.CASCADE,
         related_name="stockrecords",
-        verbose_name=_("Product"))
+        verbose_name=_("Service"))
     partner = models.ForeignKey(
         'partner.Partner',
         on_delete=models.CASCADE,
         verbose_name=_("Partner"),
         related_name='stockrecords')
 
-    #: The fulfilment partner will often have their own SKU for a product,
-    #: which we store here.  This will sometimes be the same the product's UPC
+    #: The fulfilment partner will often have their own SKU for a service,
+    #: which we store here.  This will sometimes be the same the service's UPC
     #: but not always.  It should be unique per partner.
     #: See also http://en.wikipedia.org/wiki/Stock-keeping_unit
     partner_sku = models.CharField(_("Partner SKU"), max_length=128)
@@ -139,8 +139,8 @@ class AbstractStockRecord(models.Model):
                                         db_index=True)
 
     def __str__(self):
-        msg = "Partner: %s, product: %s" % (
-            self.partner.display_name, self.product,)
+        msg = "Partner: %s, service: %s" % (
+            self.partner.display_name, self.service,)
         if self.partner_sku:
             msg = "%s (%s)" % (msg, self.partner_sku)
         return msg
@@ -169,8 +169,8 @@ class AbstractStockRecord(models.Model):
 
     @cached_property
     def can_track_allocations(self):
-        """Return True if the Product is set for stock tracking."""
-        return self.product.get_product_class().track_stock
+        """Return True if the Service is set for stock tracking."""
+        return self.service.get_service_class().track_stock
 
     # 2-stage stock management model
 
@@ -178,8 +178,8 @@ class AbstractStockRecord(models.Model):
         """
         Record a stock allocation.
 
-        This normally happens when a product is bought at checkout.  When the
-        product is actually shipped, then we 'consume' the allocation.
+        This normally happens when a service is bought at checkout.  When the
+        service is actually shipped, then we 'consume' the allocation.
 
         """
         # Doesn't make sense to allocate if stock tracking is off.
@@ -255,7 +255,7 @@ class AbstractStockRecord(models.Model):
 
 class AbstractStockAlert(models.Model):
     """
-    A stock alert. E.g. used to notify users when a product is 'back in stock'.
+    A stock alert. E.g. used to notify users when a service is 'back in stock'.
     """
     stockrecord = models.ForeignKey(
         'partner.StockRecord',

@@ -14,8 +14,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='productreview',
-            name='product',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='catalogue.Product'),
+            model_name='servicereview',
+            name='service',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='reviews', to='catalogue.Service'),
         ),
     ]

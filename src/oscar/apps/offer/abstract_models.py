@@ -438,20 +438,20 @@ class AbstractConditionalOffer(models.Model):
         return restrictions
 
     @property
-    def has_products(self):
+    def has_services(self):
         return self.condition.range is not None
 
-    def products(self):
+    def services(self):
         """
-        Return a queryset of products in this offer
+        Return a queryset of services in this offer
         """
-        Product = get_model('catalogue', 'Product')
-        if not self.has_products:
-            return Product.objects.none()
+        Service = get_model('catalogue', 'Service')
+        if not self.has_services:
+            return Service.objects.none()
 
-        queryset = self.condition.range.all_products()
+        queryset = self.condition.range.all_services()
         return queryset.filter(is_discountable=True).exclude(
-            structure=Product.CHILD)
+            structure=Service.CHILD)
 
     @cached_property
     def combined_offers(self):
@@ -476,11 +476,11 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
     SHIPPING_PERCENTAGE, SHIPPING_ABSOLUTE, SHIPPING_FIXED_PRICE = (
         'Shipping percentage', 'Shipping absolute', 'Shipping fixed price')
     TYPE_CHOICES = (
-        (PERCENTAGE, _("Discount is a percentage off of the product's value")),
-        (FIXED, _("Discount is a fixed amount off of the product's value")),
-        (MULTIBUY, _("Discount is to give the cheapest product for free")),
+        (PERCENTAGE, _("Discount is a percentage off of the service's value")),
+        (FIXED, _("Discount is a fixed amount off of the service's value")),
+        (MULTIBUY, _("Discount is to give the cheapest service for free")),
         (FIXED_PRICE,
-         _("Get the products that meet the condition for a fixed price")),
+         _("Get the services that meet the condition for a fixed price")),
         (SHIPPING_ABSOLUTE,
          _("Discount is a fixed amount of the shipping cost")),
         (SHIPPING_FIXED_PRICE, _("Get shipping for a fixed price")),
@@ -496,7 +496,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
     value = fields.PositiveDecimalField(
         _("Value"), decimal_places=2, max_digits=12, null=True, blank=True)
 
-    # If this is not set, then there is no upper limit on how many products
+    # If this is not set, then there is no upper limit on how many services
     # can be discounted by this benefit.
     max_affected_items = models.PositiveIntegerField(
         _("Max Affected Items"), blank=True, null=True,
@@ -550,7 +550,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
         errors = []
 
         if not self.range:
-            errors.append(_("Multibuy benefits require a product range"))
+            errors.append(_("Multibuy benefits require a service range"))
         if self.value:
             errors.append(_("Multibuy benefits don't require a value"))
         if self.max_affected_items:
@@ -564,7 +564,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
         errors = []
 
         if not self.range:
-            errors.append(_("Percentage benefits require a product range"))
+            errors.append(_("Percentage benefits require a service range"))
 
         if not self.value:
             errors.append(_("Percentage discount benefits require a value"))
@@ -580,7 +580,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
             errors.append(_("A discount value is required"))
         if self.range:
             errors.append(_("No range should be selected as this benefit does "
-                            "not apply to products"))
+                            "not apply to services"))
         if self.max_affected_items:
             errors.append(_("Shipping discounts don't require a "
                             "'max affected items' attribute"))
@@ -598,7 +598,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
 
         if self.range:
             errors.append(_("No range should be selected as this benefit does "
-                            "not apply to products"))
+                            "not apply to services"))
         if self.max_affected_items:
             errors.append(_("Shipping discounts don't require a "
                             "'max affected items' attribute"))
@@ -609,7 +609,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
         errors = []
         if self.range:
             errors.append(_("No range should be selected as this benefit does "
-                            "not apply to products"))
+                            "not apply to services"))
         if self.max_affected_items:
             errors.append(_("Shipping discounts don't require a "
                             "'max affected items' attribute"))
@@ -626,7 +626,7 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
     def clean_absolute(self):
         errors = []
         if not self.range:
-            errors.append(_("Fixed discount benefits require a product range"))
+            errors.append(_("Fixed discount benefits require a service range"))
         if not self.value:
             errors.append(_("Fixed discount benefits require a value"))
 
@@ -655,28 +655,28 @@ class AbstractBenefit(BaseOfferMixin, models.Model):
         """
         Determines whether the benefit can be applied to a given basket line
         """
-        return line.stockrecord and line.product.is_discountable
+        return line.stockrecord and line.service.is_discountable
 
     def get_applicable_lines(self, offer, basket, range=None):
         """
         Return the basket lines that are available to be discounted
 
         :basket: The basket
-        :range: The range of products to use for filtering.  The fixed-price
+        :range: The range of services to use for filtering.  The fixed-price
                 benefit ignores its range and uses the condition range
         """
         if range is None:
             range = self.range
         line_tuples = []
         for line in basket.all_lines():
-            product = line.product
+            service = line.service
 
-            if (not range.contains_product(product) or not self.can_apply_benefit(line)):
+            if (not range.contains_service(service) or not self.can_apply_benefit(line)):
                 continue
 
             price = unit_price(offer, line)
             if not price:
-                # Avoid zero price products
+                # Avoid zero price services
                 continue
             line_tuples.append((price, line))
 
@@ -759,9 +759,9 @@ class AbstractCondition(BaseOfferMixin, models.Model):
         """
         if not line.stockrecord_id:
             return False
-        product = line.product
-        return (self.range.contains_product(product)
-                and product.get_is_discountable())
+        service = line.service
+        return (self.range.contains_service(service)
+                and service.get_is_discountable())
 
     def get_applicable_lines(self, offer, basket, most_expensive_first=True):
         """
@@ -784,10 +784,10 @@ class AbstractCondition(BaseOfferMixin, models.Model):
 
 class AbstractRange(models.Model):
     """
-    Represents a range of products that can be used within an offer.
+    Represents a range of services that can be used within an offer.
 
-    Ranges only support adding parent or stand-alone products. Offers will
-    consider child products automatically.
+    Ranges only support adding parent or stand-alone services. Offers will
+    consider child services automatically.
     """
     name = models.CharField(_("Name"), max_length=128, unique=True)
     slug = fields.AutoSlugField(
@@ -800,18 +800,18 @@ class AbstractRange(models.Model):
         _('Is public?'), default=False,
         help_text=_("Public ranges have a customer-facing page"))
 
-    includes_all_products = models.BooleanField(
-        _('Includes all products?'), default=False)
+    includes_all_services = models.BooleanField(
+        _('Includes all services?'), default=False)
 
-    included_products = models.ManyToManyField(
-        'catalogue.Product', related_name='includes', blank=True,
-        verbose_name=_("Included Products"), through='offer.RangeProduct')
-    excluded_products = models.ManyToManyField(
-        'catalogue.Product', related_name='excludes', blank=True,
-        verbose_name=_("Excluded Products"))
+    included_services = models.ManyToManyField(
+        'catalogue.Service', related_name='includes', blank=True,
+        verbose_name=_("Included Services"), through='offer.RangeService')
+    excluded_services = models.ManyToManyField(
+        'catalogue.Service', related_name='excludes', blank=True,
+        verbose_name=_("Excluded Services"))
     classes = models.ManyToManyField(
-        'catalogue.ProductClass', related_name='classes', blank=True,
-        verbose_name=_("Product Types"))
+        'catalogue.ServiceClass', related_name='classes', blank=True,
+        verbose_name=_("Service Types"))
     included_categories = models.ManyToManyField(
         'catalogue.Category', related_name='includes', blank=True,
         verbose_name=_("Included Categories"))
@@ -844,20 +844,20 @@ class AbstractRange(models.Model):
         if self.proxy_class:
             return load_proxy(self.proxy_class)()
 
-    def add_product(self, product, display_order=None):
-        """ Add product to the range
+    def add_service(self, service, display_order=None):
+        """ Add service to the range
 
-        When adding product that is already in the range, prevent re-adding it.
+        When adding service that is already in the range, prevent re-adding it.
         If display_order is specified, update it.
 
-        Default display_order for a new product in the range is 0; this puts
-        the product at the top of the list.
+        Default display_order for a new service in the range is 0; this puts
+        the service at the top of the list.
         """
 
         initial_order = display_order or 0
-        RangeProduct = self.included_products.through
-        relation, __ = RangeProduct.objects.get_or_create(
-            range=self, product=product,
+        RangeService = self.included_services.through
+        relation, __ = RangeService.objects.get_or_create(
+            range=self, service=service,
             defaults={'display_order': initial_order})
 
         if (display_order is not None
@@ -865,69 +865,69 @@ class AbstractRange(models.Model):
             relation.display_order = display_order
             relation.save()
 
-        # Remove product from excluded products if it was removed earlier and
-        # re-added again, thus it returns back to the range product list.
-        self.excluded_products.remove(product)
+        # Remove service from excluded services if it was removed earlier and
+        # re-added again, thus it returns back to the range service list.
+        self.excluded_services.remove(service)
 
         # invalidate cache because queryset has changed
         self.invalidate_cached_queryset()
 
-    def remove_product(self, product):
+    def remove_service(self, service):
         """
-        Remove product from range. To save on queries, this function does not
-        check if the product is in fact in the range.
+        Remove service from range. To save on queries, this function does not
+        check if the service is in fact in the range.
         """
-        RangeProduct = self.included_products.through
-        RangeProduct.objects.filter(range=self, product=product).delete()
-        # Making sure product will be excluded from range products list by adding to
-        # respective field. Otherwise, it could be included as a product from included
+        RangeService = self.included_services.through
+        RangeService.objects.filter(range=self, service=service).delete()
+        # Making sure service will be excluded from range services list by adding to
+        # respective field. Otherwise, it could be included as a service from included
         # category or etc.
-        self.excluded_products.add(product)
+        self.excluded_services.add(service)
 
         # invalidate cache because queryset has changed
         self.invalidate_cached_queryset()
 
-    def contains_product(self, product):
+    def contains_service(self, service):
         if self.proxy:
-            return self.proxy.contains_product(product)
-        return self.product_queryset.filter(id=product.id).exists()
+            return self.proxy.contains_service(service)
+        return self.service_queryset.filter(id=service.id).exists()
 
     def invalidate_cached_queryset(self):
         try:
-            del self.product_queryset
+            del self.service_queryset
         except AttributeError:
             pass
 
-    def num_products(self):
+    def num_services(self):
         # Delegate to a proxy class if one is provided
         if self.proxy:
-            return self.proxy.num_products()
-        if self.includes_all_products:
+            return self.proxy.num_services()
+        if self.includes_all_services:
             return None
-        return self.all_products().count()
+        return self.all_services().count()
 
-    def all_products(self):
+    def all_services(self):
         """
-        Return a queryset containing all the products in the range
+        Return a queryset containing all the services in the range
 
-        This includes included_products plus the products contained in the
-        included classes and categories, minus the products in
-        excluded_products.
+        This includes included_services plus the services contained in the
+        included classes and categories, minus the services in
+        excluded_services.
         """
         if self.proxy:
-            return self.proxy.all_products()
+            return self.proxy.all_services()
 
-        return self.product_queryset
+        return self.service_queryset
 
     @cached_property
-    def product_queryset(self):
-        "cached queryset of all the products in the Range"
-        Product = self.included_products.model
+    def service_queryset(self):
+        "cached queryset of all the services in the Range"
+        Service = self.included_services.model
 
-        if self.includes_all_products:
-            # Filter out blacklisted products
-            return Product.objects.all().exclude(
-                id__in=self.excluded_products.values("id")
+        if self.includes_all_services:
+            # Filter out blacklisted services
+            return Service.objects.all().exclude(
+                id__in=self.excluded_services.values("id")
             )
 
         if self.included_categories.exists():
@@ -938,29 +938,29 @@ class AbstractRange(models.Model):
                     categories__depth__gte=depth, categories__path__startswith=path
                 )
 
-            # select all those product that are selected either by product class,
-            # category, or explicitly by included_products.
-            selected_products = Product.objects.annotate(
+            # select all those service that are selected either by service class,
+            # category, or explicitly by included_services.
+            selected_services = Service.objects.annotate(
                 selected_categories=models.FilteredRelation(
                     "categories", condition=category_filter
                 )
             ).filter(
-                Q(product_class_id__in=self.classes.values("id"))
+                Q(service_class_id__in=self.classes.values("id"))
                 | Q(selected_categories__isnull=False)
-            ) | self.included_products.all()
+            ) | self.included_services.all()
         else:
-            selected_products = Product.objects.filter(
-                product_class_id__in=self.classes.values("id")
-            ) | self.included_products.all()
+            selected_services = Service.objects.filter(
+                service_class_id__in=self.classes.values("id")
+            ) | self.included_services.all()
 
         # Include children of matching parents
-        selected_products = selected_products | Product.objects.filter(
-            parent__in=selected_products.filter(structure=Product.PARENT)
+        selected_services = selected_services | Service.objects.filter(
+            parent__in=selected_services.filter(structure=Service.PARENT)
         )
 
-        # now go and exclude all explicitly excluded products
-        excludes = self.excluded_products.values("id")
-        return selected_products.exclude(
+        # now go and exclude all explicitly excluded services
+        excludes = self.excluded_services.values("id")
+        return selected_services.exclude(
             Q(parent_id__in=excludes) | Q(id__in=excludes)
         ).distinct()
 
@@ -974,27 +974,27 @@ class AbstractRange(models.Model):
     @property
     def is_reorderable(self):
         """
-        Test whether products for the range can be re-ordered.
+        Test whether services for the range can be re-ordered.
         """
         return not (self.included_categories.exists() or self.classes.exists())
 
 
-class AbstractRangeProduct(models.Model):
+class AbstractRangeService(models.Model):
     """
-    Allow ordering products inside ranges
+    Allow ordering services inside ranges
     Exists to allow customising.
     """
     range = models.ForeignKey('offer.Range', on_delete=models.CASCADE)
-    product = models.ForeignKey('catalogue.Product', on_delete=models.CASCADE)
+    service = models.ForeignKey('catalogue.Service', on_delete=models.CASCADE)
     display_order = models.IntegerField(default=0)
 
     class Meta:
         abstract = True
         app_label = 'offer'
-        unique_together = ('range', 'product')
+        unique_together = ('range', 'service')
 
 
-class AbstractRangeProductFileUpload(models.Model):
+class AbstractRangeServiceFileUpload(models.Model):
     range = models.ForeignKey(
         'offer.Range',
         on_delete=models.CASCADE,
@@ -1032,8 +1032,8 @@ class AbstractRangeProductFileUpload(models.Model):
         abstract = True
         app_label = 'offer'
         ordering = ('-date_uploaded',)
-        verbose_name = _("Range Product Uploaded File")
-        verbose_name_plural = _("Range Product Uploaded Files")
+        verbose_name = _("Range Service Uploaded File")
+        verbose_name_plural = _("Range Service Uploaded Files")
 
     def mark_as_failed(self, message=None):
         self.date_processed = now()
@@ -1054,36 +1054,36 @@ class AbstractRangeProductFileUpload(models.Model):
 
     def process(self, file_obj):
         """
-        Process the file upload and add products to the range
+        Process the file upload and add services to the range
         """
         all_ids = set(self.extract_ids(file_obj))
-        products = self.range.all_products()
-        existing_skus = products.values_list(
+        services = self.range.all_services()
+        existing_skus = services.values_list(
             'stockrecords__partner_sku', flat=True)
         existing_skus = set(filter(bool, existing_skus))
-        existing_upcs = products.values_list('upc', flat=True)
+        existing_upcs = services.values_list('upc', flat=True)
         existing_upcs = set(filter(bool, existing_upcs))
         existing_ids = existing_skus.union(existing_upcs)
         new_ids = all_ids - existing_ids
 
-        Product = get_model('catalogue', 'Product')
-        products = Product._default_manager.filter(
+        Service = get_model('catalogue', 'Service')
+        services = Service._default_manager.filter(
             models.Q(stockrecords__partner_sku__in=new_ids)
             | models.Q(upc__in=new_ids))
-        for product in products:
-            self.range.add_product(product)
+        for service in services:
+            self.range.add_service(service)
 
         # Processing stats
-        found_skus = products.values_list(
+        found_skus = services.values_list(
             'stockrecords__partner_sku', flat=True)
         found_skus = set(filter(bool, found_skus))
-        found_upcs = set(filter(bool, products.values_list('upc', flat=True)))
+        found_upcs = set(filter(bool, services.values_list('upc', flat=True)))
         found_ids = found_skus.union(found_upcs)
         missing_ids = new_ids - found_ids
         dupes = set(all_ids).intersection(existing_ids)
 
-        self.mark_as_processed(products.count(), len(missing_ids), len(dupes))
-        return products
+        self.mark_as_processed(services.count(), len(missing_ids), len(dupes))
+        return services
 
     def extract_ids(self, file_obj):
         reader = csv.reader(file_obj)

@@ -204,7 +204,7 @@ The following are community-written extensions:
   django-oscar and django-oscar-api, adding support for more complex and
   multiple payment options during an API checkout.
 
-* django-oscar-bundles_ - Oscar Bundles adds multi-product bundles to
+* django-oscar-bundles_ - Oscar Bundles adds multi-service bundles to
   django-oscar.
 
 * django-oscar-bluelight_ - `Bluelight Specials`_ is a layer on-top of

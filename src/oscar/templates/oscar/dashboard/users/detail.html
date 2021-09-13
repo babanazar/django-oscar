@@ -60,7 +60,7 @@
                         {% with record=customer.userrecord %}
                             <tr>
                                 <th>{% trans "Products viewed" %}</th>
-                                <td>{{ record.num_product_views|default:0 }}</td>
+                                <td>{{ record.num_service_views|default:0 }}</td>
                             </tr>
                             <tr>
                                 <th>{% trans "Number of orders" %}</th>
@@ -184,7 +184,7 @@
                                     </tr>
                                     {% for review in customer.reviews.all %}
                                         <tr>
-                                            <td>{{ review.product_id }}</td>
+                                            <td>{{ review.service_id }}</td>
                                             <td>{{ review.score }}</td>
                                             <td>{{ review.title }}</td>
                                             <td>{{ review.body }}</td>

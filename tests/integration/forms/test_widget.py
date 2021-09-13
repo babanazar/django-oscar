@@ -4,9 +4,9 @@ from django import forms
 from django.test import TestCase
 from django.urls import reverse_lazy
 
-from oscar.apps.catalogue.models import Product
+from oscar.apps.catalogue.models import Service
 from oscar.forms import widgets
-from oscar.test.factories import create_product
+from oscar.test.factories import create_service
 
 
 class ImageInputTestCase(TestCase):
@@ -137,18 +137,18 @@ class AdvancedSelectWidgetTestCase(TestCase):
 class RemoteSelectTestCase(TestCase):
 
     def setUp(self):
-        self.url = reverse_lazy('dashboard:catalogue-product-lookup')
+        self.url = reverse_lazy('dashboard:catalogue-service-lookup')
 
     def _get_form_field(self, **kwargs):
         return forms.ModelChoiceField(
-            queryset=Product.objects.all(),
+            queryset=Service.objects.all(),
             widget=widgets.RemoteSelect(lookup_url=self.url),
             **kwargs
         )
 
     def _get_multiselect_form_field(self, **kwargs):
         return forms.ModelChoiceField(
-            queryset=Product.objects.all(),
+            queryset=Service.objects.all(),
             widget=widgets.MultipleRemoteSelect(lookup_url=self.url),
             **kwargs
         )
@@ -158,8 +158,8 @@ class RemoteSelectTestCase(TestCase):
             widgets.RemoteSelect()
 
     def test_select_widget_renders_only_selected_choices(self):
-        create_product()
-        p2 = create_product()
+        create_service()
+        p2 = create_service()
 
         field = self._get_form_field()
         form_choices = list(field.widget.options(name='name', value=[p2.pk]))
@@ -180,9 +180,9 @@ class RemoteSelectTestCase(TestCase):
         self.assertEqual(attrs['data-required'], '')
 
     def test_multiselect_widget_renders_only_selected_choices(self):
-        create_product()
-        p2 = create_product()
-        p3 = create_product()
+        create_service()
+        p2 = create_service()
+        p3 = create_service()
 
         field = self._get_multiselect_form_field()
         form_choices = list(field.widget.options(name='name', value=[p2.pk, p3.pk]))

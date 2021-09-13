@@ -3,103 +3,103 @@ from django.test import TestCase
 
 from oscar.core.loading import get_model
 
-Product = get_model("catalogue", "Product")
+Service = get_model("catalogue", "Service")
 
 
-class ProductAttributeQuerysetTest(TestCase):
-    fixtures = ["productattributes"]
+class ServiceAttributeQuerysetTest(TestCase):
+    fixtures = ["serviceattributes"]
 
-    def test_query_multiple_producttypes(self):
-        "We should be able to query over multiple product classes"
-        result = Product.objects.filter_by_attributes(henkie="bah bah")
+    def test_query_multiple_servicetypes(self):
+        "We should be able to query over multiple service classes"
+        result = Service.objects.filter_by_attributes(henkie="bah bah")
         self.assertEqual(result.count(), 2)
         result1, result2 = list(result)
 
-        self.assertNotEqual(result1.product_class, result2.product_class)
+        self.assertNotEqual(result1.service_class, result2.service_class)
         self.assertEqual(result1.attr.henkie, result2.attr.henkie)
 
     def test_further_filtering(self):
         "The returned queryset should be ready for further filtering"
-        result = Product.objects.filter_by_attributes(henkie="bah bah")
+        result = Service.objects.filter_by_attributes(henkie="bah bah")
         photo = result.filter(title__contains="Photo")
         self.assertEqual(photo.count(), 1)
 
     def test_empty_results(self):
         "Empty results are possible without errors"
-        result = Product.objects.filter_by_attributes(doesnotexist=True)
+        result = Service.objects.filter_by_attributes(doesnotexist=True)
         self.assertFalse(result.exists(), "querying with bulshit attributes should give no results")
-        result = Product.objects.filter_by_attributes(henkie="zulthoofd")
+        result = Service.objects.filter_by_attributes(henkie="zulthoofd")
         self.assertFalse(result.exists(), "querying with non existing values should give no results")
-        result = Product.objects.filter_by_attributes(henkie=True)
+        result = Service.objects.filter_by_attributes(henkie=True)
         self.assertFalse(result.exists(), "querying with wring value type should give no results")
 
     def test_text_value(self):
-        result = Product.objects.filter_by_attributes(subtitle="superhenk")
+        result = Service.objects.filter_by_attributes(subtitle="superhenk")
         self.assertTrue(result.exists())
-        result = Product.objects.filter_by_attributes(subtitle="kekjo")
+        result = Service.objects.filter_by_attributes(subtitle="kekjo")
         self.assertTrue(result.exists())
-        result = Product.objects.filter_by_attributes(subtitle=True)
+        result = Service.objects.filter_by_attributes(subtitle=True)
         self.assertFalse(result.exists())
 
     def test_formatted_text(self):
         html = "<p style=\"margin: 0px; font-stretch: normal; font-size: 12px; line-height: normal; font-family: Helvetica;\">Vivamus auctor leo vel dui. Aliquam erat volutpat. Phasellus nibh. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cras tempor. Morbi egestas, <em>urna</em> non consequat tempus, <strong>nunc</strong> arcu mollis enim, eu aliquam erat nulla non nibh. Duis consectetuer malesuada velit. Nam ante nulla, interdum vel, tristique ac, condimentum non, tellus. Proin ornare feugiat nisl. Suspendisse dolor nisl, ultrices at, eleifend vel, consequat at, dolor.</p>"  # noqa
-        result = Product.objects.filter_by_attributes(additional_info=html)
+        result = Service.objects.filter_by_attributes(additional_info=html)
         self.assertTrue(result.exists())
 
     def test_boolean(self):
-        result = Product.objects.filter_by_attributes(available=True)
+        result = Service.objects.filter_by_attributes(available=True)
         self.assertTrue(result.exists())
-        result = Product.objects.filter_by_attributes(available=0)
+        result = Service.objects.filter_by_attributes(available=0)
         self.assertTrue(result.exists())
         with self.assertRaises(ValidationError):
-            result = Product.objects.filter_by_attributes(available="henk")
+            result = Service.objects.filter_by_attributes(available="henk")
 
     def test_number(self):
-        result = Product.objects.filter_by_attributes(facets=4)
+        result = Service.objects.filter_by_attributes(facets=4)
         self.assertTrue(result.exists())
         with self.assertRaises(ValueError):
-            result = Product.objects.filter_by_attributes(facets="four")
+            result = Service.objects.filter_by_attributes(facets="four")
 
-        result = Product.objects.filter_by_attributes(facets=1)
+        result = Service.objects.filter_by_attributes(facets=1)
         self.assertFalse(result.exists())
 
     def test_float(self):
-        result = Product.objects.filter_by_attributes(hypothenusa=1.25)
+        result = Service.objects.filter_by_attributes(hypothenusa=1.25)
         self.assertTrue(result.exists())
         with self.assertRaises(ValueError):
-            result = Product.objects.filter_by_attributes(facets="four")
+            result = Service.objects.filter_by_attributes(facets="four")
 
-        result = Product.objects.filter_by_attributes(hypothenusa=1)
+        result = Service.objects.filter_by_attributes(hypothenusa=1)
         self.assertFalse(result.exists())
 
     def test_option(self):
-        result = Product.objects.filter_by_attributes(kind="totalitarian")
+        result = Service.objects.filter_by_attributes(kind="totalitarian")
         self.assertTrue(result.exists())
-        result = Product.objects.filter_by_attributes(kind=True)
+        result = Service.objects.filter_by_attributes(kind=True)
         self.assertFalse(result.exists())
 
-        result = Product.objects.filter_by_attributes(kind="omnimous")
+        result = Service.objects.filter_by_attributes(kind="omnimous")
         self.assertFalse(result.exists())
 
     def test_multi_option(self):
-        result = Product.objects.filter_by_attributes(subkinds="megalomane")
+        result = Service.objects.filter_by_attributes(subkinds="megalomane")
         self.assertTrue(result.exists())
         self.assertEqual(result.count(), 2)
-        result = Product.objects.filter_by_attributes(subkinds=True)
+        result = Service.objects.filter_by_attributes(subkinds=True)
         self.assertFalse(result.exists())
 
-        result = Product.objects.filter_by_attributes(subkinds="omnimous")
+        result = Service.objects.filter_by_attributes(subkinds="omnimous")
         self.assertFalse(result.exists())
 
-        result = Product.objects.filter_by_attributes(subkinds__contains="om")
+        result = Service.objects.filter_by_attributes(subkinds__contains="om")
         self.assertTrue(result.exists(), "megalomane conains om")
         self.assertEqual(result.count(), 2)
 
     def test_multiple_attributes(self):
-        result = Product.objects.filter_by_attributes(subkinds="megalomane", available=True)
+        result = Service.objects.filter_by_attributes(subkinds="megalomane", available=True)
         self.assertTrue(result.exists())
 
-        result = Product.objects.filter_by_attributes(
+        result = Service.objects.filter_by_attributes(
             kind="totalitarian",
             hypothenusa=1.25,
             facets=8,
@@ -110,11 +110,11 @@ class ProductAttributeQuerysetTest(TestCase):
         self.assertTrue(result.exists())
 
     def test_lookups(self):
-        result = Product.objects.filter_by_attributes(facets__lte=4)
+        result = Service.objects.filter_by_attributes(facets__lte=4)
         self.assertEqual(result.count(), 1)
 
-        result = Product.objects.filter_by_attributes(facets__lte=8)
+        result = Service.objects.filter_by_attributes(facets__lte=8)
         self.assertEqual(result.count(), 2)
 
-        result = Product.objects.filter_by_attributes(facets__lt=8)
+        result = Service.objects.filter_by_attributes(facets__lt=8)
         self.assertEqual(result.count(), 1)

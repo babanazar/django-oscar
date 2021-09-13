@@ -28,7 +28,7 @@
             <label><span><i class="fas fa-shopping-cart"></i>{{ total_orders_last_day }}</span>{% trans "Total Orders" %}</label>
             <label><span><i class="fas fa-hand-point-right"></i>{{ total_customers_last_day }}</span>{% trans "New Customers" %}</label>
             <label><span><i class="fas fa-users"></i>{{ total_customers }}</span>{% trans "Total Customers" %}</label>
-            <label><span><i class="fas fa-briefcase"></i>{{ total_products }}</span>{% trans "Total Products" %}</label>
+            <label><span><i class="fas fa-briefcase"></i>{{ total_services }}</span>{% trans "Total Products" %}</label>
         </aside>
         <div class="col-md-9">
             <div id="order_graph">
@@ -131,7 +131,7 @@
             <caption>
                 <div class="btn-toolbar float-right">
                     <div class="btn-group">
-                        <a href="{% url 'dashboard:catalogue-product-list' %}" class="btn btn-secondary">
+                        <a href="{% url 'dashboard:catalogue-service-list' %}" class="btn btn-secondary">
                             <i class="fas fa-sitemap"></i> {% trans "Manage" %}
                         </a>
                     </div>
@@ -144,8 +144,8 @@
                 <i class="fas fa-sitemap"></i> {% trans "Catalogue and stock" %}
             </caption>
             <tr>
-                <th class="col-md-10">{% trans "Total products" %}</th>
-                    <td class="col-md-2" >{{ total_products }}</td>
+                <th class="col-md-10">{% trans "Total services" %}</th>
+                    <td class="col-md-2" >{{ total_services }}</td>
             </tr>
             <tr>
                 <th class="col-md-10">{% trans "<em>Open</em> stock alerts" %}</th>

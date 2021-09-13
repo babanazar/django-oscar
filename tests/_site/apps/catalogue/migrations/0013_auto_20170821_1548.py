@@ -14,8 +14,8 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='productattribute',
+            model_name='serviceattribute',
             name='option_group',
-            field=models.ForeignKey(blank=True, help_text='Select an option group if using type "Option" or "Multi Option"', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='product_attributes', to='catalogue.AttributeOptionGroup', verbose_name='Option Group'),
+            field=models.ForeignKey(blank=True, help_text='Select an option group if using type "Option" or "Multi Option"', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='service_attributes', to='catalogue.AttributeOptionGroup', verbose_name='Option Group'),
         ),
     ]

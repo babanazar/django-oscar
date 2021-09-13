@@ -8,47 +8,47 @@ AttributeOption = get_model('catalogue', 'AttributeOption')
 AttributeOptionGroup = get_model('catalogue', 'AttributeOptionGroup')
 Category = get_model('catalogue', 'Category')
 Option = get_model('catalogue', 'Option')
-Product = get_model('catalogue', 'Product')
-ProductAttribute = get_model('catalogue', 'ProductAttribute')
-ProductAttributeValue = get_model('catalogue', 'ProductAttributeValue')
-ProductCategory = get_model('catalogue', 'ProductCategory')
-ProductClass = get_model('catalogue', 'ProductClass')
-ProductImage = get_model('catalogue', 'ProductImage')
-ProductRecommendation = get_model('catalogue', 'ProductRecommendation')
+Service = get_model('catalogue', 'Service')
+ServiceAttribute = get_model('catalogue', 'ServiceAttribute')
+ServiceAttributeValue = get_model('catalogue', 'ServiceAttributeValue')
+ServiceCategory = get_model('catalogue', 'ServiceCategory')
+ServiceClass = get_model('catalogue', 'ServiceClass')
+ServiceImage = get_model('catalogue', 'ServiceImage')
+ServiceRecommendation = get_model('catalogue', 'ServiceRecommendation')
 
 
 class AttributeInline(admin.TabularInline):
-    model = ProductAttributeValue
+    model = ServiceAttributeValue
 
 
-class ProductRecommendationInline(admin.TabularInline):
-    model = ProductRecommendation
+class ServiceRecommendationInline(admin.TabularInline):
+    model = ServiceRecommendation
     fk_name = 'primary'
     raw_id_fields = ['primary', 'recommendation']
 
 
 class CategoryInline(admin.TabularInline):
-    model = ProductCategory
+    model = ServiceCategory
     extra = 1
 
 
-class ProductAttributeInline(admin.TabularInline):
-    model = ProductAttribute
+class ServiceAttributeInline(admin.TabularInline):
+    model = ServiceAttribute
     extra = 2
 
 
-class ProductClassAdmin(admin.ModelAdmin):
+class ServiceClassAdmin(admin.ModelAdmin):
     list_display = ('name', 'requires_shipping', 'track_stock')
-    inlines = [ProductAttributeInline]
+    inlines = [ServiceAttributeInline]
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ServiceAdmin(admin.ModelAdmin):
     date_hierarchy = 'date_created'
-    list_display = ('get_title', 'upc', 'get_product_class', 'structure',
+    list_display = ('get_title', 'upc', 'get_service_class', 'structure',
                     'attribute_summary', 'date_created')
     list_filter = ['structure', 'is_discountable']
     raw_id_fields = ['parent']
-    inlines = [AttributeInline, CategoryInline, ProductRecommendationInline]
+    inlines = [AttributeInline, CategoryInline, ServiceRecommendationInline]
     prepopulated_fields = {"slug": ("title",)}
     search_fields = ['upc', 'title']
 
@@ -56,14 +56,14 @@ class ProductAdmin(admin.ModelAdmin):
         qs = super().get_queryset(request)
         return (
             qs
-            .select_related('product_class', 'parent')
+            .select_related('service_class', 'parent')
             .prefetch_related(
                 'attribute_values',
                 'attribute_values__attribute'))
 
 
-class ProductAttributeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code', 'product_class', 'type')
+class ServiceAttributeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'code', 'service_class', 'type')
     prepopulated_fields = {"code": ("name", )}
 
 
@@ -71,8 +71,8 @@ class OptionAdmin(admin.ModelAdmin):
     pass
 
 
-class ProductAttributeValueAdmin(admin.ModelAdmin):
-    list_display = ('product', 'attribute', 'value')
+class ServiceAttributeValueAdmin(admin.ModelAdmin):
+    list_display = ('service', 'attribute', 'value')
 
 
 class AttributeOptionInline(admin.TabularInline):
@@ -89,12 +89,12 @@ class CategoryAdmin(TreeAdmin):
     list_display = ('name', 'slug')
 
 
-admin.site.register(ProductClass, ProductClassAdmin)
-admin.site.register(Product, ProductAdmin)
-admin.site.register(ProductAttribute, ProductAttributeAdmin)
-admin.site.register(ProductAttributeValue, ProductAttributeValueAdmin)
+admin.site.register(ServiceClass, ServiceClassAdmin)
+admin.site.register(Service, ServiceAdmin)
+admin.site.register(ServiceAttribute, ServiceAttributeAdmin)
+admin.site.register(ServiceAttributeValue, ServiceAttributeValueAdmin)
 admin.site.register(AttributeOptionGroup, AttributeOptionGroupAdmin)
 admin.site.register(Option, OptionAdmin)
-admin.site.register(ProductImage)
+admin.site.register(ServiceImage)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(ProductCategory)
+admin.site.register(ServiceCategory)

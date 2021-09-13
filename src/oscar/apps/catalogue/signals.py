@@ -1,3 +1,3 @@
 import django.dispatch
 
-product_viewed = django.dispatch.Signal()
+service_viewed = django.dispatch.Signal()

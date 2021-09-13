@@ -4,7 +4,7 @@ from django.conf import settings
 
 from oscar.core.loading import get_model
 
-Product = get_model('catalogue', 'Product')
+Service = get_model('catalogue', 'Service')
 
 
 class CustomerHistoryManager:
@@ -14,24 +14,24 @@ class CustomerHistoryManager:
         'secure': settings.OSCAR_RECENTLY_VIEWED_COOKIE_SECURE,
         'httponly': True,
     }
-    max_products = settings.OSCAR_RECENTLY_VIEWED_PRODUCTS
+    max_services = settings.OSCAR_RECENTLY_VIEWED_SERVICES
 
     @classmethod
     def get(cls, request):
         """
-        Return a list of recently viewed products
+        Return a list of recently viewed services
         """
         ids = cls.extract(request)
 
         # Reordering as the ID order gets messed up in the query
-        product_dict = Product.objects.browsable().in_bulk(ids)
+        service_dict = Service.objects.browsable().in_bulk(ids)
         ids.reverse()
-        return [product_dict[product_id] for product_id in ids if product_id in product_dict]
+        return [service_dict[service_id] for service_id in ids if service_id in service_dict]
 
     @classmethod
     def extract(cls, request, response=None):
         """
-        Extract the IDs of products in the history cookie
+        Extract the IDs of services in the history cookie
         """
         ids = []
         if cls.cookie_name in request.COOKIES:
@@ -50,23 +50,23 @@ class CustomerHistoryManager:
     @classmethod
     def add(cls, ids, new_id):
         """
-        Add a new product ID to the list of product IDs
+        Add a new service ID to the list of service IDs
         """
         if new_id in ids:
             ids.remove(new_id)
         ids.append(new_id)
-        if len(ids) > cls.max_products:
-            ids = ids[len(ids) - cls.max_products:]
+        if len(ids) > cls.max_services:
+            ids = ids[len(ids) - cls.max_services:]
         return ids
 
     @classmethod
-    def update(cls, product, request, response):
+    def update(cls, service, request, response):
         """
-        Updates the cookies that store the recently viewed products
+        Updates the cookies that store the recently viewed services
         removing possible duplicates.
         """
         ids = cls.extract(request, response)
-        updated_ids = cls.add(ids, product.id)
+        updated_ids = cls.add(ids, service.id)
         response.set_cookie(
             cls.cookie_name,
             json.dumps(updated_ids),

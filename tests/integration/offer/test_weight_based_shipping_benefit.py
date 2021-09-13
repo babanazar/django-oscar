@@ -6,12 +6,12 @@ from oscar.apps.offer import models, utils
 from oscar.apps.shipping.models import WeightBased
 from oscar.apps.shipping.repository import Repository
 from oscar.test import factories
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 
 
 def create_offer():
     range = models.Range.objects.create(
-        name="All products", includes_all_products=True)
+        name="All services", includes_all_services=True)
     condition = models.CountCondition.objects.create(
         range=range,
         type=models.Condition.COUNT,
@@ -28,14 +28,14 @@ def create_offer():
 class TestWeightBasedShippingBenefit(TestCase):
 
     def setUp(self):
-        product = factories.create_product(attributes={'weight': 5}, num_in_stock=10)
+        service = factories.create_service(attributes={'weight': 5}, num_in_stock=10)
         factories.create_shipping_weight_band(10, 10)
         self.basket = factories.create_basket(empty=True)
-        self.basket.add_product(product)
+        self.basket.add_service(service)
         self.offer = create_offer()
 
     def test_has_discount_recorded_correctly_when_order_is_placed(self):
-        add_product(self.basket, D('12.00'), 1)
+        add_service(self.basket, D('12.00'), 1)
         utils.Applicator().apply(self.basket)
         self.assertEqual(1, len(self.basket.offer_applications))
 

@@ -32,7 +32,7 @@ class BasketOwnerCalledBarry(Condition):
             return False
         return basket.owner.first_name.lower() == 'barry'
 
-    def can_apply_condition(self, product):
+    def can_apply_condition(self, service):
         return False
 
 
@@ -69,7 +69,7 @@ class CustomConditionModel(Condition):
     def is_satisfied(self, offer, basket):
         return True
 
-    def can_apply_condition(self, product):
+    def can_apply_condition(self, service):
         return True
 
 

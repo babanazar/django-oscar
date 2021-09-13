@@ -6,7 +6,7 @@ from django.test import TestCase
 from oscar.apps.offer import models
 from oscar.apps.offer.results import OfferApplications
 from oscar.apps.offer.utils import Applicator
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 from oscar.test.factories import (
     BasketFactory, BenefitFactory, ConditionalOfferFactory, ConditionFactory,
     RangeFactory)
@@ -17,7 +17,7 @@ class TestOfferApplicator(TestCase):
     def setUp(self):
         self.applicator = Applicator()
         self.basket = BasketFactory()
-        rng = RangeFactory(includes_all_products=True)
+        rng = RangeFactory(includes_all_services=True)
         self.condition = ConditionFactory(
             range=rng, type=ConditionFactory._meta.model.VALUE,
             value=D('100'), proxy_class=None)
@@ -26,7 +26,7 @@ class TestOfferApplicator(TestCase):
             value=D('10'))
 
     def test_applies_offer_multiple_times_by_default(self):
-        add_product(self.basket, D('100'), 5)
+        add_service(self.basket, D('100'), 5)
         offer = ConditionalOfferFactory(
             pk=1, condition=self.condition, benefit=self.benefit)
         self.applicator.apply_offers(self.basket, [offer])
@@ -34,7 +34,7 @@ class TestOfferApplicator(TestCase):
         self.assertTrue(line.quantity_with_offer_discount(offer) == 5)
 
     def test_respects_maximum_applications_field(self):
-        add_product(self.basket, D('100'), 5)
+        add_service(self.basket, D('100'), 5)
         offer = ConditionalOfferFactory(
             pk=1, condition=self.condition, benefit=self.benefit,
             max_basket_applications=1)

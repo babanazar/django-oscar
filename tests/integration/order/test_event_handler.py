@@ -5,7 +5,7 @@ from django.test import TestCase
 from oscar.apps.order import exceptions, models
 from oscar.apps.order.processing import EventHandler
 from oscar.test import factories
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 
 
 class TestEventHandler(TestCase):
@@ -29,7 +29,7 @@ class TestEventHandler(TestCase):
 
     def test_verifies_lines_has_passed_shipping_event(self):
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5)
+        add_service(basket, D('10.00'), 5)
         order = factories.create_order(basket=basket)
 
         lines = order.lines.all()
@@ -45,7 +45,7 @@ class TestEventHandler(TestCase):
 
     def test_prevents_event_quantities_higher_than_original_line(self):
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5)
+        add_service(basket, D('10.00'), 5)
         order = factories.create_order(basket=basket)
 
         # First shipping event
@@ -58,12 +58,12 @@ class TestEventHandler(TestCase):
                 order, self.shipped, lines, [4])
 
     def test_are_stock_allocations_available(self):
-        product_class = factories.ProductClassFactory(
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=True)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
 
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5, product=product)
+        add_service(basket, D('10.00'), 5, service=service)
         order = factories.create_order(basket=basket)
 
         line = order.lines.get()
@@ -80,11 +80,11 @@ class TestEventHandler(TestCase):
         )
 
     def test_are_stock_allocations_available_track_stock_off(self):
-        product_class = factories.ProductClassFactory(
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=False)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5, product=product)
+        add_service(basket, D('10.00'), 5, service=service)
         order = factories.create_order(basket=basket)
 
         line = order.lines.get()
@@ -95,14 +95,14 @@ class TestEventHandler(TestCase):
         )
 
     def test_consume_stock_allocations_track_stock_on(self):
-        product_class = factories.ProductClassFactory(
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=True)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5, product=product)
+        add_service(basket, D('10.00'), 5, service=service)
         order = factories.create_order(basket=basket)
 
-        stockrecord = product.stockrecords.get()
+        stockrecord = service.stockrecords.get()
         num_in_stock = stockrecord.num_in_stock
         num_allocated = stockrecord.num_allocated
 
@@ -123,14 +123,14 @@ class TestEventHandler(TestCase):
         )
 
     def test_consume_stock_allocations_track_stock_off(self):
-        product_class = factories.ProductClassFactory(
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=False)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5, product=product)
+        add_service(basket, D('10.00'), 5, service=service)
         order = factories.create_order(basket=basket)
 
-        stockrecord = product.stockrecords.get()
+        stockrecord = service.stockrecords.get()
         num_in_stock = stockrecord.num_in_stock
         num_allocated = stockrecord.num_allocated
 
@@ -151,14 +151,14 @@ class TestEventHandler(TestCase):
         )
 
     def test_consume_stock_allocations_without_line_arguments(self):
-        product_class = factories.ProductClassFactory(
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=True)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5, product=product)
+        add_service(basket, D('10.00'), 5, service=service)
         order = factories.create_order(basket=basket)
 
-        stockrecord = product.stockrecords.get()
+        stockrecord = service.stockrecords.get()
         num_in_stock = stockrecord.num_in_stock
         num_allocated = stockrecord.num_allocated
 
@@ -177,14 +177,14 @@ class TestEventHandler(TestCase):
         )
 
     def test_cancel_stock_allocations_track_stock_on(self):
-        product_class = factories.ProductClassFactory(
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=True)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5, product=product)
+        add_service(basket, D('10.00'), 5, service=service)
         order = factories.create_order(basket=basket)
 
-        stockrecord = product.stockrecords.get()
+        stockrecord = service.stockrecords.get()
         num_allocated = stockrecord.num_allocated
 
         lines = order.lines.all()
@@ -199,14 +199,14 @@ class TestEventHandler(TestCase):
         )
 
     def test_cancel_stock_allocations_track_stock_off(self):
-        product_class = factories.ProductClassFactory(
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=False)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5, product=product)
+        add_service(basket, D('10.00'), 5, service=service)
         order = factories.create_order(basket=basket)
 
-        stockrecord = product.stockrecords.get()
+        stockrecord = service.stockrecords.get()
         num_allocated = stockrecord.num_allocated
 
         lines = order.lines.all()
@@ -221,14 +221,14 @@ class TestEventHandler(TestCase):
         )
 
     def test_cancel_stock_allocations_without_line_arguments(self):
-        product_class = factories.ProductClassFactory(
+        service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=True)
-        product = factories.ProductFactory(product_class=product_class)
+        service = factories.ServiceFactory(service_class=service_class)
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5, product=product)
+        add_service(basket, D('10.00'), 5, service=service)
         order = factories.create_order(basket=basket)
 
-        stockrecord = product.stockrecords.get()
+        stockrecord = service.stockrecords.get()
         num_allocated = stockrecord.num_allocated
 
         self.handler.cancel_stock_allocations(order)
@@ -247,7 +247,7 @@ class TestTotalCalculation(TestCase):
         self.order = factories.create_order()
         self.handler = EventHandler()
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('10.00'), 5)
+        add_service(basket, D('10.00'), 5)
         self.order = factories.create_order(basket=basket)
         self.settled = models.PaymentEventType.objects.create(
             name='Settled')

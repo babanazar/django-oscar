@@ -36,25 +36,25 @@
                     </tr>
 
                     {% for subform in form %}
-                        {% with line=subform.instance product=subform.instance.product %}
+                        {% with line=subform.instance service=subform.instance.service %}
                             <tr>
                                 <td>
-                                    {% if product %}
-                                        {% with image=product.primary_image %}
+                                    {% if service %}
+                                        {% with image=service.primary_image %}
                                             {% oscar_thumbnail image.original "100x100" upscale=False as thumb %}
-                                            {% if product.is_public %}
-                                                <a href="{{ product.get_absolute_url }}">
-                                                    <img class="img-thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                                            {% if service.is_public %}
+                                                <a href="{{ service.get_absolute_url }}">
+                                                    <img class="img-thumbnail" src="{{ thumb.url }}" alt="{{ service.get_title }}" />
                                                 </a>
                                             {% else %}
-                                                <img class="img-thumbnail" src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                                                <img class="img-thumbnail" src="{{ thumb.url }}" alt="{{ service.get_title }}" />
                                             {% endif %}
                                         {% endwith %}
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% if product and product.is_public %}
-                                        <a href="{{ line.product.get_absolute_url }}">{{ line.get_title }}</a>
+                                    {% if service and service.is_public %}
+                                        <a href="{{ line.service.get_absolute_url }}">{{ line.get_title }}</a>
                                     {% else %}
                                         <em>{{ line.get_title }} ({% trans 'Not available anymore' %})</em>
                                     {% endif %}
@@ -71,8 +71,8 @@
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        {% if product %}
-                                            <a class="btn btn-secondary" href="{{ line.product.get_absolute_url }}">{% trans 'View product' %}</a>
+                                        {% if service %}
+                                            <a class="btn btn-secondary" href="{{ line.service.get_absolute_url }}">{% trans 'View service' %}</a>
                                             <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>
                                         {% else %}
                                             <a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#">
@@ -81,13 +81,13 @@
                                         {% endif %}
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <li>
-                                                <a href="{% url 'customer:wishlists-remove-product' key=wishlist.key line_pk=line.pk %}" class="dropdown-item">
+                                                <a href="{% url 'customer:wishlists-remove-service' key=wishlist.key line_pk=line.pk %}" class="dropdown-item">
                                                     {% trans 'Remove' %}
                                                 </a>
                                             </li>
                                             {% for other_wishlist in other_wishlists %}
                                                 <li>
-                                                    <a href="{% url 'customer:wishlists-move-product-to-another' key=wishlist.key line_pk=line.pk to_key=other_wishlist.key %}" class="dropdown-item">
+                                                    <a href="{% url 'customer:wishlists-move-service-to-another' key=wishlist.key line_pk=line.pk to_key=other_wishlist.key %}" class="dropdown-item">
                                                         {% blocktrans with name=other_wishlist.name %}
                                                             Move to '{{ name }}' wish list
                                                         {% endblocktrans %}

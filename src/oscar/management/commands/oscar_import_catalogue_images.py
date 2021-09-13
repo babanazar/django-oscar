@@ -10,7 +10,7 @@ logger = logging.getLogger('oscar.catalogue.import')
 
 
 class Command(BaseCommand):
-    help = 'For importing product images from a folder'
+    help = 'For importing service images from a folder'
 
     def add_arguments(self, parser):
         parser.add_argument('path', help='/path/to/folder')
@@ -19,7 +19,7 @@ class Command(BaseCommand):
             '--filename',
             dest='filename',
             default='upc',
-            help='Product field to lookup from image filename')
+            help='Service field to lookup from image filename')
 
     def handle(self, *args, **options):
         logger.info("Starting image import")

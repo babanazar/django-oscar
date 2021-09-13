@@ -35,13 +35,13 @@ class TestOrderAndItemCharges(TestCase):
                          charge.incl_tax)
 
     def test_single_item_basket_that_doesnt_require_shipping(self):
-        # Create a product that doesn't require shipping
+        # Create a service that doesn't require shipping
         record = factories.create_stockrecord()
-        product = record.product
-        product.product_class.requires_shipping = False
-        product.product_class.save()
+        service = record.service
+        service.service_class.requires_shipping = False
+        service.service_class.save()
         basket = factories.create_basket(empty=True)
-        basket.add_product(record.product)
+        basket.add_service(record.service)
 
         charge = self.method.calculate(basket)
 
@@ -50,7 +50,7 @@ class TestOrderAndItemCharges(TestCase):
     def test_multi_item_basket(self):
         basket = factories.create_basket(empty=True)
         record = factories.create_stockrecord()
-        basket.add_product(record.product, 7)
+        basket.add_service(record.service, 7)
 
         charge = self.method.calculate(basket)
 
@@ -70,7 +70,7 @@ class ZeroFreeThresholdTest(TestCase):
 
     def test_free_shipping_with_nonempty_basket(self):
         record = factories.create_stockrecord(price=D('5.00'))
-        self.basket.add_product(record.product)
+        self.basket.add_service(record.service)
         charge = self.method.calculate(self.basket)
         self.assertEqual(D('0.00'), charge.incl_tax)
 
@@ -84,7 +84,7 @@ class TestNonZeroFreeThreshold(TestCase):
 
     def test_basket_below_threshold(self):
         record = factories.create_stockrecord(price=D('5.00'))
-        self.basket.add_product(record.product)
+        self.basket.add_service(record.service)
 
         charge = self.method.calculate(self.basket)
 
@@ -92,7 +92,7 @@ class TestNonZeroFreeThreshold(TestCase):
 
     def test_basket_on_threshold(self):
         record = factories.create_stockrecord(price=D('5.00'))
-        self.basket.add_product(record.product, quantity=4)
+        self.basket.add_service(record.service, quantity=4)
 
         charge = self.method.calculate(self.basket)
 
@@ -100,7 +100,7 @@ class TestNonZeroFreeThreshold(TestCase):
 
     def test_basket_above_threshold(self):
         record = factories.create_stockrecord(price=D('5.00'))
-        self.basket.add_product(record.product, quantity=8)
+        self.basket.add_service(record.service, quantity=8)
 
         charge = self.method.calculate(self.basket)
 
@@ -179,9 +179,9 @@ class WeightBasedMethodTests(TestCase):
 
     def test_simple_shipping_cost_scenario_handled_correctly(self):
         basket = factories.BasketFactory()
-        product_attribute_value = factories.ProductAttributeValueFactory(
+        service_attribute_value = factories.ServiceAttributeValueFactory(
             value_float=2.5)
-        basket.add_product(product_attribute_value.product)
+        basket.add_service(service_attribute_value.service)
 
         expected_charge = D('3.00')
         self.standard.bands.create(upper_limit=3, charge=expected_charge)
@@ -191,9 +191,9 @@ class WeightBasedMethodTests(TestCase):
 
     def test_overflow_shipping_cost_scenario_handled_correctly(self):
         basket = factories.BasketFactory()
-        product_attribute_value = factories.ProductAttributeValueFactory(
+        service_attribute_value = factories.ServiceAttributeValueFactory(
             value_float=2.5)
-        basket.add_product(product_attribute_value.product)
+        basket.add_service(service_attribute_value.service)
 
         self.standard.bands.create(upper_limit=1, charge=D('1.00'))
         self.standard.bands.create(upper_limit=2, charge=D('2.00'))

@@ -24,12 +24,12 @@
 
 {% block dashboard_content %}
     {% if options %}
-        {% block product_list %}
+        {% block service_list %}
             <form action="." method="post">
                 {% csrf_token %}
                 {% render_table options %}
             </form>
-        {% endblock product_list %}
+        {% endblock service_list %}
     {% else %}
         <p>{% trans "No Option found." %}</p>
     {% endif %}

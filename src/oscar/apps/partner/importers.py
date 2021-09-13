@@ -11,9 +11,9 @@ ImportingError = get_class('partner.exceptions', 'ImportingError')
 
 Category = get_model('catalogue', 'Category')
 Partner = get_model('partner', 'Partner')
-Product = get_model('catalogue', 'Product')
-ProductCategory = get_model('catalogue', 'ProductCategory')
-ProductClass = get_model('catalogue', 'ProductClass')
+Service = get_model('catalogue', 'Service')
+ServiceCategory = get_model('catalogue', 'ServiceCategory')
+ServiceClass = get_model('catalogue', 'ServiceClass')
 StockRecord = get_model('partner', 'StockRecord')
 
 create_from_breadcrumbs = get_class('catalogue.categories', 'create_from_breadcrumbs')
@@ -21,7 +21,7 @@ create_from_breadcrumbs = get_class('catalogue.categories', 'create_from_breadcr
 
 class CatalogueImporter(object):
     """
-    CSV product importer used to built sandbox. Might not work very well
+    CSV service importer used to built sandbox. Might not work very well
     for anything else.
     """
 
@@ -38,14 +38,14 @@ class CatalogueImporter(object):
             raise ImportingError(_("No file path supplied"))
         Validator().validate(file_path)
         if self._flush is True:
-            self.logger.info(" - Flushing product data before import")
-            self._flush_product_data()
+            self.logger.info(" - Flushing service data before import")
+            self._flush_service_data()
         self._import(file_path)
 
-    def _flush_product_data(self):
-        """Flush out product and stock models"""
-        Product.objects.all().delete()
-        ProductClass.objects.all().delete()
+    def _flush_service_data(self):
+        """Flush out service and stock models"""
+        Service.objects.all().delete()
+        ServiceClass.objects.all().delete()
         Partner.objects.all().delete()
         StockRecord.objects.all().delete()
 
@@ -74,30 +74,30 @@ class CatalogueImporter(object):
             # With stock data
             self._create_stockrecord(item, *row[5:9], stats=stats)
 
-    def _create_item(self, product_class, category_str, upc, title,
+    def _create_item(self, service_class, category_str, upc, title,
                      description, stats):
         # Ignore any entries that are NULL
         if description == 'NULL':
             description = ''
 
         # Create item class and item
-        product_class, __ \
-            = ProductClass.objects.get_or_create(name=product_class)
+        service_class, __ \
+            = ServiceClass.objects.get_or_create(name=service_class)
         try:
-            item = Product.objects.get(upc=upc)
+            item = Service.objects.get(upc=upc)
             stats['updated_items'] += 1
-        except Product.DoesNotExist:
-            item = Product()
+        except Service.DoesNotExist:
+            item = Service()
             stats['new_items'] += 1
         item.upc = upc
         item.title = title
         item.description = description
-        item.product_class = product_class
+        item.service_class = service_class
         item.save()
 
         # Category
         cat = create_from_breadcrumbs(category_str)
-        ProductCategory.objects.update_or_create(product=item, category=cat)
+        ServiceCategory.objects.update_or_create(service=item, category=cat)
 
         return item
 
@@ -110,7 +110,7 @@ class CatalogueImporter(object):
         except StockRecord.DoesNotExist:
             stock = StockRecord()
 
-        stock.product = item
+        stock.service = item
         stock.partner = partner
         stock.partner_sku = partner_sku
         stock.price = D(price)

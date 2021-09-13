@@ -10,7 +10,7 @@ from oscar.forms import widgets
 Line = get_model('basket', 'line')
 Basket = get_model('basket', 'basket')
 Option = get_model('catalogue', 'option')
-Product = get_model('catalogue', 'product')
+Service = get_model('catalogue', 'service')
 
 
 def _option_text_field(option):
@@ -76,10 +76,10 @@ class BasketLineForm(forms.ModelForm):
         return qty
 
     def check_max_allowed_quantity(self, qty):
-        # Since `Basket.is_quantity_allowed` checks quantity of added product
-        # against total number of the products in the basket, instead of sending
-        # updated quantity of the product, we send difference between current
-        # number and updated. Thus, product already in the basket and we don't
+        # Since `Basket.is_quantity_allowed` checks quantity of added service
+        # against total number of the services in the basket, instead of sending
+        # updated quantity of the service, we send difference between current
+        # number and updated. Thus, service already in the basket and we don't
         # add second time, just updating number of items.
         qty_delta = qty - self.instance.quantity
         is_allowed, reason = self.instance.basket.is_quantity_allowed(qty_delta)
@@ -117,13 +117,13 @@ class SavedLineForm(forms.ModelForm):
             # skip further validation (see issue #666)
             return cleaned_data
 
-        # Get total quantity of all lines with this product (there's normally
-        # only one but there can be more if you allow product options).
-        lines = self.basket.lines.filter(product=self.instance.product)
+        # Get total quantity of all lines with this service (there's normally
+        # only one but there can be more if you allow service options).
+        lines = self.basket.lines.filter(service=self.instance.service)
         current_qty = lines.aggregate(Sum('quantity'))['quantity__sum'] or 0
         desired_qty = current_qty + self.instance.quantity
 
-        result = self.strategy.fetch_for_product(self.instance.product)
+        result = self.strategy.fetch_for_service(self.instance.service)
         is_available, reason = result.availability.is_purchase_permitted(
             quantity=desired_qty)
         if not is_available:
@@ -153,33 +153,33 @@ class AddToBasketForm(forms.Form):
 
     quantity = forms.IntegerField(initial=1, min_value=1, label=_('Quantity'))
 
-    def __init__(self, basket, product, *args, **kwargs):
-        # Note, the product passed in here isn't necessarily the product being
-        # added to the basket. For child products, it is the *parent* product
-        # that gets passed to the form. An optional product_id param is passed
-        # to indicate the ID of the child product being added to the basket.
+    def __init__(self, basket, service, *args, **kwargs):
+        # Note, the service passed in here isn't necessarily the service being
+        # added to the basket. For child services, it is the *parent* service
+        # that gets passed to the form. An optional service_id param is passed
+        # to indicate the ID of the child service being added to the basket.
         self.basket = basket
-        self.parent_product = product
+        self.parent_service = service
 
         super().__init__(*args, **kwargs)
 
         # Dynamically build fields
-        if product.is_parent:
-            self._create_parent_product_fields(product)
-        self._create_product_fields(product)
+        if service.is_parent:
+            self._create_parent_service_fields(service)
+        self._create_service_fields(service)
 
     # Dynamic form building methods
 
-    def _create_parent_product_fields(self, product):
+    def _create_parent_service_fields(self, service):
         """
-        Adds the fields for a "group"-type product (eg, a parent product with a
+        Adds the fields for a "group"-type service (eg, a parent service with a
         list of children.
 
         Currently requires that a stock record exists for the children
         """
         choices = []
         disabled_values = []
-        for child in product.children.public():
+        for child in service.children.public():
             # Build a description of the child, including any pertinent
             # attributes
             attr_summary = child.attribute_summary
@@ -189,7 +189,7 @@ class AddToBasketForm(forms.Form):
                 summary = child.get_title()
 
             # Check if it is available to buy
-            info = self.basket.strategy.fetch_for_product(child)
+            info = self.basket.strategy.fetch_for_service(child)
             if not info.availability.is_available_to_buy:
                 disabled_values.append(child.id)
 
@@ -199,16 +199,16 @@ class AddToBasketForm(forms.Form):
             choices=tuple(choices), label=_("Variant"),
             widget=widgets.AdvancedSelect(disabled_values=disabled_values))
 
-    def _create_product_fields(self, product):
+    def _create_service_fields(self, service):
         """
-        Add the product option fields.
+        Add the service option fields.
         """
-        for option in product.options:
-            self._add_option_field(product, option)
+        for option in service.options:
+            self._add_option_field(service, option)
 
-    def _add_option_field(self, product, option):
+    def _add_option_field(self, service, option):
         """
-        Creates the appropriate form field for the product option.
+        Creates the appropriate form field for the service option.
 
         This is designed to be overridden so that specific widgets can be used
         for certain types of options.
@@ -220,15 +220,15 @@ class AddToBasketForm(forms.Form):
 
     def clean_child_id(self):
         try:
-            child = self.parent_product.children.get(
+            child = self.parent_service.children.get(
                 id=self.cleaned_data['child_id'])
-        except Product.DoesNotExist:
+        except Service.DoesNotExist:
             raise forms.ValidationError(
-                _("Please select a valid product"))
+                _("Please select a valid service"))
 
         # To avoid duplicate SQL queries, we cache a copy of the loaded child
-        # product as we're going to need it later.
-        self.child_product = child
+        # service as we're going to need it later.
+        self.child_service = child
 
         return self.cleaned_data['child_id']
 
@@ -249,33 +249,33 @@ class AddToBasketForm(forms.Form):
         return qty
 
     @property
-    def product(self):
+    def service(self):
         """
-        The actual product being added to the basket
+        The actual service being added to the basket
         """
-        # Note, the child product attribute is saved in the clean_child_id
+        # Note, the child service attribute is saved in the clean_child_id
         # method
-        return getattr(self, 'child_product', self.parent_product)
+        return getattr(self, 'child_service', self.parent_service)
 
     def clean(self):
-        info = self.basket.strategy.fetch_for_product(self.product)
+        info = self.basket.strategy.fetch_for_service(self.service)
 
         # Check that a price was found by the strategy
         if not info.price.exists:
             raise forms.ValidationError(
-                _("This product cannot be added to the basket because a "
+                _("This service cannot be added to the basket because a "
                   "price could not be determined for it."))
 
         # Check currencies are sensible
         if (self.basket.currency
                 and info.price.currency != self.basket.currency):
             raise forms.ValidationError(
-                _("This product cannot be added to the basket as its currency "
-                  "isn't the same as other products in your basket"))
+                _("This service cannot be added to the basket as its currency "
+                  "isn't the same as other services in your basket"))
 
         # Check user has permission to add the desired quantity to their
         # basket.
-        current_qty = self.basket.product_quantity(self.product)
+        current_qty = self.basket.service_quantity(self.service)
         desired_qty = current_qty + self.cleaned_data.get('quantity', 1)
         is_permitted, reason = info.availability.is_purchase_permitted(
             desired_qty)
@@ -291,7 +291,7 @@ class AddToBasketForm(forms.Form):
         Return submitted options in a clean format
         """
         options = []
-        for option in self.parent_product.options:
+        for option in self.parent_service.options:
             if option.code in self.cleaned_data:
                 options.append({
                     'option': option,

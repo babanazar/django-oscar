@@ -12,7 +12,7 @@ from oscar.apps.checkout.mixins import (
 from oscar.apps.shipping.methods import FixedPrice, Free
 from oscar.core.loading import get_class, get_model
 from oscar.test import factories
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 from oscar.test.utils import RequestFactory
 
 Order = get_model('order', 'Order')
@@ -31,7 +31,7 @@ class TestOrderPlacementMixin(TestCase):
     def test_update_address_book(self):
         basket = factories.create_basket(empty=True)
         user = factories.UserFactory()
-        add_product(basket, D('12.00'))
+        add_service(basket, D('12.00'))
         shipping_method = FixedPrice(D('5.00'), D('5.00'))
 
         billing_address = factories.BillingAddressFactory(line1='1 Boardwalk Place',
@@ -101,7 +101,7 @@ class TestOrderPlacementMixin(TestCase):
         request.META['SERVER_PORT'] = 80
         request.META['SERVER_NAME'] = site1.domain
         user = factories.UserFactory()
-        add_product(basket, D('12.00'))
+        add_service(basket, D('12.00'))
         shipping_method = Free()
         shipping_charge = shipping_method.calculate(basket)
         applicator = SurchargeApplicator()
@@ -130,7 +130,7 @@ class TestOrderPlacementMixin(TestCase):
                 incl_tax=charge.price.incl_tax)
         self.assertEqual(order1.site, site1)
 
-        add_product(basket, D('12.00'))
+        add_service(basket, D('12.00'))
         request.META['SERVER_NAME'] = site2.domain
         order_submission_data['order_number'] = '12346'
         order_submission_data['request'] = request
@@ -141,7 +141,7 @@ class TestOrderPlacementMixin(TestCase):
     def test_multiple_payment_events(self):
         basket = factories.create_basket(empty=True)
         user = factories.UserFactory()
-        add_product(basket, D('100.00'))
+        add_service(basket, D('100.00'))
         order_placement = OrderPlacementMixin()
         order_placement.add_payment_event('Gift Card Payment', D('10'))
         order_placement.add_payment_event('Credit Card Payment', D('90'))
@@ -185,16 +185,16 @@ class TestCheckoutSessionMixin(TestCase):
 
     def setUp(self):
         self.request = RequestFactory().get('/')
-        self.product = factories.create_product(num_in_stock=10)
-        self.stock_record = self.product.stockrecords.first()
+        self.service = factories.create_service(num_in_stock=10)
+        self.stock_record = self.service.stockrecords.first()
 
-    def add_product_to_basket(self, product, quantity=1):
-        self.request.basket.add_product(product, quantity=quantity)
+    def add_service_to_basket(self, service, quantity=1):
+        self.request.basket.add_service(service, quantity=quantity)
         self.assertEqual(len(self.request.basket.all_lines()), 1)
-        self.assertEqual(self.request.basket.all_lines()[0].product, product)
+        self.assertEqual(self.request.basket.all_lines()[0].service, service)
 
     def test_check_basket_is_valid_no_stock_available(self):
-        self.add_product_to_basket(self.product)
+        self.add_service_to_basket(self.service)
         CheckoutSessionMixin().check_basket_is_valid(self.request)
         self.stock_record.allocate(10)
         self.stock_record.save()
@@ -202,8 +202,8 @@ class TestCheckoutSessionMixin(TestCase):
             CheckoutSessionMixin().check_basket_is_valid(self.request)
 
     def test_check_basket_is_valid_stock_exceeded(self):
-        self.add_product_to_basket(self.product)
+        self.add_service_to_basket(self.service)
         CheckoutSessionMixin().check_basket_is_valid(self.request)
-        self.request.basket.add_product(self.product, quantity=11)
+        self.request.basket.add_service(self.service, quantity=11)
         with self.assertRaises(FailedPreCondition):
             CheckoutSessionMixin().check_basket_is_valid(self.request)

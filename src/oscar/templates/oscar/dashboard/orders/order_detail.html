@@ -146,8 +146,8 @@
                                         <td><a href="{% url 'dashboard:order-line-detail' number=order.number line_id=line.id %}">#{{ line.id }}</a></td>
                                         <td>{{ line.quantity }}</td>
                                         <td>
-                                            {% if line.product %}
-                                                <a href="{% url 'dashboard:catalogue-product' pk=line.product.id %}">{{ line.title }}</a>
+                                            {% if line.service %}
+                                                <a href="{% url 'dashboard:catalogue-service' pk=line.service.id %}">{{ line.title }}</a>
                                             {% else %}
                                                 {{ line.title }}
                                             {% endif %}

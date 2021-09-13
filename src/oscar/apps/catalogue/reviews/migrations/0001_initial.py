@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='ProductReview',
+            name='ServiceReview',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('score', models.SmallIntegerField(verbose_name='Score', choices=[(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5)])),
@@ -29,13 +29,13 @@ class Migration(migrations.Migration):
                 ('total_votes', models.IntegerField(default=0, verbose_name='Total Votes')),
                 ('delta_votes', models.IntegerField(default=0, db_index=True, verbose_name='Delta Votes')),
                 ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, related_name='reviews', to='catalogue.Product', null=True)),
+                ('service', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, related_name='reviews', to='catalogue.Service', null=True)),
                 ('user', models.ForeignKey(null=True, related_name='reviews', to=settings.AUTH_USER_MODEL, blank=True, on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['-delta_votes', 'id'],
-                'verbose_name_plural': 'Product reviews',
-                'verbose_name': 'Product review',
+                'verbose_name_plural': 'Service reviews',
+                'verbose_name': 'Service review',
                 'abstract': False,
             },
             bases=(models.Model,),
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('delta', models.SmallIntegerField(verbose_name='Delta', choices=[(1, 'Up'), (-1, 'Down')])),
                 ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('review', models.ForeignKey(related_name='votes', to='reviews.ProductReview', on_delete=models.CASCADE)),
+                ('review', models.ForeignKey(related_name='votes', to='reviews.ServiceReview', on_delete=models.CASCADE)),
                 ('user', models.ForeignKey(related_name='review_votes', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
             unique_together=set([('user', 'review')]),
         ),
         migrations.AlterUniqueTogether(
-            name='productreview',
-            unique_together=set([('product', 'user')]),
+            name='servicereview',
+            unique_together=set([('service', 'user')]),
         ),
     ]

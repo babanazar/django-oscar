@@ -56,7 +56,7 @@ class Migration(migrations.Migration):
                 ('code', oscar.models.fields.autoslugfield.AutoSlugField(populate_from='name', unique=True, verbose_name='Slug', max_length=128, editable=False, blank=True)),
                 ('name', models.CharField(unique=True, max_length=128, verbose_name='Name')),
                 ('description', models.TextField(verbose_name='Description', blank=True)),
-                ('default_weight', models.DecimalField(validators=[django.core.validators.MinValueValidator(Decimal('0.00'))], verbose_name='Default Weight', default=Decimal('0.000'), max_digits=12, decimal_places=3, help_text='Default product weight in kg when no weight attribute is defined')),
+                ('default_weight', models.DecimalField(validators=[django.core.validators.MinValueValidator(Decimal('0.00'))], verbose_name='Default Weight', default=Decimal('0.000'), max_digits=12, decimal_places=3, help_text='Default service weight in kg when no weight attribute is defined')),
                 ('countries', models.ManyToManyField(blank=True, verbose_name='Countries', to='address.Country', null=True)),
             ],
             options={

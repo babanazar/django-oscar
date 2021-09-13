@@ -9,9 +9,9 @@ from oscar.core.compat import AUTH_USER_MODEL
 
 class AbstractWishList(models.Model):
     """
-    Represents a user's wish lists of products.
+    Represents a user's wish lists of services.
 
-    A user can have multiple wish lists, move products between them, etc.
+    A user can have multiple wish lists, move services between them, etc.
     """
 
     # Only authenticated users can have wishlists
@@ -88,14 +88,14 @@ class AbstractWishList(models.Model):
         return reverse('customer:wishlists-detail', kwargs={
             'key': self.key})
 
-    def add(self, product):
+    def add(self, service):
         """
-        Add a product to this wishlist
+        Add a service to this wishlist
         """
-        lines = self.lines.filter(product=product)
+        lines = self.lines.filter(service=service)
         if len(lines) == 0:
             self.lines.create(
-                product=product, title=product.get_title())
+                service=service, title=service.get_title())
         else:
             line = lines[0]
             line.quantity += 1
@@ -111,21 +111,21 @@ class AbstractLine(models.Model):
         on_delete=models.CASCADE,
         related_name='lines',
         verbose_name=_('Wish List'))
-    product = models.ForeignKey(
-        'catalogue.Product', verbose_name=_('Product'),
+    service = models.ForeignKey(
+        'catalogue.Service', verbose_name=_('Service'),
         related_name='wishlists_lines', on_delete=models.SET_NULL,
         blank=True, null=True)
     quantity = models.PositiveIntegerField(_('Quantity'), default=1)
-    #: Store the title in case product gets deleted
+    #: Store the title in case service gets deleted
     title = models.CharField(
-        pgettext_lazy("Product title", "Title"), max_length=255)
+        pgettext_lazy("Service title", "Title"), max_length=255)
 
     def __str__(self):
         return '%sx %s on %s' % (self.quantity, self.title, self.wishlist.name)
 
     def get_title(self):
-        if self.product:
-            return self.product.get_title()
+        if self.service:
+            return self.service.get_title()
         else:
             return self.title
 
@@ -134,5 +134,5 @@ class AbstractLine(models.Model):
         app_label = 'wishlists'
         # Enforce sorting by order of creation.
         ordering = ['pk']
-        unique_together = (('wishlist', 'product'), )
+        unique_together = (('wishlist', 'service'), )
         verbose_name = _('Wish list line')

@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='ProductRecord',
+            name='ServiceRecord',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('num_views', models.PositiveIntegerField(default=0, verbose_name='Views')),
@@ -24,21 +24,21 @@ class Migration(migrations.Migration):
             ],
             options={
                 'ordering': ['-num_purchases'],
-                'verbose_name_plural': 'Product records',
-                'verbose_name': 'Product record',
+                'verbose_name_plural': 'Service records',
+                'verbose_name': 'Service record',
                 'abstract': False,
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='UserProductView',
+            name='UserServiceView',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_created', models.DateTimeField(auto_now_add=True, verbose_name='Date Created')),
             ],
             options={
-                'verbose_name_plural': 'User product views',
-                'verbose_name': 'User product view',
+                'verbose_name_plural': 'User service views',
+                'verbose_name': 'User service view',
                 'abstract': False,
             },
             bases=(models.Model,),
@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
             name='UserRecord',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('num_product_views', models.PositiveIntegerField(default=0, verbose_name='Product Views')),
+                ('num_service_views', models.PositiveIntegerField(default=0, verbose_name='Service Views')),
                 ('num_basket_additions', models.PositiveIntegerField(default=0, verbose_name='Basket Additions')),
                 ('num_orders', models.PositiveIntegerField(default=0, db_index=True, verbose_name='Orders')),
                 ('num_order_lines', models.PositiveIntegerField(default=0, db_index=True, verbose_name='Order Lines')),

@@ -68,21 +68,21 @@ class AttributeFilter(dict):
         return qs
 
 
-class ProductQuerySet(models.query.QuerySet):
+class ServiceQuerySet(models.query.QuerySet):
 
     def filter_by_attributes(self, **filter_kwargs):
         """
         Allows querying by attribute as if the attributes where fields on the
-        product::
+        service::
 
-        >>> first_large_shirt = Product.objects.filter_by_attributes(size="Large").first()
+        >>> first_large_shirt = Service.objects.filter_by_attributes(size="Large").first()
         >>> first_large_shirt.attr.size
         <AttributeOption: Large>
         """
         attribute_filter = AttributeFilter(filter_kwargs)
 
-        ProductAttribute = self.model.attributes.rel.model
-        attribute_types = ProductAttribute.objects.values_list("code", "type").filter(
+        ServiceAttribute = self.model.attributes.rel.model
+        attribute_types = ServiceAttribute.objects.values_list("code", "type").filter(
             code__in=attribute_filter.field_names()
         )
 
@@ -94,30 +94,30 @@ class ProductQuerySet(models.query.QuerySet):
         models to save on queries
         """
         Option = get_model('catalogue', 'Option')
-        product_class_options = Option.objects.filter(productclass=OuterRef('product_class'))
-        product_options = Option.objects.filter(product=OuterRef('pk'))
-        return self.select_related('product_class')\
-            .prefetch_related('children', 'product_options', 'product_class__options', 'stockrecords', 'images') \
-            .annotate(has_product_class_options=Exists(product_class_options),
-                      has_product_options=Exists(product_options))
+        service_class_options = Option.objects.filter(serviceclass=OuterRef('service_class'))
+        service_options = Option.objects.filter(service=OuterRef('pk'))
+        return self.select_related('service_class')\
+            .prefetch_related('children', 'service_options', 'service_class__options', 'stockrecords', 'images') \
+            .annotate(has_service_class_options=Exists(service_class_options),
+                      has_service_options=Exists(service_options))
 
     def browsable(self):
         """
-        Excludes non-canonical products and non-public products
+        Excludes non-canonical services and non-public services
         """
         return self.filter(parent=None, is_public=True)
 
     def public(self):
         """
-        Excludes non-public products
+        Excludes non-public services
         """
         return self.filter(is_public=True)
 
     def browsable_dashboard(self):
         """
-        Products that should be browsable in the dashboard.
+        Services that should be browsable in the dashboard.
 
-        Excludes non-canonical products, but includes non-public products.
+        Excludes non-canonical services, but includes non-public services.
         """
         return self.filter(parent=None)
 

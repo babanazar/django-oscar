@@ -5,11 +5,11 @@ from webtest import AppError
 
 from oscar.core.compat import get_user_model
 from oscar.core.loading import get_model
-from oscar.test.factories import ProductAlertFactory, UserFactory
+from oscar.test.factories import ServiceAlertFactory, UserFactory
 from oscar.test.testcases import WebTestCase
 
 User = get_user_model()
-ProductAlert = get_model('customer', 'ProductAlert')
+ServiceAlert = get_model('customer', 'ServiceAlert')
 
 
 class IndexViewTests(WebTestCase):
@@ -147,21 +147,21 @@ class SearchTests(WebTestCase):
         self.assertEqual(data[0].last_name, 'van der Berg')
 
 
-class ProductAlertListViewTestCase(WebTestCase):
+class ServiceAlertListViewTestCase(WebTestCase):
 
     is_staff = True
 
     def test_list_view_get_queryset_ordering(self):
-        ProductAlertFactory.create_batch(3)
+        ServiceAlertFactory.create_batch(3)
         response = self.get(reverse('dashboard:user-alert-list'))
         self.assertEqual(
             list(response.context['alerts']),
-            list(ProductAlert.objects.order_by('-date_created'))
+            list(ServiceAlert.objects.order_by('-date_created'))
         )
 
     def test_list_view_status_filtering(self):
-        ProductAlertFactory.create_batch(3, status=ProductAlert.CANCELLED)
-        ProductAlertFactory.create_batch(2, status=ProductAlert.ACTIVE)
+        ServiceAlertFactory.create_batch(3, status=ServiceAlert.CANCELLED)
+        ServiceAlertFactory.create_batch(2, status=ServiceAlert.ACTIVE)
 
-        response = self.get(reverse('dashboard:user-alert-list'), params={'status': ProductAlert.ACTIVE})
+        response = self.get(reverse('dashboard:user-alert-list'), params={'status': ServiceAlert.ACTIVE})
         self.assertEqual(len(response.context['alerts']), 2)

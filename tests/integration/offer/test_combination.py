@@ -4,14 +4,14 @@ from django.test import TestCase
 
 from oscar.apps.offer import models
 from oscar.test import factories
-from oscar.test.basket import add_product, add_products
+from oscar.test.basket import add_service, add_services
 
 
 class TestACountConditionWithPercentageDiscount(TestCase):
 
     def setUp(self):
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         condition = models.CountCondition.objects.create(
             range=range,
             type=models.Condition.COUNT,
@@ -27,9 +27,9 @@ class TestACountConditionWithPercentageDiscount(TestCase):
             condition=condition,
             benefit=benefit)
 
-    def test_consumes_correct_number_of_products_for_3_product_basket(self):
+    def test_consumes_correct_number_of_services_for_3_service_basket(self):
         basket = factories.create_basket(empty=True)
-        add_product(basket, D('1'), 3)
+        add_service(basket, D('1'), 3)
 
         self.assertTrue(self.offer.is_condition_satisfied(basket))
         discount = self.offer.apply_benefit(basket)
@@ -38,9 +38,9 @@ class TestACountConditionWithPercentageDiscount(TestCase):
         self.assertEqual(2, basket.num_items_without_discount)
         self.assertFalse(self.offer.is_condition_satisfied(basket))
 
-    def test_consumes_correct_number_of_products_for_4_product_basket(self):
+    def test_consumes_correct_number_of_services_for_4_service_basket(self):
         basket = factories.create_basket(empty=True)
-        add_products(basket, [(D('1'), 2), (D('1'), 2)])
+        add_services(basket, [(D('1'), 2), (D('1'), 2)])
 
         self.assertTrue(self.offer.is_condition_satisfied(basket))
         discount = self.offer.apply_benefit(basket)
@@ -49,9 +49,9 @@ class TestACountConditionWithPercentageDiscount(TestCase):
         self.assertEqual(3, basket.num_items_without_discount)
         self.assertTrue(self.offer.is_condition_satisfied(basket))
 
-    def test_consumes_correct_number_of_products_for_6_product_basket(self):
+    def test_consumes_correct_number_of_services_for_6_service_basket(self):
         basket = factories.create_basket(empty=True)
-        add_products(basket, [(D('1'), 3), (D('1'), 3)])
+        add_services(basket, [(D('1'), 3), (D('1'), 3)])
         self.assertTrue(self.offer.is_condition_satisfied(basket))
         # First application
         discount = self.offer.apply_benefit(basket)

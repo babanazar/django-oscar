@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
             field=models.BooleanField(db_index=True, default=True, help_text='Show this category in search results and catalogue listings.', verbose_name='Is public'),
         ),
         migrations.AlterField(
-            model_name='product',
+            model_name='service',
             name='is_public',
-            field=models.BooleanField(db_index=True, default=True, help_text='Show this product in search results and catalogue listings.', verbose_name='Is public'),
+            field=models.BooleanField(db_index=True, default=True, help_text='Show this service in search results and catalogue listings.', verbose_name='Is public'),
         ),
     ]

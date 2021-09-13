@@ -84,7 +84,7 @@ var oscar = (function(o, $) {
                 }
             });
             // stuff for star rating on review page
-            // show clickable stars instead of a select dropdown for product rating
+            // show clickable stars instead of a select dropdown for service rating
             var ratings = $('.reviewrating');
             if(ratings.length){
                 ratings.find('.star-rating i').on('click',o.forms.reviewRatingClick);

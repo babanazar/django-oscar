@@ -26,7 +26,7 @@ var oscar = (function(o, $) {
         // Do not create extra image form if number of maximum allowed forms has reached.
         if (numExisting < numMax) {
             var $newImg = o.dashboard._extraProductImg.clone();
-            var productId = $('#images-0-product').val();
+            var serviceId = $('#images-0-service').val();
             $newImg.insertAfter($extraImg);
             // update attrs on cloned el
             $newImg.find("[id^='id_images-']," +
@@ -44,7 +44,7 @@ var oscar = (function(o, $) {
                 });
             });
             $newImg.find('#id_images-' + numExisting + '-display_order').val(numExisting);
-            $newImg.find('#id_images-' + numExisting + '-product').val(productId);
+            $newImg.find('#id_images-' + numExisting + '-service').val(serviceId);
 
             var $newFile = $newImg.find('input[type="file"]');
             $newFile.change(onFileChange);
@@ -120,10 +120,10 @@ var oscar = (function(o, $) {
                 return false;
             });
 
-            // Adds error icon if there are errors in the product update form
+            // Adds error icon if there are errors in the service update form
             $('[data-behaviour="tab-nav-errors"] .tab-pane').each(function(){
-                var productErrorListener = $(this).find('[class*="error"]:not(:empty)').closest('.tab-pane').attr('id');
-                $('.tab-nav a[href="#' + productErrorListener + '"]').append('<i class="fas fa-info-circle float-right"></i>');
+                var serviceErrorListener = $(this).find('[class*="error"]:not(:empty)').closest('.tab-pane').attr('id');
+                $('.tab-nav a[href="#' + serviceErrorListener + '"]').append('<i class="fas fa-info-circle float-right"></i>');
             });
 
             o.dashboard.filereader.init();
@@ -301,11 +301,11 @@ var oscar = (function(o, $) {
         initProductImages: function() {
             // convert last 'extra' form into a multi-upload
             // (assumes `extra=1` in django formset)
-            var $productImages = $('#product_images');
-            var $extraImg = $productImages.find('.upload-image li').last();
+            var $serviceImages = $('#service_images');
+            var $extraImg = $serviceImages.find('.upload-image li').last();
             o.dashboard._extraProductImg = $extraImg.clone();
 
-            $productImages.find('a:disabled').parents('sortable-handle').sortable('disable');
+            $serviceImages.find('a:disabled').parents('sortable-handle').sortable('disable');
 
             $('ol.upload-image').sortable({
                 vertical: false,
@@ -338,16 +338,16 @@ var oscar = (function(o, $) {
                 }
             }
         },
-        product_attributes: {
+        service_attributes: {
             init: function(){
                 var type_selects = $("select[name$=type]");
 
                 type_selects.each(function(){
-                    o.dashboard.product_attributes.toggleOptionGroup($(this));
+                    o.dashboard.service_attributes.toggleOptionGroup($(this));
                 });
 
                 type_selects.change(function(){
-                    o.dashboard.product_attributes.toggleOptionGroup($(this));
+                    o.dashboard.service_attributes.toggleOptionGroup($(this));
                 });
             },
 
@@ -454,9 +454,9 @@ var oscar = (function(o, $) {
                 }
             },
         },
-        product_lists: {
+        service_lists: {
             init: function() {
-                var imageModal = $("#product-image-modal"),
+                var imageModal = $("#service-image-modal"),
                     thumbnails = $('.sub-image');
                 thumbnails.click(function(e){
                     e.preventDefault();

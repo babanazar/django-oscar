@@ -10,7 +10,7 @@ from django.test import TestCase, TransactionTestCase
 from django.test.utils import override_settings
 from django.utils import timezone
 
-from oscar.apps.catalogue.models import Product, ProductClass
+from oscar.apps.catalogue.models import Service, ServiceClass
 from oscar.apps.checkout import calculators
 from oscar.apps.offer.utils import Applicator
 from oscar.apps.order.models import Order
@@ -20,7 +20,7 @@ from oscar.apps.shipping.repository import Repository
 from oscar.apps.voucher.models import Voucher
 from oscar.core.loading import get_class
 from oscar.test import factories
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 from oscar.test.utils import run_concurrently
 
 Range = get_class('offer.models', 'Range')
@@ -57,7 +57,7 @@ class TestOrderCreatorErrorCases(TestCase):
             place_order(self.creator, surcharges=self.surcharges, basket=self.basket)
 
     def test_raises_exception_if_duplicate_order_number_passed(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         place_order(self.creator, surcharges=self.surcharges, basket=self.basket, order_number='1234')
         with self.assertRaises(ValueError):
             place_order(self.creator, surcharges=self.surcharges, basket=self.basket, order_number='1234')
@@ -71,42 +71,42 @@ class TestSuccessfulOrderCreation(TestCase):
         self.surcharges = SurchargeApplicator().get_applicable_surcharges(self.basket)
 
     def test_saves_shipping_code(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         free_method = Free()
         order = place_order(self.creator, surcharges=self.surcharges, basket=self.basket,
                             order_number='1234', shipping_method=free_method)
         self.assertEqual(order.shipping_code, free_method.code)
 
     def test_creates_order_and_line_models(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         place_order(self.creator, surcharges=self.surcharges, basket=self.basket, order_number='1234')
         order = Order.objects.get(number='1234')
         lines = order.lines.all()
         self.assertEqual(1, len(lines))
 
     def test_sets_correct_order_status(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         place_order(self.creator, surcharges=self.surcharges, basket=self.basket,
                     order_number='1234', status='Active')
         order = Order.objects.get(number='1234')
         self.assertEqual('Active', order.status)
 
     def test_defaults_to_using_free_shipping(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         place_order(self.creator, surcharges=self.surcharges, basket=self.basket, order_number='1234')
         order = Order.objects.get(number='1234')
         self.assertEqual(order.total_incl_tax, self.basket.total_incl_tax + self.surcharges.total.incl_tax)
         self.assertEqual(order.total_excl_tax, self.basket.total_excl_tax + self.surcharges.total.excl_tax)
 
     def test_uses_default_order_status_from_settings(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         with override_settings(OSCAR_INITIAL_ORDER_STATUS='A'):
             place_order(self.creator, surcharges=self.surcharges, basket=self.basket, order_number='1234')
         order = Order.objects.get(number='1234')
         self.assertEqual('A', order.status)
 
     def test_uses_default_line_status_from_settings(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         with override_settings(OSCAR_INITIAL_LINE_STATUS='A'):
             place_order(self.creator, surcharges=self.surcharges, basket=self.basket, order_number='1234')
         order = Order.objects.get(number='1234')
@@ -116,12 +116,12 @@ class TestSuccessfulOrderCreation(TestCase):
     def test_partner_name_is_optional(self):
         for partner_name, order_number in [('', 'A'), ('p1', 'B')]:
             self.basket = factories.create_basket(empty=True)
-            product = factories.create_product(partner_name=partner_name)
-            add_product(self.basket, D('12.00'), product=product)
+            service = factories.create_service(partner_name=partner_name)
+            add_service(self.basket, D('12.00'), service=service)
             place_order(
                 self.creator, surcharges=self.surcharges, basket=self.basket, order_number=order_number)
             line = Order.objects.get(number=order_number).lines.all()[0]
-            partner = product.stockrecords.all()[0].partner
+            partner = service.stockrecords.all()[0].partner
             self.assertTrue(partner_name == line.partner_name == partner.name)
 
 
@@ -133,17 +133,17 @@ class TestPlacingOrderForDigitalGoods(TestCase):
         self.surcharges = SurchargeApplicator().get_applicable_surcharges(self.basket)
 
     def test_does_not_allocate_stock(self):
-        ProductClass.objects.create(
+        ServiceClass.objects.create(
             name="Digital", track_stock=False)
-        product = factories.create_product(product_class="Digital")
-        record = factories.create_stockrecord(product, num_in_stock=None)
+        service = factories.create_service(service_class="Digital")
+        record = factories.create_stockrecord(service, num_in_stock=None)
         self.assertTrue(record.num_allocated is None)
 
-        add_product(self.basket, D('12.00'), product=product)
+        add_service(self.basket, D('12.00'), service=service)
         place_order(self.creator, surcharges=self.surcharges, basket=self.basket, order_number='1234')
 
-        product = Product.objects.get(id=product.id)
-        stockrecord = product.stockrecords.all()[0]
+        service = Service.objects.get(id=service.id)
+        stockrecord = service.stockrecords.all()[0]
         self.assertTrue(stockrecord.num_in_stock is None)
         self.assertTrue(stockrecord.num_allocated is None)
 
@@ -157,8 +157,8 @@ class TestShippingOfferForOrder(TestCase):
 
     def apply_20percent_shipping_offer(self):
         """Shipping offer 20% off"""
-        range = Range.objects.create(name="All products range",
-                                     includes_all_products=True)
+        range = Range.objects.create(name="All services range",
+                                     includes_all_services=True)
         benefit = Benefit.objects.create(
             range=range, type=Benefit.SHIPPING_PERCENTAGE, value=20)
         offer = factories.create_offer(range=range, benefit=benefit)
@@ -166,7 +166,7 @@ class TestShippingOfferForOrder(TestCase):
         return offer
 
     def test_shipping_offer_is_applied(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         offer = self.apply_20percent_shipping_offer()
 
         shipping = FixedPrice(D('5.00'), D('5.00'))
@@ -185,7 +185,7 @@ class TestShippingOfferForOrder(TestCase):
         self.assertEqual(D('38.00'), order.total_incl_tax)
 
     def test_zero_shipping_discount_is_not_created(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         offer = self.apply_20percent_shipping_offer()
 
         shipping = Free()
@@ -215,7 +215,7 @@ class TestMultiSiteOrderCreation(TestCase):
         self.surcharges = SurchargeApplicator().get_applicable_surcharges(self.basket)
 
     def test_default_site(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         place_order(self.creator,
                     surcharges=self.surcharges,
                     basket=self.basket,
@@ -224,7 +224,7 @@ class TestMultiSiteOrderCreation(TestCase):
         self.assertEqual(order.site_id, 1)
 
     def test_multi_sites(self):
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         place_order(self.creator,
                     surcharges=self.surcharges,
                     basket=self.basket,
@@ -232,7 +232,7 @@ class TestMultiSiteOrderCreation(TestCase):
                     site=self.site1)
         order1 = Order.objects.get(number='12345')
         self.assertEqual(order1.site, self.site1)
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         place_order(self.creator,
                     surcharges=self.surcharges,
                     basket=self.basket,
@@ -246,7 +246,7 @@ class TestMultiSiteOrderCreation(TestCase):
         request = HttpRequest()
         request.META['SERVER_PORT'] = 80
         request.META['SERVER_NAME'] = self.site1.domain
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         place_order(self.creator,
                     surcharges=self.surcharges,
                     basket=self.basket,
@@ -254,7 +254,7 @@ class TestMultiSiteOrderCreation(TestCase):
                     request=request)
         order1 = Order.objects.get(number='12345')
         self.assertEqual(order1.site, self.site1)
-        add_product(self.basket, D('12.00'))
+        add_service(self.basket, D('12.00'))
         request.META['SERVER_NAME'] = self.site2.domain
         place_order(self.creator,
                     surcharges=self.surcharges,
@@ -305,7 +305,7 @@ class TestConcurrentOrderPlacement(TransactionTestCase):
     def test_single_usage(self):
         user = AnonymousUser()
         creator = OrderCreator()
-        product = factories.ProductFactory(stockrecords__num_in_stock=1000)
+        service = factories.ServiceFactory(stockrecords__num_in_stock=1000)
 
         # Make the order creator a bit more slow too reliable trigger
         # concurrency issues
@@ -321,7 +321,7 @@ class TestConcurrentOrderPlacement(TransactionTestCase):
             order_number = threading.current_thread().name
 
             basket = factories.BasketFactory()
-            basket.add_product(product)
+            basket.add_service(service)
             surcharges = SurchargeApplicator().get_applicable_surcharges(basket)
 
             place_order(
@@ -333,13 +333,13 @@ class TestConcurrentOrderPlacement(TransactionTestCase):
         assert len(exceptions) == 0
         assert Order.objects.count() == 5
 
-        stockrecord = product.stockrecords.first()
+        stockrecord = service.stockrecords.first()
         assert stockrecord.num_allocated == 5
 
     def test_voucher_single_usage(self):
         user = AnonymousUser()
         creator = OrderCreator()
-        product = factories.ProductFactory()
+        service = factories.ServiceFactory()
         voucher = factories.VoucherFactory(usage=Voucher.SINGLE_USE)
         voucher.offers.add(factories.create_offer(offer_type='Voucher'))
 
@@ -364,7 +364,7 @@ class TestConcurrentOrderPlacement(TransactionTestCase):
             order_number = threading.current_thread().name
 
             basket = factories.BasketFactory()
-            basket.add_product(product)
+            basket.add_service(service)
             basket.vouchers.add(voucher)
 
             surcharges = SurchargeApplicator().get_applicable_surcharges(basket)

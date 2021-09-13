@@ -2,42 +2,42 @@ from django.db import models
 from django.db.models import Exists, OuterRef
 
 
-def product_class_as_queryset(product):
-    "Returns a queryset with the product_classes of a product (only one)"
-    ProductClass = product._meta.get_field("product_class").related_model
-    return ProductClass.objects.filter(
-        pk__in=product.__class__.objects.filter(pk=product.pk)
+def service_class_as_queryset(service):
+    "Returns a queryset with the service_classes of a service (only one)"
+    ServiceClass = service._meta.get_field("service_class").related_model
+    return ServiceClass.objects.filter(
+        pk__in=service.__class__.objects.filter(pk=service.pk)
         .annotate(
-            _product_class_id=models.Case(
+            _service_class_id=models.Case(
                 models.When(
-                    structure=product.CHILD, then=models.F("parent__product_class")
+                    structure=service.CHILD, then=models.F("parent__service_class")
                 ),
                 models.When(
-                    structure__in=[product.PARENT, product.STANDALONE],
-                    then=models.F("product_class"),
+                    structure__in=[service.PARENT, service.STANDALONE],
+                    then=models.F("service_class"),
                 ),
             )
         )
-        .values("_product_class_id")
+        .values("_service_class_id")
     )
 
 
 class RangeQuerySet(models.query.QuerySet):
     """
-    This queryset add ``contains_product`` which allows selecting the
-    ranges that contain the product in question.
+    This queryset add ``contains_service`` which allows selecting the
+    ranges that contain the service in question.
     """
-    def contains_product(self, product):
-        "Return ranges that contain ``product`` in a single query"
-        if product.structure == product.CHILD:
-            return self._ranges_that_contain_product(
-                product.parent
-            ) | self._ranges_that_contain_product(product)
-        return self._ranges_that_contain_product(product)
+    def contains_service(self, service):
+        "Return ranges that contain ``service`` in a single query"
+        if service.structure == service.CHILD:
+            return self._ranges_that_contain_service(
+                service.parent
+            ) | self._ranges_that_contain_service(service)
+        return self._ranges_that_contain_service(service)
 
-    def _ranges_that_contain_product(self, product):
-        Category = product.categories.model
-        included_in_subtree = product.categories.filter(
+    def _ranges_that_contain_service(self, service):
+        Category = service.categories.model
+        included_in_subtree = service.categories.filter(
             path__startswith=OuterRef("path")
         )
         category_tree = Category.objects.annotate(
@@ -45,13 +45,13 @@ class RangeQuerySet(models.query.QuerySet):
         ).filter(is_included_in_subtree=True)
 
         wide = self.filter(
-            ~models.Q(excluded_products=product), includes_all_products=True
+            ~models.Q(excluded_services=service), includes_all_services=True
         )
         narrow = self.filter(
-            ~models.Q(excluded_products=product),
-            models.Q(included_products=product)
+            ~models.Q(excluded_services=service),
+            models.Q(included_services=service)
             | models.Q(included_categories__in=category_tree)
-            | models.Q(classes__in=product_class_as_queryset(product)),
-            includes_all_products=False,
+            | models.Q(classes__in=service_class_as_queryset(service)),
+            includes_all_services=False,
         )
         return wide | narrow

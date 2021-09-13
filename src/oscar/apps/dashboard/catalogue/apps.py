@@ -12,36 +12,36 @@ class CatalogueDashboardConfig(OscarDashboardConfig):
 
     default_permissions = ['is_staff', ]
     permissions_map = _map = {
-        'catalogue-product': (['is_staff'], ['partner.dashboard_access']),
-        'catalogue-product-create': (['is_staff'],
+        'catalogue-service': (['is_staff'], ['partner.dashboard_access']),
+        'catalogue-service-create': (['is_staff'],
                                      ['partner.dashboard_access']),
-        'catalogue-product-list': (['is_staff'], ['partner.dashboard_access']),
-        'catalogue-product-delete': (['is_staff'],
+        'catalogue-service-list': (['is_staff'], ['partner.dashboard_access']),
+        'catalogue-service-delete': (['is_staff'],
                                      ['partner.dashboard_access']),
-        'catalogue-product-lookup': (['is_staff'],
+        'catalogue-service-lookup': (['is_staff'],
                                      ['partner.dashboard_access']),
     }
 
     def ready(self):
-        self.product_list_view = get_class('dashboard.catalogue.views',
-                                           'ProductListView')
-        self.product_lookup_view = get_class('dashboard.catalogue.views',
-                                             'ProductLookupView')
-        self.product_create_redirect_view = get_class('dashboard.catalogue.views',
-                                                      'ProductCreateRedirectView')
-        self.product_createupdate_view = get_class('dashboard.catalogue.views',
-                                                   'ProductCreateUpdateView')
-        self.product_delete_view = get_class('dashboard.catalogue.views',
-                                             'ProductDeleteView')
+        self.service_list_view = get_class('dashboard.catalogue.views',
+                                           'ServiceListView')
+        self.service_lookup_view = get_class('dashboard.catalogue.views',
+                                             'ServiceLookupView')
+        self.service_create_redirect_view = get_class('dashboard.catalogue.views',
+                                                      'ServiceCreateRedirectView')
+        self.service_createupdate_view = get_class('dashboard.catalogue.views',
+                                                   'ServiceCreateUpdateView')
+        self.service_delete_view = get_class('dashboard.catalogue.views',
+                                             'ServiceDeleteView')
 
-        self.product_class_create_view = get_class('dashboard.catalogue.views',
-                                                   'ProductClassCreateView')
-        self.product_class_update_view = get_class('dashboard.catalogue.views',
-                                                   'ProductClassUpdateView')
-        self.product_class_list_view = get_class('dashboard.catalogue.views',
-                                                 'ProductClassListView')
-        self.product_class_delete_view = get_class('dashboard.catalogue.views',
-                                                   'ProductClassDeleteView')
+        self.service_class_create_view = get_class('dashboard.catalogue.views',
+                                                   'ServiceClassCreateView')
+        self.service_class_update_view = get_class('dashboard.catalogue.views',
+                                                   'ServiceClassUpdateView')
+        self.service_class_list_view = get_class('dashboard.catalogue.views',
+                                                 'ServiceClassListView')
+        self.service_class_delete_view = get_class('dashboard.catalogue.views',
+                                                   'ServiceClassDeleteView')
 
         self.category_list_view = get_class('dashboard.catalogue.views',
                                             'CategoryListView')
@@ -73,20 +73,20 @@ class CatalogueDashboardConfig(OscarDashboardConfig):
 
     def get_urls(self):
         urls = [
-            path('products/<int:pk>/', self.product_createupdate_view.as_view(), name='catalogue-product'),
-            path('products/create/', self.product_create_redirect_view.as_view(), name='catalogue-product-create'),
+            path('services/<int:pk>/', self.service_createupdate_view.as_view(), name='catalogue-service'),
+            path('services/create/', self.service_create_redirect_view.as_view(), name='catalogue-service-create'),
             path(
-                'products/create/<slug:product_class_slug>/',
-                self.product_createupdate_view.as_view(),
-                name='catalogue-product-create'),
+                'services/create/<slug:service_class_slug>/',
+                self.service_createupdate_view.as_view(),
+                name='catalogue-service-create'),
             path(
-                'products/<int:parent_pk>/create-variant/',
-                self.product_createupdate_view.as_view(),
-                name='catalogue-product-create-child'),
-            path('products/<int:pk>/delete/', self.product_delete_view.as_view(), name='catalogue-product-delete'),
-            path('', self.product_list_view.as_view(), name='catalogue-product-list'),
+                'services/<int:parent_pk>/create-variant/',
+                self.service_createupdate_view.as_view(),
+                name='catalogue-service-create-child'),
+            path('services/<int:pk>/delete/', self.service_delete_view.as_view(), name='catalogue-service-delete'),
+            path('', self.service_list_view.as_view(), name='catalogue-service-list'),
             path('stock-alerts/', self.stock_alert_view.as_view(), name='stock-alert-list'),
-            path('product-lookup/', self.product_lookup_view.as_view(), name='catalogue-product-lookup'),
+            path('service-lookup/', self.service_lookup_view.as_view(), name='catalogue-service-lookup'),
             path('categories/', self.category_list_view.as_view(), name='catalogue-category-list'),
             path(
                 'categories/<int:pk>/',
@@ -108,20 +108,20 @@ class CatalogueDashboardConfig(OscarDashboardConfig):
                 self.category_delete_view.as_view(),
                 name='catalogue-category-delete'),
             path(
-                'product-type/create/',
-                self.product_class_create_view.as_view(),
+                'service-type/create/',
+                self.service_class_create_view.as_view(),
                 name='catalogue-class-create'),
             path(
-                'product-types/',
-                self.product_class_list_view.as_view(),
+                'service-types/',
+                self.service_class_list_view.as_view(),
                 name='catalogue-class-list'),
             path(
-                'product-type/<int:pk>/update/',
-                self.product_class_update_view.as_view(),
+                'service-type/<int:pk>/update/',
+                self.service_class_update_view.as_view(),
                 name='catalogue-class-update'),
             path(
-                'product-type/<int:pk>/delete/',
-                self.product_class_delete_view.as_view(),
+                'service-type/<int:pk>/delete/',
+                self.service_class_delete_view.as_view(),
                 name='catalogue-class-delete'),
             path(
                 'attribute-option-group/create/',

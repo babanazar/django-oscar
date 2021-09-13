@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 from oscar.apps.basket.models import Basket
 from oscar.apps.offer import models
 from oscar.apps.partner import strategy
-from oscar.test.basket import add_product
+from oscar.test.basket import add_service
 from oscar.test.factories import create_order
 
 
@@ -15,7 +15,7 @@ class TestAValueBasedOffer(TestCase):
     def setUp(self):
         # Get 20% if spending more than 20.00
         range = models.Range.objects.create(
-            name="All products", includes_all_products=True)
+            name="All services", includes_all_services=True)
         condition = models.Condition.objects.create(
             range=range,
             type=models.Condition.VALUE,
@@ -35,8 +35,8 @@ class TestAValueBasedOffer(TestCase):
         # Assign US style strategy (no tax known)
         self.basket.strategy = strategy.US()
 
-        # Add sufficient products to meet condition
-        add_product(self.basket, price=D('6'), quantity=2)
+        # Add sufficient services to meet condition
+        add_service(self.basket, price=D('6'), quantity=2)
 
         # Ensure discount is correct
         result = self.offer.apply_benefit(self.basket)
@@ -46,8 +46,8 @@ class TestAValueBasedOffer(TestCase):
         # Assign UK style strategy (20% tax)
         self.basket.strategy = strategy.UK()
 
-        # Add sufficient products to meet condition
-        add_product(self.basket, price=D('10'), quantity=2)
+        # Add sufficient services to meet condition
+        add_service(self.basket, price=D('10'), quantity=2)
 
         # Ensure discount is calculated against tax-inclusive price
         result = self.offer.apply_benefit(self.basket)
@@ -65,7 +65,7 @@ class TestAValueBasedOffer(TestCase):
     @override_settings(OSCAR_OFFERS_INCL_TAX=True)
     def test_respects_effective_price_when_taxes_are_known_and_offer_is_tax_inclusive(self):
         self.basket.strategy = strategy.UK()
-        add_product(self.basket, price=D('10'), quantity=2)
+        add_service(self.basket, price=D('10'), quantity=2)
 
         result = self.offer.apply_benefit(self.basket)
         self.assertEqual(2 * D('10.00') * D('1.2') * D('0.20'), result.discount)

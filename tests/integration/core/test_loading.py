@@ -18,13 +18,13 @@ class TestClassLoading(TestCase):
     """
 
     def test_load_oscar_classes_correctly(self):
-        Product, Category = get_classes('catalogue.models', ('Product', 'Category'))
-        self.assertEqual('oscar.apps.catalogue.models', Product.__module__)
+        Service, Category = get_classes('catalogue.models', ('Service', 'Category'))
+        self.assertEqual('oscar.apps.catalogue.models', Service.__module__)
         self.assertEqual('oscar.apps.catalogue.models', Category.__module__)
 
     def test_load_oscar_class_correctly(self):
-        Product = get_class('catalogue.models', 'Product')
-        self.assertEqual('oscar.apps.catalogue.models', Product.__module__)
+        Service = get_class('catalogue.models', 'Service')
+        self.assertEqual('oscar.apps.catalogue.models', Service.__module__)
 
     def test_load_oscar_class_from_dashboard_subapp(self):
         ReportForm = get_class('dashboard.reports.forms', 'ReportForm')
@@ -32,7 +32,7 @@ class TestClassLoading(TestCase):
 
     def test_raise_exception_when_bad_appname_used(self):
         with self.assertRaises(AppNotFoundError):
-            get_classes('fridge.models', ('Product', 'Category'))
+            get_classes('fridge.models', ('Service', 'Category'))
 
     def test_raise_exception_when_bad_classname_used(self):
         with self.assertRaises(ClassNotFoundError):
@@ -180,16 +180,16 @@ class TestDynamicLoadingOn3rdPartyApps(TestCase):
 class OverriddenClassLoadingTestCase(TestCase):
 
     def test_non_override_class_loader(self):
-        from oscar.apps.catalogue.views import ProductDetailView
-        View = get_class('catalogue.views', 'ProductDetailView')
-        self.assertEqual(View, ProductDetailView)
+        from oscar.apps.catalogue.views import ServiceDetailView
+        View = get_class('catalogue.views', 'ServiceDetailView')
+        self.assertEqual(View, ServiceDetailView)
 
     @override_settings(OSCAR_DYNAMIC_CLASS_LOADER='tests._site.loader.custom_class_loader')
     def test_override_class_loader(self):
         # Clear lru cache for the class loader
         get_class_loader.cache_clear()
 
-        View = get_class('catalogue.views', 'ProductDetailView')
+        View = get_class('catalogue.views', 'ServiceDetailView')
         self.assertEqual(View, DummyClass)
 
         # Clear lru cache for the class loader again

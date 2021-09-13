@@ -477,7 +477,7 @@ class AbstractLine(models.Model):
     # PARTNER INFORMATION
     # -------------------
     # We store the partner and various detail their SKU and the title for cases
-    # where the product has been deleted from the catalogue (but we still need
+    # where the service has been deleted from the catalogue (but we still need
     # the data for reporting).  We also store the partner name in case the
     # partner gets deleted at a later date.
 
@@ -503,17 +503,17 @@ class AbstractLine(models.Model):
         'partner.StockRecord', on_delete=models.SET_NULL, blank=True,
         null=True, verbose_name=_("Stock record"))
 
-    # PRODUCT INFORMATION
+    # SERVICE INFORMATION
     # -------------------
 
-    # We don't want any hard links between orders and the products table so we
+    # We don't want any hard links between orders and the services table so we
     # allow this link to be NULLable.
-    product = models.ForeignKey(
-        'catalogue.Product', on_delete=models.SET_NULL, blank=True, null=True,
-        verbose_name=_("Product"))
+    service = models.ForeignKey(
+        'catalogue.Service', on_delete=models.SET_NULL, blank=True, null=True,
+        verbose_name=_("Service"))
     title = models.CharField(
-        pgettext_lazy("Product title", "Title"), max_length=255)
-    # UPC can be null because it's usually set as the product's UPC, and that
+        pgettext_lazy("Service title", "Title"), max_length=255)
+    # UPC can be null because it's usually set as the service's UPC, and that
     # can be null as well
     upc = models.CharField(_("UPC"), max_length=128, blank=True, null=True)
 
@@ -563,11 +563,11 @@ class AbstractLine(models.Model):
         verbose_name_plural = _("Order Lines")
 
     def __str__(self):
-        if self.product:
-            title = self.product.title
+        if self.service:
+            title = self.service.title
         else:
-            title = _('<missing product>')
-        return _("Product '%(name)s', quantity '%(qty)s'") % {
+            title = _('<missing service>')
+        return _("Service '%(name)s', quantity '%(qty)s'") % {
             'name': title, 'qty': self.quantity}
 
     @classmethod
@@ -757,26 +757,26 @@ class AbstractLine(models.Model):
             return result['quantity__sum']
 
     @property
-    def is_product_deleted(self):
-        return self.product is None
+    def is_service_deleted(self):
+        return self.service is None
 
     def is_available_to_reorder(self, basket, strategy):
         """
         Test if this line can be re-ordered using the passed strategy and
         basket
         """
-        if not self.product:
+        if not self.service:
             return False, (_("'%(title)s' is no longer available") %
                            {'title': self.title})
 
         try:
-            basket_line = basket.lines.get(product=self.product)
+            basket_line = basket.lines.get(service=self.service)
         except basket.lines.model.DoesNotExist:
             desired_qty = self.quantity
         else:
             desired_qty = basket_line.quantity + self.quantity
 
-        result = strategy.fetch_for_product(self.product)
+        result = strategy.fetch_for_service(self.service)
         is_available, reason = result.availability.is_purchase_permitted(
             quantity=desired_qty)
         if not is_available:
@@ -814,7 +814,7 @@ class AbstractLinePrice(models.Model):
     For tracking the prices paid for each unit within a line.
 
     This is necessary as offers can lead to units within a line
-    having different prices.  For example, one product may be sold at
+    having different prices.  For example, one service may be sold at
     50% off as it's part of an offer while the remainder are full price.
     """
     order = models.ForeignKey(
@@ -1027,8 +1027,8 @@ class ShippingEventQuantity(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return _("%(product)s - quantity %(qty)d") % {
-            'product': self.line.product,
+        return _("%(service)s - quantity %(qty)d") % {
+            'service': self.line.service,
             'qty': self.quantity}
 
 

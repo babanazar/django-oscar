@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='productreview',
+            model_name='servicereview',
             name='status',
             field=models.SmallIntegerField(choices=[(0, 'Requires moderation'), (1, 'Approved'), (2, 'Rejected')], default=oscar.apps.catalogue.reviews.utils.get_default_review_status, verbose_name='Status'),
         ),

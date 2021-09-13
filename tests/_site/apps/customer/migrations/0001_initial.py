@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='ProductAlert',
+            name='ServiceAlert',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('email', models.EmailField(max_length=75, db_index=True, verbose_name='Email', blank=True)),
@@ -84,12 +84,12 @@ class Migration(migrations.Migration):
                 ('date_confirmed', models.DateTimeField(blank=True, verbose_name='Date confirmed', null=True)),
                 ('date_cancelled', models.DateTimeField(blank=True, verbose_name='Date cancelled', null=True)),
                 ('date_closed', models.DateTimeField(blank=True, verbose_name='Date closed', null=True)),
-                ('product', models.ForeignKey(to='catalogue.Product', on_delete=models.CASCADE)),
+                ('service', models.ForeignKey(to='catalogue.Service', on_delete=models.CASCADE)),
                 ('user', models.ForeignKey(null=True, verbose_name='User', related_name='alerts', to=settings.AUTH_USER_MODEL, blank=True, on_delete=models.CASCADE)),
             ],
             options={
-                'verbose_name_plural': 'Product alerts',
-                'verbose_name': 'Product alert',
+                'verbose_name_plural': 'Service alerts',
+                'verbose_name': 'Service alert',
                 'abstract': False,
             },
             bases=(models.Model,),

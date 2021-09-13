@@ -7,7 +7,7 @@ from oscar.apps.basket.models import Basket
 from oscar.apps.order.models import Order
 from oscar.apps.partner import strategy
 from oscar.core.compat import get_user_model
-from oscar.test.factories import create_order, create_product
+from oscar.test.factories import create_order, create_service
 from oscar.test.testcases import WebTestCase
 
 User = get_user_model()
@@ -134,7 +134,7 @@ class TestASignedInUser(WebTestCase):
         basket.strategy = strategy.Default()
         self.assertEqual(1, basket.all_lines().count())
 
-    def test_cannot_reorder_an_out_of_stock_product(self):
+    def test_cannot_reorder_an_out_of_stock_service(self):
         line = self.order.lines.all()[0]
         line.stockrecord.num_in_stock = 0
         line.stockrecord.save()
@@ -157,9 +157,9 @@ class TestReorderingOrderLines(WebTestCase):
         order = create_order(user=self.user)
         line = order.lines.all()[0]
 
-        product = create_product(price=D('12.00'))
-        product_page = self.get(line.product.get_absolute_url())
-        product_page.forms['add_to_basket_form'].submit()
+        service = create_service(price=D('12.00'))
+        service_page = self.get(line.service.get_absolute_url())
+        service_page.forms['add_to_basket_form'].submit()
 
         basket = Basket.objects.all()[0]
         basket.strategy = strategy.Default()
@@ -170,16 +170,16 @@ class TestReorderingOrderLines(WebTestCase):
         order_page.forms['order_form_%s' % order.id].submit()
 
         self.assertEqual(len(basket.all_lines()), 1)
-        self.assertNotEqual(line.product.pk, product.pk)
+        self.assertNotEqual(line.service.pk, service.pk)
 
     @patch('django.conf.settings.OSCAR_MAX_BASKET_QUANTITY_THRESHOLD', 1)
     def test_cannot_reorder_line_when_basket_maximum_exceeded(self):
         order = create_order(user=self.user)
         line = order.lines.all()[0]
 
-        product = create_product(price=D('12.00'))
-        product_page = self.get(line.product.get_absolute_url())
-        product_page.forms['add_to_basket_form'].submit()
+        service = create_service(price=D('12.00'))
+        service_page = self.get(line.service.get_absolute_url())
+        service_page.forms['add_to_basket_form'].submit()
 
         basket = Basket.objects.all()[0]
         basket.strategy = strategy.Default()
@@ -190,4 +190,4 @@ class TestReorderingOrderLines(WebTestCase):
         order_page.forms['line_form_%s' % line.id].submit()
 
         self.assertEqual(len(basket.all_lines()), 1)
-        self.assertNotEqual(line.product.pk, product.pk)
+        self.assertNotEqual(line.service.pk, service.pk)

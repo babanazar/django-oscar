@@ -7,41 +7,41 @@ ReportCSVFormatter = get_class('dashboard.reports.reports',
                                'ReportCSVFormatter')
 ReportHTMLFormatter = get_class('dashboard.reports.reports',
                                 'ReportHTMLFormatter')
-ProductRecord = get_model('analytics', 'ProductRecord')
+ServiceRecord = get_model('analytics', 'ServiceRecord')
 UserRecord = get_model('analytics', 'UserRecord')
 
 
-class ProductReportCSVFormatter(ReportCSVFormatter):
+class ServiceReportCSVFormatter(ReportCSVFormatter):
     filename_template = 'conditional-offer-performance.csv'
 
-    def generate_csv(self, response, products):
+    def generate_csv(self, response, services):
         writer = self.get_csv_writer(response)
-        header_row = [_('Product'),
+        header_row = [_('Service'),
                       _('Views'),
                       _('Basket additions'),
                       _('Purchases')]
         writer.writerow(header_row)
 
-        for record in products:
-            row = [record.product,
+        for record in services:
+            row = [record.service,
                    record.num_views,
                    record.num_basket_additions,
                    record.num_purchases]
             writer.writerow(row)
 
 
-class ProductReportHTMLFormatter(ReportHTMLFormatter):
-    filename_template = 'oscar/dashboard/reports/partials/product_report.html'
+class ServiceReportHTMLFormatter(ReportHTMLFormatter):
+    filename_template = 'oscar/dashboard/reports/partials/service_report.html'
 
 
-class ProductReportGenerator(ReportGenerator):
-    code = 'product_analytics'
-    description = _('Product analytics')
-    model_class = ProductRecord
+class ServiceReportGenerator(ReportGenerator):
+    code = 'service_analytics'
+    description = _('Service analytics')
+    model_class = ServiceRecord
 
     formatters = {
-        'CSV_formatter': ProductReportCSVFormatter,
-        'HTML_formatter': ProductReportHTMLFormatter}
+        'CSV_formatter': ServiceReportCSVFormatter,
+        'HTML_formatter': ServiceReportHTMLFormatter}
 
     def report_description(self):
         return self.description
@@ -57,7 +57,7 @@ class UserReportCSVFormatter(ReportCSVFormatter):
         writer = self.get_csv_writer(response)
         header_row = [_('Name'),
                       _('Date registered'),
-                      _('Product views'),
+                      _('Service views'),
                       _('Basket additions'),
                       _('Orders'),
                       _('Order lines'),
@@ -69,7 +69,7 @@ class UserReportCSVFormatter(ReportCSVFormatter):
         for record in users:
             row = [record.user.get_full_name(),
                    self.format_date(record.user.date_joined),
-                   record.num_product_views,
+                   record.num_service_views,
                    record.num_basket_additions,
                    record.num_orders,
                    record.num_order_lines,

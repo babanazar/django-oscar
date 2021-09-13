@@ -39,14 +39,14 @@ class Base(object):
 
 class Unavailable(Base):
     """
-    This should be used as a pricing policy when a product is unavailable and
+    This should be used as a pricing policy when a service is unavailable and
     no prices are known.
     """
 
 
 class FixedPrice(Base):
     """
-    This should be used for when the price of a product is known in advance.
+    This should be used for when the price of a service is known in advance.
 
     It can work for when tax isn't known (like in the US).
 

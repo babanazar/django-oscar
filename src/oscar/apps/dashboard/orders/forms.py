@@ -67,7 +67,7 @@ class OrderStatsForm(forms.Form):
 class OrderSearchForm(forms.Form):
     order_number = forms.CharField(required=False, label=_("Order number"))
     name = forms.CharField(required=False, label=_("Customer name"))
-    product_title = forms.CharField(required=False, label=_("Product name"))
+    service_title = forms.CharField(required=False, label=_("Service name"))
     upc = forms.CharField(required=False, label=_("UPC"))
     partner_sku = forms.CharField(required=False, label=_("Partner SKU"))
 

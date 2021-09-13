@@ -11,18 +11,18 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='product',
+            model_name='service',
             name='date_created',
             field=models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Date created'),
         ),
         migrations.AlterField(
-            model_name='productimage',
+            model_name='serviceimage',
             name='display_order',
-            field=models.PositiveIntegerField(db_index=True, default=0, help_text='An image with a display order of zero will be the primary image for a product', verbose_name='Display order'),
+            field=models.PositiveIntegerField(db_index=True, default=0, help_text='An image with a display order of zero will be the primary image for a service', verbose_name='Display order'),
         ),
         migrations.AlterField(
-            model_name='productrecommendation',
+            model_name='servicerecommendation',
             name='ranking',
-            field=models.PositiveSmallIntegerField(db_index=True, default=0, help_text='Determines order of the products. A product with a higher value will appear before one with a lower ranking.', verbose_name='Ranking'),
+            field=models.PositiveSmallIntegerField(db_index=True, default=0, help_text='Determines order of the services. A service with a higher value will appear before one with a lower ranking.', verbose_name='Ranking'),
         ),
     ]

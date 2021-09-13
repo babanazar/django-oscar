@@ -5,10 +5,10 @@ from django.utils import timezone
 
 from oscar.core.compat import get_user_model
 from oscar.core.loading import get_model
-from oscar.test.factories import ProductReviewFactory, UserFactory
+from oscar.test.factories import ServiceReviewFactory, UserFactory
 from oscar.test.testcases import WebTestCase
 
-ProductReview = get_model('reviews', 'productreview')
+ServiceReview = get_model('reviews', 'servicereview')
 User = get_user_model()
 
 
@@ -24,28 +24,28 @@ class ReviewsDashboardTests(WebTestCase):
         user1 = UserFactory()
         user2 = UserFactory()
 
-        ProductReviewFactory(pk=1, user=user1, status=0)
-        ProductReviewFactory(pk=2, user=user2, status=0)
-        ProductReviewFactory(pk=3, user=user2, status=0)
+        ServiceReviewFactory(pk=1, user=user1, status=0)
+        ServiceReviewFactory(pk=2, user=user2, status=0)
+        ServiceReviewFactory(pk=3, user=user2, status=0)
 
-        assert(ProductReview.objects.count() == 3)
+        assert(ServiceReview.objects.count() == 3)
 
         list_page = self.get(reverse('dashboard:reviews-list'))
         form = list_page.forms[1]
         form['selected_review'] = [3, 2]
         form.submit('update')
 
-        self.assertEqual(ProductReview.objects.get(pk=1).status, 0)
-        self.assertEqual(ProductReview.objects.get(pk=2).status, 1)
-        self.assertEqual(ProductReview.objects.get(pk=3).status, 1)
+        self.assertEqual(ServiceReview.objects.get(pk=1).status, 0)
+        self.assertEqual(ServiceReview.objects.get(pk=2).status, 1)
+        self.assertEqual(ServiceReview.objects.get(pk=3).status, 1)
 
     def test_filter_reviews_by_name(self):
         user1 = UserFactory(first_name='Peter', last_name='Griffin')
         user2 = UserFactory(first_name='Lois', last_name='Griffin')
 
-        ProductReviewFactory(user=user1, status=0)
-        ProductReviewFactory(user=user2, status=0)
-        ProductReviewFactory(user=user2, status=0)
+        ServiceReviewFactory(user=user1, status=0)
+        ServiceReviewFactory(user=user2, status=0)
+        ServiceReviewFactory(user=user2, status=0)
 
         url = reverse('dashboard:reviews-list') + '?name=peter'
         response = self.get(url)
@@ -66,10 +66,10 @@ class ReviewsDashboardTests(WebTestCase):
         user1 = UserFactory()
         user2 = UserFactory()
 
-        review1 = ProductReviewFactory(user=user1, title='Sexy Review')
-        review2 = ProductReviewFactory(
+        review1 = ServiceReviewFactory(user=user1, title='Sexy Review')
+        review2 = ServiceReviewFactory(
             user=user2, title='Anry Review', body='argh')
-        ProductReviewFactory(user=user2, title='Lovely Thing')
+        ServiceReviewFactory(user=user2, title='Lovely Thing')
 
         response = self.get(url, params={'keyword': 'argh'})
         self.assertEqual(len(response.context['review_list']), 1)
@@ -82,17 +82,17 @@ class ReviewsDashboardTests(WebTestCase):
         def n_days_ago(days):
             """
             The tests below pass timestamps as GET parameters, but the
-            ProductReviewSearchForm doesn't recognize the timezone notation.
+            ServiceReviewSearchForm doesn't recognize the timezone notation.
             """
             return timezone.make_naive(
                 now - timedelta(days=days), timezone=timezone.utc)
 
         now = timezone.now()
-        review1 = ProductReviewFactory()
-        review2 = ProductReviewFactory()
+        review1 = ServiceReviewFactory()
+        review2 = ServiceReviewFactory()
         review2.date_created = now - timedelta(days=2)
         review2.save()
-        review3 = ProductReviewFactory()
+        review3 = ServiceReviewFactory()
         review3.date_created = now - timedelta(days=10)
         review3.save()
 
@@ -115,9 +115,9 @@ class ReviewsDashboardTests(WebTestCase):
         user1 = UserFactory()
         user2 = UserFactory()
 
-        review1 = ProductReviewFactory(user=user1, status=1)
-        review2 = ProductReviewFactory(user=user2, status=0)
-        review3 = ProductReviewFactory(user=user2, status=2)
+        review1 = ServiceReviewFactory(user=user1, status=1)
+        review2 = ServiceReviewFactory(user=user2, status=0)
+        review3 = ServiceReviewFactory(user=user2, status=2)
 
         response = self.get(url, params={'status': 0})
         self.assertEqual(len(response.context['review_list']), 1)

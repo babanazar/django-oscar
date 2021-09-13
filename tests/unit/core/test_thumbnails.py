@@ -15,7 +15,7 @@ class TestThumbnailer(ThumbnailMixin, TestCase):
         self._test_thumbnails_not_exist(thumbnails_full_paths)
 
     def _test_thumbnailer(self, images_qty=5):
-        self.create_product_images(qty=images_qty)
+        self.create_service_images(qty=images_qty)
         thumbnails_full_paths = self.create_thumbnails()
         self._test_thumbnails_deletion(thumbnails_full_paths)
 

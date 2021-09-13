@@ -15,21 +15,21 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='userproductview',
-            name='product',
-            field=models.ForeignKey(verbose_name='Product', to='catalogue.Product', on_delete=models.CASCADE),
+            model_name='userserviceview',
+            name='service',
+            field=models.ForeignKey(verbose_name='Service', to='catalogue.Service', on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='userproductview',
+            model_name='userserviceview',
             name='user',
             field=models.ForeignKey(verbose_name='User', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='productrecord',
-            name='product',
-            field=models.OneToOneField(verbose_name='Product', related_name='stats', to='catalogue.Product',
+            model_name='servicerecord',
+            name='service',
+            field=models.OneToOneField(verbose_name='Service', related_name='stats', to='catalogue.Service',
                                        on_delete=models.CASCADE),
             preserve_default=True,
         ),

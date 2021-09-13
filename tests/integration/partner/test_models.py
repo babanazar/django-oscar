@@ -13,9 +13,9 @@ Country = get_model('address', 'Country')
 class TestStockRecord(TestCase):
 
     def setUp(self):
-        self.product = factories.create_product()
+        self.service = factories.create_service()
         self.stockrecord = factories.create_stockrecord(
-            self.product, price=D('10.00'), num_in_stock=10)
+            self.service, price=D('10.00'), num_in_stock=10)
 
     def test_get_price_excl_tax_returns_correct_value(self):
         self.assertEqual(D('10.00'), self.stockrecord.price)
@@ -58,25 +58,25 @@ class TestStockRecord(TestCase):
 class TestStockRecordNoStockTrack(TestCase):
 
     def setUp(self):
-        self.product_class = factories.ProductClassFactory(
+        self.service_class = factories.ServiceClassFactory(
             requires_shipping=False, track_stock=False)
 
     def test_allocate_does_nothing(self):
-        product = factories.ProductFactory(product_class=self.product_class)
+        service = factories.ServiceFactory(service_class=self.service_class)
         stockrecord = factories.create_stockrecord(
-            product, price=D('10.00'), num_in_stock=10)
+            service, price=D('10.00'), num_in_stock=10)
 
         self.assertFalse(stockrecord.can_track_allocations)
         stockrecord.allocate(5)
         self.assertEqual(stockrecord.num_allocated, None)
 
-    def test_allocate_does_nothing_for_child_product(self):
-        parent_product = factories.ProductFactory(
-            structure='parent', product_class=self.product_class)
-        child_product = factories.ProductFactory(
-            parent=parent_product, product_class=None, structure='child')
+    def test_allocate_does_nothing_for_child_service(self):
+        parent_service = factories.ServiceFactory(
+            structure='parent', service_class=self.service_class)
+        child_service = factories.ServiceFactory(
+            parent=parent_service, service_class=None, structure='child')
         stockrecord = factories.create_stockrecord(
-            child_product, price=D('10.00'), num_in_stock=10)
+            child_service, price=D('10.00'), num_in_stock=10)
 
         self.assertFalse(stockrecord.can_track_allocations)
         stockrecord.allocate(5)

@@ -71,8 +71,8 @@ class CountCondition(Condition):
         delta = self.value - num_matches
         if delta > 0:
             return ngettext(
-                'Buy %(delta)d more product from %(range)s',
-                'Buy %(delta)d more products from %(range)s',
+                'Buy %(delta)d more service from %(range)s',
+                'Buy %(delta)d more services from %(range)s',
                 int(delta)
             ) % {'delta': delta, 'range': self.range}
 
@@ -135,60 +135,60 @@ class CoverageCondition(Condition):
         for line in basket.all_lines():
             if not line.is_available_for_offer_discount(offer):
                 continue
-            product = line.product
-            if (self.can_apply_condition(line) and product.id not in
+            service = line.service
+            if (self.can_apply_condition(line) and service.id not in
                     covered_ids):
-                covered_ids.append(product.id)
+                covered_ids.append(service.id)
             if len(covered_ids) >= self.value:
                 return True
         return False
 
-    def _get_num_covered_products(self, basket, offer):
+    def _get_num_covered_services(self, basket, offer):
         covered_ids = set()
         for line in basket.all_lines():
-            product = line.product
+            service = line.service
             if self.can_apply_condition(line) and line.quantity_available_for_offer(offer) > 0:
-                covered_ids.add(product.id)
+                covered_ids.add(service.id)
         return len(covered_ids)
 
     def get_upsell_message(self, offer, basket):
-        delta = self.value - self._get_num_covered_products(basket, offer)
+        delta = self.value - self._get_num_covered_services(basket, offer)
         if delta > 0:
             return ngettext(
-                'Buy %(delta)d more product from %(range)s',
-                'Buy %(delta)d more products from %(range)s',
+                'Buy %(delta)d more service from %(range)s',
+                'Buy %(delta)d more services from %(range)s',
                 int(delta)
             ) % {'delta': delta, 'range': self.range}
 
     def is_partially_satisfied(self, offer, basket):
-        return 0 < self._get_num_covered_products(basket, offer) < self.value
+        return 0 < self._get_num_covered_services(basket, offer) < self.value
 
     def consume_items(self, offer, basket, affected_lines):
         """
         Marks items within the basket lines as consumed so they
         can't be reused in other offers.
         """
-        # Determine products that have already been consumed by applying the
+        # Determine services that have already been consumed by applying the
         # benefit
-        consumed_products = []
+        consumed_services = []
         for line, __, quantity in affected_lines:
-            consumed_products.append(line.product)
+            consumed_services.append(line.service)
 
-        to_consume = max(0, self.value - len(consumed_products))
+        to_consume = max(0, self.value - len(consumed_services))
         if to_consume == 0:
             return
 
         for line in basket.all_lines():
-            product = line.product
+            service = line.service
             if not self.can_apply_condition(line):
                 continue
-            if product in consumed_products:
+            if service in consumed_services:
                 continue
             if not line.is_available_for_offer_discount(offer):
                 continue
             # Only consume a quantity of 1 from each line
             line.consume(1, offer=offer)
-            consumed_products.append(product)
+            consumed_services.append(service)
             to_consume -= 1
             if to_consume == 0:
                 break
@@ -197,9 +197,9 @@ class CoverageCondition(Condition):
         covered_ids = []
         value = D('0.00')
         for line in basket.all_lines():
-            if (self.can_apply_condition(line) and line.product.id not in
+            if (self.can_apply_condition(line) and line.service.id not in
                     covered_ids):
-                covered_ids.append(line.product.id)
+                covered_ids.append(line.service.id)
                 value += unit_price(offer, line)
             if len(covered_ids) >= self.value:
                 return value

@@ -75,7 +75,7 @@ class CheckoutSessionData(object):
     # Shipping address
     # ================
     # Options:
-    # 1. No shipping required (eg digital products)
+    # 1. No shipping required (eg digital services)
     # 2. Ship to new address (entered in a form)
     # 3. Ship to an address book address (address chosen from list)
 

@@ -10,14 +10,14 @@
         <th>{% trans "Basket additions" %}</th>
         <th>{% trans "Purchases" %}</th>
     </tr>
-    {% for product in objects %}
+    {% for service in objects %}
     <tr>
         <td>
-        <a href="{% url 'dashboard:catalogue-product' product.product.id %}">{{ product.product }}</a>
+        <a href="{% url 'dashboard:catalogue-service' service.service.id %}">{{ service.service }}</a>
         </td>
-        <td>{{ product.num_views }}</td>
-        <td>{{ product.num_basket_additions }}</td>
-        <td>{{ product.num_purchases }}</td>
+        <td>{{ service.num_views }}</td>
+        <td>{{ service.num_basket_additions }}</td>
+        <td>{{ service.num_purchases }}</td>
     </tr>
     {% endfor %}
 </table>

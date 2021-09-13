@@ -9,7 +9,7 @@ from oscar.core.loading import get_class, get_classes, get_model
 from oscar.test.factories import UserFactory
 
 Basket = get_model("basket", "Basket")
-Product = get_model("catalogue", "Product")
+Service = get_model("catalogue", "Service")
 factory = RequestFactory()
 Applicator = get_class("offer.applicator", "Applicator")
 Selector, UK = get_classes("partner.strategy", ["Selector", "UK"])

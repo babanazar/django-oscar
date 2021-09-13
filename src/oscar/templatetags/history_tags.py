@@ -12,17 +12,17 @@ CustomerHistoryManager = get_class('customer.history', 'CustomerHistoryManager')
 register = template.Library()
 
 
-@register.inclusion_tag('oscar/customer/history/recently_viewed_products.html',
+@register.inclusion_tag('oscar/customer/history/recently_viewed_services.html',
                         takes_context=True)
-def recently_viewed_products(context, current_product=None):
+def recently_viewed_services(context, current_service=None):
     """
-    Inclusion tag listing the most recently viewed products
+    Inclusion tag listing the most recently viewed services
     """
     request = context['request']
-    products = CustomerHistoryManager.get(request)
-    if current_product:
-        products = [p for p in products if p != current_product]
-    return {'products': products,
+    services = CustomerHistoryManager.get(request)
+    if current_service:
+        services = [p for p in services if p != current_service]
+    return {'services': services,
             'request': request}
 
 

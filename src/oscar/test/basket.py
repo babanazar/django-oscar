@@ -6,9 +6,9 @@ from oscar.test import factories
 Default = get_class('partner.strategy', 'Default')
 
 
-def add_product(basket, price=None, quantity=1, product=None):
+def add_service(basket, price=None, quantity=1, service=None):
     """
-    Helper to add a product to the basket.
+    Helper to add a service to the basket.
     """
     has_strategy = False
     try:
@@ -19,18 +19,18 @@ def add_product(basket, price=None, quantity=1, product=None):
         basket.strategy = Default()
     if price is None:
         price = D('1')
-    if product and product.has_stockrecords:
-        record = product.stockrecords.first()
+    if service and service.has_stockrecords:
+        record = service.stockrecords.first()
     else:
         record = factories.create_stockrecord(
-            product=product, price=price,
+            service=service, price=price,
             num_in_stock=quantity + 1)
-    basket.add_product(record.product, quantity)
+    basket.add_service(record.service, quantity)
 
 
-def add_products(basket, args):
+def add_services(basket, args):
     """
-    Helper to add a series of products to the passed basket
+    Helper to add a series of services to the passed basket
     """
     for price, quantity in args:
-        add_product(basket, price, quantity)
+        add_service(basket, price, quantity)

@@ -34,11 +34,11 @@ Default = get_class('partner.strategy', 'Default')
 StockRequired = get_class('partner.availability', 'StockRequired')
 FixedPrice = get_class('partner.prices', 'FixedPrice')
 
-Product = get_model('catalogue', 'Product')
-ProductClass = get_model('catalogue', 'ProductClass')
-ProductAttribute = get_model('catalogue', 'ProductAttribute')
-ProductAttributeValue = get_model('catalogue', 'ProductAttributeValue')
-ProductImage = get_model('catalogue', 'ProductImage')
+Service = get_model('catalogue', 'Service')
+ServiceClass = get_model('catalogue', 'ServiceClass')
+ServiceAttribute = get_model('catalogue', 'ServiceAttribute')
+ServiceAttributeValue = get_model('catalogue', 'ServiceAttributeValue')
+ServiceImage = get_model('catalogue', 'ServiceImage')
 
 WeightBand = get_model('shipping', 'WeightBand')
 WeightBased = get_model('shipping', 'WeightBased')
@@ -49,12 +49,12 @@ Benefit = get_model('offer', 'Benefit')
 ConditionalOffer = get_model('offer', 'ConditionalOffer')
 
 
-def create_stockrecord(product=None, price=None, partner_sku=None,
+def create_stockrecord(service=None, price=None, partner_sku=None,
                        num_in_stock=None, partner_name=None,
                        currency=settings.OSCAR_DEFAULT_CURRENCY,
                        partner_users=None):
-    if product is None:
-        product = create_product()
+    if service is None:
+        service = create_service()
     partner, __ = Partner.objects.get_or_create(name=partner_name or '')
     if partner_users:
         for user in partner_users:
@@ -62,8 +62,8 @@ def create_stockrecord(product=None, price=None, partner_sku=None,
     if price is None:
         price = D('9.99')
     if partner_sku is None:
-        partner_sku = 'sku_%d_%d' % (product.id, random.randint(0, 10000))
-    return product.stockrecords.create(
+        partner_sku = 'sku_%d_%d' % (service.id, random.randint(0, 10000))
+    return service.stockrecords.create(
         partner=partner, partner_sku=partner_sku,
         price_currency=currency,
         price=price, num_in_stock=num_in_stock)
@@ -82,68 +82,68 @@ def create_purchase_info(record):
     )
 
 
-def create_product(upc=None, title="Dùｍϻϒ title",
-                   product_class="Dùｍϻϒ item class",
+def create_service(upc=None, title="Dùｍϻϒ title",
+                   service_class="Dùｍϻϒ item class",
                    partner_name=None, partner_sku=None, price=None,
                    num_in_stock=None, attributes=None,
                    partner_users=None, **kwargs):
     """
-    Helper method for creating products that are used in tests.
+    Helper method for creating services that are used in tests.
     """
-    product_class, __ = ProductClass._default_manager.get_or_create(
-        name=product_class)
-    product = product_class.products.model(
-        product_class=product_class,
+    service_class, __ = ServiceClass._default_manager.get_or_create(
+        name=service_class)
+    service = service_class.services.model(
+        service_class=service_class,
         title=title, upc=upc, **kwargs)
     if kwargs.get('parent') and 'structure' not in kwargs:
-        product.structure = 'child'
+        service.structure = 'child'
     if attributes:
         for code, value in attributes.items():
-            # Ensure product attribute exists
-            product_class.attributes.get_or_create(name=code, code=code)
-            setattr(product.attr, code, value)
-    product.save()
+            # Ensure service attribute exists
+            service_class.attributes.get_or_create(name=code, code=code)
+            setattr(service.attr, code, value)
+    service.save()
 
     # Shortcut for creating stockrecord
     stockrecord_fields = [
         price, partner_sku, partner_name, num_in_stock, partner_users]
     if any([field is not None for field in stockrecord_fields]):
         create_stockrecord(
-            product, price=price, num_in_stock=num_in_stock,
+            service, price=price, num_in_stock=num_in_stock,
             partner_users=partner_users, partner_sku=partner_sku,
             partner_name=partner_name)
-    return product
+    return service
 
 
-def create_product_image(product=None,
+def create_service_image(service=None,
                          original=None,
                          caption='Dummy Caption',
                          display_order=None,
                          ):
-    if not product:
-        product = create_product()
+    if not service:
+        service = create_service()
     if not display_order:
-        if not product.images.all():
+        if not service.images.all():
             display_order = 0
         else:
             display_order = max(
-                [i.display_order for i in product.images.all()]) + 1
+                [i.display_order for i in service.images.all()]) + 1
 
-    kwargs = {'product_id': product.id,
+    kwargs = {'service_id': service.id,
               'original': original,
               'display_order': display_order,
               'caption': caption, }
 
-    return ProductImage.objects.create(**kwargs)
+    return ServiceImage.objects.create(**kwargs)
 
 
 def create_basket(empty=False):
     basket = Basket.objects.create()
     basket.strategy = Default()
     if not empty:
-        product = create_product()
-        create_stockrecord(product, num_in_stock=2)
-        basket.add_product(product)
+        service = create_service()
+        create_stockrecord(service, num_in_stock=2)
+        basket.add_service(service)
     return basket
 
 
@@ -156,9 +156,9 @@ def create_order(number=None, basket=None, user=None, shipping_address=None,
     if not basket:
         basket = Basket.objects.create()
         basket.strategy = Default()
-        product = create_product()
-        create_stockrecord(product, num_in_stock=10, price=D('10.00'))
-        basket.add_product(product)
+        service = create_service()
+        create_stockrecord(service, num_in_stock=10, price=D('10.00'))
+        basket.add_service(service)
     if not basket.id:
         basket.save()
     if shipping_method is None:
@@ -190,7 +190,7 @@ def create_offer(name="Dùｍϻϒ offer", offer_type="Site",
     """
     if range is None:
         range, __ = Range.objects.get_or_create(
-            name="All products räñgë", includes_all_products=True)
+            name="All services räñgë", includes_all_services=True)
     if condition is None:
         condition, __ = Condition.objects.get_or_create(
             range=range, type=Condition.COUNT, value=1)

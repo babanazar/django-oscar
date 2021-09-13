@@ -12,39 +12,39 @@ from django_tables2 import SingleTableMixin, SingleTableView
 from oscar.core.loading import get_class, get_classes, get_model
 from oscar.views.generic import ObjectLookupView
 
-(ProductForm,
- ProductClassSelectForm,
- ProductSearchForm,
- ProductClassForm,
+(ServiceForm,
+ ServiceClassSelectForm,
+ ServiceSearchForm,
+ ServiceClassForm,
  CategoryForm,
  StockAlertSearchForm,
  AttributeOptionGroupForm,
  OptionForm) \
     = get_classes('dashboard.catalogue.forms',
-                  ('ProductForm',
-                   'ProductClassSelectForm',
-                   'ProductSearchForm',
-                   'ProductClassForm',
+                  ('ServiceForm',
+                   'ServiceClassSelectForm',
+                   'ServiceSearchForm',
+                   'ServiceClassForm',
                    'CategoryForm',
                    'StockAlertSearchForm',
                    'AttributeOptionGroupForm',
                    'OptionForm'))
 (StockRecordFormSet,
- ProductCategoryFormSet,
- ProductImageFormSet,
- ProductRecommendationFormSet,
- ProductAttributesFormSet,
+ ServiceCategoryFormSet,
+ ServiceImageFormSet,
+ ServiceRecommendationFormSet,
+ ServiceAttributesFormSet,
  AttributeOptionFormSet) \
     = get_classes('dashboard.catalogue.formsets',
                   ('StockRecordFormSet',
-                   'ProductCategoryFormSet',
-                   'ProductImageFormSet',
-                   'ProductRecommendationFormSet',
-                   'ProductAttributesFormSet',
+                   'ServiceCategoryFormSet',
+                   'ServiceImageFormSet',
+                   'ServiceRecommendationFormSet',
+                   'ServiceAttributesFormSet',
                    'AttributeOptionFormSet'))
-ProductTable, CategoryTable, AttributeOptionGroupTable, OptionTable \
+ServiceTable, CategoryTable, AttributeOptionGroupTable, OptionTable \
     = get_classes('dashboard.catalogue.tables',
-                  ('ProductTable', 'CategoryTable',
+                  ('ServiceTable', 'CategoryTable',
                    'AttributeOptionGroupTable', 'OptionTable'))
 (PopUpWindowCreateMixin,
  PopUpWindowUpdateMixin,
@@ -53,12 +53,12 @@ ProductTable, CategoryTable, AttributeOptionGroupTable, OptionTable \
                   ('PopUpWindowCreateMixin',
                    'PopUpWindowUpdateMixin',
                    'PopUpWindowDeleteMixin'))
-PartnerProductFilterMixin = get_class('dashboard.catalogue.mixins', 'PartnerProductFilterMixin')
-Product = get_model('catalogue', 'Product')
+PartnerServiceFilterMixin = get_class('dashboard.catalogue.mixins', 'PartnerServiceFilterMixin')
+Service = get_model('catalogue', 'Service')
 Category = get_model('catalogue', 'Category')
-ProductImage = get_model('catalogue', 'ProductImage')
-ProductCategory = get_model('catalogue', 'ProductCategory')
-ProductClass = get_model('catalogue', 'ProductClass')
+ServiceImage = get_model('catalogue', 'ServiceImage')
+ServiceCategory = get_model('catalogue', 'ServiceCategory')
+ServiceClass = get_model('catalogue', 'ServiceClass')
 StockRecord = get_model('partner', 'StockRecord')
 StockAlert = get_model('partner', 'StockAlert')
 Partner = get_model('partner', 'Partner')
@@ -66,29 +66,29 @@ AttributeOptionGroup = get_model('catalogue', 'AttributeOptionGroup')
 Option = get_model('catalogue', 'Option')
 
 
-class ProductListView(PartnerProductFilterMixin, SingleTableView):
+class ServiceListView(PartnerServiceFilterMixin, SingleTableView):
 
     """
-    Dashboard view of the product list.
+    Dashboard view of the service list.
     Supports the permission-based dashboard.
     """
 
-    template_name = 'oscar/dashboard/catalogue/product_list.html'
-    form_class = ProductSearchForm
-    productclass_form_class = ProductClassSelectForm
-    table_class = ProductTable
-    context_table_name = 'products'
+    template_name = 'oscar/dashboard/catalogue/service_list.html'
+    form_class = ServiceSearchForm
+    serviceclass_form_class = ServiceClassSelectForm
+    table_class = ServiceTable
+    context_table_name = 'services'
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx['form'] = self.form
-        ctx['productclass_form'] = self.productclass_form_class()
+        ctx['serviceclass_form'] = self.serviceclass_form_class()
         return ctx
 
     def get_description(self, form):
         if form.is_valid() and any(form.cleaned_data.values()):
-            return _('Product search results')
-        return _('Products')
+            return _('Service search results')
+        return _('Services')
 
     def get_table(self, **kwargs):
         if 'recently_edited' in self.request.GET:
@@ -105,7 +105,7 @@ class ProductListView(PartnerProductFilterMixin, SingleTableView):
         """
         Build the queryset for this list
         """
-        queryset = Product.objects.browsable_dashboard().base_queryset()
+        queryset = Service.objects.browsable_dashboard().base_queryset()
         queryset = self.filter_queryset(queryset)
         queryset = self.apply_search(queryset)
         return queryset
@@ -131,10 +131,10 @@ class ProductListView(PartnerProductFilterMixin, SingleTableView):
             # them if there are any. Otherwise we return all results
             # that contain the UPC.
 
-            # Look up all matches (child products, products not allowed to access) ...
-            matches_upc = Product.objects.filter(Q(upc__iexact=upc) | Q(children__upc__iexact=upc))
+            # Look up all matches (child services, services not allowed to access) ...
+            matches_upc = Service.objects.filter(Q(upc__iexact=upc) | Q(children__upc__iexact=upc))
 
-            # ... and use that to pick all standalone or parent products that the user is
+            # ... and use that to pick all standalone or parent services that the user is
             # allowed to access.
             qs_match = queryset.filter(
                 Q(id__in=matches_upc.values('id')) | Q(id__in=matches_upc.values('parent_id')))
@@ -144,7 +144,7 @@ class ProductListView(PartnerProductFilterMixin, SingleTableView):
                 queryset = qs_match
             else:
                 # No direct UPC match. Let's try the same with an icontains search.
-                matches_upc = Product.objects.filter(Q(upc__icontains=upc) | Q(children__upc__icontains=upc))
+                matches_upc = Service.objects.filter(Q(upc__icontains=upc) | Q(children__upc__icontains=upc))
                 queryset = queryset.filter(
                     Q(id__in=matches_upc.values('id')) | Q(id__in=matches_upc.values('parent_id')))
 
@@ -155,53 +155,53 @@ class ProductListView(PartnerProductFilterMixin, SingleTableView):
         return queryset.distinct()
 
 
-class ProductCreateRedirectView(generic.RedirectView):
+class ServiceCreateRedirectView(generic.RedirectView):
     permanent = False
-    productclass_form_class = ProductClassSelectForm
+    serviceclass_form_class = ServiceClassSelectForm
 
-    def get_product_create_url(self, product_class):
+    def get_service_create_url(self, service_class):
         """ Allow site to provide custom URL """
-        return reverse('dashboard:catalogue-product-create',
-                       kwargs={'product_class_slug': product_class.slug})
+        return reverse('dashboard:catalogue-service-create',
+                       kwargs={'service_class_slug': service_class.slug})
 
-    def get_invalid_product_class_url(self):
-        messages.error(self.request, _("Please choose a product type"))
-        return reverse('dashboard:catalogue-product-list')
+    def get_invalid_service_class_url(self):
+        messages.error(self.request, _("Please choose a service type"))
+        return reverse('dashboard:catalogue-service-list')
 
     def get_redirect_url(self, **kwargs):
-        form = self.productclass_form_class(self.request.GET)
+        form = self.serviceclass_form_class(self.request.GET)
         if form.is_valid():
-            product_class = form.cleaned_data['product_class']
-            return self.get_product_create_url(product_class)
+            service_class = form.cleaned_data['service_class']
+            return self.get_service_create_url(service_class)
 
         else:
-            return self.get_invalid_product_class_url()
+            return self.get_invalid_service_class_url()
 
 
-class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
+class ServiceCreateUpdateView(PartnerServiceFilterMixin, generic.UpdateView):
     """
-    Dashboard view that is can both create and update products of all kinds.
+    Dashboard view that is can both create and update services of all kinds.
     It can be used in three different ways, each of them with a unique URL
     pattern:
-    - When creating a new standalone product, this view is called with the
-      desired product class
-    - When editing an existing product, this view is called with the product's
-      primary key. If the product is a child product, the template considerably
+    - When creating a new standalone service, this view is called with the
+      desired service class
+    - When editing an existing service, this view is called with the service's
+      primary key. If the service is a child service, the template considerably
       reduces the available form fields.
-    - When creating a new child product, this view is called with the parent's
+    - When creating a new child service, this view is called with the parent's
       primary key.
 
     Supports the permission-based dashboard.
     """
 
-    template_name = 'oscar/dashboard/catalogue/product_update.html'
-    model = Product
-    context_object_name = 'product'
+    template_name = 'oscar/dashboard/catalogue/service_update.html'
+    model = Service
+    context_object_name = 'service'
 
-    form_class = ProductForm
-    category_formset = ProductCategoryFormSet
-    image_formset = ProductImageFormSet
-    recommendations_formset = ProductRecommendationFormSet
+    form_class = ServiceForm
+    category_formset = ServiceCategoryFormSet
+    image_formset = ServiceImageFormSet
+    recommendations_formset = ServiceRecommendationFormSet
     stockrecord_formset = StockRecordFormSet
 
     creating = False
@@ -224,61 +224,61 @@ class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
         Allows checking the objects fetched by get_object and redirect
         if they don't satisfy our needs.
         Is used to redirect when create a new variant and the specified
-        parent product can't actually be turned into a parent product.
+        parent service can't actually be turned into a parent service.
         """
         if self.creating and self.parent is not None:
             is_valid, reason = self.parent.can_be_parent(give_reason=True)
             if not is_valid:
                 messages.error(self.request, reason)
-                return redirect('dashboard:catalogue-product-list')
+                return redirect('dashboard:catalogue-service-list')
 
     def get_queryset(self):
         """
-        Filter products that the user doesn't have permission to update
+        Filter services that the user doesn't have permission to update
         """
-        return self.filter_queryset(Product.objects.all())
+        return self.filter_queryset(Service.objects.all())
 
     def get_object(self, queryset=None):
         """
-        This parts allows generic.UpdateView to handle creating products as
+        This parts allows generic.UpdateView to handle creating services as
         well. The only distinction between an UpdateView and a CreateView
         is that self.object is None. We emulate this behavior.
 
-        This method is also responsible for setting self.product_class and
+        This method is also responsible for setting self.service_class and
         self.parent.
         """
         self.creating = 'pk' not in self.kwargs
         if self.creating:
-            # Specifying a parent product is only done when creating a child
-            # product.
+            # Specifying a parent service is only done when creating a child
+            # service.
             parent_pk = self.kwargs.get('parent_pk')
             if parent_pk is None:
                 self.parent = None
-                # A product class needs to be specified when creating a
-                # standalone product.
-                product_class_slug = self.kwargs.get('product_class_slug')
-                self.product_class = get_object_or_404(
-                    ProductClass, slug=product_class_slug)
+                # A service class needs to be specified when creating a
+                # standalone service.
+                service_class_slug = self.kwargs.get('service_class_slug')
+                self.service_class = get_object_or_404(
+                    ServiceClass, slug=service_class_slug)
             else:
-                self.parent = get_object_or_404(Product, pk=parent_pk)
-                self.product_class = self.parent.product_class
+                self.parent = get_object_or_404(Service, pk=parent_pk)
+                self.service_class = self.parent.service_class
 
             return None  # success
         else:
-            product = super().get_object(queryset)
-            self.product_class = product.get_product_class()
-            self.parent = product.parent
-            return product
+            service = super().get_object(queryset)
+            self.service_class = service.get_service_class()
+            self.parent = service.parent
+            return service
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx['product_class'] = self.product_class
+        ctx['service_class'] = self.service_class
         ctx['parent'] = self.parent
         ctx['title'] = self.get_page_title()
 
         for ctx_name, formset_class in self.formsets.items():
             if ctx_name not in ctx:
-                ctx[ctx_name] = formset_class(self.product_class,
+                ctx[ctx_name] = formset_class(self.service_class,
                                               self.request.user,
                                               instance=self.object)
         return ctx
@@ -286,21 +286,21 @@ class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
     def get_page_title(self):
         if self.creating:
             if self.parent is None:
-                return _('Create new %(product_class)s product') % {
-                    'product_class': self.product_class.name}
+                return _('Create new %(service_class)s service') % {
+                    'service_class': self.service_class.name}
             else:
-                return _('Create new variant of %(parent_product)s') % {
-                    'parent_product': self.parent.title}
+                return _('Create new variant of %(parent_service)s') % {
+                    'parent_service': self.parent.title}
         else:
             if self.object.title or not self.parent:
                 return self.object.title
             else:
-                return _('Editing variant of %(parent_product)s') % {
-                    'parent_product': self.parent.title}
+                return _('Editing variant of %(parent_service)s') % {
+                    'parent_service': self.parent.title}
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['product_class'] = self.product_class
+        kwargs['service_class'] = self.service_class
         kwargs['parent'] = self.parent
         return kwargs
 
@@ -309,14 +309,14 @@ class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
         Short-circuits the regular logic to have one place to have our
         logic to check all forms
         """
-        # Need to create the product here because the inline forms need it
-        # can't use commit=False because ProductForm does not support it
+        # Need to create the service here because the inline forms need it
+        # can't use commit=False because ServiceForm does not support it
         if self.creating and form.is_valid():
             self.object = form.save()
 
         formsets = {}
         for ctx_name, formset_class in self.formsets.items():
-            formsets[ctx_name] = formset_class(self.product_class,
+            formsets[ctx_name] = formset_class(self.service_class,
                                                self.request.user,
                                                self.request.POST,
                                                self.request.FILES,
@@ -332,7 +332,7 @@ class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
             return self.forms_invalid(form, formsets)
 
     # form_valid and form_invalid are called depending on the validation result
-    # of just the product form and redisplay the form respectively return a
+    # of just the service form and redisplay the form respectively return a
     # redirect to the success URL. In both cases we need to check our formsets
     # as well, so both methods do the same. process_all_forms then calls
     # forms_valid or forms_invalid respectively, which do the redisplay or
@@ -351,13 +351,13 @@ class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
     def forms_valid(self, form, formsets):
         """
         Save all changes and display a success url.
-        When creating the first child product, this method also sets the new
+        When creating the first child service, this method also sets the new
         parent's structure accordingly.
         """
         if self.creating:
             self.handle_adding_child(self.parent)
         else:
-            # a just created product was already saved in process_all_forms()
+            # a just created service was already saved in process_all_forms()
             self.object = form.save()
 
         # Save formsets
@@ -372,19 +372,19 @@ class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
 
     def handle_adding_child(self, parent):
         """
-        When creating the first child product, the parent product needs
-        to be implicitly converted from a standalone product to a
-        parent product.
+        When creating the first child service, the parent service needs
+        to be implicitly converted from a standalone service to a
+        parent service.
         """
-        # ProductForm eagerly sets the future parent's structure to PARENT to
+        # ServiceForm eagerly sets the future parent's structure to PARENT to
         # pass validation, but it's not persisted in the database. We ensure
         # it's persisted by calling save()
         if parent is not None:
-            parent.structure = Product.PARENT
+            parent.structure = Service.PARENT
             parent.save()
 
     def forms_invalid(self, form, formsets):
-        # delete the temporary product again
+        # delete the temporary service again
         if self.creating and self.object and self.object.pk is not None:
             self.object.delete()
             self.object = None
@@ -404,15 +404,15 @@ class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
     def get_success_url(self):
         """
         Renders a success message and redirects depending on the button:
-        - Standard case is pressing "Save"; redirects to the product list
+        - Standard case is pressing "Save"; redirects to the service list
         - When "Save and continue" is pressed, we stay on the same page
-        - When "Create (another) child product" is pressed, it redirects
-          to a new product creation page
+        - When "Create (another) child service" is pressed, it redirects
+          to a new service creation page
         """
         msg = render_to_string(
-            'oscar/dashboard/catalogue/messages/product_saved.html',
+            'oscar/dashboard/catalogue/messages/service_saved.html',
             {
-                'product': self.object,
+                'service': self.object,
                 'creating': self.creating,
                 'request': self.request
             })
@@ -421,63 +421,63 @@ class ProductCreateUpdateView(PartnerProductFilterMixin, generic.UpdateView):
         action = self.request.POST.get('action')
         if action == 'continue':
             url = reverse(
-                'dashboard:catalogue-product', kwargs={"pk": self.object.id})
+                'dashboard:catalogue-service', kwargs={"pk": self.object.id})
         elif action == 'create-another-child' and self.parent:
             url = reverse(
-                'dashboard:catalogue-product-create-child',
+                'dashboard:catalogue-service-create-child',
                 kwargs={'parent_pk': self.parent.pk})
         elif action == 'create-child':
             url = reverse(
-                'dashboard:catalogue-product-create-child',
+                'dashboard:catalogue-service-create-child',
                 kwargs={'parent_pk': self.object.pk})
         else:
-            url = reverse('dashboard:catalogue-product-list')
+            url = reverse('dashboard:catalogue-service-list')
         return self.get_url_with_querystring(url)
 
 
-class ProductDeleteView(PartnerProductFilterMixin, generic.DeleteView):
+class ServiceDeleteView(PartnerServiceFilterMixin, generic.DeleteView):
     """
-    Dashboard view to delete a product. Has special logic for deleting the
-    last child product.
+    Dashboard view to delete a service. Has special logic for deleting the
+    last child service.
     Supports the permission-based dashboard.
     """
-    template_name = 'oscar/dashboard/catalogue/product_delete.html'
-    model = Product
-    context_object_name = 'product'
+    template_name = 'oscar/dashboard/catalogue/service_delete.html'
+    model = Service
+    context_object_name = 'service'
 
     def get_queryset(self):
         """
-        Filter products that the user doesn't have permission to update
+        Filter services that the user doesn't have permission to update
         """
-        return self.filter_queryset(Product.objects.all())
+        return self.filter_queryset(Service.objects.all())
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         if self.object.is_child:
-            ctx['title'] = _("Delete product variant?")
+            ctx['title'] = _("Delete service variant?")
         else:
-            ctx['title'] = _("Delete product?")
+            ctx['title'] = _("Delete service?")
         return ctx
 
     def delete(self, request, *args, **kwargs):
         # We override the core delete method and don't call super in order to
-        # apply more sophisticated logic around handling child products.
-        # Calling super makes it difficult to test if the product being deleted
+        # apply more sophisticated logic around handling child services.
+        # Calling super makes it difficult to test if the service being deleted
         # is the last child.
 
         self.object = self.get_object()
 
-        # Before performing the delete, record whether this product is the last
+        # Before performing the delete, record whether this service is the last
         # child.
         is_last_child = False
         if self.object.is_child:
             parent = self.object.parent
             is_last_child = parent.children.count() == 1
 
-        # This also deletes any child products.
+        # This also deletes any child services.
         self.object.delete()
 
-        # If the product being deleted is the last child, then pass control
+        # If the service being deleted is the last child, then pass control
         # to a method than can adjust the parent itself.
         if is_last_child:
             self.handle_deleting_last_child(parent)
@@ -485,30 +485,30 @@ class ProductDeleteView(PartnerProductFilterMixin, generic.DeleteView):
         return HttpResponseRedirect(self.get_success_url())
 
     def handle_deleting_last_child(self, parent):
-        # If the last child product is deleted, this view defaults to turning
-        # the parent product into a standalone product. While this is
+        # If the last child service is deleted, this view defaults to turning
+        # the parent service into a standalone service. While this is
         # appropriate for many scenarios, it is intentionally easily
-        # overridable and not automatically done in e.g. a Product's delete()
+        # overridable and not automatically done in e.g. a Service's delete()
         # method as it is more a UX helper than hard business logic.
         parent.structure = parent.STANDALONE
         parent.save()
 
     def get_success_url(self):
         """
-        When deleting child products, this view redirects to editing the
-        parent product. When deleting any other product, it redirects to the
-        product list view.
+        When deleting child services, this view redirects to editing the
+        parent service. When deleting any other service, it redirects to the
+        service list view.
         """
         if self.object.is_child:
-            msg = _("Deleted product variant '%s'") % self.object.get_title()
+            msg = _("Deleted service variant '%s'") % self.object.get_title()
             messages.success(self.request, msg)
             return reverse(
-                'dashboard:catalogue-product',
+                'dashboard:catalogue-service',
                 kwargs={'pk': self.object.parent_id})
         else:
-            msg = _("Deleted product '%s'") % self.object.title
+            msg = _("Deleted service '%s'") % self.object.title
             messages.success(self.request, msg)
-            return reverse('dashboard:catalogue-product-list')
+            return reverse('dashboard:catalogue-service-list')
 
 
 class StockAlertListView(generic.ListView):
@@ -632,8 +632,8 @@ class CategoryDeleteView(CategoryListMixin, generic.DeleteView):
         return super().get_success_url()
 
 
-class ProductLookupView(ObjectLookupView):
-    model = Product
+class ServiceLookupView(ObjectLookupView):
+    model = Service
 
     def get_queryset(self):
         return self.model.objects.browsable().all()
@@ -643,24 +643,24 @@ class ProductLookupView(ObjectLookupView):
                          | Q(parent__title__icontains=term))
 
 
-class ProductClassCreateUpdateView(generic.UpdateView):
+class ServiceClassCreateUpdateView(generic.UpdateView):
 
-    template_name = 'oscar/dashboard/catalogue/product_class_form.html'
-    model = ProductClass
-    form_class = ProductClassForm
-    product_attributes_formset = ProductAttributesFormSet
+    template_name = 'oscar/dashboard/catalogue/service_class_form.html'
+    model = ServiceClass
+    form_class = ServiceClassForm
+    service_attributes_formset = ServiceAttributesFormSet
 
     def process_all_forms(self, form):
         """
-        This validates both the ProductClass form and the
-        ProductClassAttributes formset at once
+        This validates both the ServiceClass form and the
+        ServiceClassAttributes formset at once
         making it possible to display all their errors at once.
         """
         if self.creating and form.is_valid():
-            # the object will be needed by the product_attributes_formset
+            # the object will be needed by the service_attributes_formset
             self.object = form.save(commit=False)
 
-        attributes_formset = self.product_attributes_formset(
+        attributes_formset = self.service_attributes_formset(
             self.request.POST, self.request.FILES, instance=self.object)
 
         is_valid = form.is_valid() and attributes_formset.is_valid()
@@ -686,7 +686,7 @@ class ProductClassCreateUpdateView(generic.UpdateView):
         return self.render_to_response(ctx)
 
     # form_valid and form_invalid are called depending on the validation result
-    # of just the product class form, and return a redirect to the success URL
+    # of just the service class form, and return a redirect to the success URL
     # or redisplay the form, respectively. In both cases we need to check our
     # formsets as well, so both methods do the same. process_all_forms then
     # calls forms_valid or forms_invalid respectively, which do the redisplay
@@ -698,7 +698,7 @@ class ProductClassCreateUpdateView(generic.UpdateView):
             *args, **kwargs)
 
         if "attributes_formset" not in ctx:
-            ctx["attributes_formset"] = self.product_attributes_formset(
+            ctx["attributes_formset"] = self.service_attributes_formset(
                 instance=self.object)
 
         ctx["title"] = self.get_title()
@@ -706,7 +706,7 @@ class ProductClassCreateUpdateView(generic.UpdateView):
         return ctx
 
 
-class ProductClassCreateView(ProductClassCreateUpdateView):
+class ServiceClassCreateView(ServiceClassCreateUpdateView):
 
     creating = True
 
@@ -714,60 +714,60 @@ class ProductClassCreateView(ProductClassCreateUpdateView):
         return None
 
     def get_title(self):
-        return _("Add a new product type")
+        return _("Add a new service type")
 
     def get_success_url(self):
-        messages.info(self.request, _("Product type created successfully"))
+        messages.info(self.request, _("Service type created successfully"))
         return reverse("dashboard:catalogue-class-list")
 
 
-class ProductClassUpdateView(ProductClassCreateUpdateView):
+class ServiceClassUpdateView(ServiceClassCreateUpdateView):
 
     creating = False
 
     def get_title(self):
-        return _("Update product type '%s'") % self.object.name
+        return _("Update service type '%s'") % self.object.name
 
     def get_success_url(self):
-        messages.info(self.request, _("Product type updated successfully"))
+        messages.info(self.request, _("Service type updated successfully"))
         return reverse("dashboard:catalogue-class-list")
 
     def get_object(self):
-        product_class = get_object_or_404(ProductClass, pk=self.kwargs['pk'])
-        return product_class
+        service_class = get_object_or_404(ServiceClass, pk=self.kwargs['pk'])
+        return service_class
 
 
-class ProductClassListView(generic.ListView):
-    template_name = 'oscar/dashboard/catalogue/product_class_list.html'
+class ServiceClassListView(generic.ListView):
+    template_name = 'oscar/dashboard/catalogue/service_class_list.html'
     context_object_name = 'classes'
-    model = ProductClass
+    model = ServiceClass
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
-        ctx['title'] = _("Product Types")
+        ctx['title'] = _("Service Types")
         return ctx
 
 
-class ProductClassDeleteView(generic.DeleteView):
-    template_name = 'oscar/dashboard/catalogue/product_class_delete.html'
-    model = ProductClass
-    form_class = ProductClassForm
+class ServiceClassDeleteView(generic.DeleteView):
+    template_name = 'oscar/dashboard/catalogue/service_class_delete.html'
+    model = ServiceClass
+    form_class = ServiceClassForm
 
     def get_context_data(self, *args, **kwargs):
         ctx = super().get_context_data(*args, **kwargs)
-        ctx['title'] = _("Delete product type '%s'") % self.object.name
-        product_count = self.object.products.count()
+        ctx['title'] = _("Delete service type '%s'") % self.object.name
+        service_count = self.object.services.count()
 
-        if product_count > 0:
+        if service_count > 0:
             ctx['disallow'] = True
             ctx['title'] = _("Unable to delete '%s'") % self.object.name
             messages.error(self.request,
-                           _("%i products are still assigned to this type") %
-                           product_count)
+                           _("%i services are still assigned to this type") %
+                           service_count)
         return ctx
 
     def get_success_url(self):
-        messages.info(self.request, _("Product type deleted successfully"))
+        messages.info(self.request, _("Service type deleted successfully"))
         return reverse("dashboard:catalogue-class-list")
 
 
@@ -893,13 +893,13 @@ class AttributeOptionGroupDeleteView(PopUpWindowDeleteMixin, generic.DeleteView)
 
         ctx['title'] = _("Delete Attribute Option Group '%s'") % self.object.name
 
-        product_attribute_count = self.object.product_attributes.count()
-        if product_attribute_count > 0:
+        service_attribute_count = self.object.service_attributes.count()
+        if service_attribute_count > 0:
             ctx['disallow'] = True
             ctx['title'] = _("Unable to delete '%s'") % self.object.name
             messages.error(self.request,
-                           _("%i product attributes are still assigned to this attribute option group") %
-                           product_attribute_count)
+                           _("%i service attributes are still assigned to this attribute option group") %
+                           service_attribute_count)
 
         ctx['http_get_params'] = self.request.GET
 
@@ -997,20 +997,20 @@ class OptionDeleteView(PopUpWindowDeleteMixin, generic.DeleteView):
 
         ctx['title'] = _("Delete Option '%s'") % self.object.name
 
-        products = self.object.product_set.count()
-        product_classes = self.object.productclass_set.count()
-        if any([products, product_classes]):
+        services = self.object.service_set.count()
+        service_classes = self.object.serviceclass_set.count()
+        if any([services, service_classes]):
             ctx['disallow'] = True
             ctx['title'] = _("Unable to delete '%s'") % self.object.name
-            if products:
+            if services:
                 messages.error(
                     self.request,
-                    _("%i products are still assigned to this option") % products
+                    _("%i services are still assigned to this option") % services
                 )
-            if product_classes:
+            if service_classes:
                 messages.error(
                     self.request,
-                    _("%i product classes are still assigned to this option") % product_classes
+                    _("%i service classes are still assigned to this option") % service_classes
                 )
 
         return ctx

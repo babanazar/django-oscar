@@ -2,13 +2,13 @@
 {% load django_tables2 %}
 
 <p>
-{% with name=product.title parent_name=product.parent.title %}
-    {% if product.is_child %}
+{% with name=service.title parent_name=service.parent.title %}
+    {% if service.is_child %}
 
         {% if creating %}
-            {% if product.title %}
+            {% if service.title %}
                 {% blocktrans %}
-                    Created product variant '{{ name }}'.
+                    Created service variant '{{ name }}'.
                 {% endblocktrans %}
             {% else %}
                 {% blocktrans %}
@@ -16,9 +16,9 @@
                 {% endblocktrans %}
             {% endif %}
         {% else %}
-            {% if product.title %}
+            {% if service.title %}
                 {% blocktrans %}
-                    Updated product variant '{{ name }}'.
+                    Updated service variant '{{ name }}'.
                 {% endblocktrans %}
             {% else %}
                 {% blocktrans %}
@@ -31,11 +31,11 @@
 
         {% if creating %}
             {% blocktrans %}
-                Created product '{{ name }}'.
+                Created service '{{ name }}'.
             {% endblocktrans %}
         {% else %}
             {% blocktrans %}
-                Updated product '{{ name }}'.
+                Updated service '{{ name }}'.
             {% endblocktrans %}
         {% endif %}
 
@@ -45,6 +45,6 @@
 </p>
 
 <p>
-    <a href="{% url 'dashboard:catalogue-product' pk=product.pk %}{% querystring %}" class="btn btn-success">{% trans "Edit again" %}</a>
-    <a href="{{ product.get_absolute_url }}" class="btn btn-success">{% trans "View it on the site" %}</a>
+    <a href="{% url 'dashboard:catalogue-service' pk=service.pk %}{% querystring %}" class="btn btn-success">{% trans "Edit again" %}</a>
+    <a href="{{ service.get_absolute_url }}" class="btn btn-success">{% trans "View it on the site" %}</a>
 </p>

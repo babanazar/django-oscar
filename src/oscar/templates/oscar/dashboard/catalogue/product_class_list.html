@@ -13,7 +13,7 @@
 {% block header %}
     <div class="page-header">
         <a href="{% url 'dashboard:catalogue-class-create' %}" class="btn btn-primary float-right">
-            <i class="fas fa-plus-circle"></i> {% trans "Create new product type" %}</a>
+            <i class="fas fa-plus-circle"></i> {% trans "Create new service type" %}</a>
         <h1>{% trans "Product types" %}</h1>
     </div>
 {% endblock header %}
@@ -44,7 +44,7 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="{% url 'dashboard:catalogue-class-update' pk=class.id %}">
-                                            {% trans "Edit product type" %}
+                                            {% trans "Edit service type" %}
                                         </a>
                                         <a class="dropdown-item" href="{% url 'dashboard:catalogue-class-delete' pk=class.id %}">
                                             {% trans "Delete" %}
@@ -58,6 +58,6 @@
             </tbody>
         </table>
     {% else %}
-        <p>{% trans "There are no product types." %}</p>
+        <p>{% trans "There are no service types." %}</p>
     {% endif %}
 {% endblock dashboard_content %}

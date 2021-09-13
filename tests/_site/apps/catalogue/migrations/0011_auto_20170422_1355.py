@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='productimage',
+            name='serviceimage',
             unique_together=set([]),
         ),
     ]

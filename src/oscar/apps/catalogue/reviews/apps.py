@@ -14,10 +14,10 @@ class CatalogueReviewsConfig(OscarConfig):
     hidable_feature_name = 'reviews'
 
     def ready(self):
-        self.detail_view = get_class('catalogue.reviews.views', 'ProductReviewDetail')
-        self.create_view = get_class('catalogue.reviews.views', 'CreateProductReview')
+        self.detail_view = get_class('catalogue.reviews.views', 'ServiceReviewDetail')
+        self.create_view = get_class('catalogue.reviews.views', 'CreateServiceReview')
         self.vote_view = get_class('catalogue.reviews.views', 'AddVoteView')
-        self.list_view = get_class('catalogue.reviews.views', 'ProductReviewList')
+        self.list_view = get_class('catalogue.reviews.views', 'ServiceReviewList')
 
     def get_urls(self):
         urls = [

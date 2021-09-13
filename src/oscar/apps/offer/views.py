@@ -25,7 +25,7 @@ class OfferListView(ListView):
 
 
 class OfferDetailView(ListView):
-    context_object_name = 'products'
+    context_object_name = 'services'
     template_name = 'oscar/offer/detail.html'
     paginate_by = settings.OSCAR_OFFERS_PER_PAGE
 
@@ -46,15 +46,15 @@ class OfferDetailView(ListView):
 
     def get_queryset(self):
         """
-        Return a queryset of all :py:class:`Product <oscar.apps.catalogue.abstract_models.AbstractProduct>`
+        Return a queryset of all :py:class:`Service <oscar.apps.catalogue.abstract_models.AbstractService>`
         instances related to the :py:class:`ConditionalOffer <oscar.apps.offer.abstract_models.AbstractConditionalOffer>`.
         """  # noqa
-        return self.offer.products()
+        return self.offer.services()
 
 
 class RangeDetailView(ListView):
     template_name = 'oscar/offer/range.html'
-    context_object_name = 'products'
+    context_object_name = 'services'
 
     def dispatch(self, request, *args, **kwargs):
         self.range = get_object_or_404(
@@ -64,11 +64,11 @@ class RangeDetailView(ListView):
 
     def get_queryset(self):
         """
-        Return a queryset of all :py:class:`Product <oscar.apps.catalogue.abstract_models.AbstractProduct>`
+        Return a queryset of all :py:class:`Service <oscar.apps.catalogue.abstract_models.AbstractService>`
         instances related to the :py:class:`Range <oscar.apps.offer.abstract_models.AbstractRange>`.
         """  # noqa
-        products = self.range.all_products()
-        return products.order_by('rangeproduct__display_order')
+        services = self.range.all_services()
+        return services.order_by('rangeservice__display_order')
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

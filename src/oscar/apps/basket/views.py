@@ -310,19 +310,19 @@ class BasketAddView(FormView):
     a templatetag from :py:mod:`oscar.templatetags.basket_tags`.
     """
     form_class = AddToBasketForm
-    product_model = get_model('catalogue', 'product')
+    service_model = get_model('catalogue', 'service')
     add_signal = basket_addition
     http_method_names = ['post']
 
     def post(self, request, *args, **kwargs):
-        self.product = shortcuts.get_object_or_404(
-            self.product_model, pk=kwargs['pk'])
+        self.service = shortcuts.get_object_or_404(
+            self.service_model, pk=kwargs['pk'])
         return super().post(request, *args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['basket'] = self.request.basket
-        kwargs['product'] = self.product
+        kwargs['service'] = self.service
         return kwargs
 
     def form_invalid(self, form):
@@ -337,8 +337,8 @@ class BasketAddView(FormView):
     def form_valid(self, form):
         offers_before = self.request.basket.applied_offers()
 
-        self.request.basket.add_product(
-            form.product, form.cleaned_data['quantity'],
+        self.request.basket.add_service(
+            form.service, form.cleaned_data['quantity'],
             form.cleaned_options())
 
         messages.success(self.request, self.get_success_message(form),
@@ -349,7 +349,7 @@ class BasketAddView(FormView):
 
         # Send signal for basket addition
         self.add_signal.send(
-            sender=self, product=form.product, user=self.request.user,
+            sender=self, service=form.service, user=self.request.user,
             request=self.request)
 
         return super().form_valid(form)
@@ -357,7 +357,7 @@ class BasketAddView(FormView):
     def get_success_message(self, form):
         return render_to_string(
             'oscar/basket/messages/addition.html',
-            {'product': form.product,
+            {'service': form.service,
              'quantity': form.cleaned_data['quantity']})
 
     def get_success_url(self):

@@ -8,7 +8,7 @@ FACET_COUNTS = {
     'dates': {},
     'fields': {
         'category': [('Fiction', 12), ('Horror', 6), ('Comedy', 3)],
-        'product_class': [('Book', 18), ('DVD', 3)],
+        'service_class': [('Book', 18), ('DVD', 3)],
         'rating': [],
     },
     'queries': {
@@ -24,7 +24,7 @@ FACET_COUNTS_WITH_PRICE_RANGE_SELECTED = {
     'dates': {},
     'fields': {
         'category': [('Fiction', 12), ('Horror', 6), ('Comedy', 3)],
-        'product_class': [('Book', 18), ('DVD', 3)],
+        'service_class': [('Book', 18), ('DVD', 3)],
         'rating': [],
     },
     'queries': {
@@ -38,7 +38,7 @@ FACET_COUNTS_WITH_PRICE_RANGE_SELECTED = {
 
 SEARCH_FACETS = {
     'fields': {
-        'product_class': {'name': _('Type'), 'field': 'product_class'},
+        'service_class': {'name': _('Type'), 'field': 'service_class'},
         'rating': {'name': _('Rating'), 'field': 'rating'},
         'category': {'name': _('Category'), 'field': 'category'},
     },

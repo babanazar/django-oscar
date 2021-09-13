@@ -177,7 +177,7 @@ class EventHandler(object):
         Check whether stock records still have enough stock to honour the
         requested allocations.
 
-        Lines whose product doesn't track stock are disregarded, which means
+        Lines whose service doesn't track stock are disregarded, which means
         this method will return True if only non-stock-tracking-lines are
         passed.
         This means you can just throw all order lines to this method, without

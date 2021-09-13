@@ -4,25 +4,25 @@ import pytest
 from oscar.apps.offer import models
 from oscar.apps.offer.applicator import Applicator
 from oscar.test.factories import (
-    BasketFactory, ConditionalOfferFactory, ProductFactory)
+    BasketFactory, ConditionalOfferFactory, ServiceFactory)
 
 
 @pytest.fixture
 def filled_basket():
     basket = BasketFactory()
-    product1 = ProductFactory()
-    product2 = ProductFactory()
-    basket.add_product(product1, quantity=10)
-    basket.add_product(product2, quantity=20)
+    service1 = ServiceFactory()
+    service2 = ServiceFactory()
+    basket.add_service(service1, quantity=10)
+    basket.add_service(service2, quantity=20)
     return basket
 
 
 @pytest.fixture
 def single_offer():
     return ConditionalOfferFactory(
-        condition__range__includes_all_products=True,
+        condition__range__includes_all_services=True,
         condition__value=1,
-        benefit__range__includes_all_products=True,
+        benefit__range__includes_all_services=True,
         benefit__max_affected_items=1,
         name='offer1',
         exclusive=False,
@@ -32,20 +32,20 @@ def single_offer():
 @pytest.fixture
 def multi_offers():
     offer1 = ConditionalOfferFactory(
-        condition__range__includes_all_products=True,
-        benefit__range__includes_all_products=True,
+        condition__range__includes_all_services=True,
+        benefit__range__includes_all_services=True,
         name='offer1',
         exclusive=False,
     )
     offer2 = ConditionalOfferFactory(
-        condition__range__includes_all_products=True,
-        benefit__range__includes_all_products=True,
+        condition__range__includes_all_services=True,
+        benefit__range__includes_all_services=True,
         name='offer2',
         exclusive=False
     )
     offer3 = ConditionalOfferFactory(
-        condition__range__includes_all_products=True,
-        benefit__range__includes_all_products=True,
+        condition__range__includes_all_services=True,
+        benefit__range__includes_all_services=True,
         name='offer3',
         exclusive=False
     )
@@ -61,10 +61,10 @@ class TestLineOfferConsumer:
 
     def test_available_with_offer(self):
         basket = BasketFactory()
-        product1 = ProductFactory()
-        product2 = ProductFactory()
-        basket.add_product(product1, quantity=1)
-        basket.add_product(product2, quantity=10)
+        service1 = ServiceFactory()
+        service2 = ServiceFactory()
+        basket.add_service(service1, quantity=1)
+        basket.add_service(service2, quantity=10)
 
         benefit = models.Benefit(
             type=models.Benefit.PERCENTAGE,

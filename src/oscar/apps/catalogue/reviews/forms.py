@@ -4,23 +4,23 @@ from django.utils.translation import gettext_lazy as _
 from oscar.core.loading import get_model
 
 Vote = get_model('reviews', 'vote')
-ProductReview = get_model('reviews', 'productreview')
+ServiceReview = get_model('reviews', 'servicereview')
 
 
-class ProductReviewForm(forms.ModelForm):
+class ServiceReviewForm(forms.ModelForm):
     name = forms.CharField(label=_('Name'), required=True)
     email = forms.EmailField(label=_('Email'), required=True)
 
-    def __init__(self, product, user=None, *args, **kwargs):
+    def __init__(self, service, user=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.instance.product = product
+        self.instance.service = service
         if user and user.is_authenticated:
             self.instance.user = user
             del self.fields['name']
             del self.fields['email']
 
     class Meta:
-        model = ProductReview
+        model = ServiceReview
         fields = ('title', 'score', 'body', 'name', 'email')
 
 

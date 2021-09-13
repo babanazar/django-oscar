@@ -11,7 +11,7 @@ logger = logging.getLogger('oscar.catalogue.import')
 
 
 class Command(BaseCommand):
-    help = 'For creating product catalogues based on a CSV file'
+    help = 'For creating service catalogues based on a CSV file'
 
     def add_arguments(self, parser):
         parser.add_argument(

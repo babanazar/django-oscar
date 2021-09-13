@@ -10,18 +10,18 @@ from oscar.core import validators
 from oscar.core.compat import AUTH_USER_MODEL
 from oscar.core.loading import get_class
 
-ProductReviewQuerySet = get_class('catalogue.reviews.managers', 'ProductReviewQuerySet')
+ServiceReviewQuerySet = get_class('catalogue.reviews.managers', 'ServiceReviewQuerySet')
 
 
-class AbstractProductReview(models.Model):
+class AbstractServiceReview(models.Model):
     """
-    A review of a product
+    A review of a service
 
     Reviews can belong to a user or be anonymous.
     """
 
-    product = models.ForeignKey(
-        'catalogue.Product', related_name='reviews', null=True,
+    service = models.ForeignKey(
+        'catalogue.Service', related_name='reviews', null=True,
         on_delete=models.CASCADE)
 
     # Scores are between 0 and 5
@@ -29,7 +29,7 @@ class AbstractProductReview(models.Model):
     score = models.SmallIntegerField(_("Score"), choices=SCORE_CHOICES)
 
     title = models.CharField(
-        verbose_name=pgettext_lazy("Product review title", "Title"),
+        verbose_name=pgettext_lazy("Service review title", "Title"),
         max_length=255, validators=[validators.non_whitespace])
 
     body = models.TextField(_("Body"))
@@ -68,20 +68,20 @@ class AbstractProductReview(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     # Managers
-    objects = ProductReviewQuerySet.as_manager()
+    objects = ServiceReviewQuerySet.as_manager()
 
     class Meta:
         abstract = True
         app_label = 'reviews'
         ordering = ['-delta_votes', 'id']
-        unique_together = (('product', 'user'),)
-        verbose_name = _('Product review')
-        verbose_name_plural = _('Product reviews')
+        unique_together = (('service', 'user'),)
+        verbose_name = _('Service review')
+        verbose_name_plural = _('Service reviews')
 
     def get_absolute_url(self):
         kwargs = {
-            'product_slug': self.product.slug,
-            'product_pk': self.product.id,
+            'service_slug': self.service.slug,
+            'service_pk': self.service.id,
             'pk': self.id
         }
         return reverse('catalogue:reviews-detail', kwargs=kwargs)
@@ -104,12 +104,12 @@ class AbstractProductReview(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.product.update_rating()
+        self.service.update_rating()
 
     def delete(self, *args, **kwargs):
         super().delete(*args, **kwargs)
-        if self.product is not None:
-            self.product.update_rating()
+        if self.service is not None:
+            self.service.update_rating()
 
     # Properties
 
@@ -186,7 +186,7 @@ class AbstractVote(models.Model):
     * Each user can vote only once.
     """
     review = models.ForeignKey(
-        'reviews.ProductReview',
+        'reviews.ServiceReview',
         on_delete=models.CASCADE,
         related_name='votes')
     user = models.ForeignKey(

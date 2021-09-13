@@ -11,7 +11,7 @@ from oscar.core.compat import get_user_model
 from oscar.core.loading import get_model
 from oscar.test.factories import (
     ConditionFactory, OrderFactory, RangeFactory, UserFactory, VoucherFactory,
-    VoucherSetFactory, create_basket, create_offer, create_product)
+    VoucherSetFactory, create_basket, create_offer, create_service)
 
 START_DATETIME = datetime.datetime(2011, 1, 1).replace(tzinfo=utc)
 END_DATETIME = datetime.datetime(2012, 1, 1).replace(tzinfo=utc)
@@ -103,8 +103,8 @@ class TestOncePerCustomerVoucher(TestCase):
 class TestVoucherDelete(TestCase):
 
     def setUp(self):
-        product = create_product(price=100)
-        self.offer_range = RangeFactory(products=[product])
+        service = create_service(price=100)
+        self.offer_range = RangeFactory(services=[service])
         self.offer_condition = ConditionFactory(range=self.offer_range, value=2)
 
 
@@ -112,18 +112,18 @@ class TestAvailableForBasket(TestCase):
 
     def setUp(self):
         self.basket = create_basket(empty=True)
-        self.product = create_product(price=100)
-        range = RangeFactory(products=[self.product])
+        self.service = create_service(price=100)
+        range = RangeFactory(services=[self.service])
         condition = ConditionFactory(range=range, value=2)
         self.voucher = VoucherFactory()
         self.voucher.offers.add(create_offer(offer_type='Voucher', range=range, condition=condition))
 
     def test_is_available_for_basket(self):
-        self.basket.add_product(product=self.product)
+        self.basket.add_service(service=self.service)
         is_voucher_available_for_basket, __ = self.voucher.is_available_for_basket(self.basket)
         self.assertFalse(is_voucher_available_for_basket)
 
-        self.basket.add_product(product=self.product)
+        self.basket.add_service(service=self.service)
         is_voucher_available_for_basket, __ = self.voucher.is_available_for_basket(self.basket)
         self.assertTrue(is_voucher_available_for_basket)
 

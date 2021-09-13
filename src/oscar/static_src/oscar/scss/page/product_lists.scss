@@ -1,7 +1,7 @@
 // Products listed container
-// Space between products in a list is determined by the Grid and therefore the
+// Space between services in a list is determined by the Grid and therefore the
 // gutter width: 20px
-.product_pod {
+.service_pod {
   height: 380px;
   overflow: hidden;
   text-align: center;
@@ -33,7 +33,7 @@
     margin-bottom: $base-margin-bottom / 2;
   }
 
-  .product_price {
+  .service_price {
     position: absolute;
     bottom: 0;
   }

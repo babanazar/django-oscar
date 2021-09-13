@@ -4,7 +4,7 @@ from django.test import TestCase
 
 from oscar.core.loading import get_class
 from oscar.test.factories import (
-    ProductAlertFactory, UserFactory, create_product)
+    ServiceAlertFactory, UserFactory, create_service)
 from oscar.test.utils import EmailsMixin
 
 CustomerDispatcher = get_class('customer.utils', 'CustomerDispatcher')
@@ -73,39 +73,39 @@ class TestAlertsConcreteEmailsSending(EmailsMixin, TestCase):
         super().setUp()
         self.dispatcher = AlertsDispatcher()
 
-    def test_send_product_alert_email_for_user(self):
-        product = create_product(num_in_stock=5)
-        ProductAlertFactory(product=product, user=self.user)
+    def test_send_service_alert_email_for_user(self):
+        service = create_service(num_in_stock=5)
+        ServiceAlertFactory(service=service, user=self.user)
 
-        self.dispatcher.send_product_alert_email_for_user(product)
+        self.dispatcher.send_service_alert_email_for_user(service)
 
         self._test_common_part()
-        expected_subject = '{} is back in stock'.format(product.title)
+        expected_subject = '{} is back in stock'.format(service.title)
         self.assertEqual(expected_subject, mail.outbox[0].subject)
-        self.assertIn('We are happy to inform you that our product', mail.outbox[0].body)
+        self.assertIn('We are happy to inform you that our service', mail.outbox[0].body)
         # No `hurry_mode`
         self.assertNotIn('Beware that the amount of items in stock is limited.', mail.outbox[0].body)
 
-    def test_send_product_alert_email_for_user_with_hurry_mode(self):
+    def test_send_service_alert_email_for_user_with_hurry_mode(self):
         another_user = UserFactory(email='another_user@mail.com')
-        product = create_product(num_in_stock=1)
-        ProductAlertFactory(product=product, user=self.user, email=self.user.email)
-        ProductAlertFactory(product=product, user=another_user, email=another_user.email)
+        service = create_service(num_in_stock=1)
+        ServiceAlertFactory(service=service, user=self.user, email=self.user.email)
+        ServiceAlertFactory(service=service, user=another_user, email=another_user.email)
 
-        self.dispatcher.send_product_alert_email_for_user(product)
+        self.dispatcher.send_service_alert_email_for_user(service)
         self.assertEqual(len(mail.outbox), 2)  # Separate email for each user
-        expected_subject = '{} is back in stock'.format(product.title)
+        expected_subject = '{} is back in stock'.format(service.title)
         self.assertEqual(expected_subject, mail.outbox[0].subject)
         for outboxed_email in mail.outbox:
             self.assertEqual(expected_subject, outboxed_email.subject)
-            self.assertIn('We are happy to inform you that our product', outboxed_email.body)
+            self.assertIn('We are happy to inform you that our service', outboxed_email.body)
             self.assertIn('Beware that the amount of items in stock is limited.', outboxed_email.body)
 
-    def test_send_product_alert_confirmation_email_for_user(self):
-        product = create_product(num_in_stock=5)
-        alert = ProductAlertFactory(product=product, user=self.user, email=self.user.email, key='key00042')
+    def test_send_service_alert_confirmation_email_for_user(self):
+        service = create_service(num_in_stock=5)
+        alert = ServiceAlertFactory(service=service, user=self.user, email=self.user.email, key='key00042')
 
-        self.dispatcher.send_product_alert_confirmation_email_for_user(alert)
+        self.dispatcher.send_service_alert_confirmation_email_for_user(alert)
 
         self._test_common_part()
         self.assertEqual('Confirmation required for stock alert', mail.outbox[0].subject)

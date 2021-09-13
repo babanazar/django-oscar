@@ -129,15 +129,15 @@ class AbstractBasket(models.Model):
         if self._lines is None:
             self._lines = (
                 self.lines
-                .select_related('product', 'stockrecord')
+                .select_related('service', 'stockrecord')
                 .prefetch_related(
-                    'attributes', 'product__images')
+                    'attributes', 'service__images')
                 .order_by(self._meta.pk.name))
         return self._lines
 
     def max_allowed_quantity(self):
         """
-        Returns maximum product quantity, that can be added to the basket
+        Returns maximum service quantity, that can be added to the basket
         with the respect to basket quantity threshold.
         """
         basket_threshold = settings.OSCAR_MAX_BASKET_QUANTITY_THRESHOLD
@@ -174,20 +174,20 @@ class AbstractBasket(models.Model):
         self.lines.all().delete()
         self._lines = None
 
-    def get_stock_info(self, product, options):
+    def get_stock_info(self, service, options):
         """
-        Hook for implementing strategies that depend on product options
+        Hook for implementing strategies that depend on service options
         """
         # The built-in strategies don't use options, so initially disregard
         # them.
-        return self.strategy.fetch_for_product(product)
+        return self.strategy.fetch_for_service(service)
 
-    def add_product(self, product, quantity=1, options=None):
+    def add_service(self, service, quantity=1, options=None):
         """
-        Add a product to the basket
+        Add a service to the basket
 
         The 'options' list should contains dicts with keys 'option' and 'value'
-        which link the relevant product.Option model and string value
+        which link the relevant service.Option model and string value
         respectively.
 
         Returns (line, created).
@@ -202,11 +202,11 @@ class AbstractBasket(models.Model):
 
         # Ensure that all lines are the same currency
         price_currency = self.currency
-        stock_info = self.get_stock_info(product, options)
+        stock_info = self.get_stock_info(service, options)
 
         if not stock_info.price.exists:
             raise ValueError(
-                "Strategy hasn't found a price for product %s" % product)
+                "Strategy hasn't found a price for service %s" % service)
 
         if price_currency and stock_info.price.currency != price_currency:
             raise ValueError((
@@ -217,12 +217,12 @@ class AbstractBasket(models.Model):
         if stock_info.stockrecord is None:
             raise ValueError((
                 "Basket lines must all have stock records. Strategy hasn't "
-                "found any stock record for product %s") % product)
+                "found any stock record for service %s") % service)
 
         # Line reference is used to distinguish between variations of the same
-        # product (eg T-shirts with different personalisations)
+        # service (eg T-shirts with different personalisations)
         line_ref = self._create_line_reference(
-            product, stock_info.stockrecord, options)
+            service, stock_info.stockrecord, options)
 
         # Determine price to store (if one exists).  It is only stored for
         # audit and sometimes caching.
@@ -236,7 +236,7 @@ class AbstractBasket(models.Model):
 
         line, created = self.lines.get_or_create(
             line_reference=line_ref,
-            product=product,
+            service=service,
             stockrecord=stock_info.stockrecord,
             defaults=defaults)
         if created:
@@ -250,8 +250,8 @@ class AbstractBasket(models.Model):
 
         # Returning the line is useful when overriding this method.
         return line, created
-    add_product.alters_data = True
-    add = add_product
+    add_service.alters_data = True
+    add = add_service
 
     def applied_offers(self):
         """
@@ -346,11 +346,11 @@ class AbstractBasket(models.Model):
 
     def is_shipping_required(self):
         """
-        Test whether the basket contains physical products that require
+        Test whether the basket contains physical services that require
         shipping.
         """
         for line in self.all_lines():
-            if line.product.is_shipping_required:
+            if line.service.is_shipping_required:
                 return True
         return False
 
@@ -358,12 +358,12 @@ class AbstractBasket(models.Model):
     # Helpers
     # =======
 
-    def _create_line_reference(self, product, stockrecord, options):
+    def _create_line_reference(self, service, stockrecord, options):
         """
         Returns a reference string for a line based on the item
         and its options.
         """
-        base = '%s_%s' % (product.id, stockrecord.id)
+        base = '%s_%s' % (service.id, stockrecord.id)
         if not options:
             return base
         repr_options = [{'option': repr(option['option']),
@@ -381,11 +381,11 @@ class AbstractBasket(models.Model):
             try:
                 total += getattr(line, property)
             except ObjectDoesNotExist:
-                # Handle situation where the product may have been deleted
+                # Handle situation where the service may have been deleted
                 pass
             except TypeError:
-                # Handle Unavailable products with no known price
-                info = self.get_stock_info(line.product, line.attributes.all())
+                # Handle Unavailable services with no known price
+                info = self.get_stock_info(line.service, line.attributes.all())
                 if info.availability.is_available_to_buy:
                     raise
                 pass
@@ -564,22 +564,22 @@ class AbstractBasket(models.Model):
         else:
             return True
 
-    def product_quantity(self, product):
+    def service_quantity(self, service):
         """
-        Return the quantity of a product in the basket
+        Return the quantity of a service in the basket
 
-        The basket can contain multiple lines with the same product, but
+        The basket can contain multiple lines with the same service, but
         different options and stockrecords. Those quantities are summed up.
         """
-        matching_lines = self.lines.filter(product=product)
+        matching_lines = self.lines.filter(service=service)
         quantity = matching_lines.aggregate(Sum('quantity'))['quantity__sum']
         return quantity or 0
 
-    def line_quantity(self, product, stockrecord, options=None):
+    def line_quantity(self, service, stockrecord, options=None):
         """
-        Return the current quantity of a specific product and options
+        Return the current quantity of a specific service and options
         """
-        ref = self._create_line_reference(product, stockrecord, options)
+        ref = self._create_line_reference(service, stockrecord, options)
         try:
             return self.lines.get(line_reference=ref).quantity
         except ObjectDoesNotExist:
@@ -587,7 +587,7 @@ class AbstractBasket(models.Model):
 
 
 class AbstractLine(models.Model):
-    """A line of a basket (product and a quantity)
+    """A line of a basket (service and a quantity)
 
     Common approaches on ordering basket lines:
 
@@ -613,18 +613,18 @@ class AbstractLine(models.Model):
         related_name='lines',
         verbose_name=_("Basket"))
 
-    # This is to determine which products belong to the same line
-    # We can't just use product.id as you can have customised products
+    # This is to determine which services belong to the same line
+    # We can't just use service.id as you can have customised services
     # which should be treated as separate lines.  Set as a
     # SlugField as it is included in the path for certain views.
     line_reference = SlugField(
         _("Line Reference"), max_length=128, db_index=True)
 
-    product = models.ForeignKey(
-        'catalogue.Product',
+    service = models.ForeignKey(
+        'catalogue.Service',
         on_delete=models.CASCADE,
         related_name='basket_lines',
-        verbose_name=_("Product"))
+        verbose_name=_("Service"))
 
     # We store the stockrecord that should be used to fulfil this line.
     stockrecord = models.ForeignKey(
@@ -634,8 +634,8 @@ class AbstractLine(models.Model):
 
     quantity = models.PositiveIntegerField(_('Quantity'), default=1)
 
-    # We store the unit price incl tax of the product when it is first added to
-    # the basket.  This allows us to tell if a product has changed price since
+    # We store the unit price incl tax of the service when it is first added to
+    # the basket.  This allows us to tell if a service has changed price since
     # a person first added it to their basket.
     price_currency = models.CharField(
         _("Currency"), max_length=12, default=get_default_currency)
@@ -667,9 +667,9 @@ class AbstractLine(models.Model):
 
     def __str__(self):
         return _(
-            "Basket #%(basket_id)d, Product #%(product_id)d, quantity"
+            "Basket #%(basket_id)d, Service #%(service_id)d, quantity"
             " %(quantity)d") % {'basket_id': self.basket.pk,
-                                'product_id': self.product.pk,
+                                'service_id': self.service.pk,
                                 'quantity': self.quantity}
 
     def save(self, *args, **kwargs):
@@ -734,7 +734,7 @@ class AbstractLine(models.Model):
                            self.quantity))
         else:
             # Need to split the discount among the affected quantity
-            # of products.
+            # of services.
             item_incl_tax_discount = (
                 self.discount_value / int(self.consumer.consumed()))
             item_excl_tax_discount = item_incl_tax_discount * self._tax_ratio
@@ -875,7 +875,7 @@ class AbstractLine(models.Model):
 
     @property
     def description(self):
-        d = smart_str(self.product)
+        d = smart_str(self.service)
         ops = []
         for attribute in self.attributes.all():
             ops.append("%s = '%s'" % (attribute.option.name, attribute.value))
@@ -890,8 +890,8 @@ class AbstractLine(models.Model):
         This could be things like the price has changed
         """
         if isinstance(self.purchase_info.availability, Unavailable):
-            msg = "'%(product)s' is no longer available"
-            return _(msg) % {'product': self.product.get_title()}
+            msg = "'%(service)s' is no longer available"
+            return _(msg) % {'service': self.service.get_title()}
 
         if not self.price_incl_tax:
             return
@@ -901,21 +901,21 @@ class AbstractLine(models.Model):
         # Compare current price to price when added to basket
         current_price_incl_tax = self.purchase_info.price.incl_tax
         if current_price_incl_tax != self.price_incl_tax:
-            product_prices = {
-                'product': self.product.get_title(),
+            service_prices = {
+                'service': self.service.get_title(),
                 'old_price': currency(self.price_incl_tax, self.price_currency),
                 'new_price': currency(current_price_incl_tax, self.price_currency)
             }
             if current_price_incl_tax > self.price_incl_tax:
-                warning = _("The price of '%(product)s' has increased from"
+                warning = _("The price of '%(service)s' has increased from"
                             " %(old_price)s to %(new_price)s since you added"
                             " it to your basket")
-                return warning % product_prices
+                return warning % service_prices
             else:
-                warning = _("The price of '%(product)s' has decreased from"
+                warning = _("The price of '%(service)s' has decreased from"
                             " %(old_price)s to %(new_price)s since you added"
                             " it to your basket")
-                return warning % product_prices
+                return warning % service_prices
 
 
 class AbstractLineAttribute(models.Model):

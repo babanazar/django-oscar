@@ -52,32 +52,32 @@ class CustomerConfig(OscarConfig):
                                                   'DetailView')
 
         self.alert_list_view = get_class('customer.alerts.views',
-                                         'ProductAlertListView')
+                                         'ServiceAlertListView')
         self.alert_create_view = get_class('customer.alerts.views',
-                                           'ProductAlertCreateView')
+                                           'ServiceAlertCreateView')
         self.alert_confirm_view = get_class('customer.alerts.views',
-                                            'ProductAlertConfirmView')
+                                            'ServiceAlertConfirmView')
         self.alert_cancel_view = get_class('customer.alerts.views',
-                                           'ProductAlertCancelView')
+                                           'ServiceAlertCancelView')
 
-        self.wishlists_add_product_view = get_class('customer.wishlists.views',
-                                                    'WishListAddProduct')
+        self.wishlists_add_service_view = get_class('customer.wishlists.views',
+                                                    'WishListAddService')
         self.wishlists_list_view = get_class('customer.wishlists.views',
                                              'WishListListView')
         self.wishlists_detail_view = get_class('customer.wishlists.views',
                                                'WishListDetailView')
         self.wishlists_create_view = get_class('customer.wishlists.views',
                                                'WishListCreateView')
-        self.wishlists_create_with_product_view = get_class('customer.wishlists.views',
+        self.wishlists_create_with_service_view = get_class('customer.wishlists.views',
                                                             'WishListCreateView')
         self.wishlists_update_view = get_class('customer.wishlists.views',
                                                'WishListUpdateView')
         self.wishlists_delete_view = get_class('customer.wishlists.views',
                                                'WishListDeleteView')
-        self.wishlists_remove_product_view = get_class('customer.wishlists.views',
-                                                       'WishListRemoveProduct')
-        self.wishlists_move_product_to_another_view = get_class(
-            'customer.wishlists.views', 'WishListMoveProductToAnotherWishList')
+        self.wishlists_remove_service_view = get_class('customer.wishlists.views',
+                                                       'WishListRemoveService')
+        self.wishlists_move_service_to_another_view = get_class(
+            'customer.wishlists.views', 'WishListMoveServiceToAnotherWishList')
 
     def get_urls(self):
         urls = [
@@ -158,21 +158,21 @@ class CustomerConfig(OscarConfig):
             # Wishlists
             path('wishlists/', login_required(self.wishlists_list_view.as_view()), name='wishlists-list'),
             path(
-                'wishlists/add/<int:product_pk>/',
-                login_required(self.wishlists_add_product_view.as_view()),
-                name='wishlists-add-product'),
+                'wishlists/add/<int:service_pk>/',
+                login_required(self.wishlists_add_service_view.as_view()),
+                name='wishlists-add-service'),
             path(
-                'wishlists/<str:key>/add/<int:product_pk>/',
-                login_required(self.wishlists_add_product_view.as_view()),
-                name='wishlists-add-product'),
+                'wishlists/<str:key>/add/<int:service_pk>/',
+                login_required(self.wishlists_add_service_view.as_view()),
+                name='wishlists-add-service'),
             path(
                 'wishlists/create/',
                 login_required(self.wishlists_create_view.as_view()),
                 name='wishlists-create'),
             path(
-                'wishlists/create/with-product/<int:product_pk>/',
+                'wishlists/create/with-service/<int:service_pk>/',
                 login_required(self.wishlists_create_view.as_view()),
-                name='wishlists-create-with-product'),
+                name='wishlists-create-with-service'),
             # Wishlists can be publicly shared, no login required
             path('wishlists/<str:key>/', self.wishlists_detail_view.as_view(), name='wishlists-detail'),
             path(
@@ -185,16 +185,16 @@ class CustomerConfig(OscarConfig):
                 name='wishlists-delete'),
             path(
                 'wishlists/<str:key>/lines/<int:line_pk>/delete/',
-                login_required(self.wishlists_remove_product_view.as_view()),
-                name='wishlists-remove-product'),
+                login_required(self.wishlists_remove_service_view.as_view()),
+                name='wishlists-remove-service'),
             path(
-                'wishlists/<str:key>/products/<int:product_pk>/delete/',
-                login_required(self.wishlists_remove_product_view.as_view()),
-                name='wishlists-remove-product'),
+                'wishlists/<str:key>/services/<int:service_pk>/delete/',
+                login_required(self.wishlists_remove_service_view.as_view()),
+                name='wishlists-remove-service'),
             path(
                 'wishlists/<str:key>/lines/<int:line_pk>/move-to/<str:to_key>/',
-                login_required(self.wishlists_move_product_to_another_view.as_view()),
-                name='wishlists-move-product-to-another')
+                login_required(self.wishlists_move_service_to_another_view.as_view()),
+                name='wishlists-move-service-to-another')
         ]
 
         return self.post_process_urls(urls)
