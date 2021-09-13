@@ -2,7 +2,7 @@ from django import forms
 from django.template import Template, TemplateSyntaxError
 from django.utils.translation import gettext_lazy as _
 
-from sandbox.oscar.apps.customer.utils import normalise_email
+from oscar.apps.customer.utils import normalise_email
 from oscar.core.loading import get_model
 
 CommunicationEventType = get_model('communication', 'CommunicationEventType')

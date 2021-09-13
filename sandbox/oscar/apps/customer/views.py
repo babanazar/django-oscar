@@ -11,7 +11,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
-from sandbox.oscar.apps.customer.utils import get_password_reset_url
+from oscar.apps.customer.utils import get_password_reset_url
 from oscar.core.compat import get_user_model
 from oscar.core.loading import (
     get_class, get_classes, get_model, get_profile_class)

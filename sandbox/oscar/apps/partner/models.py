@@ -1,4 +1,4 @@
-from sandbox.oscar.apps.address.abstract_models import AbstractPartnerAddress
+from oscar.apps.address.abstract_models import AbstractPartnerAddress
 from oscar.apps.partner.abstract_models import (
     AbstractPartner, AbstractStockAlert, AbstractStockRecord)
 from oscar.core.loading import is_model_registered

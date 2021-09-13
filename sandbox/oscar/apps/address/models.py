@@ -1,4 +1,4 @@
-from sandbox.oscar.apps.address.abstract_models import (
+from oscar.apps.address.abstract_models import (
     AbstractCountry, AbstractUserAddress)
 from oscar.core.loading import is_model_registered
 
