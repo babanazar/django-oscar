@@ -2,7 +2,8 @@ from decimal import Decimal as D
 
 from django.test import TestCase
 
-from oscar.apps.offer import custom, models, utils
+from sandbox.oscar.apps.offer import custom, utils
+from sandbox.oscar.apps.offer import models
 from oscar.test import factories
 from oscar.test.basket import add_service
 

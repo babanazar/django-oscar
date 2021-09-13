@@ -1,7 +1,7 @@
 from django.db import models
 
 from oscar.apps.address.models import UserAddress
-from oscar.apps.offer.models import Benefit, Condition
+from sandbox.oscar.apps.offer import Benefit, Condition
 from oscar.models.fields import AutoSlugField
 
 

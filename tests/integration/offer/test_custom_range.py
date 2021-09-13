@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.utils.translation import gettext_lazy as _
 
-from oscar.apps.offer import custom
+from sandbox.oscar.apps.offer import custom
 from oscar.test.factories import create_service
 
 

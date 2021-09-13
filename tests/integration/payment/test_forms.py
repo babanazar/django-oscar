@@ -5,7 +5,7 @@ from django.forms import ValidationError
 from django.test import TestCase
 from freezegun import freeze_time
 
-from oscar.apps.payment import forms, models
+from sandbox.oscar.apps.payment import forms, models
 
 # types=[bankcards.VISA, bankcards.VISA_ELECTRON, bankcards.MASTERCARD,
 #               bankcards.AMEX, bankcards.MAESTRO, bankcards.DINERS_CLUB,

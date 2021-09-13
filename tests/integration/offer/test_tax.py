@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 
 from oscar.apps.basket.models import Basket
-from oscar.apps.offer import models
+from sandbox.oscar.apps.offer import models
 from oscar.apps.partner import strategy
 from oscar.test.basket import add_service
 from oscar.test.factories import create_order

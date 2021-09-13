@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from oscar.apps.catalogue import models
+from sandbox.oscar.apps.catalogue import models
 
 
 class TestServiceClassModel(TestCase):

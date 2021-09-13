@@ -1,7 +1,7 @@
 from django.test import TestCase
 
-from oscar.apps.catalogue.models import Service
-from oscar.test.factories.catalogue import ServiceFactory
+from sandbox.oscar.apps.catalogue import Service
+from sandbox.oscar.test.factories.catalogue import ServiceFactory
 
 
 class ServiceTestCase(TestCase):

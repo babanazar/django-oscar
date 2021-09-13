@@ -6,7 +6,8 @@ from django.test import TestCase
 from django.utils.timezone import now
 
 from oscar.apps.basket.models import Basket
-from oscar.apps.offer import applicator, custom, models
+from sandbox.oscar.apps.offer import applicator, custom
+from sandbox.oscar.apps.offer import models
 from oscar.core.loading import get_class
 from oscar.test import factories
 from oscar.test.basket import add_service

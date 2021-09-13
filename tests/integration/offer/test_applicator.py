@@ -3,9 +3,9 @@ from unittest.mock import Mock
 
 from django.test import TestCase
 
-from oscar.apps.offer import models
-from oscar.apps.offer.results import OfferApplications
-from oscar.apps.offer.utils import Applicator
+from sandbox.oscar.apps.offer import models
+from sandbox.oscar.apps.offer import OfferApplications
+from sandbox.oscar.apps.offer import Applicator
 from oscar.test.basket import add_service
 from oscar.test.factories import (
     BasketFactory, BenefitFactory, ConditionalOfferFactory, ConditionFactory,

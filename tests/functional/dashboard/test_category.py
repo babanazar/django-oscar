@@ -1,7 +1,7 @@
 from django.urls import reverse
 
-from oscar.apps.catalogue.categories import create_from_breadcrumbs
-from oscar.apps.catalogue.models import Category
+from sandbox.oscar.apps.catalogue import create_from_breadcrumbs
+from sandbox.oscar.apps.catalogue import Category
 from oscar.test.factories import UserFactory
 from oscar.test.testcases import WebTestCase
 

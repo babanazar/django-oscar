@@ -3,7 +3,7 @@ from unittest import mock
 
 from django.test import TestCase
 
-from oscar.apps.checkout import calculators
+from sandbox.oscar.apps.checkout import calculators
 from oscar.core import prices
 from oscar.core.loading import get_class
 

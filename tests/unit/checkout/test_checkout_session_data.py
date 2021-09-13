@@ -4,8 +4,8 @@ import pytest
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.http import HttpResponse
 
-from oscar.apps.checkout.forms import ShippingAddressForm
-from oscar.apps.checkout.utils import CheckoutSessionData
+from sandbox.oscar.apps.checkout import ShippingAddressForm
+from sandbox.oscar.apps.checkout.utils import CheckoutSessionData
 
 
 def get_response_for_test(request):

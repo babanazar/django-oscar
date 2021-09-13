@@ -29,7 +29,7 @@
   "scripts": {
     "build": "gulp copy && gulp scss",
     "watch": "gulp watch",
-    "eslint": "./node_modules/.bin/eslint src/oscar/static_src/oscar/js/oscar/"
+    "eslint": "./node_modules/.bin/eslint sandbox/oscar/static_src/oscar/js/oscar/"
   },
   "license": "MIT",
   "homepage": "https://github.com/django-oscar/django-oscar#readme"

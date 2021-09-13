@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from oscar.apps.catalogue.reviews import models
+from sandbox.oscar.apps.catalogue import models
 from oscar.core.compat import get_user_model
 from oscar.test.factories import UserFactory, create_service
 

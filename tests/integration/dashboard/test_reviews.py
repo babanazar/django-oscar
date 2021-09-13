@@ -5,7 +5,7 @@ from django.utils import timezone
 
 from oscar.apps.dashboard.reviews import views
 from oscar.core.loading import get_model
-from oscar.test.factories.catalogue import ServiceReviewFactory
+from sandbox.oscar.test.factories.catalogue import ServiceReviewFactory
 from oscar.test.factories.customer import UserFactory
 
 now = timezone.now()

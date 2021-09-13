@@ -2,7 +2,7 @@ import unittest.mock as mock
 
 from django.test import TestCase
 
-from oscar.apps.catalogue.models import ServiceClass
+from sandbox.oscar.apps.catalogue import ServiceClass
 from oscar.apps.dashboard.catalogue.forms import StockRecordForm
 
 

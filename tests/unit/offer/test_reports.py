@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from oscar.apps.offer.reports import OfferReportGenerator
+from sandbox.oscar.apps.offer import OfferReportGenerator
 from oscar.test.factories import (
     ConditionalOfferFactory, OrderDiscountFactory, create_order)
 

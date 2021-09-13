@@ -14,7 +14,7 @@ from oscar.apps.order.models import (
 from oscar.apps.order.signals import (
     order_line_status_changed, order_status_changed)
 from oscar.test.basket import add_service
-from oscar.test.contextmanagers import mock_signal_receiver
+from sandbox.oscar.test.contextmanagers import mock_signal_receiver
 from oscar.test.factories import (
     OrderFactory, OrderLineFactory, ShippingAddressFactory,
     ShippingEventFactory, create_basket, create_offer,

@@ -4,7 +4,7 @@ from django.conf import settings
 from django.urls import reverse
 from django.utils.translation import gettext
 
-from oscar.apps.catalogue.models import Category
+from sandbox.oscar.apps.catalogue import Category
 from oscar.test.factories import create_service
 from oscar.test.testcases import WebTestCase
 

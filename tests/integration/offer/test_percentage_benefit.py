@@ -3,7 +3,7 @@ from decimal import Decimal as D
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from oscar.apps.offer import models
+from sandbox.oscar.apps.offer import models
 from oscar.test import factories
 from oscar.test.basket import add_service, add_services
 

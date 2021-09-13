@@ -10,9 +10,9 @@ from django.test import TestCase, TransactionTestCase
 from django.test.utils import override_settings
 from django.utils import timezone
 
-from oscar.apps.catalogue.models import Service, ServiceClass
-from oscar.apps.checkout import calculators
-from oscar.apps.offer.utils import Applicator
+from sandbox.oscar.apps.catalogue import Service, ServiceClass
+from sandbox.oscar.apps.checkout import calculators
+from sandbox.oscar.apps.offer import Applicator
 from oscar.apps.order.models import Order
 from oscar.apps.order.utils import OrderCreator
 from oscar.apps.shipping.methods import FixedPrice, Free

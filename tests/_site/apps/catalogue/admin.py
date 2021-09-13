@@ -1,1 +1,1 @@
-from oscar.apps.catalogue.admin import *  # noqa
+from sandbox.oscar.apps.catalogue import *  # noqa

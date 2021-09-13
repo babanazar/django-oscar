@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from oscar.apps.customer.utils import get_password_reset_url, normalise_email
+from sandbox.oscar.apps.customer.utils import get_password_reset_url, normalise_email
 from oscar.core.compat import get_user_model
 
 User = get_user_model()

@@ -3,7 +3,7 @@ from decimal import Decimal as D
 
 from django.test import TestCase
 
-from oscar.apps.payment.models import Bankcard, Source
+from sandbox.oscar.apps.payment import Bankcard, Source
 from oscar.core.compat import get_user_model
 from oscar.test import factories
 

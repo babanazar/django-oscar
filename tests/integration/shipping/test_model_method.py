@@ -2,8 +2,8 @@ from decimal import Decimal as D
 
 from django.test import TestCase
 
-from oscar.apps.offer.applicator import Applicator
-from oscar.apps.offer.models import Benefit
+from sandbox.oscar.apps.offer import Applicator
+from sandbox.oscar.apps.offer import Benefit
 from oscar.apps.shipping.models import OrderAndItemCharges, WeightBased
 from oscar.apps.shipping.repository import Repository
 from oscar.core.compat import get_user_model

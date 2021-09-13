@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from oscar.apps.catalogue.search_handlers import (
+from sandbox.oscar.apps.catalogue.search_handlers import (
     get_service_search_handler_class)
 
 

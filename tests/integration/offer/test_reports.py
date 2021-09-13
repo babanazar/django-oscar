@@ -3,7 +3,7 @@ import datetime
 from django.test import TestCase
 from django.utils.timezone import now
 
-from oscar.apps.offer import reports
+from sandbox.oscar.apps.offer import reports
 
 
 class TestOfferReportGenerator(TestCase):

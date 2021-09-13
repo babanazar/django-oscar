@@ -4,7 +4,7 @@ from unittest.mock import patch
 import pytest
 from django.test import TestCase, override_settings
 
-from oscar.apps.offer.models import Benefit
+from sandbox.oscar.apps.offer import Benefit
 from oscar.test import factories
 
 

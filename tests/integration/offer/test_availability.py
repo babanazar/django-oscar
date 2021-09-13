@@ -3,7 +3,7 @@ from decimal import Decimal as D
 
 from django.test import TestCase
 
-from oscar.apps.offer import models
+from sandbox.oscar.apps.offer import models
 from oscar.core.compat import get_user_model
 from oscar.test.factories import (
     OrderDiscountFactory, UserFactory, create_order)

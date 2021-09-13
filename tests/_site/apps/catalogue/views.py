@@ -1,4 +1,4 @@
-from oscar.apps.catalogue.views import (
+from sandbox.oscar.apps.catalogue import (
     ServiceDetailView as OscarServiceDetailView)
 
 

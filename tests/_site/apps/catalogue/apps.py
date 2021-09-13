@@ -1,6 +1,6 @@
 from django.urls import re_path
 
-from oscar.apps.catalogue import apps
+from sandbox.oscar.apps.catalogue import apps
 
 
 class CatalogueConfig(apps.CatalogueConfig):

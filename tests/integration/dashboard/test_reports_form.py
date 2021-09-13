@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from oscar.apps.dashboard.reports import forms
+from sandbox.oscar.apps.dashboard.reports import forms
 
 
 class TestReportsForm(TestCase):

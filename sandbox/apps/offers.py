@@ -1,4 +1,4 @@
-from oscar.apps.offer import models
+from sandbox.oscar.apps.offer import models
 
 
 class ChangesOwnerName(models.Benefit):

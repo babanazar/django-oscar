@@ -4,7 +4,7 @@ from decimal import Decimal as D
 from django.test import TestCase
 
 from oscar.apps.basket.models import Basket
-from oscar.apps.catalogue.models import Option
+from sandbox.oscar.apps.catalogue import Option
 from oscar.apps.partner import availability, prices, strategy
 from oscar.test import factories
 from oscar.test.factories import (

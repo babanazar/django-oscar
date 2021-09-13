@@ -5,9 +5,9 @@ from django.http import HttpRequest
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from oscar.apps.checkout.calculators import OrderTotalCalculator
-from oscar.apps.checkout.exceptions import FailedPreCondition
-from oscar.apps.checkout.mixins import (
+from sandbox.oscar.apps.checkout import OrderTotalCalculator
+from sandbox.oscar.apps.checkout.exceptions import FailedPreCondition
+from sandbox.oscar.apps.checkout import (
     CheckoutSessionMixin, OrderPlacementMixin)
 from oscar.apps.shipping.methods import FixedPrice, Free
 from oscar.core.loading import get_class, get_model

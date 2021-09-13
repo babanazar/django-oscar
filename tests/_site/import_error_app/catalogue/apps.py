@@ -1,4 +1,4 @@
-from oscar.apps.catalogue import apps
+from sandbox.oscar.apps.catalogue import apps
 
 
 class CatalogueConfig(apps.CatalogueConfig):

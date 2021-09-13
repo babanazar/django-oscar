@@ -1,6 +1,7 @@
 from django.test import TestCase
 
-from oscar.apps.offer import custom, models
+from sandbox.oscar.apps.offer import custom
+from sandbox.oscar.apps.offer import models
 from oscar.test import factories
 from tests._site.model_tests_app.models import (
     BasketOwnerCalledBarry, CustomBenefitModel)

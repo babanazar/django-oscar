@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from oscar.apps.catalogue.reviews import forms
+from sandbox.oscar.apps.catalogue import forms
 from oscar.test.factories import UserFactory, create_service
 
 

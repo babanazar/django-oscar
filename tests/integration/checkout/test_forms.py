@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 
 from oscar.apps.address.models import Country
-from oscar.apps.checkout.forms import ShippingAddressForm
+from sandbox.oscar.apps.checkout import ShippingAddressForm
 from oscar.test.factories import CountryFactory
 
 

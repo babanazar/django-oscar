@@ -1,7 +1,7 @@
 import pytest
 from django.core.exceptions import ValidationError
 
-from oscar.apps.catalogue import models
+from sandbox.oscar.apps.catalogue import models
 
 
 def test_service_attributes_can_contain_underscores():

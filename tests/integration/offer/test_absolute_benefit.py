@@ -4,8 +4,8 @@ from unittest import mock
 from django.core.exceptions import ValidationError
 from django.test import TestCase
 
-from oscar.apps.offer import models
-from oscar.apps.offer.utils import Applicator
+from sandbox.oscar.apps.offer import models
+from sandbox.oscar.apps.offer import Applicator
 from oscar.test import factories
 from oscar.test.basket import add_service, add_services
 

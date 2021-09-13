@@ -1,6 +1,6 @@
 import pytest
 
-from oscar.apps.catalogue.models import Service
+from sandbox.oscar.apps.catalogue import Service
 from oscar.test.factories import ServiceFactory
 
 

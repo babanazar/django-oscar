@@ -4,7 +4,7 @@ from django.urls import reverse
 from webtest.forms import Upload
 
 from oscar.apps.dashboard.ranges import forms
-from oscar.apps.offer.models import Range, RangeServiceFileUpload
+from sandbox.oscar.apps.offer import Range, RangeServiceFileUpload
 from oscar.test.factories import create_service
 from oscar.test.testcases import WebTestCase
 

@@ -6,11 +6,11 @@ from django.test import TestCase
 from django.urls import reverse
 from freezegun import freeze_time
 
-from oscar.apps.dashboard.offers import views as offer_views
+from sandbox.oscar.apps.dashboard.offers import views as offer_views
 from oscar.apps.dashboard.ranges import views as range_views
-from oscar.apps.offer.custom import create_benefit, create_condition
+from sandbox.oscar.apps.offer import create_benefit, create_condition
 from oscar.core.loading import get_model
-from oscar.test.factories.catalogue import ServiceFactory
+from sandbox.oscar.test.factories.catalogue import ServiceFactory
 from oscar.test.factories.offer import ConditionalOfferFactory, RangeFactory
 from oscar.test.factories.voucher import VoucherFactory
 from tests._site.model_tests_app.models import (

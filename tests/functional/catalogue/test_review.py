@@ -1,7 +1,7 @@
 from django.urls import reverse
 
-from oscar.apps.catalogue.reviews.signals import review_added
-from oscar.test.contextmanagers import mock_signal_receiver
+from sandbox.oscar.apps.catalogue import review_added
+from sandbox.oscar.test.contextmanagers import mock_signal_receiver
 from oscar.test.factories import UserFactory, create_service
 from oscar.test.testcases import WebTestCase
 

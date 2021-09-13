@@ -4,7 +4,7 @@ from django import forms
 from django.test import TestCase
 from django.urls import reverse_lazy
 
-from oscar.apps.catalogue.models import Service
+from sandbox.oscar.apps.catalogue import Service
 from oscar.forms import widgets
 from oscar.test.factories import create_service
 

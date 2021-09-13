@@ -1,8 +1,8 @@
 
 import pytest
 
-from oscar.apps.offer import models
-from oscar.apps.offer.applicator import Applicator
+from sandbox.oscar.apps.offer import models
+from sandbox.oscar.apps.offer import Applicator
 from oscar.test.factories import (
     BasketFactory, ConditionalOfferFactory, ServiceFactory)
 

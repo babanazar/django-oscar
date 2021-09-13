@@ -1,1 +1,1 @@
-from oscar.apps.catalogue.models import *  # noqa isort:skip
+from sandbox.oscar.apps.catalogue import *  # noqa isort:skip

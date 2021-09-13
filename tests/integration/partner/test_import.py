@@ -4,7 +4,7 @@ from decimal import Decimal as D
 
 from django.test import TestCase
 
-from oscar.apps.catalogue.models import Service, ServiceClass
+from sandbox.oscar.apps.catalogue import Service, ServiceClass
 from oscar.apps.partner.exceptions import ImportingError
 from oscar.apps.partner.importers import CatalogueImporter
 from oscar.apps.partner.models import Partner

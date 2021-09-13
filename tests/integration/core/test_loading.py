@@ -180,7 +180,7 @@ class TestDynamicLoadingOn3rdPartyApps(TestCase):
 class OverriddenClassLoadingTestCase(TestCase):
 
     def test_non_override_class_loader(self):
-        from oscar.apps.catalogue.views import ServiceDetailView
+        from sandbox.oscar.apps.catalogue import ServiceDetailView
         View = get_class('catalogue.views', 'ServiceDetailView')
         self.assertEqual(View, ServiceDetailView)
 

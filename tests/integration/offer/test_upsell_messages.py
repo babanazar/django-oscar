@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils.timezone import now
 
 from oscar.apps.basket.views import BasketView
-from oscar.apps.offer.applicator import Applicator
+from sandbox.oscar.apps.offer import Applicator
 from oscar.core.loading import get_class
 from oscar.test import factories
 from oscar.test.testcases import WebTestCase

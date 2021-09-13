@@ -2,7 +2,7 @@ from logging import LogRecord
 
 from django.test import TestCase
 
-from oscar.core.logging.formatters import PciFormatter
+from sandbox.oscar.core.logging.formatters import PciFormatter
 
 
 class TestLogging(TestCase):

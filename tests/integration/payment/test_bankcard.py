@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from oscar.apps.payment import bankcards
+from sandbox.oscar.apps.payment import bankcards
 
 
 class TestBankCardValidation(TestCase):

@@ -3,7 +3,7 @@ import time
 
 from django.test import TestCase
 
-from oscar.apps.dashboard.orders import forms
+from sandbox.oscar.apps.dashboard.orders import forms
 
 
 class TestOrderStatsForm(TestCase):

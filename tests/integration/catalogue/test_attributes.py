@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
-from oscar.apps.catalogue.models import Service, ServiceAttribute
+from sandbox.oscar.apps.catalogue import Service, ServiceAttribute
 from oscar.test import factories
 
 

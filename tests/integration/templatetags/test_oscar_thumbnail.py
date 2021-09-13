@@ -5,7 +5,7 @@ from django import template
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from oscar.test.factories.catalogue import ServiceImageFactory
+from sandbox.oscar.test.factories.catalogue import ServiceImageFactory
 from oscar.test.utils import EASY_THUMBNAIL_BASEDIR, get_thumbnail_full_path
 
 

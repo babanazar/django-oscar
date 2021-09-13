@@ -1,7 +1,7 @@
 from django.test.testcases import TestCase
 from django.urls import reverse
 
-from oscar.apps.catalogue.reviews.models import ServiceReview, Vote
+from sandbox.oscar.apps.catalogue import ServiceReview, Vote
 from oscar.test.factories import UserFactory, create_service
 
 

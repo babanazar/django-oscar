@@ -3,7 +3,7 @@ from decimal import Decimal as D
 from django.test import TestCase
 
 from oscar.apps.basket.models import Line
-from oscar.apps.catalogue import models
+from sandbox.oscar.apps.catalogue import models
 from oscar.apps.partner import strategy
 from oscar.test import factories
 

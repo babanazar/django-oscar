@@ -3,8 +3,8 @@ import datetime
 from django.test import TestCase
 from django.utils.timezone import now
 
-from oscar.apps.dashboard.offers import forms
-from oscar.apps.offer.models import ConditionalOffer
+from sandbox.oscar.apps.dashboard.offers import forms
+from sandbox.oscar.apps.offer import ConditionalOffer
 from oscar.test.factories import ConditionalOfferFactory, VoucherFactory
 
 

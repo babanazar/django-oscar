@@ -7,7 +7,7 @@ from django.urls import reverse
 from PIL import Image
 from webtest import Upload
 
-from oscar.apps.catalogue.models import Service, ServiceAttribute
+from sandbox.oscar.apps.catalogue import Service, ServiceAttribute
 from oscar.core.compat import get_user_model
 from oscar.core.loading import get_model
 from oscar.test import factories

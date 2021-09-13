@@ -33,7 +33,7 @@ __pycache__
 
 # Docs
 /docs/build/*
-/src/oscar/static/
+/sandbox/oscar/static/
 *.pdf
 TODO
 venv

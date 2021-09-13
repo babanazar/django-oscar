@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.test import TestCase
 
-from oscar.apps.catalogue.models import (
+from sandbox.oscar.apps.catalogue import (
     AttributeOption, Service, ServiceAttribute,
     ServiceClass, ServiceRecommendation)
 from oscar.test import factories

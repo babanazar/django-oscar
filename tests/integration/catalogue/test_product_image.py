@@ -5,7 +5,7 @@ from unittest import mock
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import TestCase, override_settings
 
-from oscar.apps.catalogue.abstract_models import MissingServiceImage
+from sandbox.oscar.apps.catalogue import MissingServiceImage
 from oscar.test import factories
 from oscar.test.utils import EASY_THUMBNAIL_BASEDIR, ThumbnailMixin
 

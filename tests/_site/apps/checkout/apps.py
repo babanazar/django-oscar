@@ -1,4 +1,4 @@
-from oscar.apps.checkout import apps
+from sandbox.oscar.apps.checkout import apps
 
 
 class CheckoutConfig(apps.CheckoutConfig):
