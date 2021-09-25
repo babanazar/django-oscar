@@ -100,7 +100,7 @@
     {% block service_description %}
         {% if service.description %}
         <div id="service_description" class="sub-header">
-            <h2>{% trans "Product Description" %}</h2>
+            <h2>{% trans "Service Description" %}</h2>
         </div>
         <p>{{ service.description|safe }}</p>
         {% endif %}
@@ -108,7 +108,7 @@
 
     {% block service_info %}
     <div class="sub-header">
-        <h2>{% trans "Product Information" %}</h2>
+        <h2>{% trans "Service Information" %}</h2>
     </div>
     <table class="table table-striped">
         {% if service.upc %}
@@ -117,7 +117,7 @@
         </tr>
         {% endif %}
         <tr>
-            <th>{% trans "Product Type" %}</th><td>{{ service.get_service_class.name }}</td>
+            <th>{% trans "Service Type" %}</th><td>{{ service.get_service_class.name }}</td>
         </tr>
 
         {% purchase_info_for_service request service as session %}

@@ -40,7 +40,7 @@
             <form action="{% url 'customer:wishlists-remove-service' key=wishlist.key service_pk=service.id %}" method="post">
                 {% csrf_token %}
                 {% blocktrans with name=wishlist.name url=wishlist.get_absolute_url %}
-                    <span class="float-left">Product is in <a href="{{ url }}">'{{ name }}'</a> wishlist.</span>
+                    <span class="float-left">Service is in <a href="{{ url }}">'{{ name }}'</a> wishlist.</span>
                 {% endblocktrans %}
                 <button type="submit" class="btn btn-sm float-right" data-loading-text="{% trans 'Removing...' %}">{% trans "Remove" %}</button>
             </form>

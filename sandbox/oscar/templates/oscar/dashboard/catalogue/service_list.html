@@ -5,7 +5,7 @@
 {% block body_class %}{{ block.super }} catalogue{% endblock %}
 
 {% block title %}
-    {% trans "Products" %} | {{ block.super }}
+    {% trans "Services" %} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -15,7 +15,7 @@
                 <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                {% trans "Products" %}
+                {% trans "Services" %}
             </li>
         </ol>
     </nav>
@@ -23,7 +23,7 @@
 
 {% block header %}
     <div class="page-header">
-        <h1>{% trans "Products" %}</h1>
+        <h1>{% trans "Services" %}</h1>
     </div>
 {% endblock header %}
 
@@ -36,7 +36,7 @@
             <form action="{% url 'dashboard:catalogue-service-create' %}" method="get" class="form-inline">
                 {% include "oscar/dashboard/partials/form_fields_inline.html" with form=serviceclass_form %}
                 <button class="btn btn-primary" type="submit" data-loading-text="{% trans 'Submitting...' %}">
-                    <i class="fas fa-plus-circle"></i> {% trans "New Product" %}
+                    <i class="fas fa-plus-circle"></i> {% trans "New Service" %}
                 </button>
             </form>
         </div>
@@ -44,7 +44,7 @@
 
     {% block search_services %}
         <div class="table-header">
-            <h3><i class="fas fa-search"></i> {% trans "Search Products" %}</h3>
+            <h3><i class="fas fa-search"></i> {% trans "Search Services" %}</h3>
         </div>
         <div class="card card-body">
             <form method="get" class="form-inline">

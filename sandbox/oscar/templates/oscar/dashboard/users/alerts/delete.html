@@ -12,7 +12,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'dashboard:user-alert-list' %}">{% trans "Product alerts" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'dashboard:user-alert-list' %}">{% trans "Service alerts" %}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{% blocktrans with id=alert.id %}Alert #{{ id }}{% endblocktrans %}</li>
         </ol>
     </nav>
@@ -24,7 +24,7 @@
 
 {% block dashboard_content %}
     <div class="table-header">
-        <h2>{% blocktrans with id=alert.id %}Product alert #{{ id }}{% endblocktrans %}</h2>
+        <h2>{% blocktrans with id=alert.id %}Service alert #{{ id }}{% endblocktrans %}</h2>
     </div>
     <div class="card card-body bg-light">
         {% include 'oscar/dashboard/users/alerts/partials/alert.html' %}

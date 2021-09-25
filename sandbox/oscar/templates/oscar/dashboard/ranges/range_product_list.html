@@ -4,7 +4,7 @@
 {% block body_class %}{{ block.super }} create-page{% endblock %}
 
 {% block title %}
-    {% blocktrans with name=range.name %}Products in range '{{ name }}'{% endblocktrans %} | {{ block.super }}
+    {% blocktrans with name=range.name %}Services in range '{{ name }}'{% endblocktrans %} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -18,7 +18,7 @@
                 <a href="{% url 'dashboard:range-update' pk=range.id %}">'{{ range.name }}'</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                {% trans "Products" %}
+                {% trans "Services" %}
             </li>
         </ol>
     </nav>
@@ -31,7 +31,7 @@
 {% block dashboard_content %}
 
     {% if range.includes_all_services %}
-        {% trans "This range contains all services. To add services manually, please unselect the 'Includes All Products' option on the edit range page." %}
+        {% trans "This range contains all services. To add services manually, please unselect the 'Includes All Services' option on the edit range page." %}
     {% else %}
 
     <div class="table-header">
@@ -84,7 +84,7 @@
                     {% csrf_token %}
                     <table class="table table-striped table-bordered table-hover">
                         <caption>
-                            <h3 class="float-left">{% trans "Products in range" %}</h3>
+                            <h3 class="float-left">{% trans "Services in range" %}</h3>
                             <div class="float-right">
                                 <input type="hidden" name="action" value="remove_selected_services" />
                                 <button type="submit" class="btn btn-secondary" data-loading-text="{% trans 'Removing...' %}">{% trans "Remove selected services" %}</button>
@@ -94,7 +94,7 @@
                             <tr>
                                 <th></th>
                                 <th>{% trans "UPC" %}</th>
-                                <th>{% trans "Title" context "Product title" %}</th>
+                                <th>{% trans "Title" context "Service title" %}</th>
                                 <th>{% trans "Is service discountable?" %}</th>
                                 <th></th>
                             </tr>
@@ -124,7 +124,7 @@
             {% else %}
                 <table class="table table-striped table-bordered table-hover">
                     <caption>
-                        {% trans "Products in Range" %}
+                        {% trans "Services in Range" %}
                     </caption>
                     <tr><td>{% trans "No services found." %}</td></tr>
                 </table>

@@ -5,20 +5,20 @@
 {% block body_class %}{{ block.super }} users{% endblock %}
 
 {% block title %}
-    {% trans "Product alerts" %} | {{ block.super }}
+    {% trans "Service alerts" %} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "Product alerts" %}</li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans "Service alerts" %}</li>
         </ol>
     </nav>
 {% endblock %}
 
 {% block headertext %}
-    {% trans "Product alerts" %}
+    {% trans "Service alerts" %}
 {% endblock %}
 
 {% block dashboard_content %}
@@ -41,7 +41,7 @@
     {% if alerts %}
         <table class="table table-striped table-bordered table-hover">
             <tr>
-                <th>{% trans "Product" %}</th>
+                <th>{% trans "Service" %}</th>
                 <th>{% trans "User" %}</th>
                 <th>{% trans "Status" %}</th>
                 <th>{% trans "Date created" %}</th>

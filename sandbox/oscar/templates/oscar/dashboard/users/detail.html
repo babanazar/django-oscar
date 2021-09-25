@@ -59,7 +59,7 @@
                     {% if customer.userrecord %}
                         {% with record=customer.userrecord %}
                             <tr>
-                                <th>{% trans "Products viewed" %}</th>
+                                <th>{% trans "Services viewed" %}</th>
                                 <td>{{ record.num_service_views|default:0 }}</td>
                             </tr>
                             <tr>
@@ -176,9 +176,9 @@
                                 <caption>{% trans "Reviews" %}</caption>
                                 {% if customer.reviews.count %}
                                     <tr>
-                                        <th>{% trans "Product ID" %}</th>
+                                        <th>{% trans "Service ID" %}</th>
                                         <th>{% trans "Score" %}</th>
-                                        <th>{% trans "Title" context "Product review title" %}</th>
+                                        <th>{% trans "Title" context "Service review title" %}</th>
                                         <th>{% trans "Body" %}</th>
                                         <th>{% trans "Date created" %}</th>
                                     </tr>

@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{% trans "Product Type" %}</li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans "Service Type" %}</li>
         </ol>
     </nav>
 {% endblock %}
@@ -14,14 +14,14 @@
     <div class="page-header">
         <a href="{% url 'dashboard:catalogue-class-create' %}" class="btn btn-primary float-right">
             <i class="fas fa-plus-circle"></i> {% trans "Create new service type" %}</a>
-        <h1>{% trans "Product types" %}</h1>
+        <h1>{% trans "Service types" %}</h1>
     </div>
 {% endblock header %}
 
 {% block dashboard_content %}
     {% if classes %}
         <table class="table table-striped table-bordered table-hover">
-            <caption><i class="fas fa-sitemap"></i> {% trans 'Product Types' %}</caption>
+            <caption><i class="fas fa-sitemap"></i> {% trans 'Service Types' %}</caption>
             <thead>
                 <tr>
                     <th>{% trans "Name" %}</th>

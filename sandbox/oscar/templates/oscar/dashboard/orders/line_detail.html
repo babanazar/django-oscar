@@ -28,11 +28,11 @@
     <div class="row">
         <div class="col-md-4">
             <div class="table-header">
-                <h3>{% trans "Product details" %}</h3>
+                <h3>{% trans "Service details" %}</h3>
             </div>
             <table class="table table-striped table-bordered">
                 <tr>
-                    <th>{% trans "Title" context "Product title" %}</th>
+                    <th>{% trans "Title" context "Service title" %}</th>
                     <td>
                         {% if line.service %}
                             <a href="{{ line.service.get_absolute_url }}">{{ line.title }}</a>
@@ -42,7 +42,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>{% trans "Product Type" %}</th><td>{{ line.service.get_service_class }}</td>
+                    <th>{% trans "Service Type" %}</th><td>{{ line.service.get_service_class }}</td>
                 </tr>
                 <tr>
                     <th>{% trans "UPC" %}</th><td>{{ line.upc|default:"-" }}</td>
@@ -52,7 +52,7 @@
                 </tr>
                 {% if line.attributes.exists %}
                     <tr>
-                        <th colspan="2">{% trans "Product Options" %}</th>
+                        <th colspan="2">{% trans "Service Options" %}</th>
                     </tr>
                     {% for attribute in line.attributes.all %}
                         <tr>

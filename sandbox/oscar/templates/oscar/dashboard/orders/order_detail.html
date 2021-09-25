@@ -124,7 +124,7 @@
                                     <th></th>
                                     <th>{% trans "Line ID" %}</th>
                                     <th>{% trans "Quantity" %}</th>
-                                    <th>{% trans "Product" %}</th>
+                                    <th>{% trans "Service" %}</th>
                                     <th>{% trans "UPC" %}</th>
                                     <th>{% trans "Status" %}</th>
                                     <th>{% trans "Supplier" %}</th>
@@ -475,7 +475,7 @@
                                                 <td >{{ event.amount|currency:order.currency }}</td>
                                                 <td>
                                                     {% for line_qty in event.line_quantities.all %}
-                                                        {% trans "Product:" %} {{ line_qty.line.title }} - {% trans "quantity" %} {{ line_qty.quantity }}</br>
+                                                        {% trans "Service:" %} {{ line_qty.line.title }} - {% trans "quantity" %} {{ line_qty.quantity }}</br>
                                                     {% endfor %}
                                                 </td>
                                                 <td >{{ event.reference|default:"-" }}</td>

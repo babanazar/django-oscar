@@ -54,7 +54,7 @@
                 <tr>
                     <th></th>
                     <th>{% trans "Title" context "Review title" %}</th>
-                    <th>{% trans "Product" %}</th>
+                    <th>{% trans "Service" %}</th>
                     <th>{% trans "User" %}</th>
                     <th>{% anchor 'score' _("Score") %}</th>
                     <th>{% anchor 'total_votes' _("Votes") %}</th>
@@ -72,7 +72,7 @@
                             {% if review.service %}
                                 <a href='{{ review.service.get_absolute_url }}'>{{ review.service.title }}</a> </td>
                         {% else %}
-                            {% trans "[Product deleted]" %}
+                            {% trans "[Service deleted]" %}
                         {% endif %}
                         <td>
                             {% if not review.is_anonymous %}

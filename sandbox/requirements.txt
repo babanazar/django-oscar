@@ -12,7 +12,7 @@ django-environ==0.4.5
 django-extensions==3.1.3
 django-extra-views==0.13.0
 django-haystack==3.1.1
--e git+https://github.com/babanazar/django-oscar.git@ae2efc8764172ed9b3a28a06182ffc86dd10d474#egg=django_oscar
+-e git+https://github.com/babanazar/django-oscar.git@4fb6fdb72284183eeec26e404805b269edb829aa#egg=django_oscar
 django-phonenumber-field==5.2.0
 django-redis==5.0.0
 django-tables2==2.3.4
@@ -24,6 +24,7 @@ factory-boy==3.2.0
 Faker==8.12.1
 flake8==3.9.2
 flake8-debugger==4.0.0
+gunicorn==20.1.0
 idna==3.2
 ipdb==0.13.9
 ipython==7.27.0
