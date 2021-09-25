@@ -1,6 +1,6 @@
 import os
 import environ
-import oscar
+from oscar import *
 
 env = environ.Env()
 
