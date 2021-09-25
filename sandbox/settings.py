@@ -369,7 +369,7 @@ INTERNAL_IPS = ['127.0.0.1', '::1']
 # Oscar settings
 # ==============
 
-from oscar.defaults import *
+from .oscar.defaults import *
 
 # Meta
 # ====
